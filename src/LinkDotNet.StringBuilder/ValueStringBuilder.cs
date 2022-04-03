@@ -86,6 +86,18 @@ public ref partial struct ValueStringBuilder
     public override string ToString() => new(buffer[..bufferPosition]);
 
     /// <summary>
+    /// Creates a <see cref="string"/> instance from that builder.
+    /// </summary>
+    /// <param name="start">Starting index of the string.</param>
+    /// <param name="length">Length of the string.</param>
+    /// <returns>The substring with the given boundaries.</returns>
+    public string ToString(int start, int length)
+    {
+        var endIndex = start + length;
+        return new(buffer[start..endIndex]);
+    }
+
+    /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
     /// </summary>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
