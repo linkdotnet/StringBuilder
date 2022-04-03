@@ -85,6 +85,19 @@ public ref partial struct ValueStringBuilder
     /// <returns>The <see cref="string"/> instance.</returns>
     public override string ToString() => new(buffer[..bufferPosition]);
 
+    /// <summary>
+    /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
+    /// </summary>
+    /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
+    public ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
+
+    /// <summary>
+    /// Tries to copy the represented string into the given <see cref="Span{T}"/>.
+    /// </summary>
+    /// <param name="destination">The destination where the internal string is copied into.</param>
+    /// <returns>True, if the copy was successful, otherwise false.</returns>
+    public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
+
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;
