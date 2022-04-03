@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkDotNet.StringBuilder", "src\LinkDotNet.StringBuilder\LinkDotNet.StringBuilder.csproj", "{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AC846787-AEEF-4953-8E1E-F9BD7C40BDA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B926FCD0-7730-447F-B389-17426BA4DBF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkDotNet.StringBuilder.UnitTests", "tests\LinkDotNet.StringBuilder.UnitTests\LinkDotNet.StringBuilder.UnitTests.csproj", "{008879E6-7146-4468-A8BB-B3FDD0045999}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{008879E6-7146-4468-A8BB-B3FDD0045999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{008879E6-7146-4468-A8BB-B3FDD0045999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{008879E6-7146-4468-A8BB-B3FDD0045999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{008879E6-7146-4468-A8BB-B3FDD0045999}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5CBBC59-A1B5-41D8-AE24-5809676C7AF2} = {AC846787-AEEF-4953-8E1E-F9BD7C40BDA0}
+		{008879E6-7146-4468-A8BB-B3FDD0045999} = {B926FCD0-7730-447F-B389-17426BA4DBF8}
+	EndGlobalSection
+EndGlobal
