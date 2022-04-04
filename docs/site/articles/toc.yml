@@ -1,2 +1,4 @@
+- name: How does it work?
+  href: concepts.md
 - name: Known limitations
   href: known_limitations.md

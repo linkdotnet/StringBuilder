@@ -7,3 +7,5 @@ The base of the `ValueStringBuilder` is a `ref struct`. With that there are cert
  * Can't be used in methods which use the `yield` keyword
 
 If not off this applies to your use case, you are good to go. Using `ref struct` is a trade for performance and less allocations in contrast to its use cases.
+
+`ValueStringBuilder` offers the possibility to "convert" it into a "regular" `System.Text.StringBuilder`. Check out the following extension method via the <xref:LinkDotNet.StringBuilder.ValueStringBuilderExtensions>.
