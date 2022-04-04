@@ -5,6 +5,28 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Version>0.9.0</Version>
+        <Authors>Steven Giesel</Authors>
+        <Company>Steven Giesel</Company>
+		<Title>ValueStringBuilder</Title>
+        <Description>A fast and low allocation StringBuilder for .NET.</Description>
+        <PackageProjectUrl>https://github.com/linkdotnet/StringBuilder</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/linkdotnet/StringBuilder</RepositoryUrl>
+        <PackageTags>string,stringbuilder,csharp,dotnet</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>logo.png</PackageIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\..\logo.png">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Include="..\..\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
 </Project>
