@@ -60,9 +60,10 @@
       "_appTitle": "ValueStringBuilder",
       "_description": "The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.",
       "_enableSearch": true,
-      "_appLogoPath": "/images/logo.png",
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/logo.png",
       "_disableBreadcrumb": true,
-      "_disableFooter": false
+      "_disableFooter": true
     },
     "postProcessors": [],
     "markdownEngineName": "markdig",
