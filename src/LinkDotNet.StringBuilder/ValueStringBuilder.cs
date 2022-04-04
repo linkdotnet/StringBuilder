@@ -30,20 +30,18 @@ public ref partial struct ValueStringBuilder
     public ref char this[int index] => ref buffer[index];
 
     /// <summary>
-    /// Adds one character to the string builder.
+    /// Appends the string representation of the character to the builder.
     /// </summary>
-    /// <param name="c">Character to append.</param>
-    public void Append(char c)
+    /// <param name="value">Integer to add.</param>
+    public void Append(char value)
     {
         if (bufferPosition == buffer.Length - 1)
         {
             Grow();
         }
 
-        buffer[bufferPosition++] = c;
+        buffer[bufferPosition++] = value;
     }
-
-    public void Append(bool b) => Append(b.ToString());
 
     /// <summary>
     /// Appends a string to the string builder.
@@ -84,18 +82,6 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <returns>The <see cref="string"/> instance.</returns>
     public override string ToString() => new(buffer[..bufferPosition]);
-
-    /// <summary>
-    /// Creates a <see cref="string"/> instance from that builder.
-    /// </summary>
-    /// <param name="start">Starting index of the string.</param>
-    /// <param name="length">Length of the string.</param>
-    /// <returns>The substring with the given boundaries.</returns>
-    public string ToString(int start, int length)
-    {
-        var endIndex = start + length;
-        return new(buffer[start..endIndex]);
-    }
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.

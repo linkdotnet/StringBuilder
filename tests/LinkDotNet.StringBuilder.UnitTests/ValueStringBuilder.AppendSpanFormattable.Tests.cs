@@ -1,6 +1,6 @@
 namespace LinkDotNet.StringBuilder.UnitTests;
 
-public class ValueStringBuilderAppendTests
+public class ValueStringBuilderAppendFormattableTests
 {
     [Fact]
     public void ShouldAppendFloat()
@@ -110,5 +110,30 @@ public class ValueStringBuilderAppendTests
         builder.Append((sbyte)2);
 
         builder.ToString().Should().Be("2");
+    }
+
+    [Fact]
+    public void ShouldAppendMultipleChars()
+    {
+        var builder = new ValueStringBuilder();
+
+        for (var i = 0; i < 64; i++)
+        {
+            builder.Append('c');
+        }
+
+        builder.ToString().Should().MatchRegex("[c]{64}");
+    }
+
+    [Fact]
+    public void ShouldAppendMultipleDoubles()
+    {
+        var builder = new ValueStringBuilder();
+
+        builder.Append(1d / 3d);
+        builder.Append(1d / 3d);
+        builder.Append(1d / 3d);
+
+        builder.ToString().Should().Be("0.33333333333333330.33333333333333330.3333333333333333");
     }
 }

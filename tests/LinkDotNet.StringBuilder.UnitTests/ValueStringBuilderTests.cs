@@ -85,4 +85,28 @@ public class ValueStringBuilderTests
 
         Assert.False(true);
     }
+
+    [Fact]
+    public void ShouldTryToCopySpan()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+        var mySpan = new Span<char>(new char[5], 0, 5);
+
+        var result = stringBuilder.TryCopyTo(mySpan);
+
+        result.Should().BeTrue();
+        mySpan.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public void ShouldReturnSpan()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        var output = stringBuilder.AsSpan().ToString();
+
+        output.Should().Be("Hello");
+    }
 }
