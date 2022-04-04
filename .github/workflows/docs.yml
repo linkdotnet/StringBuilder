@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - stable
+    - main
   pull_request:
     branches:
     - stable
@@ -29,7 +30,7 @@ jobs:
 
     - name: DocFX Build
       working-directory: docs
-      run: docfx .\docfx.json
+      run: docfx site\docfx.json
       continue-on-error: false
 
     - name: Publish
@@ -37,5 +38,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: docs/_site
+        publish_dir: docs/site/_site
         force_orphan: true
