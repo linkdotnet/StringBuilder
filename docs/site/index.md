@@ -10,6 +10,8 @@
 The package is hosted on nuget.org, so easily add the package reference:
 > PM> Install-Package LinkDotNet.StringBuilder
 
+Afterwards you can simply use it. It tries to mimic the API of the `StringBuilder` to a certain extend so for simpler cases you can exchange those two.
+
 
 ## Example usage
 The API is leaning towards the normal `StringBuilder` which is part of the .net framework itself. The main key difference is, that the `ValueStringBuilder` does **not** use the fluent notation of its "big brother".
