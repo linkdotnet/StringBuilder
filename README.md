@@ -1,7 +1,7 @@
 # StringBuilder
 
 [![.NET](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml/badge.svg)](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml)
-![Nuget](https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder)
+[![Nuget](https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder)](https://www.nuget.org/packages/LinkDotNet.StringBuilder/)
 
 A fast and low allocation StringBuilder for .NET.
 
