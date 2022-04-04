@@ -4,10 +4,6 @@ on:
   push:
     branches:
     - stable
-    - main
-  pull_request:
-    branches:
-    - stable
   workflow_dispatch:
 
 jobs:
