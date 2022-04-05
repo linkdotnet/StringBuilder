@@ -101,9 +101,11 @@ public ref partial struct ValueStringBuilder
     /// <returns>True, if the copy was successful, otherwise false.</returns>
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
+    /// <summary>
+    /// Clears the st
+    /// </summary>
     public void Clear()
     {
-        buffer.Clear();
         bufferPosition = 0;
     }
 
