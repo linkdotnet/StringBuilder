@@ -10,7 +10,7 @@ public static class ValueStringBuilderExtensions
     /// </summary>
     /// <param name="builder">The builder from which the new instance is derived.</param>
     /// <returns>A new <see cref="System.Text.StringBuilder"/> instance with the string represented
-    /// by this <see cref="builder"/>.
+    /// by this <paramref name="builder"/>.
     /// </returns>
     public static System.Text.StringBuilder ToStringBuilder(ref this ValueStringBuilder builder)
     {
@@ -20,11 +20,11 @@ public static class ValueStringBuilderExtensions
     }
 
     /// <summary>
-    /// Creates a new <see cref="ValueStringBuilder"/> from the given <see cref="builder"/>.
+    /// Creates a new <see cref="ValueStringBuilder"/> from the given <paramref name="builder"/>.
     /// </summary>
     /// <param name="builder">The builder from which the new instance is derived.</param>
     /// <returns>A new <see cref="ValueStringBuilder"/> instance with the string represented by this <see cref="builder"/>.</returns>
-    /// <exception cref="ArgumentNullException">Throws if <see cref="builder"/> is null.</exception>
+    /// <exception cref="ArgumentNullException">Throws if <paramref name="builder"/> is null.</exception>
     public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder? builder)
     {
         if (builder == null)

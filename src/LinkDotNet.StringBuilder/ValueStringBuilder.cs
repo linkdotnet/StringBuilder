@@ -101,6 +101,12 @@ public ref partial struct ValueStringBuilder
     /// <returns>True, if the copy was successful, otherwise false.</returns>
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
+    public void Clear()
+    {
+        buffer.Clear();
+        bufferPosition = 0;
+    }
+
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;
