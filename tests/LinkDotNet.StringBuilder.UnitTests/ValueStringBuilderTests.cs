@@ -109,4 +109,15 @@ public class ValueStringBuilderTests
 
         output.Should().Be("Hello");
     }
+
+    [Fact]
+    public void ShouldReturnLength()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        var length = stringBuilder.Length;
+
+        length.Should().Be(5);
+    }
 }
