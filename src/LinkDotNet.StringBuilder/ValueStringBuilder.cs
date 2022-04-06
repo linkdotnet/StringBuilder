@@ -24,6 +24,11 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Gets the current length of the represented string.
+    /// </summary>
+    public int Length => bufferPosition;
+
+    /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
     /// <param name="index">Index position, which should be retrieved.</param>
@@ -95,6 +100,14 @@ public ref partial struct ValueStringBuilder
     /// <param name="destination">The destination where the internal string is copied into.</param>
     /// <returns>True, if the copy was successful, otherwise false.</returns>
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
+
+    /// <summary>
+    /// Clears the st
+    /// </summary>
+    public void Clear()
+    {
+        bufferPosition = 0;
+    }
 
     private void Grow(int capacity = 0)
     {

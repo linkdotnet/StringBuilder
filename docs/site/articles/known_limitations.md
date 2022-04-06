@@ -1,3 +1,6 @@
+---
+uid: known_limitations
+---
 # Known Limitations
 The base of the `ValueStringBuilder` is a `ref struct`. With that there are certain limitations, which might make it not a good fit for your needs.
  * `ref struct`s can only live on the **stack** and therefore can not be a field for a **class** or a non **ref struct**.

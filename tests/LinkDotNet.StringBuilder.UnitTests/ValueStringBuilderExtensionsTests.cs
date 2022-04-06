@@ -12,4 +12,15 @@ public class ValueStringBuilderExtensionsTests
 
         fromBuilder.Should().Be("Hello");
     }
+
+    [Fact]
+    public void ShouldConvertFromStringBuilder()
+    {
+        var stringBuilder = new System.Text.StringBuilder();
+        stringBuilder.Append("Hello");
+
+        var toBuilder = stringBuilder.ToValueStringBuilder();
+
+        toBuilder.ToString().Should().Be("Hello");
+    }
 }

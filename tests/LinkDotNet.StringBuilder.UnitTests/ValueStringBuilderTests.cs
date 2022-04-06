@@ -109,4 +109,35 @@ public class ValueStringBuilderTests
 
         output.Should().Be("Hello");
     }
+
+    [Fact]
+    public void ShouldReturnLength()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        var length = stringBuilder.Length;
+
+        length.Should().Be(5);
+    }
+
+    [Fact]
+    public void ShouldClear()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        stringBuilder.Clear();
+
+        stringBuilder.Length.Should().Be(0);
+        stringBuilder.ToString().Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void ShouldReturnEmptyStringWhenInitialized()
+    {
+        var stringBuilder = new ValueStringBuilder();
+
+        stringBuilder.ToString().Should().Be(string.Empty);
+    }
 }

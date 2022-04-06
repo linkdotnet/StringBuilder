@@ -16,6 +16,7 @@
         <PackageTags>string,stringbuilder,csharp,dotnet</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.png</PackageIcon>
+        <PackageVersion>0.9.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
