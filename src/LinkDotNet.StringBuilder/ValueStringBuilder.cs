@@ -102,11 +102,49 @@ public ref partial struct ValueStringBuilder
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
     /// <summary>
-    /// Clears the st
+    /// Clears the internal representation of the string.
     /// </summary>
+    /// <remarks>
+    /// This will not enforce some allocations or shrinking of the internal buffer.
+    /// </remarks>
     public void Clear()
     {
         bufferPosition = 0;
+    }
+
+    /// <summary>
+    /// Removes a range of characters from this builder.
+    /// </summary>
+    /// <param name="startIndex">The inclusive index from where the string gets removed.</param>
+    /// <param name="length">The length of the slice to remove.</param>
+    /// <remarks>
+    /// This method will not affect the internal size of the string.
+    /// </remarks>
+    public void Remove(int startIndex, int length)
+    {
+        if (length < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(length), "The given length can't be negative.");
+        }
+
+        if (startIndex < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given start index can't be negative.");
+        }
+
+        if (length > Length - startIndex)
+        {
+            throw new ArgumentOutOfRangeException(nameof(length), "The given length is longer than the represented string.");
+        }
+
+        if (startIndex >= Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given startIndex is larger than the represented string.");
+        }
+
+        var beginIndex = startIndex + length;
+        buffer[beginIndex..bufferPosition].CopyTo(buffer[startIndex..]);
+        bufferPosition -= length;
     }
 
     private void Grow(int capacity = 0)
