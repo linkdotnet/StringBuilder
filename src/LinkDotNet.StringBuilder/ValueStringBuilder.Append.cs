@@ -12,6 +12,12 @@ public ref partial struct ValueStringBuilder
     public void Append(bool value) => Append(value.ToString());
 
     /// <summary>
+    /// Appends the string representation of the character to the builder.
+    /// </summary>
+    /// <param name="value">Integer to add.</param>
+    public void Append(char value) => AppendSpanFormattable(value);
+
+    /// <summary>
     /// Appends the string representation of the signed byte to the builder.
     /// </summary>
     /// <param name="value">Signed byte to add.</param>
@@ -58,6 +64,40 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Decimal to add.</param>
     public void Append(decimal value) => AppendSpanFormattable(value);
+
+    /// <summary>
+    /// Appends a string to the string builder.
+    /// </summary>
+    /// <param name="str">String, which will be added to this builder.</param>
+    public void Append(ReadOnlySpan<char> str)
+    {
+        var newSize = str.Length + bufferPosition;
+        if (newSize > buffer.Length)
+        {
+            Grow(newSize * 2);
+        }
+
+        str.CopyTo(buffer[bufferPosition..]);
+        bufferPosition += str.Length;
+    }
+
+    /// <summary>
+    /// Adds the default new line separator.
+    /// </summary>
+    public void AppendLine()
+    {
+        Append(Environment.NewLine);
+    }
+
+    /// <summary>
+    /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
+    /// </summary>
+    /// <param name="str">String, which will be added to this builder.</param>
+    public void AppendLine(ReadOnlySpan<char> str)
+    {
+        Append(str);
+        Append(Environment.NewLine);
+    }
 
     private void AppendSpanFormattable<T>(T value)
         where T : ISpanFormattable

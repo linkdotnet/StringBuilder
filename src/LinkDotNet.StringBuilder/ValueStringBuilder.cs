@@ -26,6 +26,9 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Gets the current length of the represented string.
     /// </summary>
+    /// <value>
+    /// The current length of the represented string.
+    /// </value>
     public int Length => bufferPosition;
 
     /// <summary>
@@ -33,54 +36,6 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index position, which should be retrieved.</param>
     public ref char this[int index] => ref buffer[index];
-
-    /// <summary>
-    /// Appends the string representation of the character to the builder.
-    /// </summary>
-    /// <param name="value">Integer to add.</param>
-    public void Append(char value)
-    {
-        if (bufferPosition == buffer.Length - 1)
-        {
-            Grow();
-        }
-
-        buffer[bufferPosition++] = value;
-    }
-
-    /// <summary>
-    /// Appends a string to the string builder.
-    /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
-    public void Append(ReadOnlySpan<char> str)
-    {
-        var newSize = str.Length + bufferPosition;
-        if (newSize > buffer.Length)
-        {
-            Grow(newSize * 2);
-        }
-
-        str.CopyTo(buffer[bufferPosition..]);
-        bufferPosition += str.Length;
-    }
-
-    /// <summary>
-    /// Adds the default new line separator.
-    /// </summary>
-    public void AppendLine()
-    {
-        Append(Environment.NewLine);
-    }
-
-    /// <summary>
-    /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
-    /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
-    public void AppendLine(ReadOnlySpan<char> str)
-    {
-        Append(str);
-        Append(Environment.NewLine);
-    }
 
     /// <summary>
     /// Creates a <see cref="string"/> instance from that builder.
@@ -105,7 +60,7 @@ public ref partial struct ValueStringBuilder
     /// Clears the internal representation of the string.
     /// </summary>
     /// <remarks>
-    /// This will not enforce some allocations or shrinking of the internal buffer.
+    /// This will not enforce some re-allocation or shrinking of the internal buffer. The size stays the same.
     /// </remarks>
     public void Clear()
     {
