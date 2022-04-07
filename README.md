@@ -2,6 +2,7 @@
 
 [![.NET](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml/badge.svg)](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml)
 [![Nuget](https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder)](https://www.nuget.org/packages/LinkDotNet.StringBuilder/)
+[![GitHub tag](https://img.shields.io/github/v/tag/linkdotnet/StringBuilder?include_prereleases&logo=github&style=flat-square)](https://github.com/linkdotnet/StringBuilder/releases)
 
 A fast and low allocation StringBuilder for .NET.
 
@@ -31,6 +32,7 @@ The library works best for a small to medium amount of strings (not multiple 100
 A more detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/).
 
 ## Benchmark
+
 The following table gives you a small comparison between the `StringBuilder` which is part of .NET and the `ValueStringBuilder`:
 
 ```no-class
@@ -38,6 +40,16 @@ The following table gives you a small comparison between the `StringBuilder` whi
 | ------------------- | -------: | ------: | ------: | -----: | --------: |
 | DotNetStringBuilder | 430.7 ns | 8.52 ns | 7.55 ns | 0.3576 |   1,496 B |
 | ValueStringBuilder  | 226.7 ns | 2.45 ns | 2.05 ns | 0.1395 |     584 B |
+```
+
+Another benchmark shows that this `ValueStringBuilder` uses less memory when it comes to appending `ValueTypes` such as `int`, `double`, ...
+
+```no-class
+|              Method |     Mean |    Error |   StdDev |  Gen 0 | Allocated |
+|-------------------- |---------:|---------:|---------:|-------:|----------:|
+| DotNetStringBuilder | 17.21 us | 0.622 us | 1.805 us | 1.5259 |      6 KB |
+|  ValueStringBuilder | 16.24 us | 0.496 us | 1.462 us | 0.3357 |      1 KB |
+
 ```
 
 Checkout the [Benchmark](tests/LinkDotNet.StringBuilder.Benchmarks) for more detailed comparison and setup.

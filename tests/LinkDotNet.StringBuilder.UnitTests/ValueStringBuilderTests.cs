@@ -140,4 +140,39 @@ public class ValueStringBuilderTests
 
         stringBuilder.ToString().Should().Be(string.Empty);
     }
+
+    [Fact]
+    public void ShouldRemoveRange()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        stringBuilder.Remove(0, 6);
+
+        stringBuilder.Length.Should().Be(5);
+        stringBuilder.ToString().Should().Be("World");
+    }
+
+    [Theory]
+    [InlineData(-1, 2)]
+    [InlineData(1, -2)]
+    [InlineData(90, 1)]
+    [InlineData(1, 90)]
+    public void ShouldThrowExceptionWhenNegativeStartIndex(int startIndex, int length)
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        try
+        {
+            stringBuilder.Remove(startIndex, length);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.False(true);
+    }
 }

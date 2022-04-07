@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderExtensionsTests
@@ -22,5 +24,15 @@ public class ValueStringBuilderExtensionsTests
         var toBuilder = stringBuilder.ToValueStringBuilder();
 
         toBuilder.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public void ShouldThrowWhenStringBuilderNull()
+    {
+        System.Text.StringBuilder? sb = null;
+
+        Action act = () => sb.ToValueStringBuilder();
+
+        act.Should().Throw<ArgumentNullException>();
     }
 }
