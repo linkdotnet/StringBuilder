@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [0.9.2] - 2022-04-06
+
 ### Added
  - Added `Remove` and `Insert` methods.
 
