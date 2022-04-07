@@ -1,5 +1,7 @@
 [![.NET](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml/badge.svg)](https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml)
 [![Nuget](https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder)](https://www.nuget.org/packages/LinkDotNet.StringBuilder/)
+[![GitHub tag](https://img.shields.io/github/v/tag/linkdotnet/StringBuilder?include_prereleases&logo=github&style=flat-square)](https://github.com/linkdotnet/StringBuilder/releases)
+
 # ValueStringBuilder: A fast and low allocation StringBuilder for .NET
 
 **ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation will show case you how to use the `ValueStringBuilder` as well as what are some limitations coming with it. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file and issue.
