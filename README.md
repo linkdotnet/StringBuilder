@@ -25,7 +25,7 @@ If you want to know how the `ValueStringBuilder` works and why it uses allocatio
 The blog goes a bit more in detail how it works with a simplistic version of the `ValueStringBuilder`.
 
 ## What it doesn't solve!
-The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the "Known limitations".
+The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the ["Known limitations"](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html).
 The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses less allocations). At anytime you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
 
 The normal use case is to add concatenate strings in a hot-path where the goal is to put as minimal pressure on the GC as possible.
