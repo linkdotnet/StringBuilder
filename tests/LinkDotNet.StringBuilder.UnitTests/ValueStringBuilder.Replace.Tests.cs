@@ -34,4 +34,26 @@ public class ValueStringBuilderReplaceTests
 
         builder.ToString().Should().Be("Hallöchen World. How are you doing. Hallöchen world examples are always fun.");
     }
+
+    [Fact]
+    public void ShouldNotAlterIfNotFound()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello");
+
+        builder.Replace("Test", "Not");
+
+        builder.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public void ShouldReplaceInSpan()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello World. How are you doing. Hello world examples are always fun.");
+
+        builder.Replace("Hello", "Hallöchen", 0, 10);
+
+        builder.ToString().Should().Be("Hallöchen World. How are you doing. Hello world examples are always fun.");
+    }
 }

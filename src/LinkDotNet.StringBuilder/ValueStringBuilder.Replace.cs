@@ -46,7 +46,8 @@ public ref partial struct ValueStringBuilder
     /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/>
     /// are removed from this builder.
     /// </remarks>
-    public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue) => Replace(oldValue, newValue, 0, Length);
+    public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue)
+        => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
     /// Replaces all instances of one string with another in this builder.
@@ -64,8 +65,12 @@ public ref partial struct ValueStringBuilder
         var length = startIndex + count;
         var slice = buffer[startIndex..length];
 
-        // We might want to check if for very small strings we go with a naive approach
-        var hits = BoyerMooreSearch.FindAll(slice, oldValue);
+        // We might want to check whether or not we want to introduce different
+        // string search algorithms for longer strings.
+        // I had checked initially with Boyer-Moore but it didn't make that much sense as we
+        // don't expect very long strings and then the performance is literally the same. So I went with the easier solution.
+        var hits = NaiveSearch.FindAll(slice, oldValue);
+
         if (hits.IsEmpty)
         {
             return;
@@ -75,13 +80,9 @@ public ref partial struct ValueStringBuilder
 
         for (var i = 0; i < hits.Length; i++)
         {
-            var index = startIndex + hits[0] + (delta * i);
+            var index = startIndex + hits[i] + (delta * i);
             Remove(index, oldValue.Length);
-            var debug = ToString();
-            Console.WriteLine(debug);
             Insert(index, newValue);
-            debug = ToString();
-            Console.WriteLine(debug);
         }
     }
 }
