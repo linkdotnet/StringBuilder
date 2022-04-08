@@ -17,7 +17,7 @@ internal ref struct TypedSpanList<T>
     /// </summary>
     public TypedSpanList()
     {
-        buffer = new T[32];
+        buffer = new T[8];
         count = 0;
     }
 
