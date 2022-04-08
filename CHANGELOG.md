@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+ - Added `Replace` methods which also tries to have the least amount of allocations.
+
 ## [0.9.2] - 2022-04-06
 
 ### Added

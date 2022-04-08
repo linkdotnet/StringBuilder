@@ -26,21 +26,27 @@ The blog goes a bit more in detail how it works with a simplistic version of the
 
 ## What it doesn't solve!
 The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the "Known limitations".
-The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it is still faster and uses less allocations). At anytime you can convert the `ValueStringBuilder` to a "normal" `StringBuilder`. 
+The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses less allocations). At anytime you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
+
+The normal use case is to add concatenate strings in a hot-path where the goal is to put as minimal pressure on the GC as possible.
 
 ## Documentation
 A more detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/).
 
 ## Benchmark
 
-The following table gives you a small comparison between the `StringBuilder` which is part of .NET and the `ValueStringBuilder`:
+The following table gives you a small comparison between the `StringBuilder` which is part of .NET, [`ZString`](https://github.com/Cysharp/ZString) and the `ValueStringBuilder`:
 
 ```no-class
-| Method              |     Mean |   Error |  StdDev |  Gen 0 | Allocated |
-| ------------------- | -------: | ------: | ------: | -----: | --------: |
-| DotNetStringBuilder | 430.7 ns | 8.52 ns | 7.55 ns | 0.3576 |   1,496 B |
-| ValueStringBuilder  | 226.7 ns | 2.45 ns | 2.05 ns | 0.1395 |     584 B |
+|              Method |       Mean |    Error |    StdDev |     Median | Ratio | RatioSD |   Gen 0 |  Gen 1 | Allocated |
+|-------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|--------:|-------:|----------:|
+| DotNetStringBuilder |   401.7 ns | 29.15 ns |  84.56 ns |   373.4 ns |  1.00 |    0.00 |  0.3576 |      - |   1,496 B |
+|  ValueStringBuilder |   252.8 ns |  9.05 ns |  26.27 ns |   249.0 ns |  0.65 |    0.13 |  0.1583 |      - |     664 B |
+|  ZStringBuilderUtf8 | 1,239.0 ns | 44.93 ns | 131.06 ns | 1,192.0 ns |  3.18 |    0.56 | 15.6250 |      - |  66,136 B |
+| ZStringBuilderUtf16 | 1,187.6 ns | 21.35 ns |  25.42 ns | 1,185.0 ns |  2.88 |    0.52 | 15.6250 | 0.0019 |  66,136 B |
 ```
+
+For more comparison check the documentation.
 
 Another benchmark shows that this `ValueStringBuilder` uses less memory when it comes to appending `ValueTypes` such as `int`, `double`, ...
 

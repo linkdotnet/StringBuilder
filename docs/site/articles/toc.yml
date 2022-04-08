@@ -1,4 +1,9 @@
-- name: How does it work?
-  href: concepts.md
+- name: Getting started
+  href: getting_started.md
+  items:
+    - name: How does it work?
+      href: concepts.md
+    - name: Comparison
+      href: comparison.md
 - name: Known limitations
   href: known_limitations.md
