@@ -24,7 +24,7 @@ jobs:
     
     - name: Merge main to stable
       run: |
-        git fetch --unshallow
+        git fetch
         git checkout stable
         git pull
         git merge --no-ff origin/main -m "Updating to newest release"
