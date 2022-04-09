@@ -25,8 +25,9 @@ jobs:
         git checkout stable
         git pull
         git merge --no-ff origin/main -m "Updating to newest release"
-
+        
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: stable
