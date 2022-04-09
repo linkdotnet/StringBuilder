@@ -16,7 +16,8 @@
         <PackageTags>string,stringbuilder,csharp,dotnet</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.png</PackageIcon>
-        <PackageVersion>0.9.3</PackageVersion>
+        <PackageVersion>0.9.4</PackageVersion>
+        <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
     </PropertyGroup>
 
     <ItemGroup>
