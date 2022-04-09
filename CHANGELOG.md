@@ -8,6 +8,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
  - Added `Replace` methods which also tries to have the least amount of allocations.
+ - Added `GetPinnableReference` which allows to get the content via the `fixed` keyword.
 
 ## [0.9.2] - 2022-04-06
 

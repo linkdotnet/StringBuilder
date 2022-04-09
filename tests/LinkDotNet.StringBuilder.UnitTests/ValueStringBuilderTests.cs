@@ -185,4 +185,18 @@ public class ValueStringBuilderTests
 
         stringBuilder.ToString().Should().Be("Hello");
     }
+
+    [Fact]
+    public unsafe void ShouldGetPinnableReference()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hey");
+
+        fixed (char* c = stringBuilder)
+        {
+            c[0].Should().Be('H');
+            c[1].Should().Be('e');
+            c[2].Should().Be('y');
+        }
+    }
 }
