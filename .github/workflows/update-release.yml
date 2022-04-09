@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set git config
       run: |
@@ -26,5 +28,3 @@ jobs:
         git pull
         git merge --no-ff origin/main -m "Updating to newest release"
         git push
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
