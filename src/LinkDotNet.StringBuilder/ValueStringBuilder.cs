@@ -77,6 +77,11 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     public void Remove(int startIndex, int length)
     {
+        if (length == 0)
+        {
+            return;
+        }
+
         if (length < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(length), "The given length can't be negative.");
@@ -89,12 +94,7 @@ public ref partial struct ValueStringBuilder
 
         if (length > Length - startIndex)
         {
-            throw new ArgumentOutOfRangeException(nameof(length), "The given length is longer than the represented string.");
-        }
-
-        if (startIndex >= Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given startIndex is larger than the represented string.");
+            throw new ArgumentOutOfRangeException(nameof(length), $"The given Span ({startIndex}..{length})length is outside the the represented string.");
         }
 
         var beginIndex = startIndex + length;
