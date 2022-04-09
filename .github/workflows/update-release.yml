@@ -28,7 +28,7 @@ jobs:
         git fetch
         git checkout stable
         git pull
-        git merge --no-ff origin/main -m "Updating to newest release"
+        git merge --no-ff -X theirs origin/main -m "Updating to newest release"
         
     - name: Push changes
       uses: ad-m/github-push-action@master
