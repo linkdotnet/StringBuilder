@@ -121,6 +121,32 @@ public ref partial struct ValueStringBuilder
         bufferPosition -= length;
     }
 
+    /// <summary>
+    /// Returns the index within this string of the first occurrence of the specified substring.
+    /// </summary>
+    /// <param name="word">Word to look for in this string.</param>
+    /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    public int IndexOf(ReadOnlySpan<char> word)
+    {
+        return NaiveSearch.FindFirst(buffer[..bufferPosition], word);
+    }
+
+    /// <summary>
+    /// Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
+    /// </summary>
+    /// <param name="word">Word to look for in this string.</param>
+    /// <param name="startIndex">Index to begin with.</param>
+    /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    public int IndexOf(ReadOnlySpan<char> word, int startIndex)
+    {
+        if (startIndex < 0)
+        {
+            throw new ArgumentException("Start index can't be smaller than 0.", nameof(startIndex));
+        }
+
+        return NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
+    }
+
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;

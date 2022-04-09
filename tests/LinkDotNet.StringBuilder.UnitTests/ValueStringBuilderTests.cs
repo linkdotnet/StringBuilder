@@ -136,4 +136,61 @@ public class ValueStringBuilderTests
             c[2].Should().Be('y');
         }
     }
+
+    [Fact]
+    public void ShouldGetIndexOfWord()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("World");
+
+        index.Should().Be(6);
+    }
+
+    [Fact]
+    public void ShouldFindInSubstring()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("l", 6);
+
+        index.Should().Be(3);
+    }
+
+    [Fact]
+    public void ShouldReturnMinusOneIfNotFound()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("Mountain");
+
+        index.Should().Be(-1);
+    }
+
+    [Fact]
+    public void ShouldReturnMinusOneWordIsLongerThanString()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("Hello World but longer");
+
+        index.Should().Be(-1);
+    }
+
+    [Theory]
+    [InlineData("", "word")]
+    [InlineData("word", "")]
+    public void ShouldReturnMinusOneIfStringOrWordIsEmpty(string text, string word)
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append(text);
+
+        var index = stringBuilder.IndexOf(word);
+
+        index.Should().Be(-1);
+    }
 }

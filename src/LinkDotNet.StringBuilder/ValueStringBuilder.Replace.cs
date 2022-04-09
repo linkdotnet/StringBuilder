@@ -65,6 +65,11 @@ public ref partial struct ValueStringBuilder
         var length = startIndex + count;
         var slice = buffer[startIndex..length];
 
+        if (oldValue == newValue)
+        {
+            return;
+        }
+
         // We might want to check whether or not we want to introduce different
         // string search algorithms for longer strings.
         // I had checked initially with Boyer-Moore but it didn't make that much sense as we
