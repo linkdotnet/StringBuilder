@@ -11,6 +11,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
  - `Capacity` to give the user an indication if the internal array will grow soon.
  - `EnsureCapacity` to set the buffer size to avoid re-allocation in a hot path.
 
+### Fixed
+ - Some methods throw the wrong exception. When an index is "invalid" then a `ArgumentOutOfRange` exception is thrown.
+
 ## [0.9.4] - 2022-04-09
 
 ### Added
