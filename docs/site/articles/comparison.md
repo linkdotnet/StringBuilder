@@ -4,7 +4,7 @@ uid: comparison
 
 # Comparison
 
-The following document will show some key differences between the `ValueStringBuilder` and similar working string builder like the one from .NET itself.
+The following document will show some key differences between the `ValueStringBuilder` and similar working string builder like the one from .NET itself or the famous `ZString` package, which is also free and open-source.
 
 ## System.Text.StringBuilder
 
@@ -14,6 +14,7 @@ The `StringBuilder` shipped with the .NET Framework itself is a all-purpose stri
  - `StringBuilder` is a class and does not have the restrictions coming with a `ref struct`. To know more head over to the [known limitations](xref:known_limitations) section.
  - `StringBuilder` works not on `Span<T>` but more on `string`s or `char`s. Sometimes even with pointers
  - `StringBuilder` uses chunks to represent the string, which the larger the string gets, the better it can perform. `ValueStringBuilder` only has one internal `Span` as representation which can cause fragmentation on very big strings.
+ - `StringBuilder` has a richer API as the `ValueStringBuilder`. In the future they should have the same amount of API's as the `StringBuilder` is the "big brother" of this package.
 
 ## `ZString`
 Both string builder use similiar concepts to achieve. Both,`ValueStringBuilder` and `ZString`, are declared as `struct`s. `ValueStringBuilder` goes one step further and enforces its lifecycle to live on the **stack** and can never be put on the **heap**.
@@ -22,6 +23,7 @@ Both string builder use similiar concepts to achieve. Both,`ValueStringBuilder` 
  * `ValueStringBuilder` is a `ref struct` which can never placed on the heap. `ZString` can be defined as a `class` field.
  * `ZString` has a very big initial buffer in its default (64kb) which can lead to more pressure on the GC.
  * `ZString` is more general purpose than `ValueStringBuilder` is.
+ * `ZString` offers a richer API than the `ValueStringBuilder`. In the future that should change.
 
 
 ## Benchmark

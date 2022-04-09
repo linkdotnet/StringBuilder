@@ -36,4 +36,4 @@ Prints:
 > Hello dear World!  
 0.3
 
-[Here](https://dotnetfiddle.net/wM5r0q) an interactive example where you can fiddle around with the library. The example is hosted on [https://dotnetfiddle.net/](https://dotnetfiddle.net/) and already has the `ValueStringBuilder` nuget package included.
+[Here](https://dotnetfiddle.net/wM5r0q) an interactive example where you can fiddle around with the library. The example is hosted on [https://dotnetfiddle.net/](https://dotnetfiddle.net/) and already has the `ValueStringBuilder` nuget package included in the latest version.
