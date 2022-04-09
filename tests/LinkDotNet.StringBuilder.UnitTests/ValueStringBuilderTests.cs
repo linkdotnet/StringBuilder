@@ -157,11 +157,10 @@ public class ValueStringBuilderTests
     [InlineData(-1, 2)]
     [InlineData(1, -2)]
     [InlineData(90, 1)]
-    [InlineData(1, 90)]
-    public void ShouldThrowExceptionWhenNegativeStartIndex(int startIndex, int length)
+    public void ShouldThrowExceptionWhenOutOfRangeIndex(int startIndex, int length)
     {
         var stringBuilder = new ValueStringBuilder();
-        stringBuilder.Append("Hello World");
+        stringBuilder.Append("Hello");
 
         try
         {
@@ -174,5 +173,30 @@ public class ValueStringBuilderTests
         }
 
         Assert.False(true);
+    }
+
+    [Fact]
+    public void ShouldNotRemoveEntriesWhenLengthIsEqualToZero()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        stringBuilder.Remove(0, 0);
+
+        stringBuilder.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public unsafe void ShouldGetPinnableReference()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hey");
+
+        fixed (char* c = stringBuilder)
+        {
+            c[0].Should().Be('H');
+            c[1].Should().Be('e');
+            c[2].Should().Be('y');
+        }
     }
 }

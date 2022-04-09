@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Runtime.InteropServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -50,6 +51,24 @@ public ref partial struct ValueStringBuilder
     public ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
 
     /// <summary>
+    /// Get a pinnable reference to the represented string from this builder.
+    /// The content after <see cref="Length"/> is not guaranteed to be null terminated.
+    /// </summary>
+    /// <returns>The pointer to the first instance of the string represented by this builder.</returns>
+    /// <remarks>
+    /// This method is used for use-cases where the user wants to use "fixed" calls like the following:
+    /// <code>
+    /// var stringBuilder = new ValueStringBuilder();
+    /// stringBuilder.Append("Hello World");
+    /// fixed (var* buffer = stringBuilder) { ... }
+    /// </code>
+    /// </remarks>
+    public ref char GetPinnableReference()
+    {
+        return ref MemoryMarshal.GetReference(buffer);
+    }
+
+    /// <summary>
     /// Tries to copy the represented string into the given <see cref="Span{T}"/>.
     /// </summary>
     /// <param name="destination">The destination where the internal string is copied into.</param>
@@ -77,6 +96,11 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     public void Remove(int startIndex, int length)
     {
+        if (length == 0)
+        {
+            return;
+        }
+
         if (length < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(length), "The given length can't be negative.");
@@ -89,12 +113,7 @@ public ref partial struct ValueStringBuilder
 
         if (length > Length - startIndex)
         {
-            throw new ArgumentOutOfRangeException(nameof(length), "The given length is longer than the represented string.");
-        }
-
-        if (startIndex >= Length)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given startIndex is larger than the represented string.");
+            throw new ArgumentOutOfRangeException(nameof(length), $"The given Span ({startIndex}..{length})length is outside the the represented string.");
         }
 
         var beginIndex = startIndex + length;
@@ -105,6 +124,9 @@ public ref partial struct ValueStringBuilder
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;
+
+        // This could lead to the potential problem that an user sets the capacity smaller than the current length
+        // which would lead to a truncated string.
         var newSize = capacity > 0 ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
         buffer.CopyTo(rented);
