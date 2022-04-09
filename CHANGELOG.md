@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+ - Added `AppendJoin` methods.
+ 
 ## [0.9.3] - 2022-04-09
 
 ### Added
