@@ -12,6 +12,8 @@ Install the package:
 
 Afterwards use the package as follow:
 ```csharp
+using LinkDotNet.StringBuilder; // Namespace of the package
+
 ValueStringBuilder stringBuilder = new ValueStringBuilder();
 stringBuilder.AppendLine("Hello World");
 
