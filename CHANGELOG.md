@@ -7,8 +7,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ## [Unreleased]
 
 ### Added
- - `IndexOf` methods.
+ - `IndexOf` methods to retrieve the index of the first occurence of a word.
  - `Capacity` to give the user an indication if the internal array will grow soon.
+ - `EnsureCapacity` to set the buffer size to avoid re-allocation in a hot path.
 
 ## [0.9.4] - 2022-04-09
 

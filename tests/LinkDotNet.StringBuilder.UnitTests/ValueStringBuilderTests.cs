@@ -193,4 +193,42 @@ public class ValueStringBuilderTests
 
         index.Should().Be(-1);
     }
+
+    [Fact]
+    public void ShouldSetCapacity()
+    {
+        var builder = new ValueStringBuilder();
+
+        builder.EnsureCapacity(128);
+
+        builder.Capacity.Should().Be(128);
+    }
+
+    [Fact]
+    public void ShouldNotSetCapacityWhenSmallerThanCurrentString()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append(new string('c', 128));
+
+        builder.EnsureCapacity(16);
+
+        builder.Length.Should().BeGreaterOrEqualTo(128);
+    }
+
+    [Fact]
+    public void ShouldThrowWhenNegativeValueInEnsureCapacity()
+    {
+        var builder = new ValueStringBuilder();
+        try
+        {
+            builder.EnsureCapacity(-1);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.False(true);
+    }
 }

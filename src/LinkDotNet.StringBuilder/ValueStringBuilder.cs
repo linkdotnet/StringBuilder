@@ -95,6 +95,26 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Ensures that the builder has at least <paramref name="newCapacity"/> amount of capacity.
+    /// </summary>
+    /// <param name="newCapacity">New capacity for the builder.</param>
+    /// <remarks>
+    /// If <paramref name="newCapacity"/> is smaller or equal to <see cref="Length"/> nothing will be done.
+    /// </remarks>
+    public void EnsureCapacity(int newCapacity)
+    {
+        if (newCapacity < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(newCapacity), "Capacity can't be negative.");
+        }
+
+        if (newCapacity > Length)
+        {
+            Grow(newCapacity);
+        }
+    }
+
+    /// <summary>
     /// Removes a range of characters from this builder.
     /// </summary>
     /// <param name="startIndex">The inclusive index from where the string gets removed.</param>
@@ -149,7 +169,7 @@ public ref partial struct ValueStringBuilder
     {
         if (startIndex < 0)
         {
-            throw new ArgumentException("Start index can't be smaller than 0.", nameof(startIndex));
+            throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
         return NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
