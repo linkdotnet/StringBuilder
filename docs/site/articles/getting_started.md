@@ -25,8 +25,8 @@ public static class Program
 
         stringBuilder.AppendLine("Hello World!");
         stringBuilder.Append(0.3f);
-		stringBuilder.Insert(6, "dear ");
-		Console.WriteLine(stringBuilder.ToString());
+        stringBuilder.Insert(6, "dear ");
+        Console.WriteLine(stringBuilder.ToString());
     }
 } 
 ```
