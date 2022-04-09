@@ -25,4 +25,6 @@ jobs:
         git checkout stable
         git pull
         git merge --no-ff origin/main -m "Updating to newest release"
-        git push 
+        git push
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
