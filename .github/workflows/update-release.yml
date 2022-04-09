@@ -1,0 +1,28 @@
+name: Update release
+
+on:
+  push:
+    tags:
+    - '*'
+  workflow_dispatch:
+
+jobs:
+  merge-to-stable:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set git config
+      run: |
+        git config --local user.email "linkdotnet@action.com"
+        git config --local user.name "LinkDotNet Bot"
+    
+    - name: Merge main to stable
+      run: |
+        git fetch
+        git checkout stable
+        git pull
+        git merge --no-ff main -m "Updating to newest release"
+        git push 
