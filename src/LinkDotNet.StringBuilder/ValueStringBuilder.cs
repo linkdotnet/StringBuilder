@@ -33,6 +33,14 @@ public ref partial struct ValueStringBuilder
     public int Length => bufferPosition;
 
     /// <summary>
+    /// Gets the current maximum capacity before growing the array.
+    /// </summary>
+    /// <value>
+    /// The current maximum capacity before growing the array.
+    /// </value>
+    public int Capacity => buffer.Length;
+
+    /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
     /// <param name="index">Index position, which should be retrieved.</param>

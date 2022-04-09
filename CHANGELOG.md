@@ -8,6 +8,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
  - `IndexOf` methods.
+ - `Capacity` to give the user an indication if the internal array will grow soon.
 
 ## [0.9.4] - 2022-04-09
 
