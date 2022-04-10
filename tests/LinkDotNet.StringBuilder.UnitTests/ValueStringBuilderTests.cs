@@ -136,4 +136,99 @@ public class ValueStringBuilderTests
             c[2].Should().Be('y');
         }
     }
+
+    [Fact]
+    public void ShouldGetIndexOfWord()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("World");
+
+        index.Should().Be(6);
+    }
+
+    [Fact]
+    public void ShouldFindInSubstring()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("l", 6);
+
+        index.Should().Be(3);
+    }
+
+    [Fact]
+    public void ShouldReturnMinusOneIfNotFound()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("Mountain");
+
+        index.Should().Be(-1);
+    }
+
+    [Fact]
+    public void ShouldReturnMinusOneWordIsLongerThanString()
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello World");
+
+        var index = stringBuilder.IndexOf("Hello World but longer");
+
+        index.Should().Be(-1);
+    }
+
+    [Theory]
+    [InlineData("", "word")]
+    [InlineData("word", "")]
+    public void ShouldReturnMinusOneIfStringOrWordIsEmpty(string text, string word)
+    {
+        var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append(text);
+
+        var index = stringBuilder.IndexOf(word);
+
+        index.Should().Be(-1);
+    }
+
+    [Fact]
+    public void ShouldSetCapacity()
+    {
+        var builder = new ValueStringBuilder();
+
+        builder.EnsureCapacity(128);
+
+        builder.Capacity.Should().Be(128);
+    }
+
+    [Fact]
+    public void ShouldNotSetCapacityWhenSmallerThanCurrentString()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append(new string('c', 128));
+
+        builder.EnsureCapacity(16);
+
+        builder.Length.Should().BeGreaterOrEqualTo(128);
+    }
+
+    [Fact]
+    public void ShouldThrowWhenNegativeValueInEnsureCapacity()
+    {
+        var builder = new ValueStringBuilder();
+        try
+        {
+            builder.EnsureCapacity(-1);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.False(true);
+    }
 }

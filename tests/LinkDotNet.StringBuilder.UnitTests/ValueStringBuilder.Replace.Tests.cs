@@ -35,6 +35,31 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().Should().Be("Hallöchen World. How are you doing. Hallöchen world examples are always fun.");
     }
 
+    [Theory]
+    [InlineData("", "word")]
+    [InlineData("word", "")]
+    [InlineData("wor", "word")]
+    public void ShouldNotReplaceWhenLengthMismatch(string text, string word)
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append(text);
+
+        builder.Replace(word, "Something");
+
+        builder.ToString().Should().Be(text);
+    }
+
+    [Fact]
+    public void ShouldBeTheSameWhenOldAndNewTheSame()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("text");
+
+        builder.Replace("word", "word");
+
+        builder.ToString().Should().Be("text");
+    }
+
     [Fact]
     public void ShouldNotAlterIfNotFound()
     {

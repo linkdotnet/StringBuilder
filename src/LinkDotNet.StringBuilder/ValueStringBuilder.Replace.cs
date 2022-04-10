@@ -20,12 +20,12 @@ public ref partial struct ValueStringBuilder
     {
         if (startIndex < 0)
         {
-            throw new ArgumentException("Start index can't be smaller than 0.", nameof(startIndex));
+            throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
         if (count > bufferPosition)
         {
-            throw new ArgumentException($"Count: {count} is bigger than the current size {bufferPosition}.", nameof(count));
+            throw new ArgumentOutOfRangeException($"Count: {count} is bigger than the current size {bufferPosition}.", nameof(count));
         }
 
         for (var i = startIndex; i < startIndex + count; i++)
@@ -64,6 +64,11 @@ public ref partial struct ValueStringBuilder
     {
         var length = startIndex + count;
         var slice = buffer[startIndex..length];
+
+        if (oldValue == newValue)
+        {
+            return;
+        }
 
         // We might want to check whether or not we want to introduce different
         // string search algorithms for longer strings.
