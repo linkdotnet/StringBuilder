@@ -49,14 +49,14 @@ jobs:
         git commit -m "Update Changelog.md for ${{github.event.inputs.versionIncrement}} release"
         git push origin main
 
-    - name: Create release on github.event.inputs.versionIncrement
+    - name: Create release on GitHub
       uses: thomaseizinger/create-release@1.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.SBPAT }}
       with:
         tag_name: v${{ github.event.inputs.versionIncrement }}
         target_commitish: ${{ env.RELEASE_COMMIT_HASH }}
-        name: ${{ github.event.inputs.versionIncrement }}
+        name: v${{ github.event.inputs.versionIncrement }}
         body: ${{ steps.changelog.outputs.changes }}
         draft: false
 
