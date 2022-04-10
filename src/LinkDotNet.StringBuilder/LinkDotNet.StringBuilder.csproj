@@ -5,8 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Version>0.9.0</Version>
+        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <Authors>Steven Giesel</Authors>
         <Company>Steven Giesel</Company>
 		<Title>ValueStringBuilder</Title>
@@ -16,7 +15,6 @@
         <PackageTags>string,stringbuilder,csharp,dotnet</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.png</PackageIcon>
-        <PackageVersion>0.9.5</PackageVersion>
         <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
     </PropertyGroup>
 

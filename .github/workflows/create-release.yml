@@ -1,0 +1,69 @@
+name: create-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionIncrement:
+        description: 'The new version. For example: 1.1.0'
+        required: true
+        default: ''
+
+jobs:
+  release:
+    name: Publish new release
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.SBPAT }}
+        persist-credentials: true
+        fetch-depth: 0
+
+    - name: Get changelog entries
+      id: changelog
+      uses: mindsers/changelog-reader-action@v2
+      with:
+        version: Unreleased
+        path: ./CHANGELOG.md
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Update CHANGELOG file
+      uses: thomaseizinger/keep-a-changelog-new-release@1.2.1
+      with:
+        version: ${{ github.event.inputs.versionIncrement }}
+
+    - name: Set git config
+      run: |
+        git config --local user.email "linkdotnet@action.com"
+        git config --local user.name "LinkDotNet Bot"
+
+    - name: Commit changes and push changes
+      run: |
+        git add CHANGELOG.md
+        git commit -m "Update Changelog.md for ${{github.event.inputs.versionIncrement}} release"
+        git push origin main
+
+    - name: Create release on github.event.inputs.versionIncrement
+      uses: thomaseizinger/create-release@1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.event.inputs.versionIncrement }}
+        target_commitish: ${{ env.RELEASE_COMMIT_HASH }}
+        name: ${{ github.event.inputs.versionIncrement }}
+        body: ${{ steps.changelog.outputs.changes }}
+        draft: false
+
+    - name: Create release package
+      run: |
+        dotnet pack -c RELEASE -p:${{ github.event.inputs.versionIncrement }} -o ${GITHUB_WORKSPACE}/packages 
+
+    - name: Upload to nuget
+      run: |
+        echo "Upload version ${{ github.event.inputs.versionIncrement }} to nuget"
