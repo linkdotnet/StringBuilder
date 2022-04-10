@@ -64,6 +64,7 @@ jobs:
         name: v${{ github.event.inputs.versionIncrement }}
         body: ${{ steps.changelog.outputs.changes }}
         draft: false
+        prerelease: ${{ github.event.inputs.prerelease }}
 
     - name: Create release package
       run: |
