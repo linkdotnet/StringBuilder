@@ -52,7 +52,7 @@ jobs:
     - name: Create release on github.event.inputs.versionIncrement
       uses: thomaseizinger/create-release@1.0.0
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.SBPAT }}
       with:
         tag_name: v${{ github.event.inputs.versionIncrement }}
         target_commitish: ${{ env.RELEASE_COMMIT_HASH }}
