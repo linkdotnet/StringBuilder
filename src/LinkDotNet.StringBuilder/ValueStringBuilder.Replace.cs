@@ -1,4 +1,6 @@
-﻿namespace LinkDotNet.StringBuilder;
+﻿using System.Buffers;
+
+namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
@@ -59,8 +61,8 @@ public ref partial struct ValueStringBuilder
     /// Otherwise the ToString method is called.
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
-    public void Replace<T>(ReadOnlySpan<char> oldValue, T newValue)
-        => Replace(oldValue, newValue, 0, Length);
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue)
+        => ReplaceGeneric(oldValue, newValue, 0, Length);
 
     /// <summary>
     /// Replaces all instances of one string with another in this builder.
@@ -74,19 +76,22 @@ public ref partial struct ValueStringBuilder
     /// Otherwise the ToString method is called.
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
-    public void Replace<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
     {
         if (newValue is ISpanFormattable spanFormattable)
         {
-            Span<char> tempBuffer = stackalloc char[24];
+            // Maybe we want to have a stackalloc here and more or less inline the whole function
+            var tempBuffer = ArrayPool<char>.Shared.Rent(24);
             if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
             {
-                Replace(oldValue, written, startIndex, count);
+                Replace(oldValue, tempBuffer.AsSpan()[..written], startIndex, count);
             }
+
+            ArrayPool<char>.Shared.Return(tempBuffer);
         }
         else
         {
-            Replace(oldValue, newValue?.ToString(), startIndex, count);
+            Replace(oldValue, (ReadOnlySpan<char>)newValue?.ToString(), startIndex, count);
         }
     }
 
