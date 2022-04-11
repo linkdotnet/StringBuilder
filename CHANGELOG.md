@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+-  `LastIndexOf` to find the last occurence in the represented string
+
 ## [0.9.5] - 2022-04-10
 
 ### Added

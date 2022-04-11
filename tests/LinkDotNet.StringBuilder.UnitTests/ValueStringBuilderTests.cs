@@ -231,4 +231,26 @@ public class ValueStringBuilderTests
 
         Assert.False(true);
     }
+
+    [Fact]
+    public void ShouldFindLastOccurence()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello Hello");
+
+        var index = builder.LastIndexOf("Hello");
+
+        index.Should().Be(6);
+    }
+
+    [Fact]
+    public void ShouldFindLastOccurenceInSlice()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello Hello");
+
+        var index = builder.LastIndexOf("Hello", 6);
+
+        index.Should().Be(0);
+    }
 }
