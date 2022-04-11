@@ -53,6 +53,47 @@ public ref partial struct ValueStringBuilder
     /// Replaces all instances of one string with another in this builder.
     /// </summary>
     /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    public void Replace<T>(ReadOnlySpan<char> oldValue, T newValue)
+        => Replace(oldValue, newValue, 0, Length);
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <param name="startIndex">The index to start in this builder.</param>
+    /// <param name="count">The number of characters to read in this builder.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    public void Replace<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
+    {
+        if (newValue is ISpanFormattable spanFormattable)
+        {
+            Span<char> tempBuffer = stackalloc char[24];
+            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
+            {
+                Replace(oldValue, written, startIndex, count);
+            }
+        }
+        else
+        {
+            Replace(oldValue, newValue?.ToString(), startIndex, count);
+        }
+    }
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
     /// <param name="newValue">The string to replace <paramref name="oldValue"/> with.</param>
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
