@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderReplaceTests
@@ -22,6 +24,26 @@ public class ValueStringBuilderReplaceTests
         builder.Replace('C', 'B', 1, 2);
 
         builder.ToString().Should().Be("CBBC");
+    }
+
+    [Theory]
+    [InlineData(-1, 1)]
+    [InlineData(1, 1)]
+    public void ShouldThrowExceptionWhenOutOfRange(int startIndex, int count)
+    {
+        var builder = new ValueStringBuilder();
+
+        try
+        {
+            builder.Replace('a', 'b', startIndex, count);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.True(false);
     }
 
     [Fact]

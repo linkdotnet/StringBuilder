@@ -160,6 +160,42 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
+    public void ShouldThrowExceptionWhenNegativeStartIndex()
+    {
+        var stringBuilder = new ValueStringBuilder();
+
+        try
+        {
+            stringBuilder.IndexOf("l", -1);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.True(false);
+    }
+
+    [Fact]
+    public void ShouldThrowExceptionWhenNegativeStartIndexLastIndex()
+    {
+        var stringBuilder = new ValueStringBuilder();
+
+        try
+        {
+            stringBuilder.LastIndexOf("l", -1);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.True(false);
+    }
+
+    [Fact]
     public void ShouldReturnMinusOneIfNotFound()
     {
         var stringBuilder = new ValueStringBuilder();
