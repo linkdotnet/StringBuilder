@@ -9,7 +9,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Added
 
 - `LastIndexOf` to find the last occurence in the represented string.
-- `Replace<T>` added for generic replacement in the string builder.
+- `ReplaceGeneric<T>` added for generic replacement in the string builder. Can have performance / allocation penalties in comparison to the non-generic version.
 
 ## [0.9.5] - 2022-04-10
 
