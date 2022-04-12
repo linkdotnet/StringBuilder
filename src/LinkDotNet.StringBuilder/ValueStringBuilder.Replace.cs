@@ -1,4 +1,6 @@
-﻿namespace LinkDotNet.StringBuilder;
+﻿using System.Buffers;
+
+namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
@@ -48,6 +50,50 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue)
         => Replace(oldValue, newValue, 0, Length);
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue)
+        => ReplaceGeneric(oldValue, newValue, 0, Length);
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <param name="startIndex">The index to start in this builder.</param>
+    /// <param name="count">The number of characters to read in this builder.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
+    {
+        if (newValue is ISpanFormattable spanFormattable)
+        {
+            // Maybe we want to have a stackalloc here and more or less inline the whole function
+            var tempBuffer = ArrayPool<char>.Shared.Rent(24);
+            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
+            {
+                Replace(oldValue, tempBuffer.AsSpan()[..written], startIndex, count);
+            }
+
+            ArrayPool<char>.Shared.Return(tempBuffer);
+        }
+        else
+        {
+            Replace(oldValue, (ReadOnlySpan<char>)newValue?.ToString(), startIndex, count);
+        }
+    }
 
     /// <summary>
     /// Replaces all instances of one string with another in this builder.

@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderReplaceTests
@@ -22,6 +24,26 @@ public class ValueStringBuilderReplaceTests
         builder.Replace('C', 'B', 1, 2);
 
         builder.ToString().Should().Be("CBBC");
+    }
+
+    [Theory]
+    [InlineData(-1, 1)]
+    [InlineData(1, 1)]
+    public void ShouldThrowExceptionWhenOutOfRange(int startIndex, int count)
+    {
+        var builder = new ValueStringBuilder();
+
+        try
+        {
+            builder.Replace('a', 'b', startIndex, count);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.True(false);
     }
 
     [Fact]
@@ -80,5 +102,54 @@ public class ValueStringBuilderReplaceTests
         builder.Replace("Hello", "Hallöchen", 0, 10);
 
         builder.ToString().Should().Be("Hallöchen World. How are you doing. Hello world examples are always fun.");
+    }
+
+    [Fact]
+    public void ShouldReplaceISpanFormattable()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("{0}");
+
+        builder.ReplaceGeneric("{0}", 1.2f);
+
+        builder.ToString().Should().Be("1.2");
+    }
+
+    [Fact]
+    public void ShouldReplaceISpanFormattableSlice()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("{0}{0}{0}");
+
+        builder.ReplaceGeneric("{0}", 1, 0, 6);
+
+        builder.ToString().Should().Be("11{0}");
+    }
+
+    [Fact]
+    public void ShouldReplaceNonISpanFormattable()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("{0}");
+
+        builder.ReplaceGeneric("{0}", default(MyStruct));
+
+        builder.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public void ShouldReplaceNonISpanFormattableInSlice()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("{0}{0}{0}");
+
+        builder.ReplaceGeneric("{0}", default(MyStruct), 0, 6);
+
+        builder.ToString().Should().Be("HelloHello{0}");
+    }
+
+    private struct MyStruct
+    {
+        public override string ToString() => "Hello";
     }
 }
