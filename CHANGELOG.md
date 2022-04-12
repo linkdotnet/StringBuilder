@@ -6,10 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-04-12
+
 ### Added
 
-- `LastIndexOf` to find the last occurence in the represented string.
-- `ReplaceGeneric<T>` added for generic replacement in the string builder. Can have performance / allocation penalties in comparison to the non-generic version.
+-   `LastIndexOf` to find the last occurence in the represented string.
+-   `ReplaceGeneric<T>` added for generic replacement in the string builder. Can have performance / allocation penalties in comparison to the non-generic version.
 
 ## [0.9.5] - 2022-04-10
 
@@ -55,6 +57,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/0.9.5...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.0.0...HEAD
+
+[1.0.0]: https://github.com/linkdotnet/StringBuilder/compare/0.9.5...1.0.0
 
 [0.9.5]: https://github.com/linkdotnet/StringBuilder/compare/0.9.4...0.9.5
