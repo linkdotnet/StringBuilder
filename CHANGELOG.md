@@ -6,9 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-04-13
+
 ### Added
- - Enabled some optimization hints for the compiler.
- - Include debug symbols when publishing to NuGet for easier debugging experience
+
+-   Enabled some optimization hints for the compiler.
+-   Include debug symbols when publishing to NuGet for easier debugging experience
 
 ## [1.0.0] - 2022-04-12
 
@@ -61,7 +64,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.0.1...HEAD
+
+[1.0.1]: https://github.com/linkdotnet/StringBuilder/compare/1.0.0...1.0.1
 
 [1.0.0]: https://github.com/linkdotnet/StringBuilder/compare/0.9.5...1.0.0
 
