@@ -73,3 +73,4 @@ jobs:
     - name: Upload to nuget
       run: |
         dotnet nuget push ${GITHUB_WORKSPACE}/packages/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
+        dotnet nuget push ${GITHUB_WORKSPACE}/packages/*.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
