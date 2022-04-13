@@ -6,8 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+###Added
+ - `Contains` method.
+
 ### Fixed
  - Smaller tweaks in CI/CD
+ - `IndexOf` and `LastIndexOf` did not return 0 when passing an empty string. Now it is aligned to `string.IndexOf`.
 
 ### Removed
  - Debug symbol package (snupkg) due to the many constraints of NuGet.org

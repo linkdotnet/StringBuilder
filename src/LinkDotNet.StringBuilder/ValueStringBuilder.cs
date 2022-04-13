@@ -172,6 +172,11 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
+        if (word.IsEmpty)
+        {
+            return 0;
+        }
+
         return NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
     }
 
@@ -196,8 +201,23 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
+        if (word.IsEmpty)
+        {
+            return 0;
+        }
+
         return NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
     }
+
+    /// <summary>
+    /// Returns a value indicating whether a specified substring occurs within this string.
+    /// </summary>
+    /// <param name="word">Word to look for in this string.</param>
+    /// <returns>True if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.</returns>
+    /// <remarks>
+    /// This method performs an ordinal (case-sensitive and culture-insensitive) comparison.
+    /// </remarks>
+    public bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
     private void Grow(int capacity = 0)
     {
