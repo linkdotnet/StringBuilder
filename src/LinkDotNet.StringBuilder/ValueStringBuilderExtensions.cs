@@ -27,10 +27,7 @@ public static class ValueStringBuilderExtensions
     /// <exception cref="ArgumentNullException">Throws if <paramref name="builder"/> is null.</exception>
     public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder? builder)
     {
-        if (builder == null)
-        {
-            throw new ArgumentNullException(nameof(builder));
-        }
+        ArgumentNullException.ThrowIfNull(builder);
 
         var valueStringBuilder = new ValueStringBuilder();
         foreach (var chunk in builder.GetChunks())

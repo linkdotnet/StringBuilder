@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace LinkDotNet.StringBuilder;
@@ -81,6 +82,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="destination">The destination where the internal string is copied into.</param>
     /// <returns>True, if the copy was successful, otherwise false.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
     /// <summary>
@@ -154,6 +156,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int IndexOf(ReadOnlySpan<char> word) => IndexOf(word, 0);
 
     /// <summary>
@@ -177,6 +180,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int LastIndexOf(ReadOnlySpan<char> word) => LastIndexOf(word, 0);
 
     /// <summary>

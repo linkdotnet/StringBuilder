@@ -84,6 +84,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Adds the default new line separator.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine()
     {
         Append(Environment.NewLine);
@@ -93,6 +94,7 @@ public ref partial struct ValueStringBuilder
     /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
     /// </summary>
     /// <param name="str">String, which will be added to this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine(ReadOnlySpan<char> str)
     {
         Append(str);
