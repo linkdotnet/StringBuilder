@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+ - Smaller tweaks in CI/CD
+
+### Removed
+ - Debug symbol package (snupkg) due to the many constraints of NuGet.org
+
 ## [1.0.1] - 2022-04-13
 
 ### Added
