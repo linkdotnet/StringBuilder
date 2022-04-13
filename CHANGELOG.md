@@ -8,6 +8,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
  - Enabled some optimization hints for the compiler.
+ - Include debug symbols when publishing to NuGet for easier debugging experience
 
 ## [1.0.0] - 2022-04-12
 

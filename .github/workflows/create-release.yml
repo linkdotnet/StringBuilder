@@ -68,7 +68,7 @@ jobs:
 
     - name: Create release package
       run: |
-        dotnet pack -c RELEASE -p:PackageVersion=${{ github.event.inputs.versionIncrement }} -o ${GITHUB_WORKSPACE}/packages 
+        dotnet pack -c RELEASE -p:PackageVersion=${{ github.event.inputs.versionIncrement }} -o ${GITHUB_WORKSPACE}/packages -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg
 
     - name: Upload to nuget
       run: |
