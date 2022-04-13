@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace LinkDotNet.StringBuilder;
@@ -81,6 +82,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="destination">The destination where the internal string is copied into.</param>
     /// <returns>True, if the copy was successful, otherwise false.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
     /// <summary>
@@ -101,6 +103,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// If <paramref name="newCapacity"/> is smaller or equal to <see cref="Length"/> nothing will be done.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void EnsureCapacity(int newCapacity)
     {
         if (newCapacity < 0)
@@ -122,6 +125,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// This method will not affect the internal size of the string.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void Remove(int startIndex, int length)
     {
         if (length == 0)
@@ -154,6 +158,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int IndexOf(ReadOnlySpan<char> word) => IndexOf(word, 0);
 
     /// <summary>
@@ -162,6 +167,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int IndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
@@ -177,6 +183,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int LastIndexOf(ReadOnlySpan<char> word) => LastIndexOf(word, 0);
 
     /// <summary>
@@ -185,6 +192,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
@@ -195,6 +203,7 @@ public ref partial struct ValueStringBuilder
         return NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;

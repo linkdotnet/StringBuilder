@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -23,6 +24,7 @@ internal ref struct TypedSpanList<T>
 
     public ReadOnlySpan<T> AsSpan => buffer[..count];
 
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void Add(T value)
     {
         if (count >= buffer.Length)
