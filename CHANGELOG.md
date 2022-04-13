@@ -7,7 +7,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ## [Unreleased]
 
 ### Added
- - Enabled more optimizations.
+ - Enabled some optimization hints for the compiler.
 
 ## [1.0.0] - 2022-04-12
 

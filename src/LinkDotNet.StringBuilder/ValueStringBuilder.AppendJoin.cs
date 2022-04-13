@@ -42,7 +42,6 @@ public ref partial struct ValueStringBuilder
     public void AppendJoin<T>(char separator, IEnumerable<T> values)
         => AppendJoinInternalChar(separator, values);
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void AppendJoinInternalString<T2>(ReadOnlySpan<char> separator, IEnumerable<T2> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -71,7 +70,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void AppendJoinInternalChar<T2>(char separator, IEnumerable<T2> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -100,7 +98,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void AppendInternal<T>(T value)
     {
         if (value is ISpanFormattable spanFormattable)

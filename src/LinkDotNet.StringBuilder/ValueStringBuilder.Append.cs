@@ -69,7 +69,6 @@ public ref partial struct ValueStringBuilder
     /// Appends a string to the string builder.
     /// </summary>
     /// <param name="str">String, which will be added to this builder.</param>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void Append(ReadOnlySpan<char> str)
     {
         var newSize = str.Length + bufferPosition;
@@ -102,7 +101,6 @@ public ref partial struct ValueStringBuilder
         Append(Environment.NewLine);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void AppendSpanFormattable<T>(T value)
         where T : ISpanFormattable
     {
