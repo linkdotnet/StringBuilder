@@ -6,15 +6,20 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.1.0] - 2022-04-16
+
 ### Added
- - `Contains` method.
+
+-   `Contains` method.
 
 ### Fixed
- - Smaller tweaks in CI/CD
- - `IndexOf` and `LastIndexOf` did not return 0 when passing an empty string. Now it is aligned to `string.IndexOf`.
+
+-   Smaller tweaks in CI/CD
+-   `IndexOf` and `LastIndexOf` did not return 0 when passing an empty string. Now it is aligned to `string.IndexOf`.
 
 ### Removed
- - Debug symbol package (snupkg) due to the many constraints of NuGet.org
+
+-   Debug symbol package (snupkg) due to the many constraints of NuGet.org
 
 ## [1.0.1] - 2022-04-13
 
@@ -74,7 +79,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.1.0...HEAD
+
+[1.1.0]: https://github.com/linkdotnet/StringBuilder/compare/1.0.1...1.1.0
 
 [1.0.1]: https://github.com/linkdotnet/StringBuilder/compare/1.0.0...1.0.1
 
