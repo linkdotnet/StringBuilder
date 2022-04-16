@@ -217,15 +217,13 @@ public class ValueStringBuilderTests
         index.Should().Be(-1);
     }
 
-    [Theory]
-    [InlineData("", "word")]
-    [InlineData("word", "")]
-    public void ShouldReturnMinusOneIfStringOrWordIsEmpty(string text, string word)
+    [Fact]
+    public void ShouldReturnMinusOneIfStringIsEmpty()
     {
         var stringBuilder = new ValueStringBuilder();
-        stringBuilder.Append(text);
+        stringBuilder.Append(string.Empty);
 
-        var index = stringBuilder.IndexOf(word);
+        var index = stringBuilder.IndexOf("word");
 
         index.Should().Be(-1);
     }
@@ -288,5 +286,41 @@ public class ValueStringBuilderTests
         var index = builder.LastIndexOf("Hello", 6);
 
         index.Should().Be(0);
+    }
+
+    [Fact]
+    public void ShouldReturnZeroWhenEmptyStringInIndexOf()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello");
+
+        var index = builder.IndexOf(string.Empty, 6);
+
+        index.Should().Be(0);
+    }
+
+    [Fact]
+    public void ShouldReturnZeroWhenEmptyStringInLastIndexOf()
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello");
+
+        var index = builder.LastIndexOf(string.Empty, 6);
+
+        index.Should().Be(0);
+    }
+
+    [Theory]
+    [InlineData("Hello", true)]
+    [InlineData("hello", false)]
+    [InlineData("", true)]
+    public void ShouldReturnIfStringIsPresent(string word, bool expected)
+    {
+        var builder = new ValueStringBuilder();
+        builder.Append("Hello");
+
+        var index = builder.Contains(word);
+
+        index.Should().Be(expected);
     }
 }

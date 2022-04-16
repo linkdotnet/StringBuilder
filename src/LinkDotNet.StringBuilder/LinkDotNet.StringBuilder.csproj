@@ -16,6 +16,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
