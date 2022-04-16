@@ -6,7 +6,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
-###Added
+### Added
  - `Contains` method.
 
 ### Fixed
