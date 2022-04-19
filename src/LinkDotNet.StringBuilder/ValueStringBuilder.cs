@@ -26,6 +26,16 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
+    /// </summary>
+    /// <param name="initialBuffer">Initial buffer for the string builder to begin with.</param>
+    public ValueStringBuilder(Span<char> initialBuffer)
+    {
+        bufferPosition = 0;
+        buffer = initialBuffer;
+    }
+
+    /// <summary>
     /// Gets the current length of the represented string.
     /// </summary>
     /// <value>

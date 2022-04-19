@@ -323,4 +323,15 @@ public class ValueStringBuilderTests
 
         index.Should().Be(expected);
     }
+
+    [Fact]
+    public void ShouldUseInitialBuffer()
+    {
+        Span<char> buffer = stackalloc char[16];
+        var builder = new ValueStringBuilder(buffer);
+
+        builder.Append("Hello");
+
+        builder.ToString().Should().Be("Hello");
+    }
 }
