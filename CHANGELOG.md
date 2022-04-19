@@ -8,6 +8,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
  - `ValueStringBuilder` constructor can take initial buffer instead of creating it itself.
+ - More compiler hints for inlining.
 
 ## [1.1.0] - 2022-04-16
 

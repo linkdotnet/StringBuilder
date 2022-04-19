@@ -19,6 +19,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder()
     {
         bufferPosition = 0;
@@ -29,6 +30,7 @@ public ref partial struct ValueStringBuilder
     /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
     /// </summary>
     /// <param name="initialBuffer">Initial buffer for the string builder to begin with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder(Span<char> initialBuffer)
     {
         bufferPosition = 0;
@@ -82,6 +84,7 @@ public ref partial struct ValueStringBuilder
     /// fixed (var* buffer = stringBuilder) { ... }
     /// </code>
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ref char GetPinnableReference()
     {
         return ref MemoryMarshal.GetReference(buffer);
@@ -101,6 +104,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// This will not enforce some re-allocation or shrinking of the internal buffer. The size stays the same.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Clear()
     {
         bufferPosition = 0;
@@ -113,6 +117,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// If <paramref name="newCapacity"/> is smaller or equal to <see cref="Length"/> nothing will be done.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureCapacity(int newCapacity)
     {
         if (newCapacity < 0)
@@ -134,6 +139,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// This method will not affect the internal size of the string.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Remove(int startIndex, int length)
     {
         if (length == 0)
@@ -175,6 +181,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int IndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
@@ -204,6 +211,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
@@ -227,8 +235,10 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// This method performs an ordinal (case-sensitive and culture-insensitive) comparison.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;

@@ -1,4 +1,6 @@
-﻿namespace LinkDotNet.StringBuilder;
+﻿using System.Runtime.CompilerServices;
+
+namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
@@ -7,6 +9,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, bool value) => Insert(index, value.ToString());
 
     /// <summary>
@@ -14,6 +17,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, char value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -21,6 +25,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, sbyte value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -28,6 +33,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, byte value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -35,6 +41,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, short value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -42,6 +49,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, int value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -49,6 +57,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, long value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -56,6 +65,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, float value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -63,6 +73,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, double value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -70,6 +81,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, decimal value) => InsertSpanFormattable(index, value);
 
     /// <summary>
@@ -77,6 +89,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, ReadOnlySpan<char> value)
     {
         if (index < 0)
@@ -104,6 +117,7 @@ public ref partial struct ValueStringBuilder
         value.CopyTo(buffer[index..shift]);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void InsertSpanFormattable<T>(int index, T value)
         where T : ISpanFormattable
     {

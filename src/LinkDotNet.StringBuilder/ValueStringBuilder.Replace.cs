@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -9,6 +10,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="oldValue">The character to replace.</param>
     /// <param name="newValue">The character to replace <paramref name="oldValue"/> with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(char oldValue, char newValue) => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
@@ -18,6 +20,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="newValue">The character to replace <paramref name="oldValue"/> with.</param>
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(char oldValue, char newValue, int startIndex, int count)
     {
         if (startIndex < 0)
@@ -48,6 +51,7 @@ public ref partial struct ValueStringBuilder
     /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/>
     /// are removed from this builder.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue)
         => Replace(oldValue, newValue, 0, Length);
 
@@ -61,6 +65,7 @@ public ref partial struct ValueStringBuilder
     /// Otherwise the ToString method is called.
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue)
         => ReplaceGeneric(oldValue, newValue, 0, Length);
 
@@ -76,6 +81,7 @@ public ref partial struct ValueStringBuilder
     /// Otherwise the ToString method is called.
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
     {
         if (newValue is ISpanFormattable spanFormattable)
@@ -106,6 +112,7 @@ public ref partial struct ValueStringBuilder
     /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/>
     /// are removed from this builder.
     /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue, int startIndex, int count)
     {
         var length = startIndex + count;

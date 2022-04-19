@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -15,6 +16,7 @@ internal ref struct TypedSpanList<T>
     /// <summary>
     /// Initializes a new instance of the <see cref="TypedSpanList{T}"/> struct.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TypedSpanList()
     {
         buffer = new T[8];
@@ -23,6 +25,7 @@ internal ref struct TypedSpanList<T>
 
     public ReadOnlySpan<T> AsSpan => buffer[..count];
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Add(T value)
     {
         if (count >= buffer.Length)
@@ -34,6 +37,7 @@ internal ref struct TypedSpanList<T>
         count++;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {
         var currentSize = buffer.Length;
