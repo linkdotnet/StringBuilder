@@ -6,9 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.2.0] - 2022-04-20
+
 ### Added
- - `ValueStringBuilder` constructor can take initial buffer instead of creating it itself.
- - More compiler hints for inlining.
+
+-   `ValueStringBuilder` constructor can take initial buffer instead of creating it itself.
+-   More compiler hints for inlining.
 
 ## [1.1.0] - 2022-04-16
 
@@ -83,7 +86,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.2.0...HEAD
+
+[1.2.0]: https://github.com/linkdotnet/StringBuilder/compare/1.1.0...1.2.0
 
 [1.1.0]: https://github.com/linkdotnet/StringBuilder/compare/1.0.1...1.1.0
 
