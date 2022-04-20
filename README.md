@@ -33,7 +33,7 @@ The library works best for a small to medium amount of strings (not multiple 100
 The normal use case is to add concatenate strings in a hot-path where the goal is to put as minimal pressure on the GC as possible.
 
 ## Documentation
-A more detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/).
+A more detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/). It is really important to understand how the `ValueStringBuilder` works so that you not run into weird situations where performance / allocations can even rise.
 
 ## Benchmark
 

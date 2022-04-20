@@ -3,6 +3,8 @@
   items:
     - name: How does it work?
       href: concepts.md
+    - name: Passing the ValueStringBuilder to a method
+      href: pass_to_method.md
     - name: Comparison
       href: comparison.md
 - name: Known limitations
