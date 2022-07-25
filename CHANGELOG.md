@@ -6,9 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.3.0] - 2022-07-25
+
 ### Fixed
-- Fixed an issue where memory is not returned to the ArrayPool
-- Fixed an issue where memory could be overwritten, giving the chance to tamper with the internal array
+
+-   Fixed an issue where memory is not returned to the ArrayPool
+-   Fixed an issue where memory could be overwritten, giving the chance to tamper with the internal array
 
 ## [1.2.0] - 2022-04-20
 
@@ -90,7 +93,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.3.0...HEAD
+
+[1.3.0]: https://github.com/linkdotnet/StringBuilder/compare/1.2.0...1.3.0
 
 [1.2.0]: https://github.com/linkdotnet/StringBuilder/compare/1.1.0...1.2.0
 
