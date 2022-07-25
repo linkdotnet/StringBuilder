@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Comparison | ValueStringBuilder </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Comparison | ValueStringBuilder ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+    <link rel="shortcut icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="comparison">
+<h1 id="comparison">Comparison</h1>
+
+<p>The following document will show some key differences between the <code>ValueStringBuilder</code> and similar working string builder like the one from .NET itself or the famous <code>ZString</code> package, which is also free and open-source.</p>
+<h2 id="systemtextstringbuilder">System.Text.StringBuilder</h2>
+<p>The <code>StringBuilder</code> shipped with the .NET Framework itself is a all-purpose string builder which allows a versatile use. <code>ValueStringBuilder</code> tries to mimic the API as much as possible so developers can adopt the <code>ValueStringBuilder</code> easily where it makes sense. In the following part <code>StringBuilder</code> refers to <code>System.Text.StringBuilder</code>.</p>
+<p><strong>Key differences</strong>:</p>
+<ul>
+<li><code>StringBuilder</code> is a class and does not have the restrictions coming with a <code>ref struct</code>. To know more head over to the <a class="xref" href="known_limitations.html">known limitations</a> section.</li>
+<li><code>StringBuilder</code> works not on <code>Span&lt;T&gt;</code> but more on <code>string</code>s or <code>char</code>s. Sometimes even with pointers</li>
+<li><code>StringBuilder</code> uses chunks to represent the string, which the larger the string gets, the better it can perform. <code>ValueStringBuilder</code> only has one internal <code>Span</code> as representation which can cause fragmentation on very big strings.</li>
+<li><code>StringBuilder</code> has a richer API as the <code>ValueStringBuilder</code>. In the future they should have the same amount of API's as the <code>StringBuilder</code> is the &quot;big brother&quot; of this package.</li>
+<li><code>ValueStringBuilder</code> has different API calls like <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__"><code>IndexOf</code></a> or <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__"><code>LastIndexOf</code></a>.</li>
+</ul>
+<h2 id="zstring"><code>ZString</code></h2>
+<p>Both string builder use similiar concepts to achieve. Both,<code>ValueStringBuilder</code> and <code>ZString</code>, are declared as <code>struct</code>s. <code>ValueStringBuilder</code> goes one step further and enforces its lifecycle to live on the <strong>stack</strong> and can never be put on the <strong>heap</strong>.</p>
+<p><strong>Key differences</strong>:</p>
+<ul>
+<li><code>ValueStringBuilder</code> is a <code>ref struct</code> which can never placed on the heap. <code>ZString</code> can be defined as a <code>class</code> field.</li>
+<li><code>ZString</code> has a very big initial buffer in its default (64kb) which can lead to more pressure on the GC.</li>
+<li><code>ZString</code> is more general purpose than <code>ValueStringBuilder</code> is.</li>
+<li><code>ZString</code> offers a richer API than the <code>ValueStringBuilder</code>. In the future that should change.</li>
+<li><code>ValueStringBuilder</code> has different API calls like <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__"><code>IndexOf</code></a> or <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__"><code>LastIndexOf</code></a>.</li>
+</ul>
+<h2 id="benchmark">Benchmark</h2>
+<p>The following table gives you a small comparison between the <code>StringBuilder</code> which is part of .NET, <a href="https://github.com/Cysharp/ZString"><code>ZString</code></a> and the <code>ValueStringBuilder</code>:</p>
+<pre><code>|              Method |       Mean |    Error |    StdDev |     Median | Ratio | RatioSD |   Gen 0 |  Gen 1 | Allocated |
+|-------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|--------:|-------:|----------:|
+| DotNetStringBuilder |   401.7 ns | 29.15 ns |  84.56 ns |   373.4 ns |  1.00 |    0.00 |  0.3576 |      - |   1,496 B |
+|  ValueStringBuilder |   252.8 ns |  9.05 ns |  26.27 ns |   249.0 ns |  0.65 |    0.13 |  0.1583 |      - |     664 B |
+|  ZStringBuilderUtf8 | 1,239.0 ns | 44.93 ns | 131.06 ns | 1,192.0 ns |  3.18 |    0.56 | 15.6250 |      - |  66,136 B |
+| ZStringBuilderUtf16 | 1,187.6 ns | 21.35 ns |  25.42 ns | 1,185.0 ns |  2.88 |    0.52 | 15.6250 | 0.0019 |  66,136 B |
+</code></pre>
+<p>For more comparison check the documentation.</p>
+<p>Another benchmark shows that this <code>ValueStringBuilder</code> uses less memory when it comes to appending <code>ValueTypes</code> such as <code>int</code>, <code>double</code>, ...</p>
+<pre><code>|              Method |     Mean |    Error |   StdDev |   Gen 0 |  Gen 1 | Allocated |
+|-------------------- |---------:|---------:|---------:|--------:|-------:|----------:|
+| DotNetStringBuilder | 16.31 us | 0.414 us | 1.208 us |  1.5259 |      - |      6 KB |
+|  ValueStringBuilder | 14.61 us | 0.292 us | 0.480 us |  0.3357 |      - |      1 KB |
+|      ZStringBuilder | 15.47 us | 0.249 us | 0.323 us | 16.1285 | 0.0153 |     67 KB |
+
+</code></pre>
+<p>Checkout the <a href="https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks">Benchmark</a> for more detailed comparison and setup.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/comparison.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2226 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct ValueStringBuilder
+   | ValueStringBuilder </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct ValueStringBuilder
+   | ValueStringBuilder ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+    <link rel="shortcut icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder">
+  
+  
+  <h1 id="LinkDotNet_StringBuilder_ValueStringBuilder" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder" class="text-break">Struct ValueStringBuilder
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a string builder which tried to reduce as much allocations as possible.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.ValueType.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.ValueType.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LinkDotNet.StringBuilder.html">LinkDotNet.StringBuilder</a></h6>
+  <h6><strong>Assembly</strong>: LinkDotNet.StringBuilder.dll</h6>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ref struct ValueStringBuilder</code></pre>
+  </div>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> is declared as ref struct which brings certain limitations with it.
+You can only use it in another ref struct or as a local variable.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder__ctor.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L23">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor">ValueStringBuilder()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder__ctor_Span_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.%23ctor(Span%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L36">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(Span{System.Char})">ValueStringBuilder(Span&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder(Span&lt;char&gt; initialBuffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">initialBuffer</span></td>
+        <td><p>Initial buffer for the string builder to begin with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Capacity.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Capacity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L58">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Capacity_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Capacity*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Capacity" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Capacity">Capacity</h4>
+  <div class="markdown level1 summary"><p>Gets the current maximum capacity before growing the array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Capacity { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The current maximum capacity before growing the array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Item_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L64">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Item_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Item*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Item_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Item(System.Int32)">Item[Int32]</h4>
+  <div class="markdown level1 summary"><p>Returns the character at the given index or throws an <see cref="!:IndexOutOfRangeException"></see> if the index is bigger than the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ref char this[int index] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index position, which should be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Length.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Length%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L50">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Length_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Length*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Length" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Length">Length</h4>
+  <div class="markdown level1 summary"><p>Gets the current length of the represented string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The current length of the represented string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L82">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(ReadOnlySpan{System.Char})">Append(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Appends a string to the string builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String, which will be added to this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Boolean_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L12">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Boolean_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Boolean)">Append(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the boolean to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(bool value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Bool value to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Byte_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L33">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Byte_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Byte)">Append(Byte)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the byte to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Byte to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L19">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char)">Append(Char)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the character to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(char value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Integer to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Decimal_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Decimal)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L75">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Decimal_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Decimal)">Append(Decimal)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the decimal to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(decimal value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Decimal to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Double_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L68">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Double_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Double)">Append(Double)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the double to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Double to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int16_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L40">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int16_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int16)">Append(Int16)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the short to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(short value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Short to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L47">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int32)">Append(Int32)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the integer to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Integer to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int64_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L54">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Int64_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Int64)">Append(Int64)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the long integer to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Long integer to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_SByte_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.SByte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L26">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_SByte_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.SByte)">Append(SByte)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the signed byte to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(sbyte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.SByte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Signed byte to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Single_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L61">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Single_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Single)">Append(Single)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the float to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(float value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Float to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_ReadOnlySpan_System_Char__IEnumerable_System_String__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(ReadOnlySpan%7BSystem.Char%7D%2CIEnumerable%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L12">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_ReadOnlySpan_System_Char__IEnumerable_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(ReadOnlySpan{System.Char},IEnumerable{System.String})">AppendJoin(ReadOnlySpan&lt;Char&gt;, IEnumerable&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(ReadOnlySpan&lt;char&gt; separator, IEnumerable&lt;string&gt; values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>String used as separator between the entries.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Array of strings, which will be concatenated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_IEnumerable_System_String__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char%2CIEnumerable%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L21">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_IEnumerable_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,IEnumerable{System.String})">AppendJoin(Char, IEnumerable&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(char separator, IEnumerable&lt;string&gt; values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>Character used as separator between the entries.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Array of strings, which will be concatenated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_ReadOnlySpan_System_Char__IEnumerable___0__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin%60%601(ReadOnlySpan%7BSystem.Char%7D%2CIEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L31">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_ReadOnlySpan_System_Char__IEnumerable___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(ReadOnlySpan{System.Char},IEnumerable{``0})">AppendJoin&lt;T&gt;(ReadOnlySpan&lt;Char&gt;, IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(ReadOnlySpan&lt;char&gt; separator, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>String used as separator between the entries.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Array of strings, which will be concatenated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type of the given array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_IEnumerable___0__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin%60%601(System.Char%2CIEnumerable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L41">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_IEnumerable___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,IEnumerable{``0})">AppendJoin&lt;T&gt;(Char, IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(char separator, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">separator</span></td>
+        <td><p>Character used as separator between the entries.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;T&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td><p>Array of strings, which will be concatenated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type of the given array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L98">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine">AppendLine()</h4>
+  <div class="markdown level1 summary"><p>Adds the default new line separator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L108">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(ReadOnlySpan{System.Char})">AppendLine(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Does the same as <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_">Append(Char)</a> but adds a newline at the end.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">str</span></td>
+        <td><p>String, which will be added to this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L76">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan">AsSpan()</h4>
+  <div class="markdown level1 summary"><p>Returns the string as an <see cref="!:ReadOnlySpan&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;char&gt; AsSpan()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><p>The filled array as <see cref="!:ReadOnlySpan&lt;T>"></see>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Clear.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L111">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Clear*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Clears the internal representation of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This will not enforce some re-allocation or shrinking of the internal buffer. The size stays the same.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Contains_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Contains(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L242">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Contains*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Contains(ReadOnlySpan{System.Char})">Contains(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a value indicating whether a specified substring occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(ReadOnlySpan&lt;char&gt; word)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">word</span></td>
+        <td><p>Word to look for in this string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the value parameter occurs within this string, or if value is the empty string (&quot;&quot;); otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_ReadOnlySpan_System_Char___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method performs an ordinal (case-sensitive and culture-insensitive) comparison.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Dispose.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L248">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Dispose_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Dispose*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Dispose" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the instance and returns rented buffer from an array pool if needed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L124">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)">EnsureCapacity(Int32)</h4>
+  <div class="markdown level1 summary"><p>Ensures that the builder has at least <code data-dev-comment-type="paramref" class="paramref">newCapacity</code> amount of capacity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnsureCapacity(int newCapacity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">newCapacity</span></td>
+        <td><p>New capacity for the builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">newCapacity</code> is smaller or equal to <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length">Length</a> nothing will be done.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L91">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference">GetPinnableReference()</h4>
+  <div class="markdown level1 summary"><p>Get a pinnable reference to the represented string from this builder.
+The content after <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length">Length</a> is not guaranteed to be null terminated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ref char GetPinnableReference()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><p>The pointer to the first instance of the string represented by this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method is used for use-cases where the user wants to use &quot;fixed&quot; calls like the following:</p>
+<pre><code>using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append(&quot;Hello World&quot;);
+fixed (var* buffer = stringBuilder) { ... }</code></pre>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L179">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(ReadOnlySpan{System.Char})">IndexOf(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the index within this string of the first occurrence of the specified substring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf(ReadOnlySpan&lt;char&gt; word)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">word</span></td>
+        <td><p>Word to look for in this string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index of the found <code data-dev-comment-type="paramref" class="paramref">word</code> in this string or -1 if not found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L188">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(ReadOnlySpan{System.Char},System.Int32)">IndexOf(ReadOnlySpan&lt;Char&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int IndexOf(ReadOnlySpan&lt;char&gt; word, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">word</span></td>
+        <td><p>Word to look for in this string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Index to begin with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index of the found <code data-dev-comment-type="paramref" class="paramref">word</code> in this string or -1 if not found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L92">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,ReadOnlySpan{System.Char})">Insert(Int32, ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Appends the string representation of the boolean to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, ReadOnlySpan&lt;char&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L12">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Boolean_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Boolean)">Insert(Int32, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the boolean to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, bool value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Byte_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Byte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L36">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Byte_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Byte)">Insert(Int32, Byte)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the byte to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Char_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L20">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Char)">Insert(Int32, Char)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the char to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, char value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Decimal_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Decimal)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L84">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Decimal_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Decimal)">Insert(Int32, Decimal)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the decimal to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, decimal value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Double_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L76">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Double_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Double)">Insert(Int32, Double)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the double to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int16_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Int16)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L44">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int16_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Int16)">Insert(Int32, Int16)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the short to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, short value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L52">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Int32)">Insert(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the integer to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, int value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int64_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Int64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L60">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Int64_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Int64)">Insert(Int32, Int64)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the long to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_SByte_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.SByte)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L28">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_SByte_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.SByte)">Insert(Int32, SByte)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the signed byte to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, sbyte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.SByte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Single_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32%2CSystem.Single)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L68">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Single_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Single)">Insert(Int32, Single)</h4>
+  <div class="markdown level1 summary"><p>Insert the string representation of the float to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, float value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index where <code data-dev-comment-type="paramref" class="paramref">value</code> should be inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>String to insert into this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L209">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(ReadOnlySpan{System.Char})">LastIndexOf(ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns the index within this string of the last occurrence of the specified substring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexOf(ReadOnlySpan&lt;char&gt; word)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">word</span></td>
+        <td><p>Word to look for in this string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index of the found <code data-dev-comment-type="paramref" class="paramref">word</code> in this string or -1 if not found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(ReadOnlySpan%7BSystem.Char%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L218">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(ReadOnlySpan{System.Char},System.Int32)">LastIndexOf(ReadOnlySpan&lt;Char&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the index within this string of the last occurrence of the specified substring, starting at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastIndexOf(ReadOnlySpan&lt;char&gt; word, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">word</span></td>
+        <td><p>Word to look for in this string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Index to begin with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index of the found <code data-dev-comment-type="paramref" class="paramref">word</code> in this string or -1 if not found.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Remove(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L146">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Remove*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Remove(System.Int32,System.Int32)">Remove(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Removes a range of characters from this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(int startIndex, int length)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The inclusive index from where the string gets removed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">length</span></td>
+        <td><p>The length of the slice to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method will not affect the internal size of the string.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Replace(ReadOnlySpan%7BSystem.Char%7D%2CReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L54">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char})">Replace(ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(ReadOnlySpan&lt;char&gt; oldValue, ReadOnlySpan&lt;char&gt; newValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The string to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>The string to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">newValue</code> is <code>empty</code>, instances of <code data-dev-comment-type="paramref" class="paramref">oldValue</code>
+are removed from this builder.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Replace(ReadOnlySpan%7BSystem.Char%7D%2CReadOnlySpan%7BSystem.Char%7D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L115">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(ReadOnlySpan{System.Char},ReadOnlySpan{System.Char},System.Int32,System.Int32)">Replace(ReadOnlySpan&lt;Char&gt;, ReadOnlySpan&lt;Char&gt;, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(ReadOnlySpan&lt;char&gt; oldValue, ReadOnlySpan&lt;char&gt; newValue, int startIndex, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The string to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>The string to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The index to start in this builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of characters to read in this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_ReadOnlySpan_System_Char__ReadOnlySpan_System_Char__System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">newValue</code> is <code>empty</code>, instances of <code data-dev-comment-type="paramref" class="paramref">oldValue</code>
+are removed from this builder.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L13">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char)">Replace(Char, Char)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one character with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(char oldValue, char newValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The character to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>The character to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char%2CSystem.Char%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L23">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)">Replace(Char, Char, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one character with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(char oldValue, char newValue, int startIndex, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The character to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Char</span></td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>The character to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The index to start in this builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of characters to read in this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric%60%601(ReadOnlySpan%7BSystem.Char%7D%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L68">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(ReadOnlySpan{System.Char},``0)">ReplaceGeneric&lt;T&gt;(ReadOnlySpan&lt;Char&gt;, T)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceGeneric&lt;T&gt;(ReadOnlySpan&lt;char&gt; oldValue, T newValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The string to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>Object to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Any type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">newValue</code> is from type <see cref="!:ISpanFormattable"></see> an optimized version is taken.
+Otherwise the ToString method is called.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric%60%601(ReadOnlySpan%7BSystem.Char%7D%2C%60%600%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L84">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(ReadOnlySpan{System.Char},``0,System.Int32,System.Int32)">ReplaceGeneric&lt;T&gt;(ReadOnlySpan&lt;Char&gt;, T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceGeneric&lt;T&gt;(ReadOnlySpan&lt;char&gt; oldValue, T newValue, int startIndex, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ReadOnlySpan</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>The string to replace.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">newValue</span></td>
+        <td><p>Object to replace <code data-dev-comment-type="paramref" class="paramref">oldValue</code> with.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The index to start in this builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of characters to read in this builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Any type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_ReadOnlySpan_System_Char____0_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If <code data-dev-comment-type="paramref" class="paramref">newValue</code> is from type <see cref="!:ISpanFormattable"></see> an optimized version is taken.
+Otherwise the ToString method is called.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_ToString.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L70">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Creates a <span class="xref">System.String</span> instance from that builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The <span class="xref">System.String</span> instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_Span_System_Char__.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(Span%7BSystem.Char%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L102">View Source</a>
+  </span>
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo*"></a>
+  <h4 id="LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(Span{System.Char})">TryCopyTo(Span&lt;Char&gt;)</h4>
+  <div class="markdown level1 summary"><p>Tries to copy the represented string into the given <see cref="!:Span&lt;T>"></see>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryCopyTo(Span&lt;char&gt; destination)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Span</span>&lt;<span class="xref">System.Char</span>&gt;</td>
+        <td><span class="parametername">destination</span></td>
+        <td><p>The destination where the internal string is copied into.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True, if the copy was successful, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToStringBuilder_LinkDotNet_StringBuilder_ValueStringBuilder__">ValueStringBuilderExtensions.ToStringBuilder(ref ValueStringBuilder)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L6" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
