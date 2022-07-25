@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+- Fixed an issue where memory is not returned to the ArrayPool
+- Fixed an issue where memory could be overwritten, giving the chance to tamper with the internal array
+
 ## [1.2.0] - 2022-04-20
 
 ### Added
