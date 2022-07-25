@@ -7,7 +7,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceAllCharacters()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("CCCC");
 
         builder.Replace('C', 'B');
@@ -18,7 +18,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceAllCharactersInGivenSpan()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("CCCC");
 
         builder.Replace('C', 'B', 1, 2);
@@ -31,7 +31,7 @@ public class ValueStringBuilderReplaceTests
     [InlineData(1, 1)]
     public void ShouldThrowExceptionWhenOutOfRange(int startIndex, int count)
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         try
         {
@@ -49,7 +49,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceAllText()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello World. How are you doing. Hello world examples are always fun.");
 
         builder.Replace("Hello", "Hallöchen");
@@ -63,7 +63,7 @@ public class ValueStringBuilderReplaceTests
     [InlineData("wor", "word")]
     public void ShouldNotReplaceWhenLengthMismatch(string text, string word)
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append(text);
 
         builder.Replace(word, "Something");
@@ -74,7 +74,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldBeTheSameWhenOldAndNewTheSame()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("text");
 
         builder.Replace("word", "word");
@@ -85,7 +85,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldNotAlterIfNotFound()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         builder.Replace("Test", "Not");
@@ -96,7 +96,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceInSpan()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello World. How are you doing. Hello world examples are always fun.");
 
         builder.Replace("Hello", "Hallöchen", 0, 10);
@@ -107,7 +107,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceISpanFormattable()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("{0}");
 
         builder.ReplaceGeneric("{0}", 1.2f);
@@ -118,7 +118,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceISpanFormattableSlice()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("{0}{0}{0}");
 
         builder.ReplaceGeneric("{0}", 1, 0, 6);
@@ -129,7 +129,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceNonISpanFormattable()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("{0}");
 
         builder.ReplaceGeneric("{0}", default(MyStruct));
@@ -140,7 +140,7 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceNonISpanFormattableInSlice()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("{0}{0}{0}");
 
         builder.ReplaceGeneric("{0}", default(MyStruct), 0, 6);

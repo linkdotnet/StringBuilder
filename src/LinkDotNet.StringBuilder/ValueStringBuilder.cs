@@ -15,6 +15,7 @@ public ref partial struct ValueStringBuilder
 {
     private int bufferPosition;
     private Span<char> buffer;
+    private char[]? arrayFromPool;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
@@ -23,7 +24,9 @@ public ref partial struct ValueStringBuilder
     public ValueStringBuilder()
     {
         bufferPosition = 0;
-        buffer = new char[32];
+        buffer = default;
+        arrayFromPool = null;
+        Grow(32);
     }
 
     /// <summary>
@@ -35,6 +38,7 @@ public ref partial struct ValueStringBuilder
     {
         bufferPosition = 0;
         buffer = initialBuffer;
+        arrayFromPool = null;
     }
 
     /// <summary>
@@ -79,7 +83,7 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// This method is used for use-cases where the user wants to use "fixed" calls like the following:
     /// <code>
-    /// var stringBuilder = new ValueStringBuilder();
+    /// using var stringBuilder = new ValueStringBuilder();
     /// stringBuilder.Append("Hello World");
     /// fixed (var* buffer = stringBuilder) { ... }
     /// </code>
@@ -238,6 +242,18 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
+    /// <summary>
+    /// Disposes the instance and returns rented buffer from an array pool if needed.
+    /// </summary>
+    public void Dispose()
+    {
+        var toReturn = arrayFromPool;
+        if (toReturn != null)
+        {
+            ArrayPool<char>.Shared.Return(toReturn);
+        }
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {
@@ -248,7 +264,12 @@ public ref partial struct ValueStringBuilder
         var newSize = capacity > 0 ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
         buffer.CopyTo(rented);
-        buffer = rented;
-        ArrayPool<char>.Shared.Return(rented);
+        var toReturn = arrayFromPool;
+        buffer = arrayFromPool = rented;
+
+        if (toReturn != null)
+        {
+            ArrayPool<char>.Shared.Return(toReturn);
+        }
     }
 }

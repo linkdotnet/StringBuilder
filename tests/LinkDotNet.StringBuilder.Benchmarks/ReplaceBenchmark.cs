@@ -55,7 +55,7 @@ Etiam eleifend sagittis vulputate. Aenean congue enim ac sem scelerisque, vel he
     [Benchmark]
     public string ValueStringBuilder()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append(Text);
         builder.Replace("arcu", "some long word");
         builder.Replace("some long word", "arcu");

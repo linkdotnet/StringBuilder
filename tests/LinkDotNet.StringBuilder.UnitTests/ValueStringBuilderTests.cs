@@ -7,7 +7,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldThrowIndexOutOfRangeWhenStringShorterThanIndex()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         try
@@ -26,7 +26,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldTryToCopySpan()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
         var mySpan = new Span<char>(new char[5], 0, 5);
 
@@ -39,7 +39,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnSpan()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         var output = stringBuilder.AsSpan().ToString();
@@ -50,7 +50,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnLength()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         var length = stringBuilder.Length;
@@ -61,7 +61,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldClear()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         stringBuilder.Clear();
@@ -73,7 +73,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnEmptyStringWhenInitialized()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.ToString().Should().Be(string.Empty);
     }
@@ -81,7 +81,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldRemoveRange()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello World");
 
         stringBuilder.Remove(0, 6);
@@ -96,7 +96,7 @@ public class ValueStringBuilderTests
     [InlineData(90, 1)]
     public void ShouldThrowExceptionWhenOutOfRangeIndex(int startIndex, int length)
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         try
@@ -115,7 +115,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldNotRemoveEntriesWhenLengthIsEqualToZero()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello");
 
         stringBuilder.Remove(0, 0);
@@ -126,7 +126,7 @@ public class ValueStringBuilderTests
     [Fact]
     public unsafe void ShouldGetPinnableReference()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hey");
 
         fixed (char* c = stringBuilder)
@@ -140,7 +140,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldGetIndexOfWord()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello World");
 
         var index = stringBuilder.IndexOf("World");
@@ -151,7 +151,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldFindInSubstring()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello World");
 
         var index = stringBuilder.IndexOf("l", 6);
@@ -162,7 +162,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldThrowExceptionWhenNegativeStartIndex()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         try
         {
@@ -180,7 +180,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldThrowExceptionWhenNegativeStartIndexLastIndex()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         try
         {
@@ -198,7 +198,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnMinusOneIfNotFound()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello World");
 
         var index = stringBuilder.IndexOf("Mountain");
@@ -209,7 +209,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnMinusOneWordIsLongerThanString()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append("Hello World");
 
         var index = stringBuilder.IndexOf("Hello World but longer");
@@ -220,7 +220,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnMinusOneIfStringIsEmpty()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
         stringBuilder.Append(string.Empty);
 
         var index = stringBuilder.IndexOf("word");
@@ -231,7 +231,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldSetCapacity()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.EnsureCapacity(128);
 
@@ -241,7 +241,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldNotSetCapacityWhenSmallerThanCurrentString()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append(new string('c', 128));
 
         builder.EnsureCapacity(16);
@@ -252,7 +252,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldThrowWhenNegativeValueInEnsureCapacity()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         try
         {
             builder.EnsureCapacity(-1);
@@ -269,7 +269,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldFindLastOccurence()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello Hello");
 
         var index = builder.LastIndexOf("Hello");
@@ -280,7 +280,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldFindLastOccurenceInSlice()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello Hello");
 
         var index = builder.LastIndexOf("Hello", 6);
@@ -291,7 +291,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnZeroWhenEmptyStringInIndexOf()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         var index = builder.IndexOf(string.Empty, 6);
@@ -302,7 +302,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnZeroWhenEmptyStringInLastIndexOf()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         var index = builder.LastIndexOf(string.Empty, 6);
@@ -316,7 +316,7 @@ public class ValueStringBuilderTests
     [InlineData("", true)]
     public void ShouldReturnIfStringIsPresent(string word, bool expected)
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         var index = builder.Contains(word);
@@ -328,10 +328,20 @@ public class ValueStringBuilderTests
     public void ShouldUseInitialBuffer()
     {
         Span<char> buffer = stackalloc char[16];
-        var builder = new ValueStringBuilder(buffer);
+        using var builder = new ValueStringBuilder(buffer);
 
         builder.Append("Hello");
 
         builder.ToString().Should().Be("Hello");
+    }
+
+    [Fact]
+    public void ShouldReturnRentedArrayBuffer()
+    {
+        var builder = new ValueStringBuilder();
+
+        builder.Append(new string('c', 1024));
+
+        builder.Dispose();
     }
 }

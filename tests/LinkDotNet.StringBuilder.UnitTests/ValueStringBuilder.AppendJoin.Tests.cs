@@ -9,7 +9,7 @@ public class ValueStringBuilderAppendJoinTests
     [MemberData(nameof(StringSeparatorTestData))]
     public void ShouldAppendWithStringSeparator(string separator, IEnumerable<string?> values, string expected)
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendJoin(separator, values);
 
@@ -20,7 +20,7 @@ public class ValueStringBuilderAppendJoinTests
     [MemberData(nameof(CharSeparatorTestData))]
     public void ShouldAppendWithCharSeparator(char separator, IEnumerable<string?> values, string expected)
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendJoin(separator, values);
 
@@ -30,7 +30,7 @@ public class ValueStringBuilderAppendJoinTests
     [Fact]
     public void ShouldAddDataWithStringSeparator()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendJoin(",", new object[] { 1, new DateTime(1900, 1, 1) });
 
@@ -40,7 +40,7 @@ public class ValueStringBuilderAppendJoinTests
     [Fact]
     public void ShouldAddDataWithCharSeparator()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendJoin(',', new object[] { 1, new DateTime(1900, 1, 1) });
 

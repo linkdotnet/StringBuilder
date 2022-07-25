@@ -27,7 +27,7 @@ public class AppendValueTypes
     [Benchmark]
     public string ValueStringBuilder()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         for (var i = 0; i < 25; i++)
         {

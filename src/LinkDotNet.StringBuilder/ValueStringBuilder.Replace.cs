@@ -90,7 +90,7 @@ public ref partial struct ValueStringBuilder
             var tempBuffer = ArrayPool<char>.Shared.Rent(24);
             if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
             {
-                Replace(oldValue, tempBuffer.AsSpan()[..written], startIndex, count);
+                Replace(oldValue, tempBuffer.AsSpan(0, written), startIndex, count);
             }
 
             ArrayPool<char>.Shared.Return(tempBuffer);
