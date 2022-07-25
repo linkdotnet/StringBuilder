@@ -28,7 +28,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendFloat()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2.2f);
 
@@ -38,7 +38,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendDouble()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2.2d);
 
@@ -48,7 +48,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendDecimal()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2.2m);
 
@@ -58,7 +58,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendInteger()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, -2);
 
@@ -68,7 +68,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendUnsignedInteger()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2U);
 
@@ -78,7 +78,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendLong()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2L);
 
@@ -88,7 +88,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendChar()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, '2');
 
@@ -98,7 +98,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendShort()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, (short)2);
 
@@ -108,7 +108,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendBool()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, true);
 
@@ -118,7 +118,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendByte()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, (byte)2);
 
@@ -128,7 +128,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldAppendSignedByte()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Insert(0, (sbyte)2);
 
@@ -138,7 +138,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldThrowWhenIndexIsNegative()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         try
         {
@@ -156,7 +156,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldThrowWhenIndexIsBehindBufferLength()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         try
         {
@@ -174,7 +174,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldThrowWhenIndexIsNegativeForFormattableSpan()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         try
         {
@@ -192,7 +192,7 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldThrowWhenIndexIsBehindBufferLengthForFormattableSpan()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         try
         {

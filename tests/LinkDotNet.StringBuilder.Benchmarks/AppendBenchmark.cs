@@ -20,7 +20,7 @@ public class AppendBenchmarks
     [Benchmark]
     public string ValueStringBuilder()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
         builder.AppendLine("That is the first line of our benchmark.");
         builder.AppendLine("We can multiple stuff in here if want.");
         builder.AppendLine("We can multiple stuff in here if want.");

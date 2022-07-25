@@ -7,7 +7,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAddString()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.Append("That is a string");
 
@@ -17,7 +17,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAddMultipleStrings()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.Append("This");
         stringBuilder.Append("is");
@@ -30,7 +30,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAddLargeStrings()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.Append(new string('c', 99));
 
@@ -40,7 +40,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendLine()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendLine("Hello");
 
@@ -50,7 +50,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldOnlyAddNewline()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendLine();
 
@@ -60,7 +60,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldGetIndexIfGiven()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.Append("Hello");
 
@@ -70,7 +70,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendFloat()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(2.2f);
 
@@ -80,7 +80,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendDouble()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(2.2d);
 
@@ -90,7 +90,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendDecimal()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(2.2m);
 
@@ -100,7 +100,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendInteger()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(-2);
 
@@ -110,7 +110,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendUnsignedInteger()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(2U);
 
@@ -120,7 +120,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendLong()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(2L);
 
@@ -130,7 +130,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendChar()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append('2');
 
@@ -140,7 +140,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendShort()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append((short)2);
 
@@ -150,7 +150,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendBool()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(true);
 
@@ -160,7 +160,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendByte()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append((byte)2);
 
@@ -170,7 +170,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendSignedByte()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append((sbyte)2);
 
@@ -180,7 +180,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendMultipleChars()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         for (var i = 0; i < 64; i++)
         {
@@ -193,7 +193,7 @@ public class ValueStringBuilderAppendTests
     [Fact]
     public void ShouldAppendMultipleDoubles()
     {
-        var builder = new ValueStringBuilder();
+        using var builder = new ValueStringBuilder();
 
         builder.Append(1d / 3d);
         builder.Append(1d / 3d);
