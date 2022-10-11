@@ -1,5 +1,4 @@
-﻿using System.Buffers;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -86,14 +85,11 @@ public ref partial struct ValueStringBuilder
     {
         if (newValue is ISpanFormattable spanFormattable)
         {
-            // Maybe we want to have a stackalloc here and more or less inline the whole function
-            var tempBuffer = ArrayPool<char>.Shared.Rent(24);
+            Span<char> tempBuffer = stackalloc char[24];
             if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
             {
-                Replace(oldValue, tempBuffer.AsSpan(0, written), startIndex, count);
+                Replace(oldValue, tempBuffer[..written], startIndex, count);
             }
-
-            ArrayPool<char>.Shared.Return(tempBuffer);
         }
         else
         {
@@ -113,7 +109,7 @@ public ref partial struct ValueStringBuilder
     /// are removed from this builder.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue, int startIndex, int count)
+    public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
     {
         var length = startIndex + count;
         var slice = buffer[startIndex..length];

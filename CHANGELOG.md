@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- Added the `scoped` keyword to simplify code and allow more scenarios for the user
+
 ## [1.3.0] - 2022-07-25
 
 ### Fixed

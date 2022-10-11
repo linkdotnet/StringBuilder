@@ -80,7 +80,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="str">String, which will be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(ReadOnlySpan<char> str)
+    public void Append(scoped ReadOnlySpan<char> str)
     {
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
@@ -106,7 +106,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="str">String, which will be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendLine(ReadOnlySpan<char> str)
+    public void AppendLine(scoped ReadOnlySpan<char> str)
     {
         Append(str);
         Append(Environment.NewLine);

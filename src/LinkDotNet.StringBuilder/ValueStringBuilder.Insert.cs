@@ -90,7 +90,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, ReadOnlySpan<char> value)
+    public void Insert(int index, scoped ReadOnlySpan<char> value)
     {
         if (index < 0)
         {
