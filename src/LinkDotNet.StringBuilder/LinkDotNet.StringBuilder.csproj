@@ -17,6 +17,7 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,13 @@
         <Pack>True</Pack>
         <PackagePath>\</PackagePath>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Update="SonarAnalyzer.CSharp" Version="8.46.0.54807">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 </Project>

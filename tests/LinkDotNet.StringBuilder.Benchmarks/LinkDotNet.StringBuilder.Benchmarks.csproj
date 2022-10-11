@@ -9,8 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.2.1940" />
       <PackageReference Include="ZString" Version="2.4.4" />
+      <PackageReference Update="SonarAnalyzer.CSharp" Version="8.46.0.54807">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

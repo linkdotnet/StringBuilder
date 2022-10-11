@@ -5,6 +5,20 @@ namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderAppendJoinTests
 {
+    public static IEnumerable<object[]> StringSeparatorTestData()
+    {
+        yield return new object[] { ",", new[] { "Hello", "World" }, "Hello,World" };
+        yield return new object[] { ",", new[] { "Hello" }, "Hello" };
+        yield return new object[] { ",", Array.Empty<string>(), string.Empty };
+    }
+
+    public static IEnumerable<object[]> CharSeparatorTestData()
+    {
+        yield return new object[] { ',', new[] { "Hello", "World" }, "Hello,World" };
+        yield return new object[] { ',', new[] { "Hello" }, "Hello" };
+        yield return new object[] { ',', Array.Empty<string>(), string.Empty };
+    }
+
     [Theory]
     [MemberData(nameof(StringSeparatorTestData))]
     public void ShouldAppendWithStringSeparator(string separator, IEnumerable<string?> values, string expected)
@@ -45,19 +59,5 @@ public class ValueStringBuilderAppendJoinTests
         stringBuilder.AppendJoin(',', new object[] { 1, new DateTime(1900, 1, 1) });
 
         stringBuilder.ToString().Should().Be("1,01/01/1900 00:00:00");
-    }
-
-    private static IEnumerable<object[]> StringSeparatorTestData()
-    {
-        yield return new object[] { ",", new[] { "Hello", "World" }, "Hello,World" };
-        yield return new object[] { ",", new[] { "Hello" }, "Hello" };
-        yield return new object[] { ",", Array.Empty<string>(), string.Empty };
-    }
-
-    private static IEnumerable<object[]> CharSeparatorTestData()
-    {
-        yield return new object[] { ',', new[] { "Hello", "World" }, "Hello,World" };
-        yield return new object[] { ',', new[] { "Hello" }, "Hello" };
-        yield return new object[] { ',', Array.Empty<string>(), string.Empty };
     }
 }
