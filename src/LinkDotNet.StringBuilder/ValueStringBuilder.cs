@@ -259,9 +259,7 @@ public ref partial struct ValueStringBuilder
     {
         var currentSize = buffer.Length;
 
-        // This could lead to the potential problem that an user sets the capacity smaller than the current length
-        // which would lead to a truncated string.
-        var newSize = capacity > 0 ? capacity : currentSize * 2;
+        var newSize = capacity > currentSize ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
         buffer.CopyTo(rented);
         var toReturn = arrayFromPool;

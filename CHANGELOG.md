@@ -9,6 +9,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Added
 - Added the `scoped` keyword to simplify code and allow more scenarios for the user
 
+### Fixed
+- `Grow` allowed values, which would truncate the internally represented string
+
 ## [1.3.0] - 2022-07-25
 
 ### Fixed
