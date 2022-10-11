@@ -6,11 +6,15 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.4.0] - 2022-10-11
+
 ### Added
-- Added the `scoped` keyword to simplify code and allow more scenarios for the user
+
+-   Added the `scoped` keyword to simplify code and allow more scenarios for the user
 
 ### Fixed
-- `Grow` allowed values, which would truncate the internally represented string
+
+-   `Grow` allowed values, which would truncate the internally represented string
 
 ## [1.3.0] - 2022-07-25
 
@@ -99,7 +103,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.3.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.4.0...HEAD
+
+[1.4.0]: https://github.com/linkdotnet/StringBuilder/compare/1.3.0...1.4.0
 
 [1.3.0]: https://github.com/linkdotnet/StringBuilder/compare/1.2.0...1.3.0
 
