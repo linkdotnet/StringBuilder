@@ -38,7 +38,7 @@ internal static class NaiveSearch
             }
         }
 
-        return hits.AsSpan;
+        return hits.AsSpan();
     }
 
     /// <summary>
