@@ -67,12 +67,14 @@ public ref partial struct ValueStringBuilder
     /// Creates a <see cref="string"/> instance from that builder.
     /// </summary>
     /// <returns>The <see cref="string"/> instance.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public override string ToString() => new(buffer[..bufferPosition]);
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
     /// </summary>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
 
     /// <summary>
@@ -89,10 +91,7 @@ public ref partial struct ValueStringBuilder
     /// </code>
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ref char GetPinnableReference()
-    {
-        return ref MemoryMarshal.GetReference(buffer);
-    }
+    public ref char GetPinnableReference() => ref MemoryMarshal.GetReference(buffer);
 
     /// <summary>
     /// Tries to copy the represented string into the given <see cref="Span{T}"/>.
