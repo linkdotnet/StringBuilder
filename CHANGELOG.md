@@ -6,9 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.5.0] - 2022-11-05
+
 ### Added
- - New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");` 
- - Smaller performance improvements in internal API's
+
+-   New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");` 
+-   Smaller performance improvements in internal API's
 
 ## [1.4.1] - 2022-11-04
 
@@ -114,7 +117,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.4.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.5.0...HEAD
+
+[1.5.0]: https://github.com/linkdotnet/StringBuilder/compare/1.4.1...1.5.0
 
 [1.4.1]: https://github.com/linkdotnet/StringBuilder/compare/1.4.0...1.4.1
 
