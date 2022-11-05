@@ -7,6 +7,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ## [Unreleased]
 
 ### Added
+ - New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");` 
  - Smaller performance improvements in internal API's
 
 ## [1.4.1] - 2022-11-04

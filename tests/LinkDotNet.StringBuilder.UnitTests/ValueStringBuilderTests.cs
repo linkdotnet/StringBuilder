@@ -344,4 +344,12 @@ public class ValueStringBuilderTests
 
         builder.Dispose();
     }
+
+    [Fact]
+    public void ShouldConcatStringsTogether()
+    {
+        var result = ValueStringBuilder.Concat("Hello", " ", "World");
+
+        result.Should().Be("Hello World");
+    }
 }
