@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.5.1] - 2022-11-05
+
 ## [1.5.0] - 2022-11-05
 
 ### Added
@@ -117,7 +119,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.5.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.5.1...HEAD
+
+[1.5.1]: https://github.com/linkdotnet/StringBuilder/compare/1.5.0...1.5.1
 
 [1.5.0]: https://github.com/linkdotnet/StringBuilder/compare/1.4.1...1.5.0
 
