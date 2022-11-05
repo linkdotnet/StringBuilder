@@ -24,3 +24,6 @@ robots.txt
 /**/TestResults/*
 /**/coverage*.xml
 /CoverageReport/
+
+# MacOS
+.DS_Store

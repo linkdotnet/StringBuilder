@@ -244,12 +244,12 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Disposes the instance and returns rented buffer from an array pool if needed.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Dispose()
     {
-        var toReturn = arrayFromPool;
-        if (toReturn != null)
+        if (arrayFromPool != null)
         {
-            ArrayPool<char>.Shared.Return(toReturn);
+            ArrayPool<char>.Shared.Return(arrayFromPool);
         }
     }
 

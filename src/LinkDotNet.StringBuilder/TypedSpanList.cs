@@ -1,4 +1,3 @@
-using System.Buffers;
 using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
@@ -19,7 +18,7 @@ internal ref struct TypedSpanList<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TypedSpanList()
     {
-        buffer = new T[8];
+        buffer = GC.AllocateUninitializedArray<T>(8);
         count = 0;
     }
 
@@ -43,9 +42,8 @@ internal ref struct TypedSpanList<T>
     {
         var currentSize = buffer.Length;
         var newSize = capacity > 0 ? capacity : currentSize * 2;
-        var rented = ArrayPool<T>.Shared.Rent(newSize);
+        var rented = GC.AllocateUninitializedArray<T>(newSize);
         buffer.CopyTo(rented);
         buffer = rented;
-        ArrayPool<T>.Shared.Return(rented);
     }
 }

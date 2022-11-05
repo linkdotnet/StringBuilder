@@ -40,12 +40,21 @@ A more detailed documentation can be found [here](https://linkdotnet.github.io/S
 The following table gives you a small comparison between the `StringBuilder` which is part of .NET, [`ZString`](https://github.com/Cysharp/ZString) and the `ValueStringBuilder`:
 
 ```no-class
-|              Method |       Mean |    Error |    StdDev |     Median | Ratio | RatioSD |   Gen 0 |  Gen 1 | Allocated |
-|-------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|--------:|-------:|----------:|
-| DotNetStringBuilder |   401.7 ns | 29.15 ns |  84.56 ns |   373.4 ns |  1.00 |    0.00 |  0.3576 |      - |   1,496 B |
-|  ValueStringBuilder |   252.8 ns |  9.05 ns |  26.27 ns |   249.0 ns |  0.65 |    0.13 |  0.1583 |      - |     664 B |
-|  ZStringBuilderUtf8 | 1,239.0 ns | 44.93 ns | 131.06 ns | 1,192.0 ns |  3.18 |    0.56 | 15.6250 |      - |  66,136 B |
-| ZStringBuilderUtf16 | 1,187.6 ns | 21.35 ns |  25.42 ns | 1,185.0 ns |  2.88 |    0.52 | 15.6250 | 0.0019 |  66,136 B |
+BenchmarkDotNet=v0.13.2, OS=macOS Monterey 12.6.1 (21G217) [Darwin 21.6.0]
+Apple M1 Pro, 1 CPU, 10 logical and 10 physical cores
+.NET SDK=7.0.100-rc.2.22477.23
+  [Host]     : .NET 6.0.10 (6.0.1022.47605), Arm64 RyuJIT AdvSIMD
+  DefaultJob : .NET 6.0.10 (6.0.1022.47605), Arm64 RyuJIT AdvSIMD
+
+
+|                         Method |       Mean |    Error |   StdDev | Ratio | RatioSD |    Gen0 | Allocated | Alloc Ratio |
+|------------------------------- |-----------:|---------:|---------:|------:|--------:|--------:|----------:|------------:|
+|            DotNetStringBuilder |   227.3 ns |  1.31 ns |  1.22 ns |  1.00 |    0.00 |  0.7114 |    1488 B |        1.00 |
+|             ValueStringBuilder |   128.7 ns |  0.57 ns |  0.53 ns |  0.57 |    0.00 |  0.2677 |     560 B |        0.38 |
+| ValueStringBuilderPreAllocated |   113.9 ns |  0.67 ns |  0.60 ns |  0.50 |    0.00 |  0.2677 |     560 B |        0.38 |
+|             ZStringBuilderUtf8 | 1,976.1 ns | 17.33 ns | 15.37 ns |  8.69 |    0.08 | 31.2500 |   66120 B |       44.44 |
+|            ZStringBuilderUtf16 | 1,888.2 ns | 18.50 ns | 16.40 ns |  8.30 |    0.09 | 31.2500 |   66120 B |       44.44 |
+
 ```
 
 For more comparison check the documentation.
