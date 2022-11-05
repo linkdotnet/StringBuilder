@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
@@ -8,6 +10,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="values">Values, which will be concatenated together.</param>
     /// <typeparam name="T">Any given type, which can be translated to string.</typeparam>
     /// <returns>Concatenated string or an empty string if <see cref="values"/> is empty.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T>(params T[] values)
     {
         if (values.Length == 0)
@@ -28,6 +31,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg1">First argument.</param>
     /// <param name="arg2">Second argument.</param>
     /// <returns>String representation of the concateneted result.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T1, T2>(T1 arg1, T2 arg2)
     {
         using var sb = new ValueStringBuilder(stackalloc char[128]);
@@ -47,6 +51,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg2">Second argument.</param>
     /// <param name="arg3">Third argument.</param>
     /// <returns>String representation of the concateneted result.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T1, T2, T3>(T1 arg1, T2 arg2, T3 arg3)
     {
         using var sb = new ValueStringBuilder(stackalloc char[128]);
@@ -69,6 +74,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg3">Third argument.</param>
     /// <param name="arg4">Fourth argument.</param>
     /// <returns>String representation of the concateneted result.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T1, T2, T3, T4>(T1 arg1, T2 arg2, T3 arg3, T4 arg4)
     {
         using var sb = new ValueStringBuilder(stackalloc char[128]);
@@ -94,6 +100,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg4">Fourth argument.</param>
     /// <param name="arg5">Fifth argument.</param>
     /// <returns>String representation of the concateneted result.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T1, T2, T3, T4, T5>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
     {
         using var sb = new ValueStringBuilder(stackalloc char[128]);
