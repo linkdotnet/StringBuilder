@@ -107,6 +107,10 @@ public ref partial struct ValueStringBuilder
         {
             AppendSpanFormattable(spanFormattable);
         }
+        else if (value is string s)
+        {
+            Append(s.AsSpan());
+        }
         else
         {
             Append(value?.ToString());

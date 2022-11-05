@@ -8,7 +8,7 @@ public ref partial struct ValueStringBuilder
     /// Concatenates multiple objects together.
     /// </summary>
     /// <param name="values">Values, which will be concatenated together.</param>
-    /// <typeparam name="T">Any given type, which can be translated to string.</typeparam>
+    /// <typeparam name="T">Any given type, which can be translated to <see cref="string"/>.</typeparam>
     /// <returns>Concatenated string or an empty string if <see cref="values"/> is empty.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T>(params T[] values)
