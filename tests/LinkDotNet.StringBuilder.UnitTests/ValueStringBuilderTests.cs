@@ -352,4 +352,36 @@ public class ValueStringBuilderTests
 
         result.Should().Be("Hello World");
     }
+
+    [Fact]
+    public void ConcatDifferentTypesWithTwoArguments()
+    {
+        var result = ValueStringBuilder.Concat("Test", 1);
+
+        result.Should().Be("Test1");
+    }
+
+    [Fact]
+    public void ConcatDifferentTypesWithThreeArguments()
+    {
+        var result = ValueStringBuilder.Concat("Test", 1, 2);
+
+        result.Should().Be("Test12");
+    }
+
+    [Fact]
+    public void ConcatDifferentTypesWithFourArguments()
+    {
+        var result = ValueStringBuilder.Concat("Test", 1, 2, 3);
+
+        result.Should().Be("Test123");
+    }
+
+    [Fact]
+    public void ConcatDifferentTypesWithFiveArguments()
+    {
+        var result = ValueStringBuilder.Concat("Test", 1, 2, 3, 4);
+
+        result.Should().Be("Test1234");
+    }
 }

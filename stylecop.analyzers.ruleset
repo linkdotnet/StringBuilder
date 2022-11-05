@@ -242,7 +242,7 @@
     <Rule Id="S2376" Action="Info" />
     <Rule Id="S2386" Action="Info" />
     <Rule Id="S2387" Action="None" />
-    <Rule Id="S2436" Action="Info" />
+    <Rule Id="S2436" Action="None" />
     <Rule Id="S2437" Action="Info" />
     <Rule Id="S2479" Action="Info" />
     <Rule Id="S2486" Action="Info" />
