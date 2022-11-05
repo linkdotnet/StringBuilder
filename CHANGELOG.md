@@ -8,6 +8,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [1.5.1] - 2022-11-05
 
+### Added
+-   Hot paths for strings
+
 ## [1.5.0] - 2022-11-05
 
 ### Added
