@@ -20,6 +20,14 @@ stringBuilder.AppendLine("Hello World");
 string result = stringBuilder.ToString();
 ```
 
+There are also smaller helper functions, which enables you to use `ValueStringBuilder` without any instance:
+```csharp
+using LinkDotNet.StringBuilder;
+
+_ = ValueStringBuilder.Concat("Hello ", "World"); // "Hello World"
+_ = ValueStringBuilder.Concat("Hello", 1, 2, 3, "!"); // "Hello123!"
+```
+
 ## What does it solve?
 The dotnet version of the `StringBuilder` is a all purpose version which normally fits a wide variety of needs.
 But sometimes low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` which tries to do as less allocations as possible.
