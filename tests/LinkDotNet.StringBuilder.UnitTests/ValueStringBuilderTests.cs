@@ -384,4 +384,12 @@ public class ValueStringBuilderTests
 
         result.Should().Be("Test1234");
     }
+
+    [Fact]
+    public void ShouldAcceptInitialCharBuffer()
+    {
+        var result = new ValueStringBuilder("Hello World").ToString();
+
+        result.Should().Be("Hello World");
+    }
 }

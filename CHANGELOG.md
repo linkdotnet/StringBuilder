@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Addeed
+
+- Added overload which allows an initial string for the ValueStringBuilder
+
 ## [1.5.1] - 2022-11-05
 
 ### Added

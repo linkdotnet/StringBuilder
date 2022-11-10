@@ -42,6 +42,17 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
+    /// </summary>
+    /// <param name="initialText">The initial text used to initialize this instance. If <paramref name="initialText"/> is <c>null</c>
+    /// the <see cref="ValueStringBuilder"/> will return an empty string (<see cref="string.Empty"/>).
+    /// </param>
+    public ValueStringBuilder(ReadOnlySpan<char> initialText)
+    {
+        Append(initialText);
+    }
+
+    /// <summary>
     /// Gets the current length of the represented string.
     /// </summary>
     /// <value>
