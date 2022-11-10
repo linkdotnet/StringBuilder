@@ -11,6 +11,7 @@ namespace LinkDotNet.StringBuilder;
 /// The <see cref="ValueStringBuilder"/> is declared as ref struct which brings certain limitations with it.
 /// You can only use it in another ref struct or as a local variable.
 /// </remarks>
+[StructLayout(LayoutKind.Auto)]
 public ref partial struct ValueStringBuilder
 {
     private int bufferPosition;
