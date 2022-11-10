@@ -47,6 +47,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="initialText">The initial text used to initialize this instance. If <paramref name="initialText"/> is <c>null</c>
     /// the <see cref="ValueStringBuilder"/> will return an empty string (<see cref="string.Empty"/>).
     /// </param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder(ReadOnlySpan<char> initialText)
     {
         Append(initialText);
