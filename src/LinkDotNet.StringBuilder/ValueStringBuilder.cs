@@ -81,14 +81,14 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <returns>The <see cref="string"/> instance.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string ToString() => new(buffer[..bufferPosition]);
+    public readonly override string ToString() => new(buffer[..bufferPosition]);
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
     /// </summary>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
+    public readonly ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
 
     /// <summary>
     /// Get a pinnable reference to the represented string from this builder.
@@ -112,7 +112,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="destination">The destination where the internal string is copied into.</param>
     /// <returns>True, if the copy was successful, otherwise false.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
+    public readonly bool TryCopyTo(Span<char> destination) => buffer[..bufferPosition].TryCopyTo(destination);
 
     /// <summary>
     /// Clears the internal representation of the string.
@@ -189,7 +189,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int IndexOf(ReadOnlySpan<char> word) => IndexOf(word, 0);
+    public readonly int IndexOf(ReadOnlySpan<char> word) => IndexOf(word, 0);
 
     /// <summary>
     /// Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
@@ -198,7 +198,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int IndexOf(ReadOnlySpan<char> word, int startIndex)
+    public readonly int IndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
         {
@@ -219,7 +219,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int LastIndexOf(ReadOnlySpan<char> word) => LastIndexOf(word, 0);
+    public readonly int LastIndexOf(ReadOnlySpan<char> word) => LastIndexOf(word, 0);
 
     /// <summary>
     /// Returns the index within this string of the last occurrence of the specified substring, starting at the specified index.
@@ -228,7 +228,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="startIndex">Index to begin with.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
+    public readonly int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
     {
         if (startIndex < 0)
         {
@@ -252,13 +252,13 @@ public ref partial struct ValueStringBuilder
     /// This method performs an ordinal (case-sensitive and culture-insensitive) comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
+    public readonly bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
     /// <summary>
     /// Disposes the instance and returns rented buffer from an array pool if needed.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Dispose()
+    public readonly void Dispose()
     {
         if (arrayFromPool != null)
         {

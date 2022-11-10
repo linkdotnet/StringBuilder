@@ -25,7 +25,7 @@ internal ref struct TypedSpanList<T>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ReadOnlySpan<T> AsSpan() => buffer[..count];
+    public readonly ReadOnlySpan<T> AsSpan() => buffer[..count];
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Add(T value)
