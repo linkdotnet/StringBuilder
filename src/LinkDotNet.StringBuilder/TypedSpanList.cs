@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -6,6 +7,7 @@ namespace LinkDotNet.StringBuilder;
 /// Represents a List based on the <see cref="Span{T}"/> type.
 /// </summary>
 /// <typeparam name="T">Any struct.</typeparam>
+[StructLayout(LayoutKind.Auto)]
 internal ref struct TypedSpanList<T>
     where T : struct
 {

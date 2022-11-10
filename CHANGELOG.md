@@ -9,6 +9,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Addeed
 
 - Added overload which allows an initial string for the ValueStringBuilder
+- Meziantou.Analyzer as developer dependency to spot issues early on
+
+### Changed
+- Added `StructLayout(LayoutKind.Auto)`, which makes the ValueStringBuilder not usable for unmanaged code
 
 ## [1.5.1] - 2022-11-05
 

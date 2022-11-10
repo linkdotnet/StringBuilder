@@ -114,7 +114,7 @@ public ref partial struct ValueStringBuilder
         var length = startIndex + count;
         var slice = buffer[startIndex..length];
 
-        if (oldValue == newValue)
+        if (oldValue.SequenceEqual(newValue))
         {
             return;
         }
