@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- Added `net7.0` target 
+
 ## [1.6.0] - 2022-11-10
 
 ### Addeed
