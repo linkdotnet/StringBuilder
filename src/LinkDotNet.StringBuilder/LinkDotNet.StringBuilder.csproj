@@ -8,11 +8,11 @@
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <Authors>Steven Giesel</Authors>
         <Company>Steven Giesel</Company>
-		<Title>ValueStringBuilder</Title>
+        <Title>ValueStringBuilder</Title>
         <Description>A fast and low allocation StringBuilder for .NET.</Description>
         <PackageProjectUrl>https://github.com/linkdotnet/StringBuilder</PackageProjectUrl>
         <RepositoryUrl>https://github.com/linkdotnet/StringBuilder</RepositoryUrl>
-        <PackageTags>string,stringbuilder,csharp,dotnet</PackageTags>
+        <PackageTags>string,stringbuilder,csharp,dotnet,fast,performance</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
@@ -32,7 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="SonarAnalyzer.CSharp" Version="8.47.0.55603">
+      <PackageReference Update="SonarAnalyzer.CSharp" Version="8.48.0.56517">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
