@@ -6,18 +6,22 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.6.0] - 2022-11-10
+
 ### Addeed
 
-- Added overload which allows an initial string for the ValueStringBuilder
-- Meziantou.Analyzer as developer dependency to spot issues early on
-- `readonly` hint's on readonly methods
+-   Added overload which allows an initial string for the ValueStringBuilder
+-   Meziantou.Analyzer as developer dependency to spot issues early on
+-   `readonly` hint's on readonly methods
 
 ### Changed
-- Added `StructLayout(LayoutKind.Auto)`, which makes the ValueStringBuilder not usable for unmanaged code
+
+-   Added `StructLayout(LayoutKind.Auto)`, which makes the ValueStringBuilder not usable for unmanaged code
 
 ## [1.5.1] - 2022-11-05
 
 ### Added
+
 -   Hot paths for strings
 
 ## [1.5.0] - 2022-11-05
@@ -131,7 +135,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.5.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.0...HEAD
+
+[1.6.0]: https://github.com/linkdotnet/StringBuilder/compare/1.5.1...1.6.0
 
 [1.5.1]: https://github.com/linkdotnet/StringBuilder/compare/1.5.0...1.5.1
 
