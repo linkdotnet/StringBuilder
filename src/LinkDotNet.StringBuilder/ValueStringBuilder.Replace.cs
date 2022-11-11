@@ -29,7 +29,7 @@ public ref partial struct ValueStringBuilder
 
         if (count > bufferPosition)
         {
-            throw new ArgumentOutOfRangeException($"Count: {count} is bigger than the current size {bufferPosition}.", nameof(count));
+            throw new ArgumentOutOfRangeException(nameof(count), $"Count: {count} is bigger than the current size {bufferPosition}.");
         }
 
         for (var i = startIndex; i < startIndex + count; i++)

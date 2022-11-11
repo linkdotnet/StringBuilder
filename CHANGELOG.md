@@ -6,11 +6,19 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Slight improvements for `IndexOf` methods
+
+### Fixed
+
+- Some of the exception had the wrong order (message and parameter name)
+
 ## [1.6.1] - 2022-11-11
 
 ### Added
 
--   Added `net7.0` target 
+-   Added `net7.0` target
 
 ### Changed
 
