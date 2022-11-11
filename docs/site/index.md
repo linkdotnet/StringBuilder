@@ -4,15 +4,15 @@
 
 # ValueStringBuilder: A fast and low allocation StringBuilder for .NET
 
-**ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation will show case you how to use the `ValueStringBuilder` as well as what are some limitations coming with it. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file and issue.
+**ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation will showcase to you how to use the `ValueStringBuilder` as well as what are some limitations coming with it. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file an issue.
 
-The library makes heavily use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve the low allocations and fast performance.
+The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance.
 
 ## Download
 The package is hosted on [nuget.org]((https://www.nuget.org/packages/LinkDotNet.StringBuilder/)), so easily add the package reference:
 > PM> Install-Package LinkDotNet.StringBuilder
 
-Afterwards you can simply use it. It tries to mimic the API of the `StringBuilder` to a certain extend so for simpler cases you can exchange those two.
+Afterwards, you can simply use it. It tries to mimic the API of the `StringBuilder` to a certain extent so for simpler cases you can exchange those two.
 
 
 ## Example usage
@@ -31,4 +31,10 @@ This will print
 ```
 Hello World
 2+2=4
+```
+
+There are also convenient helper methods like this:
+```csharp
+_ = ValueStringBuilder.Concat("Hello", " ", "World"); // "Hello World"
+_ = ValueStringBuilder.Concat("Hello", 1, 2, 3, "!"); // "Hello123!"
 ```

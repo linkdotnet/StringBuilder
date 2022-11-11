@@ -32,14 +32,10 @@ public static class Program
 ```
 
 Prints:
-
-> Hello dear World!  
-0.3
-
-[Here](https://dotnetfiddle.net/wM5r0q) an interactive example where you can fiddle around with the library. The example is hosted on [https://dotnetfiddle.net/](https://dotnetfiddle.net/wM5r0q) and already has the `ValueStringBuilder` nuget package included in the latest version.
+[Here](https://dotnetfiddle.net/wM5r0q) is an interactive example where you can fiddle around with the library. The example is hosted on [https://dotnetfiddle.net/](https://dotnetfiddle.net/wM5r0q) and already has the `ValueStringBuilder` nuget package included in the latest version.
 
 ## Helper methods
-There are also very easy to use helper methods, which doesn't need a `ValueStringBuilder` instance:
+There are also very easy-to-use helper methods, which doesn't need a `ValueStringBuilder` instance:
 ```csharp
 using LinkDotNet.StringBuilder;
 
