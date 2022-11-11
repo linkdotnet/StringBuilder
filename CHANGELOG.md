@@ -6,11 +6,15 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.6.1] - 2022-11-11
+
 ### Added
-- Added `net7.0` target 
+
+-   Added `net7.0` target 
 
 ### Changed
-- Updated docs
+
+-   Updated docs
 
 ## [1.6.0] - 2022-11-10
 
@@ -141,7 +145,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.1...HEAD
+
+[1.6.1]: https://github.com/linkdotnet/StringBuilder/compare/1.6.0...1.6.1
 
 [1.6.0]: https://github.com/linkdotnet/StringBuilder/compare/1.5.1...1.6.0
 
