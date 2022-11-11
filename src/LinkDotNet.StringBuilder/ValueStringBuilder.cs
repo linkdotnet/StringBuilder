@@ -12,6 +12,7 @@ namespace LinkDotNet.StringBuilder;
 /// You can only use it in another ref struct or as a local variable.
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
+[SkipLocalsInit]
 public ref partial struct ValueStringBuilder
 {
     private int bufferPosition;
@@ -68,13 +69,13 @@ public ref partial struct ValueStringBuilder
     /// <value>
     /// The current maximum capacity before growing the array.
     /// </value>
-    public int Capacity => buffer.Length;
+    public readonly int Capacity => buffer.Length;
 
     /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
     /// <param name="index">Index position, which should be retrieved.</param>
-    public ref char this[int index] => ref buffer[index];
+    public readonly ref char this[int index] => ref buffer[index];
 
     /// <summary>
     /// Creates a <see cref="string"/> instance from that builder.
@@ -104,7 +105,7 @@ public ref partial struct ValueStringBuilder
     /// </code>
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ref char GetPinnableReference() => ref MemoryMarshal.GetReference(buffer);
+    public readonly ref char GetPinnableReference() => ref MemoryMarshal.GetReference(buffer);
 
     /// <summary>
     /// Tries to copy the represented string into the given <see cref="Span{T}"/>.
@@ -121,10 +122,7 @@ public ref partial struct ValueStringBuilder
     /// This will not enforce some re-allocation or shrinking of the internal buffer. The size stays the same.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Clear()
-    {
-        bufferPosition = 0;
-    }
+    public void Clear() => bufferPosition = 0;
 
     /// <summary>
     /// Ensures that the builder has at least <paramref name="newCapacity"/> amount of capacity.
