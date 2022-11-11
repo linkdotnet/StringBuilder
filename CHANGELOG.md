@@ -6,13 +6,15 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.6.2] - 2022-11-11
+
 ### Changed
 
-- Slight improvements for `IndexOf` methods
+-   Slight improvements for `IndexOf` methods
 
 ### Fixed
 
-- Some of the exception had the wrong order (message and parameter name)
+-   Some of the exception had the wrong order (message and parameter name)
 
 ## [1.6.1] - 2022-11-11
 
@@ -153,7 +155,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.2...HEAD
+
+[1.6.2]: https://github.com/linkdotnet/StringBuilder/compare/1.6.1...1.6.2
 
 [1.6.1]: https://github.com/linkdotnet/StringBuilder/compare/1.6.0...1.6.1
 
