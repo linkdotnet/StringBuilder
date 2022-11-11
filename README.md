@@ -20,7 +20,7 @@ stringBuilder.AppendLine("Hello World");
 string result = stringBuilder.ToString();
 ```
 
-There are also smaller helper functions, which enables you to use `ValueStringBuilder` without any instance:
+There are also smaller helper functions, which enable you to use `ValueStringBuilder` without any instance:
 ```csharp
 using LinkDotNet.StringBuilder;
 
@@ -29,19 +29,19 @@ _ = ValueStringBuilder.Concat("Hello", 1, 2, 3, "!"); // "Hello123!"
 ```
 
 ## What does it solve?
-The dotnet version of the `StringBuilder` is a all purpose version which normally fits a wide variety of needs.
-But sometimes low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` which tries to do as less allocations as possible.
-If you want to know how the `ValueStringBuilder` works and why it uses allocations and is even faster, checkout [this](https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896) blog post.
-The blog goes a bit more in detail how it works with a simplistic version of the `ValueStringBuilder`.
+The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
+But sometimes low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to do as less allocations as possible.
+If you want to know how the `ValueStringBuilder` works and why it uses allocations and is even faster, check out [this](https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896) blog post.
+The blog goes into a bit more in detail about how it works with a simplistic version of the `ValueStringBuilder`.
 
 ## What it doesn't solve!
 The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the ["Known limitations"](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html).
-The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses less allocations). At anytime you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
+The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses fewer allocations). At any time you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
 
-The normal use case is to add concatenate strings in a hot-path where the goal is to put as minimal pressure on the GC as possible.
+The normal use case is to add concatenate strings in a hot path where the goal is to put as minimal pressure on the GC as possible.
 
 ## Documentation
-A more detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/). It is really important to understand how the `ValueStringBuilder` works so that you not run into weird situations where performance / allocations can even rise.
+More detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/). It is really important to understand how the `ValueStringBuilder` works so that you did not run into weird situations where performance/allocations can even rise.
 
 ## Benchmark
 
@@ -77,4 +77,4 @@ Another benchmark shows that this `ValueStringBuilder` uses less memory when it 
 
 ```
 
-Checkout the [Benchmark](tests/LinkDotNet.StringBuilder.Benchmarks) for more detailed comparison and setup.
+Checkout the [Benchmark](tests/LinkDotNet.StringBuilder.Benchmarks) for a more detailed comparison and setup.
