@@ -2,7 +2,6 @@
 
 namespace LinkDotNet.StringBuilder;
 
-[SkipLocalsInit]
 public ref partial struct ValueStringBuilder
 {
     /// <summary>

@@ -72,14 +72,8 @@ internal static class NaiveSearch
 
                 if (j == word.Length - 1)
                 {
-                    index = i;
-                    break;
+                    return index;
                 }
-            }
-
-            if (index != -1)
-            {
-                break;
             }
         }
 
@@ -117,14 +111,8 @@ internal static class NaiveSearch
 
                 if (j == word.Length - 1)
                 {
-                    index = i;
-                    break;
+                    return index;
                 }
-            }
-
-            if (index != -1)
-            {
-                break;
             }
         }
 
