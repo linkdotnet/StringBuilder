@@ -28,7 +28,7 @@ jobs:
 
     - name: Get changelog entries
       id: changelog
-      uses: mindsers/changelog-reader-action@v2.2.0
+      uses: mindsers/changelog-reader-action@v2.2.1
       with:
         version: Unreleased
         path: ./CHANGELOG.md
