@@ -62,7 +62,6 @@ Apple M1 Pro, 1 CPU, 10 logical and 10 physical cores
 | ValueStringBuilderPreAllocated |   113.9 ns |  0.67 ns |  0.60 ns |  0.50 |    0.00 |  0.2677 |     560 B |        0.38 |
 |             ZStringBuilderUtf8 | 1,976.1 ns | 17.33 ns | 15.37 ns |  8.69 |    0.08 | 31.2500 |   66120 B |       44.44 |
 |            ZStringBuilderUtf16 | 1,888.2 ns | 18.50 ns | 16.40 ns |  8.30 |    0.09 | 31.2500 |   66120 B |       44.44 |
-
 ```
 
 For more comparison check the documentation.
@@ -74,7 +73,6 @@ Another benchmark shows that this `ValueStringBuilder` uses less memory when it 
 |-------------------- |---------:|---------:|---------:|-------:|----------:|
 | DotNetStringBuilder | 17.21 us | 0.622 us | 1.805 us | 1.5259 |      6 KB |
 |  ValueStringBuilder | 16.24 us | 0.496 us | 1.462 us | 0.3357 |      1 KB |
-
 ```
 
 Checkout the [Benchmark](tests/LinkDotNet.StringBuilder.Benchmarks) for a more detailed comparison and setup.
