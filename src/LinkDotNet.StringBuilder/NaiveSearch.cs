@@ -59,8 +59,6 @@ internal static class NaiveSearch
             return -1;
         }
 
-        var index = -1;
-
         for (var i = 0; i <= text.Length - word.Length; i++)
         {
             for (var j = 0; j < word.Length; j++)
@@ -72,12 +70,12 @@ internal static class NaiveSearch
 
                 if (j == word.Length - 1)
                 {
-                    return index;
+                    return i;
                 }
             }
         }
 
-        return index;
+        return -1;
     }
 
     /// <summary>
@@ -98,8 +96,6 @@ internal static class NaiveSearch
             return -1;
         }
 
-        var index = -1;
-
         for (var i = text.Length - word.Length + 1; i >= 0; i--)
         {
             for (var j = 0; j < word.Length; j++)
@@ -111,11 +107,11 @@ internal static class NaiveSearch
 
                 if (j == word.Length - 1)
                 {
-                    return index;
+                    return i;
                 }
             }
         }
 
-        return index;
+        return -1;
     }
 }
