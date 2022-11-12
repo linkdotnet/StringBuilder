@@ -8,7 +8,7 @@ public ref partial struct ValueStringBuilder
     /// Insert the string representation of the boolean to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Boolean to insert into this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, bool value) => Insert(index, value.ToString());
 
@@ -16,73 +16,91 @@ public ref partial struct ValueStringBuilder
     /// Insert the string representation of the char to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Character to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, char value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, char value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the signed byte to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Signed byte to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, sbyte value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, sbyte value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the byte to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Byte to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, byte value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, byte value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the short to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Short to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, short value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, short value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the integer to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Integer to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, int value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, int value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the long to the builder at the given index.
     /// </summary>
-    /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
+    /// <param name="index">Long where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, long value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, long value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the float to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Float to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, float value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, float value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the double to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Double to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, double value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, double value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Insert the string representation of the decimal to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">String to insert into this builder.</param>
+    /// <param name="value">Decimal to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert(int index, decimal value) => InsertSpanFormattable(index, value);
+    public void Insert(int index, decimal value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
+
+    /// <summary>
+    /// Insert the string representation of the Guid to the builder at the given index.
+    /// </summary>
+    /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
+    /// <param name="value">Guid to insert into this builder.</param>
+    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Insert(int index, Guid value, ReadOnlySpan<char> format = default) => InsertSpanFormattable(index, value, format);
 
     /// <summary>
     /// Appends the string representation of the boolean to the builder.
@@ -118,7 +136,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void InsertSpanFormattable<T>(int index, T value)
+    private void InsertSpanFormattable<T>(int index, T value, ReadOnlySpan<char> format = default)
         where T : ISpanFormattable
     {
         if (index < 0)
@@ -131,8 +149,8 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(index), "The given index can't be bigger than the string itself.");
         }
 
-        Span<char> tempBuffer = stackalloc char[24];
-        if (value.TryFormat(tempBuffer, out var written, default, null))
+        Span<char> tempBuffer = stackalloc char[36];
+        if (value.TryFormat(tempBuffer, out var written, format, null))
         {
             bufferPosition += written;
             if (bufferPosition > buffer.Length)

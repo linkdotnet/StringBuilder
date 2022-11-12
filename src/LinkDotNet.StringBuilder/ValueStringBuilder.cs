@@ -61,7 +61,7 @@ public ref partial struct ValueStringBuilder
     /// <value>
     /// The current length of the represented string.
     /// </value>
-    public int Length => bufferPosition;
+    public readonly int Length => bufferPosition;
 
     /// <summary>
     /// Gets the current maximum capacity before growing the array.
@@ -83,6 +83,15 @@ public ref partial struct ValueStringBuilder
     /// <returns>The <see cref="string"/> instance.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly override string ToString() => new(buffer[..bufferPosition]);
+
+    /// <summary>
+    /// Creates a <see cref="string"/> instance from that builder.
+    /// </summary>
+    /// <param name="startIndex">The starting position of the substring in this instance.</param>
+    /// <param name="length">The length of the substring.</param>
+    /// <returns>The <see cref="string"/> instance.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly string ToString(int startIndex, int length) => new(buffer[startIndex..(startIndex + length)]);
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
@@ -272,12 +281,12 @@ public ref partial struct ValueStringBuilder
         var newSize = capacity > currentSize ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
         buffer.CopyTo(rented);
-        var toReturn = arrayFromPool;
+        var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;
 
-        if (toReturn != null)
+        if (oldBufferFromPool != null)
         {
-            ArrayPool<char>.Shared.Return(toReturn);
+            ArrayPool<char>.Shared.Return(oldBufferFromPool);
         }
     }
 }

@@ -201,4 +201,14 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().Be("0.33333333333333330.33333333333333330.3333333333333333");
     }
+
+    [Fact]
+    public void ShouldAppendGuid()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append(Guid.Empty);
+
+        builder.ToString().Should().Be("00000000-0000-0000-0000-000000000000");
+    }
 }
