@@ -75,6 +75,13 @@ public ref partial struct ValueStringBuilder
     public void Append(decimal value) => AppendSpanFormattable(value);
 
     /// <summary>
+    /// Appends the string representation of the Guid to the builder.
+    /// </summary>
+    /// <param name="value">Guid to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(Guid value) => AppendSpanFormattable(value, "D");
+
+    /// <summary>
     /// Appends a string to the string builder.
     /// </summary>
     /// <param name="str">String, which will be added to this builder.</param>
@@ -112,11 +119,11 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendSpanFormattable<T>(T value)
+    private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default)
         where T : ISpanFormattable
     {
-        Span<char> tempBuffer = stackalloc char[24];
-        if (value.TryFormat(tempBuffer, out var written, default, null))
+        Span<char> tempBuffer = stackalloc char[36];
+        if (value.TryFormat(tempBuffer, out var written, format, null))
         {
             var newSize = written + bufferPosition;
             if (newSize >= buffer.Length)

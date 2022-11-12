@@ -9,6 +9,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Added
 
 - `ToString(startIndex, length)` to get a substring from the builder
+- `Append(Guid guid)` as new overload
 
 ## [1.6.2] - 2022-11-11
 
