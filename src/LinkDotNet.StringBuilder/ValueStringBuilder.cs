@@ -61,7 +61,7 @@ public ref partial struct ValueStringBuilder
     /// <value>
     /// The current length of the represented string.
     /// </value>
-    public int Length => bufferPosition;
+    public readonly int Length => bufferPosition;
 
     /// <summary>
     /// Gets the current maximum capacity before growing the array.
@@ -272,12 +272,12 @@ public ref partial struct ValueStringBuilder
         var newSize = capacity > currentSize ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
         buffer.CopyTo(rented);
-        var toReturn = arrayFromPool;
+        var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;
 
-        if (toReturn != null)
+        if (oldBufferFromPool != null)
         {
-            ArrayPool<char>.Shared.Return(toReturn);
+            ArrayPool<char>.Shared.Return(oldBufferFromPool);
         }
     }
 }
