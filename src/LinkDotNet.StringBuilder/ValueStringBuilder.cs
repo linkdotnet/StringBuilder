@@ -85,6 +85,15 @@ public ref partial struct ValueStringBuilder
     public readonly override string ToString() => new(buffer[..bufferPosition]);
 
     /// <summary>
+    /// Creates a <see cref="string"/> instance from that builder.
+    /// </summary>
+    /// <param name="startIndex">The starting position of the substring in this instance.</param>
+    /// <param name="length">The length of the substring.</param>
+    /// <returns>The <see cref="string"/> instance.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly string ToString(int startIndex, int length) => new(buffer[startIndex..(startIndex + length)]);
+
+    /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
     /// </summary>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>

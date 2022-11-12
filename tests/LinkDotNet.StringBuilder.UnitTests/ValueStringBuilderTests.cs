@@ -392,4 +392,12 @@ public class ValueStringBuilderTests
 
         result.Should().Be("Hello World");
     }
+
+    [Fact]
+    public void ReturnSubstring()
+    {
+        var result = new ValueStringBuilder("Hello World").ToString(1, 3);
+
+        result.Should().Be("ell");
+    }
 }

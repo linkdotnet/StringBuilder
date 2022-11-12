@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- `ToString(startIndex, length)` to get a substring from the builder
+
 ## [1.6.2] - 2022-11-11
 
 ### Changed
