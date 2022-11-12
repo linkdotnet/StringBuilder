@@ -6,11 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.7.0] - 2022-11-12
+
 ### Added
 
-- `ToString(startIndex, length)` to get a substring from the builder
-- `Append(Guid guid)` and `Insert(Guid guid)` as new overload
-- Added optional format string for `Append` and `Insert`
+-   `ToString(startIndex, length)` to get a substring from the builder
+-   `Append(Guid guid)` and `Insert(Guid guid)` as new overload
+-   Added optional format string for `Append` and `Insert`
 
 ## [1.6.2] - 2022-11-11
 
@@ -161,7 +163,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.6.2...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.7.0...HEAD
+
+[1.7.0]: https://github.com/linkdotnet/StringBuilder/compare/1.6.2...1.7.0
 
 [1.6.2]: https://github.com/linkdotnet/StringBuilder/compare/1.6.1...1.6.2
 
