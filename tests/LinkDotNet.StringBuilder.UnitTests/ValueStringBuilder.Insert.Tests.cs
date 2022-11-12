@@ -206,4 +206,14 @@ public class ValueStringBuilderInsertTests
 
         Assert.False(true);
     }
+
+    [Fact]
+    public void ShouldAppendGuid()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Insert(0, Guid.Empty);
+
+        builder.ToString().Should().Be("00000000-0000-0000-0000-000000000000");
+    }
 }
