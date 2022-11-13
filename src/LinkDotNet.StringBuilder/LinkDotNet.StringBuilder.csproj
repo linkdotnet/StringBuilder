@@ -31,6 +31,13 @@
       </None>
     </ItemGroup>
 
+	<PropertyGroup Label="Analyzer settings">
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
     <ItemGroup>
       <PackageReference Update="SonarAnalyzer.CSharp" Version="8.48.0.56517">
         <PrivateAssets>all</PrivateAssets>
