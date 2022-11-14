@@ -26,113 +26,13 @@ public class ValueStringBuilderInsertTests
     }
 
     [Fact]
-    public void ShouldAppendFloat()
+    public void ShouldAppendSpanFormattable()
     {
         using var builder = new ValueStringBuilder();
 
         builder.Insert(0, 2.2f);
 
         builder.ToString().Should().Be("2.2");
-    }
-
-    [Fact]
-    public void ShouldAppendDouble()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, 2.2d);
-
-        builder.ToString().Should().Be("2.2");
-    }
-
-    [Fact]
-    public void ShouldAppendDecimal()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, 2.2m);
-
-        builder.ToString().Should().Be("2.2");
-    }
-
-    [Fact]
-    public void ShouldAppendInteger()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, -2);
-
-        builder.ToString().Should().Be("-2");
-    }
-
-    [Fact]
-    public void ShouldAppendUnsignedInteger()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, 2U);
-
-        builder.ToString().Should().Be("2");
-    }
-
-    [Fact]
-    public void ShouldAppendLong()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, 2L);
-
-        builder.ToString().Should().Be("2");
-    }
-
-    [Fact]
-    public void ShouldAppendChar()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, '2');
-
-        builder.ToString().Should().Be("2");
-    }
-
-    [Fact]
-    public void ShouldAppendShort()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, (short)2);
-
-        builder.ToString().Should().Be("2");
-    }
-
-    [Fact]
-    public void ShouldAppendBool()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, true);
-
-        builder.ToString().Should().Be("True");
-    }
-
-    [Fact]
-    public void ShouldAppendByte()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, (byte)2);
-
-        builder.ToString().Should().Be("2");
-    }
-
-    [Fact]
-    public void ShouldAppendSignedByte()
-    {
-        using var builder = new ValueStringBuilder();
-
-        builder.Insert(0, (sbyte)2);
-
-        builder.ToString().Should().Be("2");
     }
 
     [Fact]
@@ -208,12 +108,30 @@ public class ValueStringBuilderInsertTests
     }
 
     [Fact]
-    public void ShouldAppendGuid()
+    public void ShouldInsertGuid()
     {
         using var builder = new ValueStringBuilder();
 
         builder.Insert(0, Guid.Empty);
 
         builder.ToString().Should().Be("00000000-0000-0000-0000-000000000000");
+    }
+
+    [Fact]
+    public void ShouldThrowIfNotInsertable()
+    {
+        using var builder = new ValueStringBuilder();
+
+        try
+        {
+            builder.Insert(0, Guid.Empty, bufferSize: 1);
+        }
+        catch (InvalidOperationException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.False(true);
     }
 }

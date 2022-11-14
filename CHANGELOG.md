@@ -10,6 +10,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 -  implicit cast operator from `string` and `ReadOnlySpan<char>` to the `ValueStringBuilder` with pre-initialized buffer
 
+### Removed
+
+- Removed value type overloads for `Append` and `Insert` and just offer `Append(ISpanFormattable)` and `Insert(ISpanFormattable)`, which covers more cases.
+
 ## [1.7.0] - 2022-11-12
 
 ### Added
