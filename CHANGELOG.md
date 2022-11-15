@@ -6,11 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
-## [1.8.0] - 2022-11-15
-
 ### Changed
 
 - Slight improvement when appending nullable types to the string builder
+
+## [1.8.0] - 2022-11-15
 
 ### Added
 
