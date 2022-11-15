@@ -416,4 +416,28 @@ public class ValueStringBuilderTests
 
         sb.ToString().Should().Be("Hello World");
     }
+
+    [Fact]
+    public void ConcatArbitraryValues()
+    {
+        var result = ValueStringBuilder.Concat(new[] { "Hello", " ", "World" });
+
+        result.Should().Be("Hello World");
+    }
+
+    [Fact]
+    public void ShouldReturnEmptyStringIfEmptyArray()
+    {
+        var result = ValueStringBuilder.Concat(Array.Empty<string>());
+
+        result.Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void ConcatBooleanWithNumber()
+    {
+        var result = ValueStringBuilder.Concat(true, 1);
+
+        result.Should().Be("True1");
+    }
 }

@@ -134,4 +134,14 @@ public class ValueStringBuilderInsertTests
 
         Assert.False(true);
     }
+
+    [Fact]
+    public void ShouldInsertBool()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Insert(0, true);
+
+        builder.ToString().Should().Be("True");
+    }
 }
