@@ -6,17 +6,19 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.8.0] - 2022-11-15
+
 ### Added
 
--  implicit cast operator from `string` and `ReadOnlySpan<char>` to the `ValueStringBuilder` with pre-initialized buffer
+-   implicit cast operator from `string` and `ReadOnlySpan<char>` to the `ValueStringBuilder` with pre-initialized buffer
 
 ### Changed
 
-- various path optimizations for replace logic to use less allocations while being faster
+-   various path optimizations for replace logic to use less allocations while being faster
 
 ### Removed
 
-- Removed value type overloads for `Append` and `Insert` and just offer `Append(ISpanFormattable)` and `Insert(ISpanFormattable)`, which covers more cases.
+-   Removed value type overloads for `Append` and `Insert` and just offer `Append(ISpanFormattable)` and `Insert(ISpanFormattable)`, which covers more cases.
 
 ## [1.7.0] - 2022-11-12
 
@@ -175,7 +177,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.7.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.8.0...HEAD
+
+[1.8.0]: https://github.com/linkdotnet/StringBuilder/compare/1.7.0...1.8.0
 
 [1.7.0]: https://github.com/linkdotnet/StringBuilder/compare/1.6.2...1.7.0
 
