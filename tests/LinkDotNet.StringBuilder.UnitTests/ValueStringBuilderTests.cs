@@ -400,4 +400,20 @@ public class ValueStringBuilderTests
 
         result.Should().Be("ell");
     }
+
+    [Fact]
+    public void ImplicitCastFromStringToValueStringBuilder()
+    {
+        using ValueStringBuilder sb = "Hello World";
+
+        sb.ToString().Should().Be("Hello World");
+    }
+
+    [Fact]
+    public void ImplicitCastFromReadOnlySpanToValueStringBuilder()
+    {
+        using ValueStringBuilder sb = "Hello World".AsSpan();
+
+        sb.ToString().Should().Be("Hello World");
+    }
 }

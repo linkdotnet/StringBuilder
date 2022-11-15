@@ -78,6 +78,18 @@ public ref partial struct ValueStringBuilder
     public readonly ref char this[int index] => ref buffer[index];
 
     /// <summary>
+    /// Defines the implicit conversion of a <see cref="string"/> to <see cref="ValueStringBuilder"/>.
+    /// </summary>
+    /// <param name="fromString">The string as initial buffer.</param>
+    public static implicit operator ValueStringBuilder(string fromString) => new(fromString.AsSpan());
+
+    /// <summary>
+    /// Defines the implicit conversion of a <see cref="ReadOnlySpan{Char}"/> to <see cref="ValueStringBuilder"/>.
+    /// </summary>
+    /// <param name="fromString">The string as initial buffer.</param>
+    public static implicit operator ValueStringBuilder(ReadOnlySpan<char> fromString) => new(fromString);
+
+    /// <summary>
     /// Creates a <see cref="string"/> instance from that builder.
     /// </summary>
     /// <returns>The <see cref="string"/> instance.</returns>

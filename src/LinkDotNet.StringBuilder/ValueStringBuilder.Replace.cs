@@ -135,8 +135,29 @@ public ref partial struct ValueStringBuilder
         for (var i = 0; i < hits.Length; i++)
         {
             var index = startIndex + hits[i] + (delta * i);
-            Remove(index, oldValue.Length);
-            Insert(index, newValue);
+
+            // newValue is smaller than old value
+            // We can insert the slice and remove the overhead
+            if (delta < 0)
+            {
+                newValue.CopyTo(buffer[index..]);
+                Remove(index + 1, -delta);
+            }
+
+            // Same length -> We can just replace the memory slice
+            else if (delta == 0)
+            {
+                newValue.CopyTo(buffer[index..]);
+            }
+
+            // newValue is larger than the old value
+            // First add until the old memory region
+            // and insert afterwards the rest
+            else
+            {
+                newValue[..oldValue.Length].CopyTo(buffer[index..]);
+                Insert(index + oldValue.Length, newValue[oldValue.Length..]);
+            }
         }
     }
 }

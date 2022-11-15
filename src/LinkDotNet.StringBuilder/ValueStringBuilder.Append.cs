@@ -14,82 +14,13 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Appends the string representation of the character to the builder.
     /// </summary>
-    /// <param name="value">Integer to add.</param>
+    /// <param name="value">Formattable span to add.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
+    /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
+    /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(char value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the signed byte to the builder.
-    /// </summary>
-    /// <param name="value">Signed byte to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(sbyte value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the byte to the builder.
-    /// </summary>
-    /// <param name="value">Byte to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(byte value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the short to the builder.
-    /// </summary>
-    /// <param name="value">Short to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(short value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the integer to the builder.
-    /// </summary>
-    /// <param name="value">Integer to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(int value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the long integer to the builder.
-    /// </summary>
-    /// <param name="value">Long integer to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(long value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the float to the builder.
-    /// </summary>
-    /// <param name="value">Float to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(float value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the double to the builder.
-    /// </summary>
-    /// <param name="value">Double to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(double value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the decimal to the builder.
-    /// </summary>
-    /// <param name="value">Decimal to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(decimal value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
-
-    /// <summary>
-    /// Appends the string representation of the Guid to the builder.
-    /// </summary>
-    /// <param name="value">Guid to add.</param>
-    /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(Guid value, ReadOnlySpan<char> format = default) => AppendSpanFormattable(value, format);
+    public void Append<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
+        where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize);
 
     /// <summary>
     /// Appends a string to the string builder.
@@ -129,10 +60,10 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default)
+    private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
-        Span<char> tempBuffer = stackalloc char[36];
+        Span<char> tempBuffer = stackalloc char[bufferSize];
         if (value.TryFormat(tempBuffer, out var written, format, null))
         {
             var newSize = written + bufferPosition;
@@ -143,6 +74,10 @@ public ref partial struct ValueStringBuilder
 
             tempBuffer[..written].CopyTo(buffer[bufferPosition..]);
             bufferPosition = newSize;
+        }
+        else
+        {
+            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer large enough?");
         }
     }
 }

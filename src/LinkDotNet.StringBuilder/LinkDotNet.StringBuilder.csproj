@@ -31,12 +31,19 @@
       </None>
     </ItemGroup>
 
+	<PropertyGroup Label="Analyzer settings">
+		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
     <ItemGroup>
       <PackageReference Update="SonarAnalyzer.CSharp" Version="8.48.0.56517">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Meziantou.Analyzer" Version="1.0.746">
+      <PackageReference Include="Meziantou.Analyzer" Version="1.0.747">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
