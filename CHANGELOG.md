@@ -8,6 +8,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [1.8.0] - 2022-11-15
 
+### Changed
+
+- Slight improvement when appending nullable types to the string builder
+
 ### Added
 
 -   implicit cast operator from `string` and `ReadOnlySpan<char>` to the `ValueStringBuilder` with pre-initialized buffer
