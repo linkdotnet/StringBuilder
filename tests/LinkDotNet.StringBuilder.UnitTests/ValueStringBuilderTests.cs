@@ -440,4 +440,16 @@ public class ValueStringBuilderTests
 
         result.Should().Be("True1");
     }
+
+    [Theory]
+    [InlineData("Hello", true)]
+    [InlineData("Hallo", false)]
+    public void GivenReadOnlySpan_WhenCallingEquals_ThenReturningWhenEqual(string input, bool expected)
+    {
+        using var builder = new ValueStringBuilder("Hello");
+
+        var isEqual = builder.Equals(input);
+
+        isEqual.Should().Be(expected);
+    }
 }

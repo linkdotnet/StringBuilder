@@ -274,6 +274,13 @@ public ref partial struct ValueStringBuilder
     public readonly bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
     /// <summary>
+    /// Returns a value indicating whether the characters in this instance are equal to the characters in a specified read-only character span.
+    /// </summary>
+    /// <param name="span">The character span to compare with the current instance.</param>
+    /// <returns><c>true</c> if the characters are equal to this instance, otherwise <c>false</c>.</returns>
+    public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
+
+    /// <summary>
     /// Disposes the instance and returns rented buffer from an array pool if needed.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

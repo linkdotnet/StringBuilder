@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `Equals(ReadOnlySpan<char>)` overload
+
 ### Changed
 
 - Slight improvement when appending nullable types to the string builder
