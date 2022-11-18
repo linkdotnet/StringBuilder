@@ -12,12 +12,12 @@ internal static class NaiveSearch
     {
         if (text.IsEmpty || word.IsEmpty)
         {
-            return Array.Empty<int>();
+            return ReadOnlySpan<int>.Empty;
         }
 
         if (text.Length < word.Length)
         {
-            return Array.Empty<int>();
+            return ReadOnlySpan<int>.Empty;
         }
 
         var hits = new TypedSpanList<int>();

@@ -64,10 +64,7 @@ public ref partial struct ValueStringBuilder
         {
             Append(separator);
             current = enumerator.Current;
-            if (current != null)
-            {
-                AppendInternal(current);
-            }
+            AppendInternal(current);
         }
     }
 
@@ -93,10 +90,7 @@ public ref partial struct ValueStringBuilder
         {
             AppendInternal(separator);
             current = enumerator.Current;
-            if (current != null)
-            {
-                AppendInternal(current);
-            }
+            AppendInternal(current);
         }
     }
 

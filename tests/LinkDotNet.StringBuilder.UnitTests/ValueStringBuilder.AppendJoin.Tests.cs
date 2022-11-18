@@ -10,6 +10,7 @@ public class ValueStringBuilderAppendJoinTests
         yield return new object[] { ",", new[] { "Hello", "World" }, "Hello,World" };
         yield return new object[] { ",", new[] { "Hello" }, "Hello" };
         yield return new object[] { ",", Array.Empty<string>(), string.Empty };
+        yield return new object[] { ",", new string?[] { null }, string.Empty };
     }
 
     public static IEnumerable<object[]> CharSeparatorTestData()
@@ -17,6 +18,7 @@ public class ValueStringBuilderAppendJoinTests
         yield return new object[] { ',', new[] { "Hello", "World" }, "Hello,World" };
         yield return new object[] { ',', new[] { "Hello" }, "Hello" };
         yield return new object[] { ',', Array.Empty<string>(), string.Empty };
+        yield return new object[] { ',', new string?[] { null }, string.Empty };
     }
 
     [Theory]
@@ -46,9 +48,9 @@ public class ValueStringBuilderAppendJoinTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.AppendJoin(",", new object[] { 1, new DateTime(1900, 1, 1) });
+        stringBuilder.AppendJoin(",", new object[] { 1, 1.05f });
 
-        stringBuilder.ToString().Should().Be("1,01/01/1900 00:00:00");
+        stringBuilder.ToString().Should().Be("1,1.05");
     }
 
     [Fact]
@@ -56,8 +58,8 @@ public class ValueStringBuilderAppendJoinTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.AppendJoin(',', new object[] { 1, new DateTime(1900, 1, 1) });
+        stringBuilder.AppendJoin(',', new object[] { 1, 1.05f });
 
-        stringBuilder.ToString().Should().Be("1,01/01/1900 00:00:00");
+        stringBuilder.ToString().Should().Be("1,1.05");
     }
 }

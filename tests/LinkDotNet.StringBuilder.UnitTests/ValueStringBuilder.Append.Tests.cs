@@ -119,7 +119,7 @@ public class ValueStringBuilderAppendTests
 
         try
         {
-            builder.Insert(0, Guid.Empty, bufferSize: 1);
+            builder.Append(Guid.Empty, bufferSize: 1);
         }
         catch (InvalidOperationException)
         {
@@ -128,5 +128,17 @@ public class ValueStringBuilderAppendTests
         }
 
         Assert.False(true);
+    }
+
+    [Theory]
+    [InlineData(true, "True")]
+    [InlineData(false, "False")]
+    public void ShouldAppendBoolean(bool value, string expected)
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append(value);
+
+        builder.ToString().Should().Be(expected);
     }
 }

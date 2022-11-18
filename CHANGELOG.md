@@ -6,6 +6,16 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.9.0] - 2022-11-18
+
+### Added
+
+-   Added `Equals(ReadOnlySpan<char>)` overload
+
+### Changed
+
+-   Slight improvement when appending nullable types to the string builder
+
 ## [1.8.0] - 2022-11-15
 
 ### Added
@@ -177,7 +187,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.8.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.9.0...HEAD
+
+[1.9.0]: https://github.com/linkdotnet/StringBuilder/compare/1.8.0...1.9.0
 
 [1.8.0]: https://github.com/linkdotnet/StringBuilder/compare/1.7.0...1.8.0
 
@@ -208,3 +220,11 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 [1.0.0]: https://github.com/linkdotnet/StringBuilder/compare/0.9.5...1.0.0
 
 [0.9.5]: https://github.com/linkdotnet/StringBuilder/compare/0.9.4...0.9.5
+
+[0.9.4]: https://github.com/linkdotnet/StringBuilder/compare/0.9.3...0.9.4
+
+[0.9.3]: https://github.com/linkdotnet/StringBuilder/compare/0.9.2...0.9.3
+
+[0.9.2]: https://github.com/linkdotnet/StringBuilder/compare/0.9.1...0.9.2
+
+[0.9.1]: https://github.com/linkdotnet/StringBuilder/compare/0.9.0...0.9.1
