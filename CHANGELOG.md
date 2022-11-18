@@ -212,3 +212,11 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 [1.0.0]: https://github.com/linkdotnet/StringBuilder/compare/0.9.5...1.0.0
 
 [0.9.5]: https://github.com/linkdotnet/StringBuilder/compare/0.9.4...0.9.5
+
+[0.9.4]: https://github.com/linkdotnet/StringBuilder/compare/0.9.3...0.9.4
+
+[0.9.3]: https://github.com/linkdotnet/StringBuilder/compare/0.9.2...0.9.3
+
+[0.9.2]: https://github.com/linkdotnet/StringBuilder/compare/0.9.1...0.9.2
+
+[0.9.1]: https://github.com/linkdotnet/StringBuilder/compare/0.9.0...0.9.1
