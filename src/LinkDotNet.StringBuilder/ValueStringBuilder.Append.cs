@@ -40,6 +40,16 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Appends a character buffer to this builder.
+    /// </summary>
+    /// <param name="value">The pointer to the start of the buffer.</param>
+    /// <param name="length">The number of characters in the buffer.</param>
+    public unsafe void Append(char* value, int length)
+    {
+        Append(new ReadOnlySpan<char>(value, length));
+    }
+
+    /// <summary>
     /// Adds the default new line separator.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

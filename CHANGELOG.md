@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- `Append(char* value, int length)` overload.
+
 ## [1.9.0] - 2022-11-18
 
 ### Added

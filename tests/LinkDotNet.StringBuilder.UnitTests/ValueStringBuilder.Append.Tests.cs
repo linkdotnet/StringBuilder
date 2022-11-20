@@ -141,4 +141,18 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().Be(expected);
     }
+
+    [Fact]
+    public unsafe void ShouldAddCharPointer()
+    {
+        using var builder = new ValueStringBuilder();
+        const string text = "Hello World";
+
+        fixed (char* pText = text)
+        {
+            builder.Append(pText, 5);
+        }
+
+        builder.ToString().Should().Be("Hello");
+    }
 }
