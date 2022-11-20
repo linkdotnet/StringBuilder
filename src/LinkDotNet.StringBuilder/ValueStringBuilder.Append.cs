@@ -44,6 +44,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">The pointer to the start of the buffer.</param>
     /// <param name="length">The number of characters in the buffer.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public unsafe void Append(char* value, int length)
     {
         Append(new ReadOnlySpan<char>(value, length));
@@ -87,7 +88,7 @@ public ref partial struct ValueStringBuilder
         }
         else
         {
-            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer large enough?");
+            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }
     }
 }

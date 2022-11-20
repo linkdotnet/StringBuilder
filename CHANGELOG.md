@@ -9,6 +9,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Added
 - `Append(char* value, int length)` overload.
 
+### Changed
+- Better exception when appending `ISpanFormattable` and buffer is not large enough.
+
 ## [1.9.0] - 2022-11-18
 
 ### Added
