@@ -6,6 +6,16 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.10.0] - 2022-11-20
+
+### Added
+
+-   `Append(char* value, int length)` overload.
+
+### Changed
+
+-   Better exception when appending `ISpanFormattable` and buffer is not large enough.
+
 ## [1.9.0] - 2022-11-18
 
 ### Added
@@ -187,7 +197,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.9.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.0...HEAD
+
+[1.10.0]: https://github.com/linkdotnet/StringBuilder/compare/1.9.0...1.10.0
 
 [1.9.0]: https://github.com/linkdotnet/StringBuilder/compare/1.8.0...1.9.0
 

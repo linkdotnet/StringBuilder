@@ -90,7 +90,7 @@ public ref partial struct ValueStringBuilder
         }
         else
         {
-            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer large enough?");
+            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }
     }
 }
