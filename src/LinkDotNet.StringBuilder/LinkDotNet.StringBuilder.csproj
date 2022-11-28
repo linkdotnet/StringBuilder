@@ -39,11 +39,7 @@
 	</PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Update="SonarAnalyzer.CSharp" Version="8.48.0.56517">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Meziantou.Analyzer" Version="1.0.750">
+      <PackageReference Include="Meziantou.Analyzer" Version="1.0.756">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
