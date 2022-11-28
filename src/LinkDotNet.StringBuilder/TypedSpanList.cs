@@ -8,6 +8,7 @@ namespace LinkDotNet.StringBuilder;
 /// </summary>
 /// <typeparam name="T">Any struct.</typeparam>
 [StructLayout(LayoutKind.Auto)]
+[SkipLocalsInit]
 internal ref struct TypedSpanList<T>
     where T : struct
 {
