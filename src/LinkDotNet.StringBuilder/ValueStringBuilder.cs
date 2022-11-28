@@ -113,7 +113,7 @@ public ref partial struct ValueStringBuilder
     public readonly ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
 
     /// <summary>
-    /// Get a pinnable reference to the represented string from this builder.
+    /// Gets a pinnable reference to the represented string from this builder.
     /// The content after <see cref="Length"/> is not guaranteed to be null terminated.
     /// </summary>
     /// <returns>The pointer to the first instance of the string represented by this builder.</returns>
@@ -278,6 +278,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="span">The character span to compare with the current instance.</param>
     /// <returns><c>true</c> if the characters are equal to this instance, otherwise <c>false</c>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
 
     /// <summary>
