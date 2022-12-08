@@ -224,12 +224,7 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
-        if (word.IsEmpty)
-        {
-            return 0;
-        }
-
-        return NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
+        return word.IsEmpty ? 0 : NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
     }
 
     /// <summary>
@@ -254,12 +249,7 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
-        if (word.IsEmpty)
-        {
-            return 0;
-        }
-
-        return NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
+        return word.IsEmpty ? 0 : NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
     }
 
     /// <summary>
