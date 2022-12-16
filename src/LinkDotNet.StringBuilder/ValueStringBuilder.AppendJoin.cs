@@ -97,17 +97,17 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendInternal<T>(T value)
     {
-        if (value is ISpanFormattable spanFormattable)
+        switch (value)
         {
-            AppendSpanFormattable(spanFormattable);
-        }
-        else if (value is string s)
-        {
-            Append(s.AsSpan());
-        }
-        else
-        {
-            Append(value?.ToString());
+            case ISpanFormattable spanFormattable:
+                AppendSpanFormattable(spanFormattable);
+                break;
+            case string s:
+                Append(s.AsSpan());
+                break;
+            default:
+                Append(value?.ToString());
+                break;
         }
     }
 }

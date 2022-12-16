@@ -452,4 +452,12 @@ public class ValueStringBuilderTests
 
         isEqual.Should().Be(expected);
     }
+
+    [Fact]
+    public void ConcatShouldHandleNullValues()
+    {
+        string[]? array = null;
+
+        ValueStringBuilder.Concat(array!).Should().Be(string.Empty);
+    }
 }

@@ -81,13 +81,17 @@ public ref partial struct ValueStringBuilder
     /// Defines the implicit conversion of a <see cref="string"/> to <see cref="ValueStringBuilder"/>.
     /// </summary>
     /// <param name="fromString">The string as initial buffer.</param>
+#pragma warning disable CA2225
     public static implicit operator ValueStringBuilder(string fromString) => new(fromString.AsSpan());
+#pragma warning restore CA2225
 
     /// <summary>
     /// Defines the implicit conversion of a <see cref="ReadOnlySpan{Char}"/> to <see cref="ValueStringBuilder"/>.
     /// </summary>
     /// <param name="fromString">The string as initial buffer.</param>
+#pragma warning disable CA2225
     public static implicit operator ValueStringBuilder(ReadOnlySpan<char> fromString) => new(fromString);
+#pragma warning restore CA2225
 
     /// <summary>
     /// Creates a <see cref="string"/> instance from that builder.
@@ -224,12 +228,7 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
-        if (word.IsEmpty)
-        {
-            return 0;
-        }
-
-        return NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
+        return word.IsEmpty ? 0 : NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
     }
 
     /// <summary>
@@ -254,12 +253,7 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
         }
 
-        if (word.IsEmpty)
-        {
-            return 0;
-        }
-
-        return NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
+        return word.IsEmpty ? 0 : NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
     }
 
     /// <summary>

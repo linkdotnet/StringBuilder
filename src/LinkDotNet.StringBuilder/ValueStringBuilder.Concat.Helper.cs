@@ -13,7 +13,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Concat<T>(params T[] values)
     {
-        if (values.Length == 0)
+        if (values is null || values.Length == 0)
         {
             return string.Empty;
         }
