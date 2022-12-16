@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- Additional null check in static `Concat`
+
 ## [1.10.1] - 2022-11-28
 
 ### Changed
