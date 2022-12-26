@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+- Fixed a bug where `Replace` does something wrong
+
 ## [1.10.2] - 2022-12-16
 
 ### Added
