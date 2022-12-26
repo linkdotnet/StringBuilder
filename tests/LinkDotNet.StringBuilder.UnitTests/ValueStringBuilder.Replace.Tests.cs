@@ -57,6 +57,16 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().Should().Be("Hallöchen World. How are you doing. Hallöchen world examples are always fun.");
     }
 
+    [Fact]
+    public void ShouldReplacePart()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        builder.Replace("Hello", "Ha");
+
+        builder.ToString().Should().Be("Ha World");
+    }
+
     [Theory]
     [InlineData("", "word")]
     [InlineData("word", "")]
