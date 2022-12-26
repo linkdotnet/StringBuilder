@@ -141,7 +141,7 @@ public ref partial struct ValueStringBuilder
             if (delta < 0)
             {
                 newValue.CopyTo(buffer[index..]);
-                Remove(index + 1, -delta);
+                Remove(index + newValue.Length, -delta);
             }
 
             // Same length -> We can just replace the memory slice

@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.10.3] - 2022-12-26
+
+### Fixed
+
+-   Fixed a bug where `Replace` does something wrong
+
 ## [1.10.2] - 2022-12-16
 
 ### Added
@@ -213,7 +219,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.2...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.3...HEAD
+
+[1.10.3]: https://github.com/linkdotnet/StringBuilder/compare/1.10.2...1.10.3
 
 [1.10.2]: https://github.com/linkdotnet/StringBuilder/compare/1.10.1...1.10.2
 
