@@ -58,13 +58,23 @@ public class ValueStringBuilderReplaceTests
     }
 
     [Fact]
-    public void ShouldReplacePart()
+    public void ShouldReplacePartThatIsShorter()
     {
         using var builder = new ValueStringBuilder("Hello World");
 
         builder.Replace("Hello", "Ha");
 
         builder.ToString().Should().Be("Ha World");
+    }
+
+    [Fact]
+    public void ShouldReplacePartThatIsLonger()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        builder.Replace("Hello", "Hallöchen");
+
+        builder.ToString().Should().Be("Hallöchen World");
     }
 
     [Theory]
