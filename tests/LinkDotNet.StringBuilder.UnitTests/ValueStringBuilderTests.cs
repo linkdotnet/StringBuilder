@@ -289,6 +289,14 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
+    public void ShouldFindLastIndex()
+    {
+        using var builder = new ValueStringBuilder("Hello");
+
+        builder.LastIndexOf("o").Should().Be(4);
+    }
+
+    [Fact]
     public void ShouldReturnZeroWhenEmptyStringInIndexOf()
     {
         using var builder = new ValueStringBuilder();

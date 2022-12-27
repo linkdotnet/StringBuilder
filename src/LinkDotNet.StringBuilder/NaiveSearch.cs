@@ -96,7 +96,7 @@ internal static class NaiveSearch
             return -1;
         }
 
-        for (var i = text.Length - word.Length + 1; i >= 0; i--)
+        for (var i = text.Length - word.Length; i >= 0; i--)
         {
             for (var j = 0; j < word.Length; j++)
             {
