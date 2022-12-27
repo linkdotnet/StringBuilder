@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+- Fixed an issue with `LastIndexOf` where it could run out of bounds
+
 ## [1.10.3] - 2022-12-26
 
 ### Fixed
