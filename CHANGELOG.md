@@ -6,8 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.10.4] - 2022-12-27
+
 ### Fixed
-- Fixed an issue with `LastIndexOf` where it could run out of bounds
+
+-   Fixed an issue with `LastIndexOf` where it could run out of bounds
 
 ## [1.10.3] - 2022-12-26
 
@@ -222,7 +225,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.3...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.4...HEAD
+
+[1.10.4]: https://github.com/linkdotnet/StringBuilder/compare/1.10.3...1.10.4
 
 [1.10.3]: https://github.com/linkdotnet/StringBuilder/compare/1.10.2...1.10.3
 
