@@ -42,11 +42,13 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(index), "The given index can't be bigger than the string itself.");
         }
 
-        bufferPosition += value.Length;
-        if (bufferPosition > buffer.Length)
+        var newLength = bufferPosition + value.Length;
+        if (newLength > buffer.Length)
         {
-            Grow(bufferPosition * 2);
+            Grow(newLength * 2);
         }
+
+        bufferPosition = newLength;
 
         // Move Slice at beginning index
         var oldPosition = bufferPosition - value.Length;
@@ -74,11 +76,13 @@ public ref partial struct ValueStringBuilder
         Span<char> tempBuffer = stackalloc char[bufferSize];
         if (value.TryFormat(tempBuffer, out var written, format, null))
         {
-            bufferPosition += written;
-            if (bufferPosition > buffer.Length)
+            var newLength = bufferPosition + written;
+            if (newLength > buffer.Length)
             {
-                Grow(bufferPosition * 2);
+                Grow(newLength * 2);
             }
+
+            bufferPosition = newLength;
 
             // Move Slice at beginning index
             var oldPosition = bufferPosition - written;

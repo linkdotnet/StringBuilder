@@ -77,14 +77,7 @@ public ref partial struct ValueStringBuilder
         Span<char> tempBuffer = stackalloc char[bufferSize];
         if (value.TryFormat(tempBuffer, out var written, format, null))
         {
-            var newSize = written + bufferPosition;
-            if (newSize >= buffer.Length)
-            {
-                Grow();
-            }
-
-            tempBuffer[..written].CopyTo(buffer[bufferPosition..]);
-            bufferPosition = newSize;
+            Append(tempBuffer[..written]);
         }
         else
         {
