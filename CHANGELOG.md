@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- When growing only copy written content to the new buffer and safe some bytes
+
 ## [1.10.4] - 2022-12-27
 
 ### Fixed

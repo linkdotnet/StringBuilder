@@ -294,7 +294,7 @@ public ref partial struct ValueStringBuilder
 
         var newSize = capacity > currentSize ? capacity : currentSize * 2;
         var rented = ArrayPool<char>.Shared.Rent(newSize);
-        buffer.CopyTo(rented);
+        buffer[..bufferPosition].CopyTo(rented);
         var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;
 

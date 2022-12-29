@@ -46,7 +46,7 @@ internal ref struct TypedSpanList<T>
         var currentSize = buffer.Length;
         var newSize = capacity > 0 ? capacity : currentSize * 2;
         var rented = GC.AllocateUninitializedArray<T>(newSize);
-        buffer.CopyTo(rented);
+        buffer[..count].CopyTo(rented);
         buffer = rented;
     }
 }
