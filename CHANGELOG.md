@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Appending value types is roughly 10% faster
+
 ## [1.10.5] - 2022-12-29
 
 ### Changed
