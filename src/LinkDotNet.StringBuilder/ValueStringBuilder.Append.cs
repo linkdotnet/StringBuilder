@@ -16,7 +16,8 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Formattable span to add.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
+    /// <param name="bufferSize">Size of the buffer allocated. If you have a custom type that implements <see cref="ISpanFormattable"/> that
+    /// requires more space than the default (36 characters), adjust the value.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
