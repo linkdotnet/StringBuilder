@@ -74,14 +74,16 @@ public ref partial struct ValueStringBuilder
     private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
-        Span<char> tempBuffer = stackalloc char[bufferSize];
-        if (value.TryFormat(tempBuffer, out var written, format, null))
+        if (bufferSize + bufferPosition >= Capacity)
         {
-            Append(tempBuffer[..written]);
+            Grow(bufferSize + bufferPosition);
         }
-        else
+
+        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))
         {
             throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }
+
+        bufferPosition += written;
     }
 }
