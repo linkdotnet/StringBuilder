@@ -290,10 +290,14 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {
-        var currentSize = buffer.Length;
+        var size = buffer.Length == 0 ? 8 : buffer.Length;
 
-        var newSize = capacity > currentSize ? capacity : currentSize * 2;
-        var rented = ArrayPool<char>.Shared.Rent(newSize);
+        while (size < capacity)
+        {
+            size *= 2;
+        }
+
+        var rented = ArrayPool<char>.Shared.Rent(size);
         buffer[..bufferPosition].CopyTo(rented);
         var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;

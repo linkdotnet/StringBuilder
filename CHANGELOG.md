@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.10.6] - 2022-12-30
+
+### Changed
+
+-   Appending value types is roughly 10% faster
+
 ## [1.10.5] - 2022-12-29
 
 ### Changed
@@ -231,7 +237,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.5...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.6...HEAD
+
+[1.10.6]: https://github.com/linkdotnet/StringBuilder/compare/1.10.5...1.10.6
 
 [1.10.5]: https://github.com/linkdotnet/StringBuilder/compare/1.10.4...1.10.5
 

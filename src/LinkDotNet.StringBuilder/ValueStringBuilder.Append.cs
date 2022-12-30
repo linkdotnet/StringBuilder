@@ -16,7 +16,8 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Formattable span to add.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
-    /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
+    /// <param name="bufferSize">Size of the buffer allocated. If you have a custom type that implements <see cref="ISpanFormattable"/> that
+    /// requires more space than the default (36 characters), adjust the value.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
@@ -74,14 +75,16 @@ public ref partial struct ValueStringBuilder
     private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
-        Span<char> tempBuffer = stackalloc char[bufferSize];
-        if (value.TryFormat(tempBuffer, out var written, format, null))
+        if (bufferSize + bufferPosition >= Capacity)
         {
-            Append(tempBuffer[..written]);
+            Grow(bufferSize + bufferPosition);
         }
-        else
+
+        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))
         {
             throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }
+
+        bufferPosition += written;
     }
 }
