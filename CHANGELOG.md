@@ -6,9 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.11] - 2023-01-01
+
 ### Added
 
-- New `AppendFormat` functions (with 1 to 3 arguments).
+-   New `AppendFormat` functions (with 1 to 3 arguments).
 
 ## [1.10.6] - 2022-12-30
 
@@ -241,7 +243,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.10.6...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11...HEAD
+
+[1.11]: https://github.com/linkdotnet/StringBuilder/compare/1.10.6...1.11
 
 [1.10.6]: https://github.com/linkdotnet/StringBuilder/compare/1.10.5...1.10.6
 
