@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.11.1] - 2023-01-01
+
+### Changed
+
+-   Refactored `AppendFormat` to be faster especially for longer text.
+
 ## [1.11] - 2023-01-01
 
 ### Added
@@ -243,7 +249,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.1...HEAD
+
+[1.11.1]: https://github.com/linkdotnet/StringBuilder/compare/1.11...1.11.1
 
 [1.11]: https://github.com/linkdotnet/StringBuilder/compare/1.10.6...1.11
 
