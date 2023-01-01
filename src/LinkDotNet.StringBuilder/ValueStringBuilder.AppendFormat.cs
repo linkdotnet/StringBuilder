@@ -19,6 +19,7 @@ public ref partial struct ValueStringBuilder
         T arg)
     {
         var formatIndex = 0;
+        var start = 0;
         while (formatIndex < format.Length)
         {
             var c = format[formatIndex];
@@ -31,18 +32,28 @@ public ref partial struct ValueStringBuilder
                     return;
                 }
 
+                if (start != formatIndex)
+                {
+                    Append(format[start..formatIndex]);
+                }
+
                 var placeholder = format.Slice(formatIndex, endIndex + 2);
 
                 GetValidArgumentIndex(placeholder, 0);
 
                 AppendInternal(arg);
                 formatIndex += endIndex + 2;
+                start = formatIndex;
             }
             else
             {
-                Append(c);
                 formatIndex++;
             }
+        }
+
+        if (start != formatIndex)
+        {
+            Append(format[start..formatIndex]);
         }
     }
 
@@ -64,6 +75,7 @@ public ref partial struct ValueStringBuilder
         T2 arg2)
     {
         var formatIndex = 0;
+        var start = 0;
         while (formatIndex < format.Length)
         {
             var c = format[formatIndex];
@@ -74,6 +86,11 @@ public ref partial struct ValueStringBuilder
                 {
                     Append(format);
                     return;
+                }
+
+                if (start != formatIndex)
+                {
+                    Append(format[start..formatIndex]);
                 }
 
                 var placeholder = format.Slice(formatIndex, endIndex + 2);
@@ -91,12 +108,17 @@ public ref partial struct ValueStringBuilder
                 }
 
                 formatIndex += endIndex + 2;
+                start = formatIndex;
             }
             else
             {
-                Append(c);
                 formatIndex++;
             }
+        }
+
+        if (start != formatIndex)
+        {
+            Append(format[start..formatIndex]);
         }
     }
 
@@ -121,6 +143,7 @@ public ref partial struct ValueStringBuilder
         T3 arg3)
     {
         var formatIndex = 0;
+        var start = 0;
         while (formatIndex < format.Length)
         {
             var c = format[formatIndex];
@@ -131,6 +154,11 @@ public ref partial struct ValueStringBuilder
                 {
                     Append(format);
                     return;
+                }
+
+                if (start != formatIndex)
+                {
+                    Append(format[start..formatIndex]);
                 }
 
                 var placeholder = format.Slice(formatIndex, endIndex + 2);
@@ -151,12 +179,17 @@ public ref partial struct ValueStringBuilder
                 }
 
                 formatIndex += endIndex + 2;
+                start = formatIndex;
             }
             else
             {
-                Append(c);
                 formatIndex++;
             }
+        }
+
+        if (start != formatIndex)
+        {
+            Append(format[start..formatIndex]);
         }
     }
 

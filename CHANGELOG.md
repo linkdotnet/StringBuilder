@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Refactored `AppendFormat` to be faster especially for longer text.
+
 ## [1.11] - 2023-01-01
 
 ### Added
