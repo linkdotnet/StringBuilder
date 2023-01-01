@@ -10,7 +10,7 @@ A fast and low allocation StringBuilder for .NET.
 Install the package:
 > PM> Install-Package LinkDotNet.StringBuilder
 
-Afterwards use the package as follow:
+Afterward, use the package as follow:
 ```csharp
 using LinkDotNet.StringBuilder; // Namespace of the package
 
@@ -30,13 +30,13 @@ _ = ValueStringBuilder.Concat("Hello", 1, 2, 3, "!"); // "Hello123!"
 
 ## What does it solve?
 The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
-But sometimes low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to do as less allocations as possible.
+But sometimes, low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to allocate as little as possible.
 If you want to know how the `ValueStringBuilder` works and why it uses allocations and is even faster, check out [this](https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896) blog post.
 The blog goes into a bit more in detail about how it works with a simplistic version of the `ValueStringBuilder`.
 
 ## What it doesn't solve!
 The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the ["Known limitations"](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html).
-The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses fewer allocations). At any time you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
+The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses fewer allocations). At any time, you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
 
 The normal use case is to add concatenate strings in a hot path where the goal is to put as minimal pressure on the GC as possible.
 
@@ -45,7 +45,7 @@ More detailed documentation can be found [here](https://linkdotnet.github.io/Str
 
 ## Benchmark
 
-The following table gives you a small comparison between the `StringBuilder` which is part of .NET, [`ZString`](https://github.com/Cysharp/ZString) and the `ValueStringBuilder`:
+The following table gives you a small comparison between the `StringBuilder` which is part of .NET, [`ZString`](https://github.com/Cysharp/ZString) and, the `ValueStringBuilder`:
 
 ```no-class
 BenchmarkDotNet=v0.13.2, OS=macOS Monterey 12.6.1 (21G217) [Darwin 21.6.0]
