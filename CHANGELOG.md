@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Compiler hints for new `AppendFormat` methods
+
 ## [1.11.1] - 2023-01-01
 
 ### Changed
