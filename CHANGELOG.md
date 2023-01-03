@@ -6,9 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.11.3] - 2023-01-03
+
 ### Changed
 
-- Remove StringSyntaxAttribute to be public
+-   Remove StringSyntaxAttribute to be public
 
 ## [1.11.2] - 2023-01-03
 
@@ -259,7 +261,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.2...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.3...HEAD
+
+[1.11.3]: https://github.com/linkdotnet/StringBuilder/compare/1.11.2...1.11.3
 
 [1.11.2]: https://github.com/linkdotnet/StringBuilder/compare/1.11.1...1.11.2
 
