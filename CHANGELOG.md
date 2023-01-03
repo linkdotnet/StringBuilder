@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Remove StringSyntaxAttribute to be public
+
 ## [1.11.2] - 2023-01-03
 
 ### Added
