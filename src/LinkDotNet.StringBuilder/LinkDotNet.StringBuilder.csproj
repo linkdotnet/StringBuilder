@@ -39,7 +39,7 @@
 	</PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Meziantou.Analyzer" Version="1.0.757">
+      <PackageReference Include="Meziantou.Analyzer" Version="1.0.758">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
