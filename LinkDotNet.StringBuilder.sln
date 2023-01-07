@@ -16,6 +16,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".text", ".text", "{DA9229AB
 		CHANGELOG.md = CHANGELOG.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".workflows", ".workflows", "{566632A6-CBCF-4ED2-88E9-4AD109278C20}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\docs.yml = .github\workflows\docs.yml
+		.github\workflows\create-release.yml = .github\workflows\create-release.yml
+		.github\workflows\update-release.yml = .github\workflows\update-release.yml
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

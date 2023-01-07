@@ -18,6 +18,7 @@
         <PackageIconUrl>https://github.com/linkdotnet/StringBuilder/blob/main/logo.png</PackageIconUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <LangVersion>preview</LangVersion>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,7 +40,11 @@
 	</PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Meziantou.Analyzer" Version="1.0.757">
+      <PackageReference Include="Meziantou.Analyzer" Version="2.0.3">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>

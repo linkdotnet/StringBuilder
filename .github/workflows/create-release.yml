@@ -11,7 +11,7 @@ on:
         description: 'Is this a pre-release?'
         type: boolean
         required: false
-        default: false 
+        default: false
 
 jobs:
   release:
@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3.2.0
+      uses: actions/checkout@v3.3.0
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: true
@@ -70,7 +70,7 @@ jobs:
 
     - name: Create release package
       run: |
-        dotnet pack -c RELEASE -p:PackageVersion=${{ github.event.inputs.versionIncrement }} -o ${GITHUB_WORKSPACE}/packages -p:ContinuousIntegrationBuild=true --nologo
+        dotnet pack -c RELEASE -p:PackageVersion=${{ github.event.inputs.versionIncrement }} -o ${GITHUB_WORKSPACE}/packages /p:ContinuousIntegrationBuild=true --nologo
 
     - name: Upload to nuget
       run: |

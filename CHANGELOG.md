@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.11.4] - 2023-01-07
+
+### Added
+
+-   Added SourceLink so that pdbs are delivered as well
+
 ## [1.11.3] - 2023-01-03
 
 ### Changed
@@ -261,7 +267,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.3...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.4...HEAD
+
+[1.11.4]: https://github.com/linkdotnet/StringBuilder/compare/1.11.3...1.11.4
 
 [1.11.3]: https://github.com/linkdotnet/StringBuilder/compare/1.11.2...1.11.3
 
