@@ -26,6 +26,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore -c Release
+      run: dotnet build --no-restore -c Release /p:ContinuousIntegrationBuild=true
     - name: Test
       run: dotnet test -c Release --no-build
