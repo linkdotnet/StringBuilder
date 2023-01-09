@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+-   Added SourceLink so that pdbs are delivered as well - Attempt 2
+
 ## [1.11.4] - 2023-01-07
 
 ### Added
