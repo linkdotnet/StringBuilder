@@ -6,9 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.12.0] - 2023-01-09
+
 ### Added
 
-- Two more overloads for `AppendFormat` for up to 5 generic arguments
+-   Two more overloads for `AppendFormat` for up to 5 generic arguments
 
 ## [1.11.5] - 2023-01-09
 
@@ -277,7 +279,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.11.5...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.12.0...HEAD
+
+[1.12.0]: https://github.com/linkdotnet/StringBuilder/compare/1.11.5...1.12.0
 
 [1.11.5]: https://github.com/linkdotnet/StringBuilder/compare/1.11.4...1.11.5
 
