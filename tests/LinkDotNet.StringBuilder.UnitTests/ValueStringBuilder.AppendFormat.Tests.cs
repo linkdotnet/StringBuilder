@@ -66,4 +66,32 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.ToString().Should().Be(expected);
     }
+
+    [Theory]
+    [InlineData("Hello {0} {1} {2} {3}", 2, 3, 4, 5, "Hello 2 3 4 5")]
+    [InlineData("{0}{0}{1}{2}{3}", 2, 3, 3, 2, "22332")]
+    [InlineData("{0} World", "Hello", "", "", "", "Hello World")]
+    [InlineData("Hello World", "2", "", "", "", "Hello World")]
+    public void ShouldAppendFormatWithFourArguments(string format, object arg1, object arg2, object arg3, object arg4, string expected)
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendFormat(format, arg1, arg2, arg3, arg4);
+
+        builder.ToString().Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData("Hello {0} {1} {2} {3} {4}", 2, 3, 4, 5, 3, "Hello 2 3 4 5 3")]
+    [InlineData("{0}{0}{1}{2}{3}{4}", 2, 3, 3, 2, 2, "223322")]
+    [InlineData("{0} World", "Hello", "", "", "", "", "Hello World")]
+    [InlineData("Hello World", "2", "", "", "", "", "Hello World")]
+    public void ShouldAppendFormatWithFiveArguments(string format, object arg1, object arg2, object arg3, object arg4, object arg5, string expected)
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendFormat(format, arg1, arg2, arg3, arg4, arg5);
+
+        builder.ToString().Should().Be(expected);
+    }
 }
