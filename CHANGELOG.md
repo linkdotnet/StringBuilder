@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Two more overloads for `AppendFormat` for up to 5 generic arguments
+
 ## [1.11.5] - 2023-01-09
 
 ### Added
