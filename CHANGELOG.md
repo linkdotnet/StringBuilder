@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+-   Remove redundant null check when using `AppendJoin`
+
 ## [1.12.0] - 2023-01-09
 
 ### Added
