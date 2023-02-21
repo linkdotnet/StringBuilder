@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.12.1] - 2023-02-21
+
+### Changed
+
+-   Remove redundant null check when using `AppendJoin`
+
 ## [1.12.0] - 2023-01-09
 
 ### Added
@@ -279,7 +285,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.12.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.12.1...HEAD
+
+[1.12.1]: https://github.com/linkdotnet/StringBuilder/compare/1.12.0...1.12.1
 
 [1.12.0]: https://github.com/linkdotnet/StringBuilder/compare/1.11.5...1.12.0
 

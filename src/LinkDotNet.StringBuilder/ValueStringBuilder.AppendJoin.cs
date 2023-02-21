@@ -43,7 +43,7 @@ public ref partial struct ValueStringBuilder
         => AppendJoinInternalChar(separator, values);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendJoinInternalString<T2>(ReadOnlySpan<char> separator, IEnumerable<T2> values)
+    private void AppendJoinInternalString<T>(ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
 
@@ -69,7 +69,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendJoinInternalChar<T2>(char separator, IEnumerable<T2> values)
+    private void AppendJoinInternalChar<T>(char separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
 
@@ -81,10 +81,7 @@ public ref partial struct ValueStringBuilder
         }
 
         var current = enumerator.Current;
-        if (current != null)
-        {
-            AppendInternal(current);
-        }
+        AppendInternal(current);
 
         while (enumerator.MoveNext())
         {
