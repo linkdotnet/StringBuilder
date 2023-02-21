@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Fixed CI/CD pipeline
+
 ## [1.12.1] - 2023-02-21
 
 ### Changed
