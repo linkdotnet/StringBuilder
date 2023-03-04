@@ -468,4 +468,14 @@ public class ValueStringBuilderTests
 
         ValueStringBuilder.Concat(array!).Should().Be(string.Empty);
     }
+
+    [Fact]
+    public void ShouldReverseString()
+    {
+        using var builder = new ValueStringBuilder("Hello");
+
+        builder.Reverse();
+
+        builder.ToString().Should().Be("olleH");
+    }
 }
