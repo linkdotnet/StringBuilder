@@ -6,6 +6,16 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.13.0] - 2023-03-04
+
+### Added
+
+-   Added `Reverse` function
+
+### Changed
+
+-   Fixed a bug where two empty strings return the wrong value in (Last)IndexOf
+
 ## [1.12.2] - 2023-02-21
 
 ### Changed
@@ -291,7 +301,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.12.2...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.13.0...HEAD
+
+[1.13.0]: https://github.com/linkdotnet/StringBuilder/compare/1.12.2...1.13.0
 
 [1.12.2]: https://github.com/linkdotnet/StringBuilder/compare/1.12.1...1.12.2
 

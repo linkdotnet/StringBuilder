@@ -287,6 +287,11 @@ public ref partial struct ValueStringBuilder
         }
     }
 
+    /// <summary>
+    /// Reverses the sequence of elements in this instance.
+    /// </summary>
+    public readonly void Reverse() => buffer[..bufferPosition].Reverse();
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {

@@ -207,6 +207,16 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
+    public void ShouldReturnZeroIfBothEmpty()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+
+        var index = stringBuilder.IndexOf(string.Empty);
+
+        index.Should().Be(0);
+    }
+
+    [Fact]
     public void ShouldReturnMinusOneWordIsLongerThanString()
     {
         using var stringBuilder = new ValueStringBuilder();
@@ -303,6 +313,16 @@ public class ValueStringBuilderTests
         builder.Append("Hello");
 
         var index = builder.IndexOf(string.Empty, 6);
+
+        index.Should().Be(0);
+    }
+
+    [Fact]
+    public void ShouldReturnZeroIfBothEmptyLastIndexOf()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+
+        var index = stringBuilder.LastIndexOf(string.Empty);
 
         index.Should().Be(0);
     }
@@ -467,5 +487,15 @@ public class ValueStringBuilderTests
         string[]? array = null;
 
         ValueStringBuilder.Concat(array!).Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void ShouldReverseString()
+    {
+        using var builder = new ValueStringBuilder("Hello");
+
+        builder.Reverse();
+
+        builder.ToString().Should().Be("olleH");
     }
 }
