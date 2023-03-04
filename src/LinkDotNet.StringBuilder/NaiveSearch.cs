@@ -49,6 +49,11 @@ internal static class NaiveSearch
     /// <returns>The index of the found <paramref name="word"/> in <paramref name="text"/> or -1 if not found.</returns>
     public static int FindFirst(ReadOnlySpan<char> text, ReadOnlySpan<char> word)
     {
+        if (text.IsEmpty && word.IsEmpty)
+        {
+            return 0;
+        }
+
         if (text.IsEmpty || word.IsEmpty)
         {
             return -1;
@@ -86,6 +91,11 @@ internal static class NaiveSearch
     /// <returns>The index of the found <paramref name="word"/> in <paramref name="text"/> or -1 if not found.</returns>
     public static int FindLast(ReadOnlySpan<char> text, ReadOnlySpan<char> word)
     {
+        if (text.IsEmpty && word.IsEmpty)
+        {
+            return 0;
+        }
+
         if (text.IsEmpty || word.IsEmpty)
         {
             return -1;

@@ -9,6 +9,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 ### Added
 -   Added `Reverse` function
 
+### Changed
+-   Fixed a bug where two empty strings return the wrong value in (Last)IndexOf
+
 ## [1.12.2] - 2023-02-21
 
 ### Changed
