@@ -448,7 +448,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ConcatArbitraryValues()
     {
-        var result = ValueStringBuilder.Concat(new[] { "Hello", " ", "World" });
+        var result = ValueStringBuilder.Concat("Hello", " ", "World");
 
         result.Should().Be("Hello World");
     }
