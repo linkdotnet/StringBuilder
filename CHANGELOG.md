@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.13.1] - 2023-03-17
+
+### Changed
+
+-   Remove unused defensive check in `EnsureCapacity`
+
 ## [1.13.0] - 2023-03-04
 
 ### Added
@@ -301,7 +307,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.13.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.13.1...HEAD
+
+[1.13.1]: https://github.com/linkdotnet/StringBuilder/compare/1.13.0...1.13.1
 
 [1.13.0]: https://github.com/linkdotnet/StringBuilder/compare/1.12.2...1.13.0
 

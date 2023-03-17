@@ -260,23 +260,6 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ShouldThrowWhenNegativeValueInEnsureCapacity()
-    {
-        using var builder = new ValueStringBuilder();
-        try
-        {
-            builder.EnsureCapacity(-1);
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            Assert.True(true);
-            return;
-        }
-
-        Assert.False(true);
-    }
-
-    [Fact]
     public void ShouldFindLastOccurence()
     {
         using var builder = new ValueStringBuilder();
@@ -448,7 +431,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ConcatArbitraryValues()
     {
-        var result = ValueStringBuilder.Concat(new[] { "Hello", " ", "World" });
+        var result = ValueStringBuilder.Concat("Hello", " ", "World");
 
         result.Should().Be("Hello World");
     }

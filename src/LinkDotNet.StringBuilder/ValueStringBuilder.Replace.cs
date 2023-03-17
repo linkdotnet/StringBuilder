@@ -10,7 +10,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="oldValue">The character to replace.</param>
     /// <param name="newValue">The character to replace <paramref name="oldValue"/> with.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Replace(char oldValue, char newValue) => Replace(oldValue, newValue, 0, Length);
+    public readonly void Replace(char oldValue, char newValue) => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
     /// Replaces all instances of one character with another in this builder.
@@ -20,7 +20,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Replace(char oldValue, char newValue, int startIndex, int count)
+    public readonly void Replace(char oldValue, char newValue, int startIndex, int count)
     {
         if (startIndex < 0)
         {
