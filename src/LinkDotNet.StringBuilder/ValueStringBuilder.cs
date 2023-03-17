@@ -159,11 +159,6 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureCapacity(int newCapacity)
     {
-        if (newCapacity < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(newCapacity), "Capacity can't be negative.");
-        }
-
         if (newCapacity > Length)
         {
             Grow(newCapacity);

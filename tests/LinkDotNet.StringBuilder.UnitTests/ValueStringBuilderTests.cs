@@ -260,23 +260,6 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ShouldThrowWhenNegativeValueInEnsureCapacity()
-    {
-        using var builder = new ValueStringBuilder();
-        try
-        {
-            builder.EnsureCapacity(-1);
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            Assert.True(true);
-            return;
-        }
-
-        Assert.False(true);
-    }
-
-    [Fact]
     public void ShouldFindLastOccurence()
     {
         using var builder = new ValueStringBuilder();

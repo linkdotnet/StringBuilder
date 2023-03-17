@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Remove unused defensive check in `EnsureCapacity`
+
 ## [1.13.0] - 2023-03-04
 
 ### Added
