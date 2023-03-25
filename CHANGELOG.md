@@ -6,14 +6,16 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.14.0] - 2023-03-25
+
 ### Added
 
-- New overload for `Append` that accepts a `ReadOnlyMemory` object
-- New `ToString` overload that accepts a `Range` object
+-   New overload for `Append` that accepts a `ReadOnlyMemory` object
+-   New `ToString` overload that accepts a `Range` object
 
 ### Changed
 
-- Improvements for `Append` when the type is a boolean
+-   Improvements for `Append` when the type is a boolean
 
 ## [1.13.1] - 2023-03-17
 
@@ -316,7 +318,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.13.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.14.0...HEAD
+
+[1.14.0]: https://github.com/linkdotnet/StringBuilder/compare/1.13.1...1.14.0
 
 [1.13.1]: https://github.com/linkdotnet/StringBuilder/compare/1.13.0...1.13.1
 
