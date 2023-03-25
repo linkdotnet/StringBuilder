@@ -9,7 +9,22 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Bool value to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(bool value) => Append(value.ToString());
+    public void Append(bool value)
+    {
+        // 5 is the length of the string "False"
+        // So we can check if we have enough space in the buffer
+        if (bufferPosition + 5 > buffer.Length)
+        {
+            Grow(bufferPosition * 2);
+        }
+
+        if (!value.TryFormat(buffer[bufferPosition..], out var charsWritten))
+        {
+            throw new InvalidOperationException($"Could not add {value} to the builder.");
+        }
+
+        bufferPosition += charsWritten;
+    }
 
     /// <summary>
     /// Appends the string representation of the character to the builder.
@@ -58,6 +73,15 @@ public ref partial struct ValueStringBuilder
     public void AppendLine()
     {
         Append(Environment.NewLine);
+    }
+
+    /// <summary>
+    /// Appends a slice of memory.
+    /// </summary>
+    /// <param name="memory">The memory to add.</param>
+    public void Append(ReadOnlyMemory<char> memory)
+    {
+        Append(memory.Span);
     }
 
     /// <summary>

@@ -155,4 +155,17 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().Be("Hello");
     }
+
+    [Fact]
+    public void GivenMemorySlice_ShouldAppend()
+    {
+        using var builder = new ValueStringBuilder();
+        var memory = new Memory<char>(new char[100]);
+        var slice = memory[..5];
+        slice.Span.Fill('c');
+
+        builder.Append(slice);
+
+        builder.ToString().Should().Be("ccccc");
+    }
 }
