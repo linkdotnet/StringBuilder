@@ -8,7 +8,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
 
-- New overload for `Append` that accepts a `ReadOnlyMemory`object
+- New overload for `Append` that accepts a `ReadOnlyMemory` object
+- New `ToString` overload that accepts a `Range` object
 
 ### Changed
 

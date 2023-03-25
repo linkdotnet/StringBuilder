@@ -481,4 +481,12 @@ public class ValueStringBuilderTests
 
         builder.ToString().Should().Be("olleH");
     }
+
+    [Fact]
+    public void GivenAString_WhenCallingToStringWithRange_ThenShouldReturnSubstring()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        builder.ToString(1..4).Should().Be("ell");
+    }
 }

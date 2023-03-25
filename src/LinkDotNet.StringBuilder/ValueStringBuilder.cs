@@ -110,6 +110,17 @@ public ref partial struct ValueStringBuilder
     public readonly string ToString(int startIndex, int length) => new(buffer[startIndex..(startIndex + length)]);
 
     /// <summary>
+    /// Creates a <see cref="string"/> instance from that builder in the given range.
+    /// </summary>
+    /// <param name="range">The range that will be retrieved.</param>
+    /// <returns>The <see cref="string"/> instance.</returns>
+    public readonly string ToString(Range range)
+    {
+        var (offset, length) = range.GetOffsetAndLength(bufferPosition);
+        return new string(buffer.Slice(offset, length));
+    }
+
+    /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
     /// </summary>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
