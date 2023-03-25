@@ -5,25 +5,31 @@ namespace LinkDotNet.StringBuilder.Benchmarks;
 [MemoryDiagnoser]
 public class AppendFormatBenchmark
 {
-    [Benchmark(Baseline = true)]
-    public string DotNetStringBuilderAppendFormat()
+    [Benchmark]
+    public string ValueStringBuilderAppendFormat1()
     {
-        var builder = new System.Text.StringBuilder();
-        for (var i = 0; i < 10; i++)
+        using var builder = new ValueStringBuilder();
+        for (var i = 0; i < 100; i++)
         {
-            builder.AppendFormat("Hello {0} dear {1}. {2}", 2, "world", 30);
+            builder.Append(true);
+            builder.Append(false);
+            builder.Append(true);
+            builder.Append(false);
         }
 
         return builder.ToString();
     }
 
     [Benchmark]
-    public string ValueStringBuilderAppendFormat()
+    public string ValueStringBuilderAppendFormat2()
     {
         using var builder = new ValueStringBuilder();
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 100; i++)
         {
-            builder.AppendFormat("Hello {0} dear {1}. {2}", 2, "world", 30);
+            builder.Append(true);
+            builder.Append(false);
+            builder.Append(true);
+            builder.Append(false);
         }
 
         return builder.ToString();
