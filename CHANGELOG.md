@@ -6,6 +6,14 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- New overload for `Append` that accepts a `ReadOnlyMemory`object
+
+### Changed
+
+- Improvements for `Append` when the type is a boolean
+
 ## [1.13.1] - 2023-03-17
 
 ### Changed
