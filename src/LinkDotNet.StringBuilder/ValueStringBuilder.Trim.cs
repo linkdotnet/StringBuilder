@@ -10,6 +10,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Trim()
     {
+        // Hint: We don't want to call TrimStart and TrimEnd because we don't want to copy the buffer twice.
         var start = 0;
         var end = bufferPosition - 1;
 
