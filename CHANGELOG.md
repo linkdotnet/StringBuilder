@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- New `Trim`, `TrimStart` and `TrimEnd` methods
+
 ## [1.14.0] - 2023-03-25
 
 ### Added
