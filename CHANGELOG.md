@@ -6,9 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.15.0] - 2023-03-26
+
 ### Added
 
-- New `Trim`, `TrimStart` and `TrimEnd` methods
+-   New `Trim`, `TrimStart` and `TrimEnd` methods
 
 ## [1.14.0] - 2023-03-25
 
@@ -322,7 +324,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.14.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.15.0...HEAD
+
+[1.15.0]: https://github.com/linkdotnet/StringBuilder/compare/1.14.0...1.15.0
 
 [1.14.0]: https://github.com/linkdotnet/StringBuilder/compare/1.13.1...1.14.0
 
