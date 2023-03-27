@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- New overloads for `Trim`, `TrimStart` and `TrimEnd` that accept a character as parameter
+
 ## [1.15.0] - 2023-03-26
 
 ### Added
