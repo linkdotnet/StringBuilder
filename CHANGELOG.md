@@ -6,9 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.16.0] - 2023-03-28
+
 ### Added
 
-- New overloads for `Trim`, `TrimStart` and `TrimEnd` that accept a character as parameter
+-   New overloads for `Trim`, `TrimStart` and `TrimEnd` that accept a character as parameter
 
 ## [1.15.0] - 2023-03-26
 
@@ -328,7 +330,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.15.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.16.0...HEAD
+
+[1.16.0]: https://github.com/linkdotnet/StringBuilder/compare/1.15.0...1.16.0
 
 [1.15.0]: https://github.com/linkdotnet/StringBuilder/compare/1.14.0...1.15.0
 
