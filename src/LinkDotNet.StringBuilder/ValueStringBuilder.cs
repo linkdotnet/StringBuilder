@@ -114,6 +114,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="range">The range that will be retrieved.</param>
     /// <returns>The <see cref="string"/> instance.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly string ToString(Range range)
     {
         var (offset, length) = range.GetOffsetAndLength(bufferPosition);
@@ -296,9 +297,10 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Reverses the sequence of elements in this instance.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Reverse() => buffer[..bufferPosition].Reverse();
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private void Grow(int capacity = 0)
     {
         var size = buffer.Length == 0 ? 8 : buffer.Length;
