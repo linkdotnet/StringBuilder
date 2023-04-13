@@ -6,7 +6,7 @@ namespace LinkDotNet.StringBuilder.Benchmarks;
 public class AppendFormatBenchmark
 {
     [Benchmark]
-    public string ValueStringBuilderAppendFormat1()
+    public string ValueStringBuilderAppendFormat()
     {
         using var builder = new ValueStringBuilder();
         for (var i = 0; i < 100; i++)
@@ -21,9 +21,9 @@ public class AppendFormatBenchmark
     }
 
     [Benchmark]
-    public string ValueStringBuilderAppendFormat2()
+    public string StringBuilderAppendFormat()
     {
-        using var builder = new ValueStringBuilder();
+        var builder = new System.Text.StringBuilder();
         for (var i = 0; i < 100; i++)
         {
             builder.Append(true);

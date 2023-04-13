@@ -20,6 +20,7 @@ jobs:
         dotnet-version: | 
           6.0.x
           7.0.x
+          8.0.x
 
     - name: Setup DocFX
       uses: crazy-max/ghaction-chocolatey@v2.1.0
@@ -33,7 +34,7 @@ jobs:
 
     - name: Publish
       if: github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v3.9.2
+      uses: peaceiris/actions-gh-pages@v3.9.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/site/_site

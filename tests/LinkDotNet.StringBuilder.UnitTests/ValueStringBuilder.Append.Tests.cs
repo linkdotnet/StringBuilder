@@ -168,4 +168,15 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().Be("ccccc");
     }
+
+    [Fact]
+    public void GivenAStringWithWhitespace_WhenTrimIsCalled_ThenTheStringShouldBeTrimmed()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append("  Hello World  ");
+
+        builder.Trim();
+
+        builder.ToString().Should().Be("Hello World");
+    }
 }

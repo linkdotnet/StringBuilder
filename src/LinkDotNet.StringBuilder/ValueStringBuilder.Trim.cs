@@ -7,7 +7,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Removes a set of whitespace characters from the beginning and ending of this string.
     /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void Trim()
     {
         // Hint: We don't want to call TrimStart and TrimEnd because we don't want to copy the buffer twice.
@@ -36,7 +36,7 @@ public ref partial struct ValueStringBuilder
     /// Removes the specified character from the beginning and end of this string.
     /// </summary>
     /// <param name="c">The character to remove.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void Trim(char c)
     {
         // Remove character from the beginning
@@ -64,7 +64,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Removes a set of whitespace characters from the beginning of this string.
     /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void TrimStart()
     {
         var start = 0;
@@ -85,7 +85,7 @@ public ref partial struct ValueStringBuilder
     /// Removes the specified character from the beginning of this string.
     /// </summary>
     /// <param name="c">The character to remove.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void TrimStart(char c)
     {
         var start = 0;
@@ -105,7 +105,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Removes a set of whitespace characters from the ending of this string.
     /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void TrimEnd()
     {
         var end = bufferPosition - 1;
@@ -121,7 +121,7 @@ public ref partial struct ValueStringBuilder
     /// Removes the specified character from the end of this string.
     /// </summary>
     /// <param name="c">The character to remove.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     public void TrimEnd(char c)
     {
         var end = bufferPosition - 1;
