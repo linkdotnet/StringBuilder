@@ -12,7 +12,7 @@ public static class ValueStringBuilderExtensions
     /// <returns>A new <see cref="System.Text.StringBuilder"/> instance with the string represented
     /// by this <paramref name="builder"/>.
     /// </returns>
-    public static System.Text.StringBuilder ToStringBuilder(in this ValueStringBuilder builder)
+    public static System.Text.StringBuilder ToStringBuilder(this ValueStringBuilder builder)
     {
         var stringBuilder = new System.Text.StringBuilder();
         stringBuilder.Append(builder.AsSpan());
