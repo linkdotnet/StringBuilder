@@ -23,7 +23,7 @@ jobs:
           8.0.x
 
     - name: Setup DocFX
-      uses: crazy-max/ghaction-chocolatey@v2.1.0
+      uses: crazy-max/ghaction-chocolatey@v2.2.0
       with:
         args: install docfx
 
