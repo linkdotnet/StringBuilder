@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3.5.0
+      uses: actions/checkout@v3.5.2
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: true
@@ -34,7 +34,7 @@ jobs:
         path: ./CHANGELOG.md
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3.0.3
+      uses: actions/setup-dotnet@v3.2.0
       with:
         dotnet-version: | 
           6.0.x
