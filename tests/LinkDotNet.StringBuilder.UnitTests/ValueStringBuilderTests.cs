@@ -489,4 +489,18 @@ public class ValueStringBuilderTests
 
         builder.ToString(1..4).Should().Be("ell");
     }
+
+    [Fact]
+    public void GivenAString_WhenEnumerating_ThenShouldReturnCharacters()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+        var output = string.Empty;
+
+        foreach (var c in builder)
+        {
+            output += c;
+        }
+
+        output.Should().Be("Hello World");
+    }
 }

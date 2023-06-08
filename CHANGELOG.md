@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added custom enumerator to `ValueStringBuilder` so it can be used in `foreach` loops
+
 ## [1.17.0] - 2023-04-13
 
 ### Added
