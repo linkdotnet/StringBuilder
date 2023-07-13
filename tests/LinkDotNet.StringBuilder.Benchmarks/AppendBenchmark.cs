@@ -1,5 +1,4 @@
 using BenchmarkDotNet.Attributes;
-using Cysharp.Text;
 
 namespace LinkDotNet.StringBuilder.Benchmarks;
 
