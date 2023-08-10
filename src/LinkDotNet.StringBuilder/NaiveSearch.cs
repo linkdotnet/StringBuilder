@@ -22,7 +22,7 @@ internal static class NaiveSearch
 
         var hits = new TypedSpanList<int>();
 
-        for (var i = 0; i < text.Length; i++)
+        for (var i = 0; i < text.Length - word.Length + 1; i++)
         {
             for (var j = 0; j < word.Length; j++)
             {
