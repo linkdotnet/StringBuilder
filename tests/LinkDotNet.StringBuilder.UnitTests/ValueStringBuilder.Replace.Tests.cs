@@ -77,6 +77,16 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().Should().Be("Hallöchen World");
     }
 
+    [Fact]
+    public void ShouldReplacePartThatIsPartiallySimilar()
+    {
+        using var builder = new ValueStringBuilder("Hello ##Key##");
+
+        builder.Replace("##Key##", "World");
+
+        builder.ToString().Should().Be("Hello World");
+    }
+
     [Theory]
     [InlineData("", "word")]
     [InlineData("word", "")]
