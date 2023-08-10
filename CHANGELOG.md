@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+ - Fixed `IndexOutOfRangeException` issue when the remaining text length is shorter than the search term
+
 ## [1.18.0] - 2023-06-08
 
 ### Added
@@ -235,7 +238,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
 
--   New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");` 
+-   New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");`
 -   Smaller performance improvements in internal API's
 
 ## [1.4.1] - 2022-11-04
