@@ -1,5 +1,4 @@
 using BenchmarkDotNet.Attributes;
-using Cysharp.Text;
 
 namespace LinkDotNet.StringBuilder.Benchmarks;
 
@@ -33,30 +32,6 @@ public class AppendBenchmarks
     public string ValueStringBuilderPreAllocated()
     {
         using var builder = new ValueStringBuilder(stackalloc char[256]);
-        builder.AppendLine("That is the first line of our benchmark.");
-        builder.AppendLine("We can multiple stuff in here if want.");
-        builder.AppendLine("We can multiple stuff in here if want.");
-        builder.AppendLine("The idea is that we can resize the internal structure from time to time.");
-        builder.AppendLine("We can also add other Append method if we want. But we keep it easy for now.");
-        return builder.ToString();
-    }
-
-    [Benchmark]
-    public string ZStringBuilderUtf8()
-    {
-        var builder = ZString.CreateUtf8StringBuilder();
-        builder.AppendLine("That is the first line of our benchmark.");
-        builder.AppendLine("We can multiple stuff in here if want.");
-        builder.AppendLine("We can multiple stuff in here if want.");
-        builder.AppendLine("The idea is that we can resize the internal structure from time to time.");
-        builder.AppendLine("We can also add other Append method if we want. But we keep it easy for now.");
-        return builder.ToString();
-    }
-
-    [Benchmark]
-    public string ZStringBuilderUtf16()
-    {
-        var builder = ZString.CreateStringBuilder();
         builder.AppendLine("That is the first line of our benchmark.");
         builder.AppendLine("We can multiple stuff in here if want.");
         builder.AppendLine("We can multiple stuff in here if want.");

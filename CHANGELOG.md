@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.1] - 2023-08-10
+
+### Fixed
+
+-   Fixed `IndexOutOfRangeException` issue when the remaining text length is shorter than the search term
+
 ## [1.18.0] - 2023-06-08
 
 ### Added
@@ -235,7 +241,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Added
 
--   New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");` 
+-   New easy API for concatenating smaller strings or objects via `ValueStringBuilder.Concat("Hello", " ", "World");`
 -   Smaller performance improvements in internal API's
 
 ## [1.4.1] - 2022-11-04
@@ -342,7 +348,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.0...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.1...HEAD
+
+[1.18.1]: https://github.com/linkdotnet/StringBuilder/compare/1.18.0...1.18.1
 
 [1.18.0]: https://github.com/linkdotnet/StringBuilder/compare/1.17.0...1.18.0
 
