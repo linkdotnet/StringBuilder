@@ -24,7 +24,7 @@ public ref partial struct ValueStringBuilder
         }
 
         /// <summary>Gets the element at the current position of the enumerator.</summary>
-        public ref char Current
+        public readonly ref char Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => ref span[index];
