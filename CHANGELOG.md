@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Small refactoring to make the Enumerator.Current readonly
+
 ## [1.18.1] - 2023-08-10
 
 ### Fixed
