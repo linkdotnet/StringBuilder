@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.2] - 2023-09-08
+
+### Added
+
+-   Small refactoring to make the Enumerator.Current readonly
+
 ## [1.18.1] - 2023-08-10
 
 ### Fixed
@@ -348,7 +354,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.1...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.2...HEAD
+
+[1.18.2]: https://github.com/linkdotnet/StringBuilder/compare/1.18.1...1.18.2
 
 [1.18.1]: https://github.com/linkdotnet/StringBuilder/compare/1.18.0...1.18.1
 
