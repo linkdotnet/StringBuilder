@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Enumerator.MoveNext is now a bit faster
+
 ## [1.18.2] - 2023-09-08
 
 ### Added
