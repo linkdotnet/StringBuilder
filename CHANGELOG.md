@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.3] - 2023-09-22
+
+### Changed
+
+-   Enumerator.MoveNext is now a bit faster
+
 ## [1.18.2] - 2023-09-08
 
 ### Added
@@ -354,7 +360,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.2...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.3...HEAD
+
+[1.18.3]: https://github.com/linkdotnet/StringBuilder/compare/1.18.2...1.18.3
 
 [1.18.2]: https://github.com/linkdotnet/StringBuilder/compare/1.18.1...1.18.2
 
