@@ -33,16 +33,6 @@ public ref partial struct ValueStringBuilder
         /// <summary>Advances the enumerator to the next element of the span.</summary>
         /// <returns>True if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the span.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool MoveNext()
-        {
-            var nextIndex = index + 1;
-            if (nextIndex < span.Length)
-            {
-                index = nextIndex;
-                return true;
-            }
-
-            return false;
-        }
+        public bool MoveNext() => ++index < span.Length;
     }
 }
