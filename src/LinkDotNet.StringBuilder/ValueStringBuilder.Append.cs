@@ -15,7 +15,7 @@ public ref partial struct ValueStringBuilder
         // So we can check if we have enough space in the buffer
         if (bufferPosition + 5 > buffer.Length)
         {
-            Grow(bufferPosition * 2);
+            Grow(bufferPosition);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var charsWritten))
@@ -48,7 +48,7 @@ public ref partial struct ValueStringBuilder
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
         {
-            Grow(newSize * 2);
+            Grow(newSize);
         }
 
         str.CopyTo(buffer[bufferPosition..]);

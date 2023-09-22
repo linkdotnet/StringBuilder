@@ -45,7 +45,7 @@ public ref partial struct ValueStringBuilder
         var newLength = bufferPosition + value.Length;
         if (newLength > buffer.Length)
         {
-            Grow(newLength * 2);
+            Grow(newLength);
         }
 
         bufferPosition = newLength;
@@ -79,7 +79,7 @@ public ref partial struct ValueStringBuilder
             var newLength = bufferPosition + written;
             if (newLength > buffer.Length)
             {
-                Grow(newLength * 2);
+                Grow(newLength);
             }
 
             bufferPosition = newLength;
