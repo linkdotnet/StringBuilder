@@ -6,6 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.4] - 2023-10-14
+
+### Changed
+
+-   Optimized `Append(scoped ReadOnlySpan<char>)` to be roughly 5% faster
+-   Optimized `AppendLine` to have less overhead
+
 ## [1.18.3] - 2023-09-22
 
 ### Changed
@@ -360,7 +367,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.3...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.4...HEAD
+
+[1.18.4]: https://github.com/linkdotnet/StringBuilder/compare/1.18.3...1.18.4
 
 [1.18.3]: https://github.com/linkdotnet/StringBuilder/compare/1.18.2...1.18.3
 

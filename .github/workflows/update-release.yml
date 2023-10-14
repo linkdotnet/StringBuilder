@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4.0.0
+      uses: actions/checkout@v4.1.0
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: false
@@ -32,7 +32,7 @@ jobs:
         git merge --no-ff -X theirs origin/main -m "Updating to newest release"
         
     - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
+      uses: ad-m/github-push-action@v0.8.0
       with:
         github_token: ${{ secrets.SBPAT }}
         branch: stable
