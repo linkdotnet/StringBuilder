@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -51,7 +52,13 @@ public ref partial struct ValueStringBuilder
             Grow(newSize);
         }
 
-        str.CopyTo(buffer[bufferPosition..]);
+        ref var strRef = ref MemoryMarshal.GetReference(str);
+        ref var bufferRef = ref MemoryMarshal.GetReference(buffer[bufferPosition..]);
+        Unsafe.CopyBlock(
+            ref Unsafe.As<char, byte>(ref bufferRef),
+            ref Unsafe.As<char, byte>(ref strRef),
+            (uint)(str.Length * sizeof(char)));
+
         bufferPosition += str.Length;
     }
 

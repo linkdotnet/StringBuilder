@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Optimized `Append(scoped ReadOnlySpan<char>)` to be roughly 5% faster.
+
 ## [1.18.3] - 2023-09-22
 
 ### Changed
