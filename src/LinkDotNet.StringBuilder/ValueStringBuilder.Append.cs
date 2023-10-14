@@ -98,8 +98,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine(scoped ReadOnlySpan<char> str)
     {
-        Append(str);
-        Append(Environment.NewLine);
+        Append(string.Concat(str, Environment.NewLine));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
