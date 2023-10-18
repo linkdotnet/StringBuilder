@@ -11,23 +11,23 @@ public ref partial struct ValueStringBuilder
     [StructLayout(LayoutKind.Auto)]
     public ref struct Enumerator
     {
-        private readonly Span<char> span;
+        private readonly ReadOnlySpan<char> span;
         private int index;
 
         /// <summary>Initializes a new instance of the <see cref="Enumerator"/> struct.</summary>
         /// <param name="span">The span to enumerate.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal Enumerator(Span<char> span)
+        internal Enumerator(ReadOnlySpan<char> span)
         {
             this.span = span;
             index = -1;
         }
 
         /// <summary>Gets the element at the current position of the enumerator.</summary>
-        public readonly ref char Current
+        public readonly char Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => ref span[index];
+            get => span[index];
         }
 
         /// <summary>Advances the enumerator to the next element of the span.</summary>
