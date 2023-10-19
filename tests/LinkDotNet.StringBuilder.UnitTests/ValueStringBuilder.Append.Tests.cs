@@ -179,4 +179,21 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().Be("Hello World");
     }
+
+    [Fact]
+    public void GivenMultipleValues_WhenCallingAppend_NotCrashing()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append(true);
+        builder.Append(false);
+        builder.Append(true);
+        builder.Append(false);
+        builder.Append(true);
+        builder.Append(false);
+        builder.Append(true);
+
+        builder.Append(false);
+
+        builder.ToString().Should().NotBeNull();
+    }
 }

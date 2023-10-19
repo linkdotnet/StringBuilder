@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Fixed a bug, where in `Append` overflows the internal buffer and throws an exception
+- Use better struct layout to be more cache friendly
+
 ## [1.18.4] - 2023-10-14
 
 ### Changed
