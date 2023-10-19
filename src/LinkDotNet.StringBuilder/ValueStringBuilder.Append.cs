@@ -14,9 +14,10 @@ public ref partial struct ValueStringBuilder
     {
         // 5 is the length of the string "False"
         // So we can check if we have enough space in the buffer
-        if (bufferPosition + 5 > buffer.Length)
+        var newSize = bufferPosition + 5;
+        if (newSize > buffer.Length)
         {
-            Grow(bufferPosition);
+            Grow(newSize);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var charsWritten))
@@ -105,9 +106,10 @@ public ref partial struct ValueStringBuilder
     private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
-        if (bufferSize + bufferPosition >= Capacity)
+        var newSize = bufferSize + bufferPosition;
+        if (newSize >= Capacity)
         {
-            Grow(bufferSize + bufferPosition);
+            Grow(newSize);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))

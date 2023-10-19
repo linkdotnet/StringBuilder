@@ -6,6 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.5] - 2023-10-19
+
+### Changed
+
+-   Fixed a bug, where in `Append` overflows the internal buffer and throws an exception
+-   Use better struct layout to be more cache friendly
+
 ## [1.18.4] - 2023-10-14
 
 ### Changed
@@ -367,7 +374,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.4...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.5...HEAD
+
+[1.18.5]: https://github.com/linkdotnet/StringBuilder/compare/1.18.4...1.18.5
 
 [1.18.4]: https://github.com/linkdotnet/StringBuilder/compare/1.18.3...1.18.4
 
