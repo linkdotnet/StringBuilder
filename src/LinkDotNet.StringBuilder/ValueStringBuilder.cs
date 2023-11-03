@@ -313,7 +313,18 @@ public ref partial struct ValueStringBuilder
         }
 
         var rented = ArrayPool<char>.Shared.Rent(size);
-        buffer[..bufferPosition].CopyTo(rented);
+
+        if (bufferPosition > 0)
+        {
+            ref var sourceRef = ref MemoryMarshal.GetReference(buffer);
+            ref var destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
+
+            Unsafe.CopyBlock(
+                ref Unsafe.As<char, byte>(ref destinationRef),
+                ref Unsafe.As<char, byte>(ref sourceRef),
+                (uint)(bufferPosition * sizeof(char)));
+        }
+
         var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;
 
