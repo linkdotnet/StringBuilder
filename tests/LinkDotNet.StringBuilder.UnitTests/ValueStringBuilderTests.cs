@@ -503,4 +503,14 @@ public class ValueStringBuilderTests
 
         output.Should().Be("Hello World");
     }
+
+    [Fact]
+    public void GivenStringBuilder_WhenDisposed_ThenEmtpyStringReturned()
+    {
+        var builder = new ValueStringBuilder("Hello World");
+
+        builder.Dispose();
+
+        builder.ToString().Should().Be(string.Empty);
+    }
 }

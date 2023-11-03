@@ -6,6 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.18.6] - 2023-11-03
+
+### Changed
+
+-   `Dispose` resets the `ValueStringBuilder` to the initial state, so it doesn't lead to undefined behavior when used again
+-   Use different approach for `Grow` to be a bit more performant
+
 ## [1.18.5] - 2023-10-19
 
 ### Changed
@@ -374,7 +381,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.5...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.6...HEAD
+
+[1.18.6]: https://github.com/linkdotnet/StringBuilder/compare/1.18.5...1.18.6
 
 [1.18.5]: https://github.com/linkdotnet/StringBuilder/compare/1.18.4...1.18.5
 
