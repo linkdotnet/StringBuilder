@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- `Dispose` resets the `ValueStringBuilder` to the initial state, so it doesn't lead to undefined behavior when used again
+
 ## [1.18.5] - 2023-10-19
 
 ### Changed
