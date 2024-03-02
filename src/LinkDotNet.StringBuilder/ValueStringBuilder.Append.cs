@@ -75,21 +75,39 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Appends a slice of memory.
+    /// </summary>
+    /// <param name="memory">The memory to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(ReadOnlyMemory<char> memory)
+    {
+        Append(memory.Span);
+    }
+
+    /// <summary>
+    /// Appends a single character to the string builder.
+    /// </summary>
+    /// <param name="value">Character to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(char value)
+    {
+        var newSize = bufferPosition + 1;
+        if (newSize > buffer.Length)
+        {
+            Grow(newSize);
+        }
+
+        buffer[bufferPosition] = value;
+        bufferPosition++;
+    }
+
+    /// <summary>
     /// Adds the default new line separator.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine()
     {
         Append(Environment.NewLine);
-    }
-
-    /// <summary>
-    /// Appends a slice of memory.
-    /// </summary>
-    /// <param name="memory">The memory to add.</param>
-    public void Append(ReadOnlyMemory<char> memory)
-    {
-        Append(memory.Span);
     }
 
     /// <summary>

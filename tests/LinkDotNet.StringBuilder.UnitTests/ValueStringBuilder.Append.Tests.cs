@@ -196,4 +196,27 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().NotBeNull();
     }
+
+    [Fact]
+    public void GivenStringBuilder_WhenAddingSingleCharacter_ThenShouldBeAdded()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append('c');
+
+        builder.ToString().Should().Be("c");
+    }
+
+    [Fact]
+    public void GivenStringBuilder_WhenAddingIncreasinglyLargerStrings_ThenShouldBeAdded()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append(new string('a', 256));
+        builder.Append(new string('b', 512));
+        builder.Append(new string('c', 1024));
+        builder.Append(new string('d', 2048));
+        builder.Append(new string('e', 4096));
+        builder.Append(new string('f', 8192));
+
+        builder.ToString().Should().MatchRegex("[a]{256}[b]{512}[c]{1024}[d]{2048}[e]{4096}[f]{8192}");
+    }
 }
