@@ -75,21 +75,21 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Adds the default new line separator.
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendLine()
-    {
-        Append(Environment.NewLine);
-    }
-
-    /// <summary>
     /// Appends a slice of memory.
     /// </summary>
     /// <param name="memory">The memory to add.</param>
     public void Append(ReadOnlyMemory<char> memory)
     {
         Append(memory.Span);
+    }
+
+    /// <summary>
+    /// Adds the default new line separator.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendLine()
+    {
+        Append(Environment.NewLine);
     }
 
     /// <summary>
