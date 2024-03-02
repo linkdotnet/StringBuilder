@@ -20,6 +20,8 @@ jobs:
           6.0.x
           7.0.x
           8.0.x
+          9.0.x
+          
     - name: Setup color
       run: |
         echo "DOTNET_SYSTEM_CONSOLE_ALLOW_ANSI_COLOR_REDIRECTION=1" >> $GITHUB_ENV
