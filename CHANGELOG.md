@@ -6,10 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.19.0] - 2024-03-02
+
 ## Added
 
-- Support for `net9.0`
-- New `Append` overload that accepts a single character
+-   Support for `net9.0`
+-   New `Append` overload that accepts a single character
 
 ## [1.18.6] - 2023-11-03
 
@@ -386,7 +388,9 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 -   Initial release
 
-[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.18.6...HEAD
+[Unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.19.0...HEAD
+
+[1.19.0]: https://github.com/linkdotnet/StringBuilder/compare/1.18.6...1.19.0
 
 [1.18.6]: https://github.com/linkdotnet/StringBuilder/compare/1.18.5...1.18.6
 
