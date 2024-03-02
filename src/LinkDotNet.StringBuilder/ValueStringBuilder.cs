@@ -288,7 +288,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Dispose()
     {
-        if (arrayFromPool != null)
+        if (arrayFromPool is not null)
         {
             ArrayPool<char>.Shared.Return(arrayFromPool);
         }
@@ -328,7 +328,7 @@ public ref partial struct ValueStringBuilder
         var oldBufferFromPool = arrayFromPool;
         buffer = arrayFromPool = rented;
 
-        if (oldBufferFromPool != null)
+        if (oldBufferFromPool is not null)
         {
             ArrayPool<char>.Shared.Return(oldBufferFromPool);
         }

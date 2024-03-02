@@ -55,7 +55,7 @@ public ref partial struct ValueStringBuilder
         }
 
         var current = enumerator.Current;
-        if (current != null)
+        if (current is not null)
         {
             AppendInternal(current);
         }
