@@ -196,4 +196,13 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().Should().NotBeNull();
     }
+
+    [Fact]
+    public void GivenStringBuilder_WhenAddingSingleCharacter_ThenShouldBeAdded()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append('c');
+
+        builder.ToString().Should().Be("c");
+    }
 }
