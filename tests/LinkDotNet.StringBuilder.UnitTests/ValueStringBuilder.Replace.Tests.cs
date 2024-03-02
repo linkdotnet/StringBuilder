@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace LinkDotNet.StringBuilder.UnitTests;
 
@@ -7,12 +8,11 @@ public class ValueStringBuilderReplaceTests
     [Fact]
     public void ShouldReplaceAllCharacters()
     {
-        using var builder = new ValueStringBuilder();
-        builder.Append("CCCC");
+        using var builder = new ValueStringBuilder(new string('C', 100));
 
         builder.Replace('C', 'B');
 
-        builder.ToString().Should().Be("BBBB");
+        builder.ToString().Should().MatchRegex("[B]{100}");
     }
 
     [Fact]
@@ -176,6 +176,17 @@ public class ValueStringBuilderReplaceTests
         builder.ReplaceGeneric("{0}", default(MyStruct), 0, 6);
 
         builder.ToString().Should().Be("HelloHello{0}");
+    }
+
+    [Fact]
+    public void ShouldReplaceAllOccurrences()
+    {
+        var content = string.Join(string.Empty, Enumerable.Range(0, 100).Select(_ => "AB"));
+        using var builder = new ValueStringBuilder(content);
+
+        builder.Replace("A", "C");
+
+        builder.ToString().Should().MatchRegex("[CB]{100}");
     }
 
     private struct MyStruct
