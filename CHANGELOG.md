@@ -6,9 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Some smaller refactorings
+
 ## [1.19.0] - 2024-03-02
 
-## Added
+### Added
 
 -   Support for `net9.0`
 -   New `Append` overload that accepts a single character
