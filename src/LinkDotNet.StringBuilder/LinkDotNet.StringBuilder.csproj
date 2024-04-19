@@ -35,12 +35,12 @@
 	<PropertyGroup Label="Analyzer settings">
 		<AnalysisMode>AllEnabledByDefault</AnalysisMode>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<AnalysisLevel>latest</AnalysisLevel>
+		<AnalysisLevel>8</AnalysisLevel>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Meziantou.Analyzer" Version="2.0.145">
+      <PackageReference Include="Meziantou.Analyzer" Version="2.0.149">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>

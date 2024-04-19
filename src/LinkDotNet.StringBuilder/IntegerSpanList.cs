@@ -6,30 +6,28 @@ namespace LinkDotNet.StringBuilder;
 /// <summary>
 /// Represents a List based on the <see cref="Span{T}"/> type.
 /// </summary>
-/// <typeparam name="T">Any struct.</typeparam>
 [StructLayout(LayoutKind.Auto)]
 [SkipLocalsInit]
-internal ref struct TypedSpanList<T>
-    where T : struct
+internal ref struct IntegerSpanList
 {
-    private Span<T> buffer;
+    private Span<int> buffer;
     private int count;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="TypedSpanList{T}"/> struct.
+    /// Initializes a new instance of the <see cref="IntegerSpanList"/> struct.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public TypedSpanList()
+    public IntegerSpanList()
     {
-        buffer = GC.AllocateUninitializedArray<T>(8);
+        buffer = GC.AllocateUninitializedArray<int>(8);
         count = 0;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly ReadOnlySpan<T> AsSpan() => buffer[..count];
+    public readonly ReadOnlySpan<int> AsSpan() => buffer[..count];
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Add(T value)
+    public void Add(int value)
     {
         if (count >= buffer.Length)
         {
@@ -45,7 +43,7 @@ internal ref struct TypedSpanList<T>
     {
         var currentSize = buffer.Length;
         var newSize = capacity > 0 ? capacity : currentSize * 2;
-        var rented = GC.AllocateUninitializedArray<T>(newSize);
+        var rented = GC.AllocateUninitializedArray<int>(newSize);
         buffer[..count].CopyTo(rented);
         buffer = rented;
     }

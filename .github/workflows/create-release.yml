@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@v4.1.2
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: true
@@ -28,7 +28,7 @@ jobs:
 
     - name: Get changelog entries
       id: changelog
-      uses: mindsers/changelog-reader-action@v2.2.2
+      uses: mindsers/changelog-reader-action@v2.2.3
       with:
         version: Unreleased
         path: ./CHANGELOG.md

@@ -20,7 +20,7 @@ internal static class NaiveSearch
             return ReadOnlySpan<int>.Empty;
         }
 
-        var hits = new TypedSpanList<int>();
+        var hits = new IntegerSpanList();
 
         for (var i = 0; i < text.Length - word.Length + 1; i++)
         {
