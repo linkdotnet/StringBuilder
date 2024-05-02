@@ -505,12 +505,20 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void GivenStringBuilder_WhenDisposed_ThenEmtpyStringReturned()
+    public void GivenStringBuilder_WhenDisposed_ThenEmptyStringReturned()
     {
         var builder = new ValueStringBuilder("Hello World");
 
         builder.Dispose();
 
         builder.ToString().Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void ShouldInitializeWithCapacity()
+    {
+        using var builder = new ValueStringBuilder(128);
+
+        builder.Capacity.Should().Be(128);
     }
 }

@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- New ctor that accepts an initial size
+
 ## [1.19.1] - 2024-04-19
 
 ### Changed
