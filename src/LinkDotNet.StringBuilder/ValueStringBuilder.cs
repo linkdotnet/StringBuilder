@@ -56,6 +56,16 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
+    /// </summary>
+    /// <param name="initialCapacity">The initial capacity that will be allocated for this instance.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public ValueStringBuilder(int initialCapacity)
+    {
+        Grow(initialCapacity);
+    }
+
+    /// <summary>
     /// Gets the current length of the represented string.
     /// </summary>
     /// <value>
