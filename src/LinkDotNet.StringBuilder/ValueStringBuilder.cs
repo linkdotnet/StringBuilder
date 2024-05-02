@@ -312,7 +312,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Reverse() => buffer[..bufferPosition].Reverse();
 
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Grow(int capacity = 0)
     {
         var size = buffer.Length == 0 ? 8 : buffer.Length;

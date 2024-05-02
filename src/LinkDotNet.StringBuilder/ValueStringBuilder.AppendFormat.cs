@@ -15,7 +15,7 @@ public ref partial struct ValueStringBuilder
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T>(
         [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
         T arg)
@@ -71,7 +71,7 @@ public ref partial struct ValueStringBuilder
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2>(
         [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
         T1 arg1,
@@ -139,7 +139,7 @@ public ref partial struct ValueStringBuilder
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3>(
         [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
         T1 arg1,
@@ -213,7 +213,7 @@ public ref partial struct ValueStringBuilder
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3, T4>(
         [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
         T1 arg1,
@@ -293,7 +293,7 @@ public ref partial struct ValueStringBuilder
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3, T4, T5>(
         [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
         T1 arg1,
