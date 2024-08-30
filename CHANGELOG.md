@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable changes.
+Only old framework versions were removed.
+
+### Removed
+- Support for `net6.0` and `net7.0` was removed.
+
 ## [1.20.0] - 2024-05-02
 
 ### Added
