@@ -59,7 +59,7 @@ jobs:
         git push origin main
 
     - name: Create release on GitHub
-      uses: thomaseizinger/create-release@1.0.0
+      uses: thomaseizinger/create-release@2.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.SBPAT }}
       with:
