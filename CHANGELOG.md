@@ -6,7 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.21.0] - 2024-09-20
+
 ### Added
+
 - `PadLeft` and `PadRight` methods
 
 ## [1.20.0] - 2024-05-02
@@ -403,7 +406,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.20.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.21.0...HEAD
+[1.21.0]: https://github.com/linkdotnet/StringBuilder/compare/1.20.0...1.21.0
 [1.20.0]: https://github.com/linkdotnet/StringBuilder/compare/1.19.1...1.20.0
 [1.19.1]: https://github.com/linkdotnet/StringBuilder/compare/1.19.0...1.19.1
 [1.19.0]: https://github.com/linkdotnet/StringBuilder/compare/1.18.6...1.19.0
