@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+- `PadLeft` and `PadRight` methods
+
 ## [1.20.0] - 2024-05-02
 
 ### Added
