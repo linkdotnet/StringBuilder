@@ -24,6 +24,7 @@ public ref partial struct ValueStringBuilder
         }
 
         /// <summary>Gets the element at the current position of the enumerator.</summary>
+        /// <value>The element at the current position of the enumerator. </value>
         public readonly char Current
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -31,7 +32,7 @@ public ref partial struct ValueStringBuilder
         }
 
         /// <summary>Advances the enumerator to the next element of the span.</summary>
-        /// <returns>True if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the span.</returns>
+        /// <returns>True if the enumerator was successfully advancing to the next element; false if the enumerator has passed the end of the span.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool MoveNext() => ++index < span.Length;
     }
