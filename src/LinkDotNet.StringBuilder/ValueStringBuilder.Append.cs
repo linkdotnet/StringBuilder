@@ -10,22 +10,38 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Bool value to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(bool value)
+    public unsafe void Append(bool value)
     {
-        // 5 is the length of the string "False"
-        // So we can check if we have enough space in the buffer
-        var newSize = bufferPosition + 5;
+        const int trueLength = 4;
+        const int falseLength = 5;
+
+        var newSize = bufferPosition + falseLength;
+
         if (newSize > buffer.Length)
         {
             Grow(newSize);
         }
 
-        if (!value.TryFormat(buffer[bufferPosition..], out var charsWritten))
+        fixed (char* dest = &buffer[bufferPosition])
         {
-            throw new InvalidOperationException($"Could not add {value} to the builder.");
+            if (value)
+            {
+                *(dest + 0) = 'T';
+                *(dest + 1) = 'r';
+                *(dest + 2) = 'u';
+                *(dest + 3) = 'e';
+                bufferPosition += trueLength;
+            }
+            else
+            {
+                *(dest + 0) = 'F';
+                *(dest + 1) = 'a';
+                *(dest + 2) = 'l';
+                *(dest + 3) = 's';
+                *(dest + 4) = 'e';
+                bufferPosition += falseLength;
+            }
         }
-
-        bufferPosition += charsWritten;
     }
 
     /// <summary>

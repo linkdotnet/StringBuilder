@@ -22,9 +22,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.2
 
-      - uses: actions/setup-dotnet@v4.0.1
+      - uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: | 
             6.0.x
