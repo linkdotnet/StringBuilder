@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- `Append(bool)` is now 33% faster
+
 ## [1.21.0] - 2024-09-20
 
 ### Added
