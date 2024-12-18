@@ -136,6 +136,11 @@ public ref partial struct ValueStringBuilder
         Append(string.Concat(str, Environment.NewLine));
     }
 
+    /// <summary>
+    /// Increases the size of the string builder returning a span of the length appended.
+    /// </summary>
+    /// <param name="length">Integer representing the length to be appended.</param>
+    /// <returns>A span with the characters appended.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
