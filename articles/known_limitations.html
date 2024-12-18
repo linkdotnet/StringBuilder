@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Known Limitations | ValueStringBuilder </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Known Limitations | ValueStringBuilder ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+    <link rel="shortcut icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="known_limitations">
+<h1 id="known-limitations">Known Limitations</h1>
+
+<p>The base of the <code>ValueStringBuilder</code> is a <code>ref struct</code>. With that, there are certain limitations, which might make it not a good fit for your needs.</p>
+<ul>
+<li><code>ref struct</code>s can only live on the <strong>stack</strong> and therefore can not be a field for a <strong>class</strong> or a non <strong>ref struct</strong>.</li>
+<li>Therefore they can't be boxed to <code>ValueType</code> or <code>Object</code>.</li>
+<li>Can't be captured by a lambda expression (aka closure).</li>
+<li>Can't be used in <code>async</code> methods.</li>
+<li>Can't be used in methods that use the <code>yield</code> keyword</li>
+</ul>
+<p>If not off this applies to your use case, you are good to go. Using <code>ref struct</code> is a trade for performance and fewer allocations in contrast to its use cases.</p>
+<p><code>ValueStringBuilder</code> offers the possibility to &quot;convert&quot; it into a &quot;regular&quot; <code>System.Text.StringBuilder</code>. Check out the following extension method via the <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html">ValueStringBuilderExtensions</a>.</p>
+<h2 id="fluent-notation">Fluent notation</h2>
+<p>The normal <code>StringBuilder</code> offers a fluent way of appending new strings as follows:</p>
+<pre><code class="lang-csharp">var stringBuilder = new StringBuilder();
+var greeting = stringBuilder
+    .AppendLine(&quot;Hello&quot;)
+    .AppendLine(&quot;World&quot;)
+    .Append(&quot;Not a new line afterwards&quot;)
+    .ToString();
+</code></pre>
+<p>This does not work with the <code>ValueStringBuilder</code>. The simple reason: <code>struct</code>s can't return <code>ref this</code>. If we don't return the reference then new allocations are introduced and can also lead to potential bugs/issues. Therefore it is a conscious design decision not to allow fluent notation.</p>
+<h2 id="idisposable">IDisposable</h2>
+<p>The <code>ValueStringBuilder</code> does not directly implement <code>IDisposable</code> as <code>ref struct</code>s are not allowed to do so (as they might get boxed in the process, which violates the rule of <code>ref struct</code>s). Still, the <code>using</code> statement can be used with the <code>ValueStringBuilder</code>. It is used to return rented memory from an array pool if any is taken.</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+</code></pre>
+<p>There are scenarios, where you can elide the <code>using</code> keyword. Exactly then when you provide the buffer in the first place and you are <strong>sure</strong> that no internal growing has to be done. This should only be done if you can guarantee that.</p>
+<pre><code class="lang-csharp">// Reserve 128 bytes on the stack and don't use the using statement
+var stringBuilder = new ValueStringBuilder(stackalloc char[128]);
+
+stringBuilder.Append(&quot;Hello World&quot;); // Uses 11 bytes
+return stringBuilder.ToString();
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/known_limitations.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
