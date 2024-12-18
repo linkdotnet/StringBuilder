@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [1.22.0] - 2024-12-18
+
 ### Added
 
 - `AppendSpan` method
@@ -416,7 +418,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.21.1...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...HEAD
+[1.22.0]: https://github.com/linkdotnet/StringBuilder/compare/1.21.1...1.22.0
 [1.21.1]: https://github.com/linkdotnet/StringBuilder/compare/1.21.0...1.21.1
 [1.21.0]: https://github.com/linkdotnet/StringBuilder/compare/1.20.0...1.21.0
 [1.20.0]: https://github.com/linkdotnet/StringBuilder/compare/1.19.1...1.20.0
