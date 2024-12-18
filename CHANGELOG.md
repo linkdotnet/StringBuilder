@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- `AppendSpan` method
+
 ## [1.21.1] - 2024-11-08
 
 ### Changed
