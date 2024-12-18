@@ -48,6 +48,18 @@ public class ValueStringBuilderAppendTests
     }
 
     [Fact]
+    public void ShouldAppendSpan()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+
+        var returned = stringBuilder.AppendSpan(2);
+
+        stringBuilder.Length.Should().Be(2);
+
+        stringBuilder.ToString().Should().Be(returned.ToString());
+    }
+
+    [Fact]
     public void ShouldOnlyAddNewline()
     {
         using var stringBuilder = new ValueStringBuilder();

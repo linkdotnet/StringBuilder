@@ -137,6 +137,19 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Span<char> AppendSpan(int length)
+    {
+        int origPos = bufferPosition;
+        if (origPos > buffer.Length - length)
+        {
+            Grow(length);
+        }
+
+        bufferPosition = origPos + length;
+        return buffer.Slice(origPos, length);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
