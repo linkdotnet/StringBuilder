@@ -136,6 +136,24 @@ public ref partial struct ValueStringBuilder
         Append(string.Concat(str, Environment.NewLine));
     }
 
+    /// <summary>
+    /// Increases the size of the string builder returning a span of the length appended.
+    /// </summary>
+    /// <param name="length">Integer representing the length to be appended.</param>
+    /// <returns>A span with the characters appended.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Span<char> AppendSpan(int length)
+    {
+        int origPos = bufferPosition;
+        if (origPos > buffer.Length - length)
+        {
+            Grow(length);
+        }
+
+        bufferPosition = origPos + length;
+        return buffer.Slice(origPos, length);
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable

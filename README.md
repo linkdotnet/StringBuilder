@@ -38,7 +38,7 @@ The blog goes into a bit more in detail about how it works with a simplistic ver
 The library is not meant as a general replacement for the `StringBuilder` shipped with the .net framework itself. You can head over to the documentation and read about the ["Known limitations"](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html).
 The library works best for a small to medium amount of strings (not multiple 100'000 characters, even though it can be still faster and uses fewer allocations). At any time, you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
 
-The normal use case is to add concatenate strings in a hot path where the goal is to put as minimal pressure on the GC as possible.
+The normal use case is to concatenate strings in a hot path where the goal is to put as minimal pressure on the GC as possible.
 
 ## Documentation
 More detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder/). It is really important to understand how the `ValueStringBuilder` works so that you did not run into weird situations where performance/allocations can even rise.
