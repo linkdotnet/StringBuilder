@@ -34,7 +34,7 @@ jobs:
         path: ./CHANGELOG.md
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v4.1.0
+      uses: actions/setup-dotnet@v4.2.0
       with:
         dotnet-version: | 
           6.0.x
