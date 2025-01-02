@@ -144,7 +144,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
-        int origPos = bufferPosition;
+        var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
             Grow(length);
