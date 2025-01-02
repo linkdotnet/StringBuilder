@@ -36,6 +36,9 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="initialBuffer">Initial buffer for the string builder to begin with.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)]
+#endif
     public ValueStringBuilder(Span<char> initialBuffer)
     {
         bufferPosition = 0;
