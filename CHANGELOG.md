@@ -11,6 +11,9 @@ This is the `v2` release of the **ValueStringBuilder**. There aren't any noticea
 ### Removed
 - Support for `net6.0` and `net7.0` was removed.
 
+### Changed
+- Added `OverloadResolutionPriority` for `Span` overload for the ctor to keep the current behavior. Reported by [@nsentinel])(https://github.com/nsentinel) in [#210](https://github.com/linkdotnet/StringBuilder/issues/210).
+
 ## [1.22.0] - 2024-12-18
 
 ### Added
