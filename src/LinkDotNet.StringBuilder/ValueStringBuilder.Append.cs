@@ -143,11 +143,12 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
     /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
+    /// <param name="str">String to be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine(scoped ReadOnlySpan<char> str)
     {
-        Append(string.Concat(str, Environment.NewLine));
+        Append(str);
+        Append(Environment.NewLine);
     }
 
     /// <summary>
