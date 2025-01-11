@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -115,6 +116,19 @@ public ref partial struct ValueStringBuilder
 
         buffer[bufferPosition] = value;
         bufferPosition++;
+    }
+
+    /// <summary>
+    /// Appends a single rune to the string builder.
+    /// </summary>
+    /// <param name="value">Rune to add.</param>
+    public void Append(Rune value)
+    {
+        Span<char> valueChars = stackalloc char[2];
+        int valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsReadOnly = valueChars[..valueCharsWritten];
+
+        Append(valueCharsReadOnly);
     }
 
     /// <summary>
