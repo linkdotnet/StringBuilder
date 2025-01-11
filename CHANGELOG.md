@@ -8,11 +8,21 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable changes. Only old framework versions were removed to make further development easier.
 
+### Added
+
+- Added `Append(Rune)` overload
+- Added `AppendJoin(Rune, IEnumerable<string?>)` overload
+- Added `AppendJoin<T>(Rune, IEnumerable<T>)` overload
+
 ### Removed
+
 - Support for `net6.0` and `net7.0` was removed.
 
 ### Changed
+
 - Added `OverloadResolutionPriority` for `Span` overload for the ctor to keep the current behavior. Reported by [@nsentinel])(https://github.com/nsentinel) in [#210](https://github.com/linkdotnet/StringBuilder/issues/210).
+- Optimised `AppendLine(scoped ReadOnlySpan<char>)` by avoiding allocating a new string
+- Removed erroneous null check in `AppendJoin<T>(ReadOnlySpan<char>, IEnumerable<T>)`
 
 ## [1.22.0] - 2024-12-18
 
