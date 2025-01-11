@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/.text/">
+    <File Path="CHANGELOG.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/.workflows/">
+    <File Path=".github/dependabot.yml" />
+    <File Path=".github/workflows/codeql.yml" />
+    <File Path=".github/workflows/create-release.yml" />
+    <File Path=".github/workflows/docs.yml" />
+    <File Path=".github/workflows/dotnet.yml" />
+    <File Path=".github/workflows/update-release.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/LinkDotNet.StringBuilder/LinkDotNet.StringBuilder.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LinkDotNet.StringBuilder.Benchmarks/LinkDotNet.StringBuilder.Benchmarks.csproj" />
+    <Project Path="tests/LinkDotNet.StringBuilder.UnitTests/LinkDotNet.StringBuilder.UnitTests.csproj" />
+  </Folder>
+</Solution>
