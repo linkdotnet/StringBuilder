@@ -122,6 +122,7 @@ public ref partial struct ValueStringBuilder
     /// Appends a single rune to the string builder.
     /// </summary>
     /// <param name="value">Rune to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append(Rune value)
     {
         Span<char> valueChars = stackalloc char[2];
