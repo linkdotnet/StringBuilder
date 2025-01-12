@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -118,6 +119,20 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Appends a single rune to the string builder.
+    /// </summary>
+    /// <param name="value">Rune to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(Rune value)
+    {
+        Span<char> valueChars = stackalloc char[2];
+        int valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsReadOnly = valueChars[..valueCharsWritten];
+
+        Append(valueCharsReadOnly);
+    }
+
+    /// <summary>
     /// Adds the default new line separator.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -129,11 +144,12 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
     /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
+    /// <param name="str">String to be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine(scoped ReadOnlySpan<char> str)
     {
-        Append(string.Concat(str, Environment.NewLine));
+        Append(str);
+        Append(Environment.NewLine);
     }
 
     /// <summary>
@@ -144,7 +160,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
-        int origPos = bufferPosition;
+        var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
             Grow(length);

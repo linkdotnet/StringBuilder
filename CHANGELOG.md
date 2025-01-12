@@ -6,6 +6,26 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-01-12
+
+This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable breaking changes. Only old framework versions were removed to make further development easier. The API is the same (with new additions) as in `v1`.
+
+### Added
+
+- Added `Append(Rune)` overload
+- Added `AppendJoin(Rune, IEnumerable<string?>)` overload
+- Added `AppendJoin<T>(Rune, IEnumerable<T>)` overload
+
+### Removed
+
+- Support for `net6.0` and `net7.0` was removed.
+
+### Changed
+
+- Added `OverloadResolutionPriority` for `Span` overload for the ctor to keep the current behavior. Reported by [@nsentinel])(<https://github.com/nsentinel>) in [#210](https://github.com/linkdotnet/StringBuilder/issues/210).
+- Optimised `AppendLine(scoped ReadOnlySpan<char>)` by avoiding allocating a new string
+- Removed erroneous null check in `AppendJoin<T>(ReadOnlySpan<char>, IEnumerable<T>)`
+
 ## [1.22.0] - 2024-12-18
 
 ### Added
@@ -418,7 +438,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...2.0.0
 [1.22.0]: https://github.com/linkdotnet/StringBuilder/compare/1.21.1...1.22.0
 [1.21.1]: https://github.com/linkdotnet/StringBuilder/compare/1.21.0...1.21.1
 [1.21.0]: https://github.com/linkdotnet/StringBuilder/compare/1.20.0...1.21.0

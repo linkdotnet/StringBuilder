@@ -74,3 +74,11 @@ Another benchmark shows that this `ValueStringBuilder` uses less memory when it 
 ```
 
 Checkout the [Benchmark](tests/LinkDotNet.StringBuilder.Benchmarks) for a more detailed comparison and setup.
+
+## Support & Contributing
+
+Thanks to all [contributors](https://github.com/linkdotnet/StringBuilder/graphs/contributors) and people that are creating bug-reports and valuable input:
+
+<a href="https://github.com/linkdotnet/StringBuilder/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=linkdotnet/StringBuilder" alt="Supporters" />
+</a>
