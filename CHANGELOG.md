@@ -6,7 +6,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
-This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable changes. Only old framework versions were removed to make further development easier.
+This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable breaking changes. Only old framework versions were removed to make further development easier. The API is the same (with new additions) as in `v1`.
 
 ### Added
 
