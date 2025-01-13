@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `Replace(Rune, Rune)` overload
+- Added `Replace(Rune, Rune, int, int)` overload
+
 ## [2.0.0] - 2025-01-12
 
 This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable breaking changes. Only old framework versions were removed to make further development easier. The API is the same (with new additions) as in `v1`.
@@ -15,8 +20,6 @@ This is the `v2` release of the **ValueStringBuilder**. There aren't any noticea
 - Added `Append(Rune)` overload
 - Added `AppendJoin(Rune, IEnumerable<string?>)` overload
 - Added `AppendJoin<T>(Rune, IEnumerable<T>)` overload
-- Added `Replace(Rune, Rune)` overload
-- Added `Replace(Rune, Rune, int, int)` overload
 
 ### Removed
 
