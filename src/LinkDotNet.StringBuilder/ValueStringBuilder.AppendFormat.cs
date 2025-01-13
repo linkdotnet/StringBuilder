@@ -65,8 +65,8 @@ public ref partial struct ValueStringBuilder
     /// <param name="format">Format string.</param>
     /// <param name="arg1">Argument for <c>{0}</c>.</param>
     /// <param name="arg2">Argument for <c>{1}</c>.</param>
-    /// <typeparam name="T1">Any type for <param name="arg1"></param>.</typeparam>
-    /// <typeparam name="T2">Any type for <param name="arg2"></param>.</typeparam>
+    /// <typeparam name="T1">Any type for <paramref name="arg1"/>.</typeparam>
+    /// <typeparam name="T2">Any type for <paramref name="arg2"/>.</typeparam>
     /// <remarks>
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
@@ -132,9 +132,9 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg1">Argument for <c>{0}</c>.</param>
     /// <param name="arg2">Argument for <c>{1}</c>.</param>
     /// <param name="arg3">Argument for <c>{2}</c>.</param>
-    /// <typeparam name="T1">Any type for <param name="arg1"></param>.</typeparam>
-    /// <typeparam name="T2">Any type for <param name="arg2"></param>.</typeparam>
-    /// <typeparam name="T3">Any type for <param name="arg3"></param>.</typeparam>
+    /// <typeparam name="T1">Any type for <paramref name="arg1"/>.</typeparam>
+    /// <typeparam name="T2">Any type for <paramref name="arg2"/>.</typeparam>
+    /// <typeparam name="T3">Any type for <paramref name="arg3"/>.</typeparam>
     /// <remarks>
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
@@ -205,10 +205,10 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg2">Argument for <c>{1}</c>.</param>
     /// <param name="arg3">Argument for <c>{2}</c>.</param>
     /// <param name="arg4">Argument for <c>{3}</c>.</param>
-    /// <typeparam name="T1">Any type for <param name="arg1"></param>.</typeparam>
-    /// <typeparam name="T2">Any type for <param name="arg2"></param>.</typeparam>
-    /// <typeparam name="T3">Any type for <param name="arg3"></param>.</typeparam>
-    /// <typeparam name="T4">Any type for <param name="arg4"></param>.</typeparam>
+    /// <typeparam name="T1">Any type for <paramref name="arg1"/>.</typeparam>
+    /// <typeparam name="T2">Any type for <paramref name="arg2"/>.</typeparam>
+    /// <typeparam name="T3">Any type for <paramref name="arg3"/>.</typeparam>
+    /// <typeparam name="T4">Any type for <paramref name="arg4"/>.</typeparam>
     /// <remarks>
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
@@ -284,11 +284,11 @@ public ref partial struct ValueStringBuilder
     /// <param name="arg3">Argument for <c>{2}</c>.</param>
     /// <param name="arg4">Argument for <c>{3}</c>.</param>
     /// <param name="arg5">Argument for <c>{4}</c>.</param>
-    /// <typeparam name="T1">Any type for <param name="arg1"></param>.</typeparam>
-    /// <typeparam name="T2">Any type for <param name="arg2"></param>.</typeparam>
-    /// <typeparam name="T3">Any type for <param name="arg3"></param>.</typeparam>
-    /// <typeparam name="T4">Any type for <param name="arg4"></param>.</typeparam>
-    /// <typeparam name="T5">Any type for <param name="arg5"></param>.</typeparam>
+    /// <typeparam name="T1">Any type for <paramref name="arg1"/>.</typeparam>
+    /// <typeparam name="T2">Any type for <paramref name="arg2"/>.</typeparam>
+    /// <typeparam name="T3">Any type for <paramref name="arg3"/>.</typeparam>
+    /// <typeparam name="T4">Any type for <paramref name="arg4"/>.</typeparam>
+    /// <typeparam name="T5">Any type for <paramref name="arg5"/>.</typeparam>
     /// <remarks>
     /// The current version does not allow for a custom format.
     /// So: <code>AppendFormat("{0:00}")</code> is not allowed and will result in an exception.
