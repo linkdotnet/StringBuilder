@@ -85,7 +85,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
-    /// <param name="index">Index position, which should be retrieved.</param>
+    /// <param name="index">Character position to be retrieved.</param>
     public readonly ref char this[int index] => ref buffer[index];
 
     /// <summary>

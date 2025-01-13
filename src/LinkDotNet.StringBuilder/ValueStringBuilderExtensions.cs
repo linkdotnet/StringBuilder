@@ -23,7 +23,7 @@ public static class ValueStringBuilderExtensions
     /// Creates a new <see cref="ValueStringBuilder"/> from the given <paramref name="builder"/>.
     /// </summary>
     /// <param name="builder">The builder from which the new instance is derived.</param>
-    /// <returns>A new <see cref="ValueStringBuilder"/> instance with the string represented by this <see cref="builder"/>.</returns>
+    /// <returns>A new <see cref="ValueStringBuilder"/> instance with the string represented by this builder.</returns>
     /// <exception cref="ArgumentNullException">Throws if <paramref name="builder"/> is null.</exception>
     public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder? builder)
     {

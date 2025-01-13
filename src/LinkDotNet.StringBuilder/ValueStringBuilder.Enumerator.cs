@@ -5,6 +5,10 @@ namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
+    /// <summary>
+    /// Creates an enumerator over the characters in the builder.
+    /// </summary>
+    /// <returns>An enumerator over the characters in the builder.</returns>
     public readonly Enumerator GetEnumerator() => new(buffer[..bufferPosition]);
 
     /// <summary>Enumerates the elements of a <see cref="Span{T}"/>.</summary>
