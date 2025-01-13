@@ -19,6 +19,7 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <LangVersion>preview</LangVersion>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

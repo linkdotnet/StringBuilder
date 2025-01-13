@@ -80,8 +80,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="oldValue">The string to replace.</param>
     /// <param name="newValue">The string to replace <paramref name="oldValue"/> with.</param>
     /// <remarks>
-    /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/>
-    /// are removed from this builder.
+    /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/> are removed.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue)
@@ -91,55 +90,11 @@ public ref partial struct ValueStringBuilder
     /// Replaces all instances of one string with another in this builder.
     /// </summary>
     /// <param name="oldValue">The string to replace.</param>
-    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
-    /// <remarks>
-    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
-    /// Otherwise the ToString method is called.
-    /// </remarks>
-    /// /// <typeparam name="T">Any type.</typeparam>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue)
-        => ReplaceGeneric(oldValue, newValue, 0, Length);
-
-    /// <summary>
-    /// Replaces all instances of one string with another in this builder.
-    /// </summary>
-    /// <param name="oldValue">The string to replace.</param>
-    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
-    /// <param name="startIndex">The index to start in this builder.</param>
-    /// <param name="count">The number of characters to read in this builder.</param>
-    /// <remarks>
-    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
-    /// Otherwise the ToString method is called.
-    /// </remarks>
-    /// /// <typeparam name="T">Any type.</typeparam>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
-    {
-        if (newValue is ISpanFormattable spanFormattable)
-        {
-            Span<char> tempBuffer = stackalloc char[24];
-            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
-            {
-                Replace(oldValue, tempBuffer[..written], startIndex, count);
-            }
-        }
-        else
-        {
-            Replace(oldValue, (ReadOnlySpan<char>)newValue?.ToString(), startIndex, count);
-        }
-    }
-
-    /// <summary>
-    /// Replaces all instances of one string with another in this builder.
-    /// </summary>
-    /// <param name="oldValue">The string to replace.</param>
     /// <param name="newValue">The string to replace <paramref name="oldValue"/> with.</param>
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
     /// <remarks>
-    /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/>
-    /// are removed from this builder.
+    /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/> are removed.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
@@ -191,6 +146,49 @@ public ref partial struct ValueStringBuilder
                 newValue[..oldValue.Length].CopyTo(buffer[index..]);
                 Insert(index + oldValue.Length, newValue[oldValue.Length..]);
             }
+        }
+    }
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue)
+        => ReplaceGeneric(oldValue, newValue, 0, Length);
+
+    /// <summary>
+    /// Replaces all instances of one string with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The string to replace.</param>
+    /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <param name="startIndex">The index to start in this builder.</param>
+    /// <param name="count">The number of characters to read in this builder.</param>
+    /// <remarks>
+    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
+    /// Otherwise the ToString method is called.
+    /// </remarks>
+    /// /// <typeparam name="T">Any type.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
+    {
+        if (newValue is ISpanFormattable spanFormattable)
+        {
+            Span<char> tempBuffer = stackalloc char[24];
+            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
+            {
+                Replace(oldValue, tempBuffer[..written], startIndex, count);
+            }
+        }
+        else
+        {
+            Replace(oldValue, (ReadOnlySpan<char>)newValue?.ToString(), startIndex, count);
         }
     }
 }

@@ -5,6 +5,10 @@ namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
+    /// <summary>
+    /// Creates an enumerator over the characters in the builder.
+    /// </summary>
+    /// <returns>An enumerator over the characters in the builder.</returns>
     public readonly Enumerator GetEnumerator() => new(buffer[..bufferPosition]);
 
     /// <summary>Enumerates the elements of a <see cref="Span{T}"/>.</summary>
@@ -32,7 +36,7 @@ public ref partial struct ValueStringBuilder
         }
 
         /// <summary>Advances the enumerator to the next element of the span.</summary>
-        /// <returns>True if the enumerator was successfully advancing to the next element; false if the enumerator has passed the end of the span.</returns>
+        /// <returns><see langword="true"/> if the enumerator successfully advanced to the next element; <see langword="false"/> if the enumerator reached the end of the span.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool MoveNext() => ++index < span.Length;
     }

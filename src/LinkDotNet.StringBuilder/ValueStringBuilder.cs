@@ -49,9 +49,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
     /// </summary>
-    /// <param name="initialText">The initial text used to initialize this instance. If <paramref name="initialText"/> is <c>null</c>
-    /// the <see cref="ValueStringBuilder"/> will return an empty string (<see cref="string.Empty"/>).
-    /// </param>
+    /// <param name="initialText">The initial text used to initialize this instance.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder(ReadOnlySpan<char> initialText)
     {
@@ -87,7 +85,7 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
-    /// <param name="index">Index position, which should be retrieved.</param>
+    /// <param name="index">Character position to be retrieved.</param>
     public readonly ref char this[int index] => ref buffer[index];
 
     /// <summary>
@@ -291,7 +289,7 @@ public ref partial struct ValueStringBuilder
     /// Returns a value indicating whether the characters in this instance are equal to the characters in a specified read-only character span.
     /// </summary>
     /// <param name="span">The character span to compare with the current instance.</param>
-    /// <returns><c>true</c> if the characters are equal to this instance, otherwise <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if the characters are equal to this instance, otherwise <see langword="false"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
 
