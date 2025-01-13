@@ -15,6 +15,8 @@ This is the `v2` release of the **ValueStringBuilder**. There aren't any noticea
 - Added `Append(Rune)` overload
 - Added `AppendJoin(Rune, IEnumerable<string?>)` overload
 - Added `AppendJoin<T>(Rune, IEnumerable<T>)` overload
+- Added `Replace(Rune, Rune)` overload
+- Added `Replace(Rune, Rune, int, int)` overload
 
 ### Removed
 
