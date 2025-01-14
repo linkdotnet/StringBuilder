@@ -21,7 +21,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert<T>(int index, T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
+    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize);
 
     /// <summary>
@@ -60,7 +60,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void InsertSpanFormattable<T>(int index, T value, ReadOnlySpan<char> format, int bufferSize)
+    private void InsertSpanFormattable<T>(int index, T value, scoped ReadOnlySpan<char> format, int bufferSize)
         where T : ISpanFormattable
     {
         if (index < 0)
