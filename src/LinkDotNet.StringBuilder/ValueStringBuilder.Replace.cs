@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -11,6 +12,17 @@ public ref partial struct ValueStringBuilder
     /// <param name="newValue">The character to replace <paramref name="oldValue"/> with.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Replace(char oldValue, char newValue) => Replace(oldValue, newValue, 0, Length);
+
+    /// <summary>
+    /// Replaces all instances of one rune with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The rune to replace.</param>
+    /// <param name="newValue">The rune to replace <paramref name="oldValue"/> with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Replace(Rune oldValue, Rune newValue)
+    {
+        Replace(oldValue, newValue, 0, Length);
+    }
 
     /// <summary>
     /// Replaces all instances of one character with another in this builder.
@@ -42,6 +54,27 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Replaces all instances of one rune with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The rune to replace.</param>
+    /// <param name="newValue">The rune to replace <paramref name="oldValue"/> with.</param>
+    /// <param name="startIndex">The index to start in this builder.</param>
+    /// <param name="count">The number of characters to read in this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Replace(Rune oldValue, Rune newValue, int startIndex, int count)
+    {
+        Span<char> oldValueChars = stackalloc char[2];
+        int oldValueCharsWritten = oldValue.EncodeToUtf16(oldValueChars);
+        ReadOnlySpan<char> oldValueCharsReadOnly = oldValueChars[..oldValueCharsWritten];
+
+        Span<char> newValueChars = stackalloc char[2];
+        int newValueCharsWritten = newValue.EncodeToUtf16(newValueChars);
+        ReadOnlySpan<char> newValueCharsReadOnly = newValueChars[..newValueCharsWritten];
+
+        Replace(oldValueCharsReadOnly, newValueCharsReadOnly, startIndex, count);
+    }
+
+    /// <summary>
     /// Replaces all instances of one string with another in this builder.
     /// </summary>
     /// <param name="oldValue">The string to replace.</param>
@@ -50,7 +83,7 @@ public ref partial struct ValueStringBuilder
     /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/> are removed.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Replace(ReadOnlySpan<char> oldValue, ReadOnlySpan<char> newValue)
+    public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue)
         => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
