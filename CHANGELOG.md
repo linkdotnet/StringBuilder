@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [2.1.0] - 2025-01-14
+
 ### Added
 
 - Added `Replace(Rune, Rune)` overload
@@ -443,7 +445,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.0.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/linkdotnet/StringBuilder/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...2.0.0
 [1.22.0]: https://github.com/linkdotnet/StringBuilder/compare/1.21.1...1.22.0
 [1.21.1]: https://github.com/linkdotnet/StringBuilder/compare/1.21.0...1.21.1
