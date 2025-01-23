@@ -15,7 +15,7 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.AppendFormat(format, arg);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -50,7 +50,7 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.AppendFormat(format, arg1, arg2);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -64,7 +64,7 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.AppendFormat(format, arg1, arg2, arg3);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -78,7 +78,7 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.AppendFormat(format, arg1, arg2, arg3, arg4);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -92,6 +92,6 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.AppendFormat(format, arg1, arg2, arg3, arg4, arg5);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 }

@@ -14,7 +14,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimStart();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimEnd();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -44,7 +44,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.Trim();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimStart('H');
 
-        valueStringBuilder.ToString().Should().Be("eeHH");
+        valueStringBuilder.ToString().ShouldBe("eeHH");
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimEnd('H');
 
-        valueStringBuilder.ToString().Should().Be("HHee");
+        valueStringBuilder.ToString().ShouldBe("HHee");
     }
 
     [Fact]
@@ -77,6 +77,6 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.Trim('H');
 
-        valueStringBuilder.ToString().Should().Be("ee");
+        valueStringBuilder.ToString().ShouldBe("ee");
     }
 }

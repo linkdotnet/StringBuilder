@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="[7.1.0]" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+        <PackageReference Include="Shouldly" Version="4.3.0" />
         <PackageReference Include="xunit.v3" Version="1.0.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="3.0.1">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -30,7 +30,7 @@
     </ItemGroup>
 
     <ItemGroup Label="Global usings">
-        <Using Include="FluentAssertions" />
+        <Using Include="Shouldly" />
         <Using Include="Xunit" />
     </ItemGroup>
 
