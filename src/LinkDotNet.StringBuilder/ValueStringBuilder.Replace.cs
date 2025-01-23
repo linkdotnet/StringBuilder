@@ -14,17 +14,6 @@ public ref partial struct ValueStringBuilder
     public readonly void Replace(char oldValue, char newValue) => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
-    /// Replaces all instances of one rune with another in this builder.
-    /// </summary>
-    /// <param name="oldValue">The rune to replace.</param>
-    /// <param name="newValue">The rune to replace <paramref name="oldValue"/> with.</param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Replace(Rune oldValue, Rune newValue)
-    {
-        Replace(oldValue, newValue, 0, Length);
-    }
-
-    /// <summary>
     /// Replaces all instances of one character with another in this builder.
     /// </summary>
     /// <param name="oldValue">The character to replace.</param>
@@ -34,15 +23,8 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Replace(char oldValue, char newValue, int startIndex, int count)
     {
-        if (startIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
-        }
-
-        if (count > bufferPosition)
-        {
-            throw new ArgumentOutOfRangeException(nameof(count), $"Count: {count} is bigger than the current size {bufferPosition}.");
-        }
+        ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
 
         for (var i = startIndex; i < startIndex + count; i++)
         {
@@ -52,6 +34,14 @@ public ref partial struct ValueStringBuilder
             }
         }
     }
+
+    /// <summary>
+    /// Replaces all instances of one rune with another in this builder.
+    /// </summary>
+    /// <param name="oldValue">The rune to replace.</param>
+    /// <param name="newValue">The rune to replace <paramref name="oldValue"/> with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Replace(Rune oldValue, Rune newValue) => Replace(oldValue, newValue, 0, Length);
 
     /// <summary>
     /// Replaces all instances of one rune with another in this builder.
@@ -99,6 +89,9 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
     {
+        ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
+
         var length = startIndex + count;
         var slice = buffer[startIndex..length];
 
@@ -188,7 +181,7 @@ public ref partial struct ValueStringBuilder
         }
         else
         {
-            Replace(oldValue, (ReadOnlySpan<char>)newValue?.ToString(), startIndex, count);
+            Replace(oldValue, (newValue?.ToString() ?? string.Empty).AsSpan(), startIndex, count);
         }
     }
 }
