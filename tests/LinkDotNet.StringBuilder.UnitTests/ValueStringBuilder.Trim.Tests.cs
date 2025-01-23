@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTrimTests
@@ -78,5 +80,27 @@ public class ValueStringBuilderTrimTests
         valueStringBuilder.Trim('H');
 
         valueStringBuilder.ToString().ShouldBe("ee");
+    }
+
+    [Fact]
+    public void GivenString_WhenTrimPrefix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimPrefix("hell", StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("o world");
+    }
+
+    [Fact]
+    public void GivenString_WhenTrimSuffix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimSuffix("RlD", StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("Hello wo");
     }
 }

@@ -199,24 +199,13 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Remove(int startIndex, int length)
     {
+        ArgumentOutOfRangeException.ThrowIfLessThan(length, 0);
+        ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + length, Length);
+
         if (length == 0)
         {
             return;
-        }
-
-        if (length < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(length), "The given length can't be negative.");
-        }
-
-        if (startIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given start index can't be negative.");
-        }
-
-        if (length > Length - startIndex)
-        {
-            throw new ArgumentOutOfRangeException(nameof(length), $"The given Span ({startIndex}..{length})length is outside the the represented string.");
         }
 
         var beginIndex = startIndex + length;
