@@ -8,8 +8,8 @@ namespace LinkDotNet.StringBuilder;
 /// A string builder which minimizes as many heap allocations as possible.
 /// </summary>
 /// <remarks>
-/// This is a ref struct which has certain limitations.
-/// You can only store it in a local variable or another ref struct.
+/// This is a ref struct which has certain limitations. You can only store it in a local variable or another ref struct.<br/><br/>
+/// You should dispose it after use to ensure the rented buffer is returned to the array pool.
 /// </remarks>
 [StructLayout(LayoutKind.Sequential)]
 [SkipLocalsInit]
@@ -294,7 +294,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
 
     /// <summary>
-    /// Disposes the instance and returns rented buffer from an array pool if needed.
+    /// Disposes the instance and returns the rented buffer to the array pool if needed.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Dispose()
