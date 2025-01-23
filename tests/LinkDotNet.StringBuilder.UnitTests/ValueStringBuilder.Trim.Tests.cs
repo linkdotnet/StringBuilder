@@ -79,4 +79,26 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.ToString().ShouldBe("ee");
     }
+
+    [Fact]
+    public void GivenString_WhenTrimPrefix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimPrefix("hell", System.StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("o world");
+    }
+
+    [Fact]
+    public void GivenString_WhenTrimSuffix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimPrefix("RlD", System.StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("Hello wo");
+    }
 }
