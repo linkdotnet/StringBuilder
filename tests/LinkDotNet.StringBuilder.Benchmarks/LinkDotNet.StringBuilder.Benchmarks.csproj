@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+        <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\LinkDotNet.StringBuilder\LinkDotNet.StringBuilder.csproj" />
+        <ProjectReference Include="..\..\src\LinkDotNet.StringBuilder\LinkDotNet.StringBuilder.csproj" />
     </ItemGroup>
 
 </Project>
