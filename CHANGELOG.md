@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `TrimPrefix(ReadOnlySpan<char>, StringComparison)` (by yours truly (@Joy-less) in #226)
+- Added `TrimSuffix(ReadOnlySpan<char>, StringComparison)` (also by yours truly (@Joy-less) in #226)
+
 ## [2.1.0] - 2025-01-14
 
 ### Added
