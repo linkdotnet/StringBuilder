@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTrimTests
@@ -86,7 +88,7 @@ public class ValueStringBuilderTrimTests
         using var valueStringBuilder = new ValueStringBuilder();
         valueStringBuilder.Append("Hello world");
 
-        valueStringBuilder.TrimPrefix("hell", System.StringComparison.InvariantCultureIgnoreCase);
+        valueStringBuilder.TrimPrefix("hell", StringComparison.InvariantCultureIgnoreCase);
 
         valueStringBuilder.ToString().ShouldBe("o world");
     }
@@ -97,7 +99,7 @@ public class ValueStringBuilderTrimTests
         using var valueStringBuilder = new ValueStringBuilder();
         valueStringBuilder.Append("Hello world");
 
-        valueStringBuilder.TrimPrefix("RlD", System.StringComparison.InvariantCultureIgnoreCase);
+        valueStringBuilder.TrimSuffix("RlD", StringComparison.InvariantCultureIgnoreCase);
 
         valueStringBuilder.ToString().ShouldBe("Hello wo");
     }
