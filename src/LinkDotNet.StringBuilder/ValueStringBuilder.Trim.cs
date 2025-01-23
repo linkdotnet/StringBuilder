@@ -5,7 +5,7 @@ namespace LinkDotNet.StringBuilder;
 public ref partial struct ValueStringBuilder
 {
     /// <summary>
-    /// Removes a set of whitespace characters from the beginning and ending of this string.
+    /// Removes all whitespace characters from the start and end of this builder.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Trim()
@@ -33,22 +33,22 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Removes the specified character from the beginning and end of this string.
+    /// Removes all occurrences of the specified character from the start and end of this builder.
     /// </summary>
-    /// <param name="c">The character to remove.</param>
+    /// <param name="value">The character to remove.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Trim(char c)
+    public void Trim(char value)
     {
         // Remove character from the beginning
         var start = 0;
-        while (start < bufferPosition && buffer[start] == c)
+        while (start < bufferPosition && buffer[start] == value)
         {
             start++;
         }
 
         // Remove character from the end
         var end = bufferPosition - 1;
-        while (end >= start && buffer[end] == c)
+        while (end >= start && buffer[end] == value)
         {
             end--;
         }
@@ -62,7 +62,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Removes a set of whitespace characters from the beginning of this string.
+    /// Removes all whitespace characters from the start of this builder.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void TrimStart()
@@ -82,14 +82,14 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Removes the specified character from the beginning of this string.
+    /// Removes all occurrences of the specified character from the start of this builder.
     /// </summary>
-    /// <param name="c">The character to remove.</param>
+    /// <param name="value">The character to remove.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void TrimStart(char c)
+    public void TrimStart(char value)
     {
         var start = 0;
-        while (start < bufferPosition && buffer[start] == c)
+        while (start < bufferPosition && buffer[start] == value)
         {
             start++;
         }
@@ -103,7 +103,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Removes a set of whitespace characters from the ending of this string.
+    /// Removes all whitespace characters from the end of this builder.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void TrimEnd()
@@ -118,18 +118,46 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Removes the specified character from the end of this string.
+    /// Removes all occurrences of the specified character from the end of this builder.
     /// </summary>
-    /// <param name="c">The character to remove.</param>
+    /// <param name="value">The character to remove.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void TrimEnd(char c)
+    public void TrimEnd(char value)
     {
         var end = bufferPosition - 1;
-        while (end >= 0 && buffer[end] == c)
+        while (end >= 0 && buffer[end] == value)
         {
             end--;
         }
 
         bufferPosition = end + 1;
+    }
+
+    /// <summary>
+    /// Removes the specified sequence of characters from the start of this builder.
+    /// </summary>
+    /// <param name="value">The sequence of characters to remove.</param>
+    /// <param name="comparisonType">The way to compare the sequences of characters.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void TrimPrefix(ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
+    {
+        if (AsSpan().StartsWith(value, comparisonType))
+        {
+            Remove(0, value.Length);
+        }
+    }
+
+    /// <summary>
+    /// Removes the specified sequence of characters from the end of this builder.
+    /// </summary>
+    /// <param name="value">The sequence of characters to remove.</param>
+    /// <param name="comparisonType">The way to compare the sequences of characters.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void TrimSuffix(ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
+    {
+        if (AsSpan().EndsWith(value, comparisonType))
+        {
+            Remove(Length - value.Length, value.Length);
+        }
     }
 }
