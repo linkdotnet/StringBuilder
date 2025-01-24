@@ -20,7 +20,7 @@ public ref partial struct ValueStringBuilder
 
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         fixed (char* dest = &buffer[bufferPosition])
@@ -67,7 +67,7 @@ public ref partial struct ValueStringBuilder
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         ref var strRef = ref MemoryMarshal.GetReference(str);
@@ -111,7 +111,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferPosition + 1;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         buffer[bufferPosition] = value;
@@ -163,7 +163,7 @@ public ref partial struct ValueStringBuilder
         var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
-            Grow(length);
+            EnsureCapacity(length);
         }
 
         bufferPosition = origPos + length;
@@ -177,7 +177,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferSize + bufferPosition;
         if (newSize >= Capacity)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))

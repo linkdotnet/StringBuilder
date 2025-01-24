@@ -20,15 +20,12 @@ public ref partial struct ValueStringBuilder : IDisposable
     private char[]? arrayFromPool;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct using a rented buffer of capacity 32.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder()
     {
-        bufferPosition = 0;
-        buffer = default;
-        arrayFromPool = null;
-        Grow(32);
+        EnsureCapacity(32);
     }
 
     /// <summary>
@@ -41,9 +38,7 @@ public ref partial struct ValueStringBuilder : IDisposable
 #endif
     public ValueStringBuilder(Span<char> initialBuffer)
     {
-        bufferPosition = 0;
         buffer = initialBuffer;
-        arrayFromPool = null;
     }
 
     /// <summary>
@@ -63,7 +58,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder(int initialCapacity)
     {
-        Grow(initialCapacity);
+        EnsureCapacity(initialCapacity);
     }
 
     /// <summary>
@@ -173,19 +168,41 @@ public ref partial struct ValueStringBuilder : IDisposable
     public void Clear() => bufferPosition = 0;
 
     /// <summary>
-    /// Ensures that the builder has at least <paramref name="newCapacity"/> amount of capacity.
+    /// Ensures the builder's buffer size is at least <paramref name="newCapacity"/>, renting a larger buffer if not.
     /// </summary>
     /// <param name="newCapacity">New capacity for the builder.</param>
     /// <remarks>
-    /// If <paramref name="newCapacity"/> is smaller or equal to <see cref="Length"/> nothing will be done.
+    /// If <see cref="Length"/> is already &gt;= <paramref name="newCapacity"/>, nothing is done.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureCapacity(int newCapacity)
     {
-        if (newCapacity > Length)
+        if (Length >= newCapacity)
         {
-            Grow(newCapacity);
+            return;
         }
+
+        int newSize = FindSmallestPowerOf2Above(newCapacity);
+
+        Span<char> rented = ArrayPool<char>.Shared.Rent(newSize);
+
+        if (bufferPosition > 0)
+        {
+            ref char sourceRef = ref MemoryMarshal.GetReference(buffer);
+            ref char destinationRef = ref MemoryMarshal.GetReference(rented);
+
+            Unsafe.CopyBlock(
+                ref Unsafe.As<char, byte>(ref destinationRef),
+                ref Unsafe.As<char, byte>(ref sourceRef),
+                (uint)bufferPosition * sizeof(char));
+        }
+
+        if (arrayFromPool is not null)
+        {
+            ArrayPool<char>.Shared.Return(arrayFromPool);
+        }
+
+        buffer = rented;
     }
 
     /// <summary>
@@ -301,36 +318,4 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Reverse() => buffer[..bufferPosition].Reverse();
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Grow(int capacity = 0)
-    {
-        var size = buffer.Length == 0 ? 8 : buffer.Length;
-
-        while (size < capacity)
-        {
-            size *= 2;
-        }
-
-        var rented = ArrayPool<char>.Shared.Rent(size);
-
-        if (bufferPosition > 0)
-        {
-            ref var sourceRef = ref MemoryMarshal.GetReference(buffer);
-            ref var destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
-
-            Unsafe.CopyBlock(
-                ref Unsafe.As<char, byte>(ref destinationRef),
-                ref Unsafe.As<char, byte>(ref sourceRef),
-                (uint)(bufferPosition * sizeof(char)));
-        }
-
-        var oldBufferFromPool = arrayFromPool;
-        buffer = arrayFromPool = rented;
-
-        if (oldBufferFromPool is not null)
-        {
-            ArrayPool<char>.Shared.Return(oldBufferFromPool);
-        }
-    }
 }

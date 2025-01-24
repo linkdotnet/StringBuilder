@@ -31,7 +31,7 @@ public class ValueStringBuilderExtensionsTests
     {
         System.Text.StringBuilder? sb = null;
 
-        Action act = () => sb.ToValueStringBuilder();
+        Action act = () => sb!.ToValueStringBuilder();
 
         act.ShouldThrow<ArgumentNullException>();
     }
