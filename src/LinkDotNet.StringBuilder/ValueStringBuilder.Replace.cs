@@ -54,14 +54,14 @@ public ref partial struct ValueStringBuilder
     public void Replace(Rune oldValue, Rune newValue, int startIndex, int count)
     {
         Span<char> oldValueChars = stackalloc char[2];
-        int oldValueCharsWritten = oldValue.EncodeToUtf16(oldValueChars);
-        ReadOnlySpan<char> oldValueCharsReadOnly = oldValueChars[..oldValueCharsWritten];
+        var oldValueCharsWritten = oldValue.EncodeToUtf16(oldValueChars);
+        ReadOnlySpan<char> oldValueCharsSlice = oldValueChars[..oldValueCharsWritten];
 
         Span<char> newValueChars = stackalloc char[2];
-        int newValueCharsWritten = newValue.EncodeToUtf16(newValueChars);
-        ReadOnlySpan<char> newValueCharsReadOnly = newValueChars[..newValueCharsWritten];
+        var newValueCharsWritten = newValue.EncodeToUtf16(newValueChars);
+        ReadOnlySpan<char> newValueCharsSlice = newValueChars[..newValueCharsWritten];
 
-        Replace(oldValueCharsReadOnly, newValueCharsReadOnly, startIndex, count);
+        Replace(oldValueCharsSlice, newValueCharsSlice, startIndex, count);
     }
 
     /// <summary>
