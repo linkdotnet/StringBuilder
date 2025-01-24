@@ -184,12 +184,12 @@ public ref partial struct ValueStringBuilder : IDisposable
 
         int newSize = FindSmallestPowerOf2Above(newCapacity);
 
-        Span<char> rented = ArrayPool<char>.Shared.Rent(newSize);
+        char[] rented = ArrayPool<char>.Shared.Rent(newSize);
 
         if (bufferPosition > 0)
         {
             ref char sourceRef = ref MemoryMarshal.GetReference(buffer);
-            ref char destinationRef = ref MemoryMarshal.GetReference(rented);
+            ref char destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
 
             Unsafe.CopyBlock(
                 ref Unsafe.As<char, byte>(ref destinationRef),
@@ -203,6 +203,7 @@ public ref partial struct ValueStringBuilder : IDisposable
         }
 
         buffer = rented;
+        arrayFromPool = rented;
     }
 
     /// <summary>
