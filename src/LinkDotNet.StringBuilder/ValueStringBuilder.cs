@@ -168,45 +168,6 @@ public ref partial struct ValueStringBuilder : IDisposable
     public void Clear() => bufferPosition = 0;
 
     /// <summary>
-    /// Ensures the builder's buffer size is at least <paramref name="newCapacity"/>, renting a larger buffer if not.
-    /// </summary>
-    /// <param name="newCapacity">New capacity for the builder.</param>
-    /// <remarks>
-    /// If <see cref="Length"/> is already &gt;= <paramref name="newCapacity"/>, nothing is done.
-    /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void EnsureCapacity(int newCapacity)
-    {
-        if (Length >= newCapacity)
-        {
-            return;
-        }
-
-        int newSize = FindSmallestPowerOf2Above(newCapacity);
-
-        char[] rented = ArrayPool<char>.Shared.Rent(newSize);
-
-        if (bufferPosition > 0)
-        {
-            ref char sourceRef = ref MemoryMarshal.GetReference(buffer);
-            ref char destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
-
-            Unsafe.CopyBlock(
-                ref Unsafe.As<char, byte>(ref destinationRef),
-                ref Unsafe.As<char, byte>(ref sourceRef),
-                (uint)bufferPosition * sizeof(char));
-        }
-
-        if (arrayFromPool is not null)
-        {
-            ArrayPool<char>.Shared.Return(arrayFromPool);
-        }
-
-        buffer = rented;
-        arrayFromPool = rented;
-    }
-
-    /// <summary>
     /// Removes a range of characters from this builder.
     /// </summary>
     /// <param name="startIndex">The inclusive index from where the string gets removed.</param>
