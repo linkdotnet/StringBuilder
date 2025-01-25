@@ -126,10 +126,10 @@ public ref partial struct ValueStringBuilder
     public void Append(Rune value)
     {
         Span<char> valueChars = stackalloc char[2];
-        int valueCharsWritten = value.EncodeToUtf16(valueChars);
-        ReadOnlySpan<char> valueCharsReadOnly = valueChars[..valueCharsWritten];
+        var valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
 
-        Append(valueCharsReadOnly);
+        Append(valueCharsSlice);
     }
 
     /// <summary>

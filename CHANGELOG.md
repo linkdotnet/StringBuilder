@@ -10,6 +10,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 - Added `TrimPrefix(ReadOnlySpan<char>, StringComparison)` (by yours truly (@Joy-less) in #226)
 - Added `TrimSuffix(ReadOnlySpan<char>, StringComparison)` (also by yours truly (@Joy-less) in #226)
+- Added `Insert(int, char)` overload (by yours truly (@Joy-less) in #225)
+- Added `Insert(int, Rune)` overload (again by yours truly (@Joy-less) in #225)
+- Added `Replace(Rune, Rune)` overload (see yours truly (@Joy-less) in #225)
+- Improved `Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>, int, int)` fallback (achieved by yours truly (@Joy-less) in #225)
 
 ## [2.1.0] - 2025-01-14
 
