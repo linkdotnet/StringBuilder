@@ -25,7 +25,7 @@ public static class ValueStringBuilderExtensions
     /// <param name="builder">The builder from which the new instance is derived.</param>
     /// <returns>A new <see cref="ValueStringBuilder"/> instance with the string represented by this builder.</returns>
     /// <exception cref="ArgumentNullException">Throws if <paramref name="builder"/> is null.</exception>
-    public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder? builder)
+    public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
 
