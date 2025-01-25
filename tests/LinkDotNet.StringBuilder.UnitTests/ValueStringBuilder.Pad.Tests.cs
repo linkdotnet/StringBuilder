@@ -9,7 +9,7 @@ public class ValueStringBuilderPadTests
 
         stringBuilder.PadLeft(10, ' ');
 
-        stringBuilder.ToString().Should().Be("     Hello");
+        stringBuilder.ToString().ShouldBe("     Hello");
     }
 
     [Fact]
@@ -19,7 +19,7 @@ public class ValueStringBuilderPadTests
 
         stringBuilder.PadRight(10, ' ');
 
-        stringBuilder.ToString().Should().Be("Hello     ");
+        stringBuilder.ToString().ShouldBe("Hello     ");
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public class ValueStringBuilderPadTests
 
         stringBuilder.PadLeft(3, ' ');
 
-        stringBuilder.ToString().Should().Be("Hello");
+        stringBuilder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -39,6 +39,6 @@ public class ValueStringBuilderPadTests
 
         stringBuilder.PadRight(3, ' ');
 
-        stringBuilder.ToString().Should().Be("Hello");
+        stringBuilder.ToString().ShouldBe("Hello");
     }
 }

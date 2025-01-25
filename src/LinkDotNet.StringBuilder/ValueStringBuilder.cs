@@ -5,30 +5,27 @@ using System.Runtime.InteropServices;
 namespace LinkDotNet.StringBuilder;
 
 /// <summary>
-/// Represents a string builder which tried to reduce as much allocations as possible.
+/// A string builder which minimizes as many heap allocations as possible.
 /// </summary>
 /// <remarks>
-/// The <see cref="ValueStringBuilder"/> is declared as ref struct which brings certain limitations with it.
-/// You can only use it in another ref struct or as a local variable.
+/// This is a ref struct which has certain limitations. You can only store it in a local variable or another ref struct.<br/><br/>
+/// You should dispose it after use to ensure the rented buffer is returned to the array pool.
 /// </remarks>
 [StructLayout(LayoutKind.Sequential)]
 [SkipLocalsInit]
-public ref partial struct ValueStringBuilder
+public ref partial struct ValueStringBuilder : IDisposable
 {
     private int bufferPosition;
     private Span<char> buffer;
     private char[]? arrayFromPool;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct.
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct using a rented buffer of capacity 32.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder()
     {
-        bufferPosition = 0;
-        buffer = default;
-        arrayFromPool = null;
-        Grow(32);
+        EnsureCapacity(32);
     }
 
     /// <summary>
@@ -41,9 +38,7 @@ public ref partial struct ValueStringBuilder
 #endif
     public ValueStringBuilder(Span<char> initialBuffer)
     {
-        bufferPosition = 0;
         buffer = initialBuffer;
-        arrayFromPool = null;
     }
 
     /// <summary>
@@ -63,7 +58,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ValueStringBuilder(int initialCapacity)
     {
-        Grow(initialCapacity);
+        EnsureCapacity(initialCapacity);
     }
 
     /// <summary>
@@ -173,22 +168,6 @@ public ref partial struct ValueStringBuilder
     public void Clear() => bufferPosition = 0;
 
     /// <summary>
-    /// Ensures that the builder has at least <paramref name="newCapacity"/> amount of capacity.
-    /// </summary>
-    /// <param name="newCapacity">New capacity for the builder.</param>
-    /// <remarks>
-    /// If <paramref name="newCapacity"/> is smaller or equal to <see cref="Length"/> nothing will be done.
-    /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void EnsureCapacity(int newCapacity)
-    {
-        if (newCapacity > Length)
-        {
-            Grow(newCapacity);
-        }
-    }
-
-    /// <summary>
     /// Removes a range of characters from this builder.
     /// </summary>
     /// <param name="startIndex">The inclusive index from where the string gets removed.</param>
@@ -199,24 +178,13 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Remove(int startIndex, int length)
     {
+        ArgumentOutOfRangeException.ThrowIfLessThan(length, 0);
+        ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + length, Length);
+
         if (length == 0)
         {
             return;
-        }
-
-        if (length < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(length), "The given length can't be negative.");
-        }
-
-        if (startIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "The given start index can't be negative.");
-        }
-
-        if (length > Length - startIndex)
-        {
-            throw new ArgumentOutOfRangeException(nameof(length), $"The given Span ({startIndex}..{length})length is outside the the represented string.");
         }
 
         var beginIndex = startIndex + length;
@@ -294,7 +262,7 @@ public ref partial struct ValueStringBuilder
     public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
 
     /// <summary>
-    /// Disposes the instance and returns rented buffer from an array pool if needed.
+    /// Disposes the instance and returns the rented buffer to the array pool if needed.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Dispose()
@@ -312,36 +280,4 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly void Reverse() => buffer[..bufferPosition].Reverse();
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Grow(int capacity = 0)
-    {
-        var size = buffer.Length == 0 ? 8 : buffer.Length;
-
-        while (size < capacity)
-        {
-            size *= 2;
-        }
-
-        var rented = ArrayPool<char>.Shared.Rent(size);
-
-        if (bufferPosition > 0)
-        {
-            ref var sourceRef = ref MemoryMarshal.GetReference(buffer);
-            ref var destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
-
-            Unsafe.CopyBlock(
-                ref Unsafe.As<char, byte>(ref destinationRef),
-                ref Unsafe.As<char, byte>(ref sourceRef),
-                (uint)(bufferPosition * sizeof(char)));
-        }
-
-        var oldBufferFromPool = arrayFromPool;
-        buffer = arrayFromPool = rented;
-
-        if (oldBufferFromPool is not null)
-        {
-            ArrayPool<char>.Shared.Return(oldBufferFromPool);
-        }
-    }
 }

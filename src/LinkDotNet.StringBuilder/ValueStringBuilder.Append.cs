@@ -20,7 +20,7 @@ public ref partial struct ValueStringBuilder
 
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         fixed (char* dest = &buffer[bufferPosition])
@@ -67,7 +67,7 @@ public ref partial struct ValueStringBuilder
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         ref var strRef = ref MemoryMarshal.GetReference(str);
@@ -111,7 +111,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferPosition + 1;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         buffer[bufferPosition] = value;
@@ -126,14 +126,14 @@ public ref partial struct ValueStringBuilder
     public void Append(Rune value)
     {
         Span<char> valueChars = stackalloc char[2];
-        int valueCharsWritten = value.EncodeToUtf16(valueChars);
-        ReadOnlySpan<char> valueCharsReadOnly = valueChars[..valueCharsWritten];
+        var valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
 
-        Append(valueCharsReadOnly);
+        Append(valueCharsSlice);
     }
 
     /// <summary>
-    /// Adds the default new line separator.
+    /// Appends <see cref="Environment.NewLine"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine()
@@ -142,7 +142,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Calls <see cref="Append(ReadOnlySpan{char})"/> and appends a newline.
+    /// Calls <see cref="Append(ReadOnlySpan{char})"/> and appends <see cref="Environment.NewLine"/>.
     /// </summary>
     /// <param name="str">String to be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -163,7 +163,7 @@ public ref partial struct ValueStringBuilder
         var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
-            Grow(length);
+            EnsureCapacity(length);
         }
 
         bufferPosition = origPos + length;
@@ -177,7 +177,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferSize + bufferPosition;
         if (newSize >= Capacity)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))

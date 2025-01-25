@@ -12,7 +12,7 @@ public class ValueStringBuilderInsertTests
 
         valueStringBuilder.Insert(6, "dear ");
 
-        valueStringBuilder.ToString().Should().Be("Hello dear World");
+        valueStringBuilder.ToString().ShouldBe("Hello dear World");
     }
 
     [Fact]
@@ -22,7 +22,7 @@ public class ValueStringBuilderInsertTests
 
         valueStringBuilder.Insert(0, "Hello");
 
-        valueStringBuilder.ToString().Should().Be("Hello");
+        valueStringBuilder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public class ValueStringBuilderInsertTests
 
         builder.Insert(0, 2.2f);
 
-        builder.ToString().Should().Be("2.2");
+        builder.ToString().ShouldBe("2.2");
     }
 
     [Fact]
@@ -114,7 +114,7 @@ public class ValueStringBuilderInsertTests
 
         builder.Insert(0, Guid.Empty);
 
-        builder.ToString().Should().Be("00000000-0000-0000-0000-000000000000");
+        builder.ToString().ShouldBe("00000000-0000-0000-0000-000000000000");
     }
 
     [Fact]
@@ -142,6 +142,6 @@ public class ValueStringBuilderInsertTests
 
         builder.Insert(0, true);
 
-        builder.ToString().Should().Be("True");
+        builder.ToString().ShouldBe("True");
     }
 }

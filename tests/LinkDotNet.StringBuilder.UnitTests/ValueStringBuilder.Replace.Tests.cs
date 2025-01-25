@@ -12,7 +12,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace('C', 'B');
 
-        builder.ToString().Should().MatchRegex("[B]{100}");
+        builder.ToString().ShouldMatch("[B]{100}");
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace('C', 'B', 1, 2);
 
-        builder.ToString().Should().Be("CBBC");
+        builder.ToString().ShouldBe("CBBC");
     }
 
     [Theory]
@@ -54,7 +54,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("Hello", "Hallöchen");
 
-        builder.ToString().Should().Be("Hallöchen World. How are you doing. Hallöchen world examples are always fun.");
+        builder.ToString().ShouldBe("Hallöchen World. How are you doing. Hallöchen world examples are always fun.");
     }
 
     [Fact]
@@ -64,7 +64,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("Hello", "Ha");
 
-        builder.ToString().Should().Be("Ha World");
+        builder.ToString().ShouldBe("Ha World");
     }
 
     [Fact]
@@ -74,7 +74,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("Hello", "Hallöchen");
 
-        builder.ToString().Should().Be("Hallöchen World");
+        builder.ToString().ShouldBe("Hallöchen World");
     }
 
     [Fact]
@@ -84,7 +84,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("##Key##", "World");
 
-        builder.ToString().Should().Be("Hello World");
+        builder.ToString().ShouldBe("Hello World");
     }
 
     [Theory]
@@ -98,7 +98,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace(word, "Something");
 
-        builder.ToString().Should().Be(text);
+        builder.ToString().ShouldBe(text);
     }
 
     [Fact]
@@ -109,7 +109,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("word", "word");
 
-        builder.ToString().Should().Be("text");
+        builder.ToString().ShouldBe("text");
     }
 
     [Fact]
@@ -120,7 +120,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("Test", "Not");
 
-        builder.ToString().Should().Be("Hello");
+        builder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -131,7 +131,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("Hello", "Hallöchen", 0, 10);
 
-        builder.ToString().Should().Be("Hallöchen World. How are you doing. Hello world examples are always fun.");
+        builder.ToString().ShouldBe("Hallöchen World. How are you doing. Hello world examples are always fun.");
     }
 
     [Fact]
@@ -142,7 +142,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.ReplaceGeneric("{0}", 1.2f);
 
-        builder.ToString().Should().Be("1.2");
+        builder.ToString().ShouldBe("1.2");
     }
 
     [Fact]
@@ -153,7 +153,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.ReplaceGeneric("{0}", 1, 0, 6);
 
-        builder.ToString().Should().Be("11{0}");
+        builder.ToString().ShouldBe("11{0}");
     }
 
     [Fact]
@@ -164,7 +164,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.ReplaceGeneric("{0}", default(MyStruct));
 
-        builder.ToString().Should().Be("Hello");
+        builder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -175,7 +175,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.ReplaceGeneric("{0}", default(MyStruct), 0, 6);
 
-        builder.ToString().Should().Be("HelloHello{0}");
+        builder.ToString().ShouldBe("HelloHello{0}");
     }
 
     [Fact]
@@ -186,7 +186,7 @@ public class ValueStringBuilderReplaceTests
 
         builder.Replace("A", "C");
 
-        builder.ToString().Should().MatchRegex("[CB]{100}");
+        builder.ToString().ShouldMatch("[CB]{100}");
     }
 
     private struct MyStruct

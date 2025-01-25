@@ -31,7 +31,7 @@ internal ref struct IntegerSpanList
     {
         if (count >= buffer.Length)
         {
-            Grow();
+            EnsureCapacity();
         }
 
         buffer[count] = value;
@@ -39,7 +39,7 @@ internal ref struct IntegerSpanList
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Grow(int capacity = 0)
+    private void EnsureCapacity(int capacity = 0)
     {
         var currentSize = buffer.Length;
         var newSize = capacity > 0 ? capacity : currentSize * 2;
