@@ -64,6 +64,11 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append(scoped ReadOnlySpan<char> str)
     {
+        if (str.IsEmpty)
+        {
+            return;
+        }
+
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
         {
@@ -160,6 +165,11 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
+        if (length == 0)
+        {
+            return [];
+        }
+
         var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {

@@ -66,6 +66,11 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(index), "The given index can't be bigger than the string itself.");
         }
 
+        if (value.IsEmpty)
+        {
+            return;
+        }
+
         var newLength = bufferPosition + value.Length;
         if (newLength > buffer.Length)
         {
