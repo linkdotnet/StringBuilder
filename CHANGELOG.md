@@ -6,6 +6,17 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [2.3.0] - 2025-02-16
+
+### Added
+
+- Added `Equals(ReadOnlySpan<char>, StringComparison)` (by @Joy-less in #234)
+
+### Changed
+
+- Improved `Equals(ReadOnlySpan<char>)` (by @Joy-less in #234)
+- Added performance short-circuit when span is empty in `Append(ReadOnlySpan<char>)`, `AppendSpan(int)`, `Insert(int, ReadOnlySpan<char>)` in #233 (by @Joy-less)
+
 ## [2.2.0] - 2025-01-25
 
 ### Added
@@ -456,7 +467,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.2.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/linkdotnet/StringBuilder/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/linkdotnet/StringBuilder/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/linkdotnet/StringBuilder/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...2.0.0
