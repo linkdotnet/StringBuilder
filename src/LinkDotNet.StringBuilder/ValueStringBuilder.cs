@@ -243,7 +243,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     }
 
     /// <summary>
-    /// Returns a value indicating whether a specified substring occurs within this string.
+    /// Returns whether a specified substring occurs within this string.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <returns>True if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.</returns>
@@ -254,12 +254,21 @@ public ref partial struct ValueStringBuilder : IDisposable
     public readonly bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
 
     /// <summary>
-    /// Returns a value indicating whether the characters in this instance are equal to the characters in a specified read-only character span.
+    /// Returns whether the characters in this builder are equal to the characters in the given span.
     /// </summary>
     /// <param name="span">The character span to compare with the current instance.</param>
     /// <returns><see langword="true"/> if the characters are equal to this instance, otherwise <see langword="false"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly bool Equals(ReadOnlySpan<char> span) => span.SequenceEqual(AsSpan());
+    public readonly bool Equals(ReadOnlySpan<char> span) => span.Equals(AsSpan(), StringComparison.Ordinal);
+
+    /// <summary>
+    /// Returns whether the characters in this builder are equal to the characters in the given span according to the given comparison type.
+    /// </summary>
+    /// <param name="span">The character span to compare with the current instance.</param>
+    /// <param name="comparisonType">The way to compare the sequences of characters.</param>
+    /// <returns><see langword="true"/> if the characters are equal to this instance, otherwise <see langword="false"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly bool Equals(ReadOnlySpan<char> span, StringComparison comparisonType) => span.Equals(AsSpan(), comparisonType);
 
     /// <summary>
     /// Disposes the instance and returns the rented buffer to the array pool if needed.

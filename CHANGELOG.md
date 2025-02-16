@@ -6,8 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `Equals(ReadOnlySpan<char>, StringComparison)` (by @Joy-less in #234)
+
 ### Changed
 
+- Improved `Equals(ReadOnlySpan<char>)` (by @Joy-less in #234)
 - Added performance short-circuit when span is empty in `Append(ReadOnlySpan<char>)`, `AppendSpan(int)`, `Insert(int, ReadOnlySpan<char>)` in #233 (by @Joy-less)
 
 ## [2.2.0] - 2025-01-25
