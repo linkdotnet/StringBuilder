@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Optimized when the internal buffer should grow. Fixed by [@Aniobodo](https://github.com/Aniobodo).
+
 ## [2.3.0] - 2025-02-16
 
 ### Added
