@@ -39,7 +39,7 @@ But sometimes, low allocation is key. Therefore I created the `ValueStringBuilde
 If you want to know how the `ValueStringBuilder` works and why it uses allocations and is even faster, check out [this](https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896) blog post.
 The blog goes into a bit more in detail about how it works with a simplistic version of the `ValueStringBuilder`.
 
-## What it doesn't solve!
+## What doesn't it solve?
 The library is not meant as a general replacement for the `StringBuilder` built into .NET. You can head over to the documentation and read about the ["Known limitations"](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html).
 The library works best for a small to medium length strings (not hundreds of thousands of characters, even though it can be still faster and performs fewer allocations). At any time, you can convert the `ValueStringBuilder` to a "normal" `StringBuilder` and vice versa.
 
