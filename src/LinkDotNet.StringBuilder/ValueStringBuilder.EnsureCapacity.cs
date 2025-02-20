@@ -16,7 +16,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureCapacity(int newCapacity)
     {
-        if (Length >= newCapacity)
+        if (Capacity >= newCapacity)
         {
             return;
         }
