@@ -6,6 +6,22 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-02-21
+
+### Added
+
+- Added `ToString(int)` (by @Joy-less in #239)
+- Added `AsSpan(int)`, `AsSpan(int, int)`, `AsSpan(Range)` (by @Joy-less in #239)
+
+### Changed
+
+- Optimized and simplified `Replace` (by @Joy-less in #238)
+- Simplified `IndexOf` and `LastIndexOf` (by @Joy-less in #238)
+
+### Fixed
+
+- Fixed `IndexOf` and `LastIndexOf` allowing out-of-bounds index when the string to find is empty (by @Joy-less in #238)
+
 ## [2.3.1] - 2025-02-20
 
 ### Changed
@@ -473,7 +489,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/linkdotnet/StringBuilder/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/linkdotnet/StringBuilder/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/linkdotnet/StringBuilder/compare/2.1.0...2.2.0

@@ -295,7 +295,7 @@ public class ValueStringBuilderTests
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
-        var index = builder.IndexOf(string.Empty, 6);
+        var index = builder.IndexOf(string.Empty, 5);
 
         index.ShouldBe(0);
     }
@@ -316,7 +316,7 @@ public class ValueStringBuilderTests
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
-        var index = builder.LastIndexOf(string.Empty, 6);
+        var index = builder.LastIndexOf(string.Empty, 5);
 
         index.ShouldBe(0);
     }
