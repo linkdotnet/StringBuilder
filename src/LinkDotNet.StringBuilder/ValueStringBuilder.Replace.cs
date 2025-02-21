@@ -92,53 +92,45 @@ public ref partial struct ValueStringBuilder
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
 
-        var length = startIndex + count;
-        var slice = buffer[startIndex..length];
-
-        if (oldValue.SequenceEqual(newValue))
+        if (oldValue.IsEmpty || oldValue.Equals(newValue, StringComparison.Ordinal))
         {
             return;
         }
 
-        // We might want to check whether or not we want to introduce different
-        // string search algorithms for longer strings.
-        // I had checked initially with Boyer-Moore but it didn't make that much sense as we
-        // don't expect very long strings and then the performance is literally the same. So I went with the easier solution.
-        var hits = NaiveSearch.FindAll(slice, oldValue);
+        var index = startIndex;
+        var remainingChars = count;
 
-        if (hits.IsEmpty)
+        while (remainingChars > 0)
         {
-            return;
-        }
-
-        var delta = newValue.Length - oldValue.Length;
-
-        for (var i = 0; i < hits.Length; i++)
-        {
-            var index = startIndex + hits[i] + (delta * i);
-
-            // newValue is smaller than old value
-            // We can insert the slice and remove the overhead
-            if (delta < 0)
+            var foundSubIndex = buffer.Slice(index, remainingChars).IndexOf(oldValue, StringComparison.Ordinal);
+            if (foundSubIndex < 0)
             {
-                newValue.CopyTo(buffer[index..]);
-                Remove(index + newValue.Length, -delta);
+                break;
             }
 
-            // Same length -> We can just replace the memory slice
-            else if (delta == 0)
+            index += foundSubIndex;
+            remainingChars -= foundSubIndex;
+
+            if (newValue.Length == oldValue.Length)
             {
+                // Just replace the old slice
                 newValue.CopyTo(buffer[index..]);
             }
-
-            // newValue is larger than the old value
-            // First add until the old memory region
-            // and insert afterwards the rest
+            else if (newValue.Length < oldValue.Length)
+            {
+                // Replace the old slice and trim the unused slice
+                newValue.CopyTo(buffer[index..]);
+                Remove(index + newValue.Length, oldValue.Length - newValue.Length);
+            }
             else
             {
+                // Replace the old slice and append the extra slice
                 newValue[..oldValue.Length].CopyTo(buffer[index..]);
                 Insert(index + oldValue.Length, newValue[oldValue.Length..]);
             }
+
+            index += newValue.Length;
+            remainingChars -= oldValue.Length;
         }
     }
 
@@ -173,15 +165,14 @@ public ref partial struct ValueStringBuilder
     {
         if (newValue is ISpanFormattable spanFormattable)
         {
-            Span<char> tempBuffer = stackalloc char[24];
-            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
+            Span<char> tempBuffer = stackalloc char[128];
+            if (spanFormattable.TryFormat(tempBuffer, out int written, default, null))
             {
                 Replace(oldValue, tempBuffer[..written], startIndex, count);
+                return;
             }
         }
-        else
-        {
-            Replace(oldValue, (newValue?.ToString() ?? string.Empty).AsSpan(), startIndex, count);
-        }
+
+        Replace(oldValue, (newValue?.ToString() ?? string.Empty).AsSpan(), startIndex, count);
     }
 }

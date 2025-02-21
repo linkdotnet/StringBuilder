@@ -209,12 +209,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly int IndexOf(ReadOnlySpan<char> word, int startIndex)
     {
-        if (startIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
-        }
-
-        return word.IsEmpty ? 0 : NaiveSearch.FindFirst(buffer[startIndex..bufferPosition], word);
+        return buffer[startIndex..bufferPosition].IndexOf(word);
     }
 
     /// <summary>
@@ -234,12 +229,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
     {
-        if (startIndex < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(startIndex), "Start index can't be smaller than 0.");
-        }
-
-        return word.IsEmpty ? 0 : NaiveSearch.FindLast(buffer[startIndex..bufferPosition], word);
+        return buffer[startIndex..bufferPosition].LastIndexOf(word);
     }
 
     /// <summary>
