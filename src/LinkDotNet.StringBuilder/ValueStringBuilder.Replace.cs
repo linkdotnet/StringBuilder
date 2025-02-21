@@ -156,8 +156,8 @@ public ref partial struct ValueStringBuilder
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
     /// <remarks>
-    /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
-    /// Otherwise the ToString method is called.
+    /// If <paramref name="newValue"/> is <see cref="ISpanFormattable"/>, <c>TryFormat</c> is used.
+    /// Otherwise, <c>ToString</c> is used.
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
