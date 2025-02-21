@@ -173,6 +173,6 @@ public ref partial struct ValueStringBuilder
             }
         }
 
-        Replace(oldValue, (newValue?.ToString() ?? string.Empty).AsSpan(), startIndex, count);
+        Replace(oldValue, newValue?.ToString() ?? string.Empty, startIndex, count);
     }
 }
