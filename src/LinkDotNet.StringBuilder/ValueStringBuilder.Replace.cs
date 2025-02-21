@@ -145,7 +145,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue)
+    public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue)
         => ReplaceGeneric(oldValue, newValue, 0, Length);
 
     /// <summary>
@@ -161,7 +161,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     /// /// <typeparam name="T">Any type.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void ReplaceGeneric<T>(ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
+    public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
     {
         if (newValue is ISpanFormattable spanFormattable)
         {
