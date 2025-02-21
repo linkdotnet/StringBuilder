@@ -166,7 +166,7 @@ public ref partial struct ValueStringBuilder
         if (newValue is ISpanFormattable spanFormattable)
         {
             Span<char> tempBuffer = stackalloc char[128];
-            if (spanFormattable.TryFormat(tempBuffer, out int written, default, null))
+            if (spanFormattable.TryFormat(tempBuffer, out var written, default, null))
             {
                 Replace(oldValue, tempBuffer[..written], startIndex, count);
                 return;
