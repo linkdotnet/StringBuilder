@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `ToString(int)` (by @Joy-less in #239)
+- Added `AsSpan(int)`, `AsSpan(int, int)`, `AsSpan(Range)` (by @Joy-less in #239)
+
 ### Changed
 
 - Optimized and simplified `Replace` (by @Joy-less in #238)
