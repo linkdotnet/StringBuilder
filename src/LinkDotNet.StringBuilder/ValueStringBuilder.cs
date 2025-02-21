@@ -70,10 +70,10 @@ public ref partial struct ValueStringBuilder : IDisposable
     public readonly int Length => bufferPosition;
 
     /// <summary>
-    /// Gets the current maximum capacity before growing the array.
+    /// Gets the current maximum capacity before the span must be resized.
     /// </summary>
     /// <value>
-    /// The current maximum capacity before growing the array.
+    /// The current maximum capacity before the span must be resized.
     /// </value>
     public readonly int Capacity => buffer.Length;
 
@@ -100,32 +100,36 @@ public ref partial struct ValueStringBuilder : IDisposable
 #pragma warning restore CA2225
 
     /// <summary>
-    /// Creates a <see cref="string"/> instance from that builder.
+    /// Creates a <see cref="string"/> instance from the builder.
     /// </summary>
     /// <returns>The <see cref="string"/> instance.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly override string ToString() => new(buffer[..bufferPosition]);
+    public readonly override string ToString() => AsSpan().ToString();
 
     /// <summary>
-    /// Creates a <see cref="string"/> instance from that builder.
+    /// Creates a <see cref="string"/> instance from the builder.
+    /// </summary>
+    /// <param name="startIndex">The starting position of the substring in this instance.</param>
+    /// <returns>The <see cref="string"/> instance.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly string ToString(int startIndex) => AsSpan(startIndex).ToString();
+
+    /// <summary>
+    /// Creates a <see cref="string"/> instance from the builder.
     /// </summary>
     /// <param name="startIndex">The starting position of the substring in this instance.</param>
     /// <param name="length">The length of the substring.</param>
     /// <returns>The <see cref="string"/> instance.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly string ToString(int startIndex, int length) => new(buffer[startIndex..(startIndex + length)]);
+    public readonly string ToString(int startIndex, int length) => AsSpan(startIndex, length).ToString();
 
     /// <summary>
-    /// Creates a <see cref="string"/> instance from that builder in the given range.
+    /// Creates a <see cref="string"/> instance from the builder in the given range.
     /// </summary>
-    /// <param name="range">The range that will be retrieved.</param>
+    /// <param name="range">The range to be retrieved.</param>
     /// <returns>The <see cref="string"/> instance.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly string ToString(Range range)
-    {
-        var (offset, length) = range.GetOffsetAndLength(bufferPosition);
-        return new string(buffer.Slice(offset, length));
-    }
+    public readonly string ToString(Range range) => AsSpan(range).ToString();
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
@@ -133,6 +137,40 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly ReadOnlySpan<char> AsSpan() => buffer[..bufferPosition];
+
+    /// <summary>
+    /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
+    /// </summary>
+    /// <param name="startIndex">The starting position of the substring in this instance.</param>
+    /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly ReadOnlySpan<char> AsSpan(int startIndex) => buffer[startIndex..bufferPosition];
+
+    /// <summary>
+    /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
+    /// </summary>
+    /// <param name="startIndex">The starting position of the substring in this instance.</param>
+    /// <param name="length">The length of the substring.</param>
+    /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly ReadOnlySpan<char> AsSpan(int startIndex, int length)
+    {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(length, bufferPosition);
+
+        return buffer.Slice(startIndex, length);
+    }
+
+    /// <summary>
+    /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
+    /// </summary>
+    /// <param name="range">The range to be retrieved.</param>
+    /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public readonly ReadOnlySpan<char> AsSpan(Range range)
+    {
+        var (offset, length) = range.GetOffsetAndLength(bufferPosition);
+        return AsSpan(offset, length);
+    }
 
     /// <summary>
     /// Gets a pinnable reference to the represented string from this builder.
