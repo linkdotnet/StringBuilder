@@ -6,6 +6,15 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Optimized and simplified `Replace` (by @Joy-less in #238)
+- Simplified `IndexOf` and `LastIndexOf` (by @Joy-less in #238)
+
+### Fixed
+
+- Fixed `IndexOf` and `LastIndexOf` allowing out-of-bounds index when the string to find is empty (by @Joy-less in #238)
+
 ## [2.3.1] - 2025-02-20
 
 ### Changed
