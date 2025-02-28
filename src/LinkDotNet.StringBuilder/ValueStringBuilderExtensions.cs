@@ -29,7 +29,7 @@ public static class ValueStringBuilderExtensions
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        var valueStringBuilder = new ValueStringBuilder();
+        var valueStringBuilder = new ValueStringBuilder(builder.Length);
         foreach (var chunk in builder.GetChunks())
         {
             valueStringBuilder.Append(chunk.Span);

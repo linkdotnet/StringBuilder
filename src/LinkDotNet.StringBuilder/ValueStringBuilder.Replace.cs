@@ -26,13 +26,7 @@ public ref partial struct ValueStringBuilder
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
 
-        for (var i = startIndex; i < startIndex + count; i++)
-        {
-            if (buffer[i] == oldValue)
-            {
-                buffer[i] = newValue;
-            }
-        }
+        buffer.Slice(startIndex, count).Replace(oldValue, newValue);
     }
 
     /// <summary>
