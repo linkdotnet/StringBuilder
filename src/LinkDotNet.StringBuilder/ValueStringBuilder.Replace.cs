@@ -91,6 +91,12 @@ public ref partial struct ValueStringBuilder
             return;
         }
 
+        if (oldValue.Length == 1 && newValue.Length == 1)
+        {
+            Replace(oldValue[0], newValue[0], startIndex, count);
+            return;
+        }
+
         var index = startIndex;
         var remainingChars = count;
 
