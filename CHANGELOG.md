@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Optimized `Replace(char, char)` (by @Joy-less in #241)
+- Optimized `Replace(ReadOnlySpan<char>, ReadOnlySpan<char>)` when both spans are length 1 (by @Joy-less in #241)
+
 ## [2.4.0] - 2025-02-21
 
 ### Added
