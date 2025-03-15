@@ -1,12 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
     /// <summary>
-    /// Appends the string representation of the boolean to the builder.
+    /// Appends the string representation of the boolean.
     /// </summary>
     /// <param name="value">Bool value to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -19,7 +20,7 @@ public ref partial struct ValueStringBuilder
 
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         fixed (char* dest = &buffer[bufferPosition])
@@ -45,7 +46,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Appends the string representation of the character to the builder.
+    /// Appends the string representation of the value.
     /// </summary>
     /// <param name="value">Formattable span to add.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
@@ -57,16 +58,21 @@ public ref partial struct ValueStringBuilder
         where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize);
 
     /// <summary>
-    /// Appends a string to the string builder.
+    /// Appends a string.
     /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
+    /// <param name="str">String to be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append(scoped ReadOnlySpan<char> str)
     {
+        if (str.IsEmpty)
+        {
+            return;
+        }
+
         var newSize = str.Length + bufferPosition;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         ref var strRef = ref MemoryMarshal.GetReference(str);
@@ -80,7 +86,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Appends a character buffer to this builder.
+    /// Appends a character buffer.
     /// </summary>
     /// <param name="value">The pointer to the start of the buffer.</param>
     /// <param name="length">The number of characters in the buffer.</param>
@@ -101,7 +107,7 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Appends a single character to the string builder.
+    /// Appends a single character.
     /// </summary>
     /// <param name="value">Character to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -110,7 +116,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferPosition + 1;
         if (newSize > buffer.Length)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         buffer[bufferPosition] = value;
@@ -118,7 +124,21 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Adds the default new line separator.
+    /// Appends a single rune to the string builder.
+    /// </summary>
+    /// <param name="value">Rune to add.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(Rune value)
+    {
+        Span<char> valueChars = stackalloc char[2];
+        var valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
+
+        Append(valueCharsSlice);
+    }
+
+    /// <summary>
+    /// Appends <see cref="Environment.NewLine"/>.
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine()
@@ -127,27 +147,33 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Does the same as <see cref="Append(char)"/> but adds a newline at the end.
+    /// Calls <see cref="Append(ReadOnlySpan{char})"/> and appends <see cref="Environment.NewLine"/>.
     /// </summary>
-    /// <param name="str">String, which will be added to this builder.</param>
+    /// <param name="str">String to be added to this builder.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine(scoped ReadOnlySpan<char> str)
     {
-        Append(string.Concat(str, Environment.NewLine));
+        Append(str);
+        Append(Environment.NewLine);
     }
 
     /// <summary>
-    /// Increases the size of the string builder returning a span of the length appended.
+    /// Appends a span of the given length, which can be written to later.
     /// </summary>
-    /// <param name="length">Integer representing the length to be appended.</param>
+    /// <param name="length">Integer representing the number of characters to be appended.</param>
     /// <returns>A span with the characters appended.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
+        if (length == 0)
+        {
+            return [];
+        }
+
         var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
-            Grow(length);
+            EnsureCapacity(length);
         }
 
         bufferPosition = origPos + length;
@@ -161,7 +187,7 @@ public ref partial struct ValueStringBuilder
         var newSize = bufferSize + bufferPosition;
         if (newSize >= Capacity)
         {
-            Grow(newSize);
+            EnsureCapacity(newSize);
         }
 
         if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))

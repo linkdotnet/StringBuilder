@@ -29,7 +29,7 @@ public class ValueStringBuilderAppendJoinTests
 
         stringBuilder.AppendJoin(separator, values);
 
-        stringBuilder.ToString().Should().Be(expected);
+        stringBuilder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -40,7 +40,7 @@ public class ValueStringBuilderAppendJoinTests
 
         stringBuilder.AppendJoin(separator, values);
 
-        stringBuilder.ToString().Should().Be(expected);
+        stringBuilder.ToString().ShouldBe(expected);
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class ValueStringBuilderAppendJoinTests
 
         stringBuilder.AppendJoin(",", new object[] { 1, 1.05f });
 
-        stringBuilder.ToString().Should().Be("1,1.05");
+        stringBuilder.ToString().ShouldBe("1,1.05");
     }
 
     [Fact]
@@ -60,6 +60,6 @@ public class ValueStringBuilderAppendJoinTests
 
         stringBuilder.AppendJoin(',', new object[] { 1, 1.05f });
 
-        stringBuilder.ToString().Should().Be("1,1.05");
+        stringBuilder.ToString().ShouldBe("1,1.05");
     }
 }

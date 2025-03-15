@@ -12,7 +12,7 @@ public class ValueStringBuilderExtensionsTests
 
         var fromBuilder = valueStringBuilder.ToStringBuilder().ToString();
 
-        fromBuilder.Should().Be("Hello");
+        fromBuilder.ShouldBe("Hello");
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public class ValueStringBuilderExtensionsTests
 
         var toBuilder = stringBuilder.ToValueStringBuilder();
 
-        toBuilder.ToString().Should().Be("Hello");
+        toBuilder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -31,8 +31,8 @@ public class ValueStringBuilderExtensionsTests
     {
         System.Text.StringBuilder? sb = null;
 
-        Action act = () => sb.ToValueStringBuilder();
+        Action act = () => sb!.ToValueStringBuilder();
 
-        act.Should().Throw<ArgumentNullException>();
+        act.ShouldThrow<ArgumentNullException>();
     }
 }

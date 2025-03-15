@@ -6,13 +6,81 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
-This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable changes. Only old framework versions were removed to make further development easier.
+### Changed
+
+- Optimized `Replace(char, char)` (by @Joy-less in #241)
+- Optimized `Replace(ReadOnlySpan<char>, ReadOnlySpan<char>)` when both spans are length 1 (by @Joy-less in #241)
+
+## [2.4.0] - 2025-02-21
+
+### Added
+
+- Added `ToString(int)` (by @Joy-less in #239)
+- Added `AsSpan(int)`, `AsSpan(int, int)`, `AsSpan(Range)` (by @Joy-less in #239)
+
+### Changed
+
+- Optimized and simplified `Replace` (by @Joy-less in #238)
+- Simplified `IndexOf` and `LastIndexOf` (by @Joy-less in #238)
+
+### Fixed
+
+- Fixed `IndexOf` and `LastIndexOf` allowing out-of-bounds index when the string to find is empty (by @Joy-less in #238)
+
+## [2.3.1] - 2025-02-20
+
+### Changed
+
+- Optimized when the internal buffer should grow. Fixed by [@Aniobodo](https://github.com/Aniobodo).
+
+## [2.3.0] - 2025-02-16
+
+### Added
+
+- Added `Equals(ReadOnlySpan<char>, StringComparison)` (by @Joy-less in #234)
+
+### Changed
+
+- Improved `Equals(ReadOnlySpan<char>)` (by @Joy-less in #234)
+- Added performance short-circuit when span is empty in `Append(ReadOnlySpan<char>)`, `AppendSpan(int)`, `Insert(int, ReadOnlySpan<char>)` in #233 (by @Joy-less)
+
+## [2.2.0] - 2025-01-25
+
+### Added
+
+- Added `TrimPrefix(ReadOnlySpan<char>, StringComparison)` (by yours truly (@Joy-less) in #226)
+- Added `TrimSuffix(ReadOnlySpan<char>, StringComparison)` (also by yours truly (@Joy-less) in #226)
+- Added `Insert(int, char)` overload (by yours truly (@Joy-less) in #225)
+- Added `Insert(int, Rune)` overload (again by yours truly (@Joy-less) in #225)
+- Added `Replace(Rune, Rune)` overload (see yours truly (@Joy-less) in #225)
+- Improved `Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>, int, int)` fallback (achieved by yours truly (@Joy-less) in #225)
+
+## [2.1.0] - 2025-01-14
+
+### Added
+
+- Added `Replace(Rune, Rune)` overload
+- Added `Replace(Rune, Rune, int, int)` overload
+
+## [2.0.0] - 2025-01-12
+
+This is the `v2` release of the **ValueStringBuilder**. There aren't any noticeable breaking changes. Only old framework versions were removed to make further development easier. The API is the same (with new additions) as in `v1`.
+
+### Added
+
+- Added `Append(Rune)` overload
+- Added `AppendJoin(Rune, IEnumerable<string?>)` overload
+- Added `AppendJoin<T>(Rune, IEnumerable<T>)` overload
 
 ### Removed
+
 - Support for `net6.0` and `net7.0` was removed.
 
 ### Changed
-- Added `OverloadResolutionPriority` for `Span` overload for the ctor to keep the current behavior. Reported by [@nsentinel])(https://github.com/nsentinel) in [#210](https://github.com/linkdotnet/StringBuilder/issues/210).
+
+- Added `OverloadResolutionPriority` for `Span` overload for the ctor to keep the current behavior. Reported by [@nsentinel])(<https://github.com/nsentinel>) in [#210](https://github.com/linkdotnet/StringBuilder/issues/210).
+- Optimised `AppendLine(scoped ReadOnlySpan<char>)` by avoiding allocating a new string
+- Removed erroneous null check in `AppendJoin<T>(ReadOnlySpan<char>, IEnumerable<T>)`
 
 ## [1.22.0] - 2024-12-18
 
@@ -426,7 +494,13 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...2.4.0
+[2.3.1]: https://github.com/linkdotnet/StringBuilder/compare/2.3.0...2.3.1
+[2.3.0]: https://github.com/linkdotnet/StringBuilder/compare/2.2.0...2.3.0
+[2.2.0]: https://github.com/linkdotnet/StringBuilder/compare/2.1.0...2.2.0
+[2.1.0]: https://github.com/linkdotnet/StringBuilder/compare/2.0.0...2.1.0
+[2.0.0]: https://github.com/linkdotnet/StringBuilder/compare/1.22.0...2.0.0
 [1.22.0]: https://github.com/linkdotnet/StringBuilder/compare/1.21.1...1.22.0
 [1.21.1]: https://github.com/linkdotnet/StringBuilder/compare/1.21.0...1.21.1
 [1.21.0]: https://github.com/linkdotnet/StringBuilder/compare/1.20.0...1.21.0

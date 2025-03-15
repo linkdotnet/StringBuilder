@@ -32,8 +32,8 @@ public class ValueStringBuilderTests
 
         var result = stringBuilder.TryCopyTo(mySpan);
 
-        result.Should().BeTrue();
-        mySpan.ToString().Should().Be("Hello");
+        result.ShouldBeTrue();
+        mySpan.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ValueStringBuilderTests
 
         var output = stringBuilder.AsSpan().ToString();
 
-        output.Should().Be("Hello");
+        output.ShouldBe("Hello");
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class ValueStringBuilderTests
 
         var length = stringBuilder.Length;
 
-        length.Should().Be(5);
+        length.ShouldBe(5);
     }
 
     [Fact]
@@ -66,8 +66,8 @@ public class ValueStringBuilderTests
 
         stringBuilder.Clear();
 
-        stringBuilder.Length.Should().Be(0);
-        stringBuilder.ToString().Should().Be(string.Empty);
+        stringBuilder.Length.ShouldBe(0);
+        stringBuilder.ToString().ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public class ValueStringBuilderTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.ToString().Should().Be(string.Empty);
+        stringBuilder.ToString().ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -86,8 +86,8 @@ public class ValueStringBuilderTests
 
         stringBuilder.Remove(0, 6);
 
-        stringBuilder.Length.Should().Be(5);
-        stringBuilder.ToString().Should().Be("World");
+        stringBuilder.Length.ShouldBe(5);
+        stringBuilder.ToString().ShouldBe("World");
     }
 
     [Theory]
@@ -120,7 +120,7 @@ public class ValueStringBuilderTests
 
         stringBuilder.Remove(0, 0);
 
-        stringBuilder.ToString().Should().Be("Hello");
+        stringBuilder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -131,9 +131,9 @@ public class ValueStringBuilderTests
 
         fixed (char* c = stringBuilder)
         {
-            c[0].Should().Be('H');
-            c[1].Should().Be('e');
-            c[2].Should().Be('y');
+            c[0].ShouldBe('H');
+            c[1].ShouldBe('e');
+            c[2].ShouldBe('y');
         }
     }
 
@@ -145,7 +145,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("World");
 
-        index.Should().Be(6);
+        index.ShouldBe(6);
     }
 
     [Fact]
@@ -156,7 +156,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("l", 6);
 
-        index.Should().Be(3);
+        index.ShouldBe(3);
     }
 
     [Fact]
@@ -203,7 +203,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("Mountain");
 
-        index.Should().Be(-1);
+        index.ShouldBe(-1);
     }
 
     [Fact]
@@ -213,7 +213,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf(string.Empty);
 
-        index.Should().Be(0);
+        index.ShouldBe(0);
     }
 
     [Fact]
@@ -224,7 +224,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("Hello World but longer");
 
-        index.Should().Be(-1);
+        index.ShouldBe(-1);
     }
 
     [Fact]
@@ -235,7 +235,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("word");
 
-        index.Should().Be(-1);
+        index.ShouldBe(-1);
     }
 
     [Fact]
@@ -245,7 +245,7 @@ public class ValueStringBuilderTests
 
         builder.EnsureCapacity(128);
 
-        builder.Capacity.Should().Be(128);
+        builder.Capacity.ShouldBe(128);
     }
 
     [Fact]
@@ -256,7 +256,7 @@ public class ValueStringBuilderTests
 
         builder.EnsureCapacity(16);
 
-        builder.Length.Should().BeGreaterOrEqualTo(128);
+        builder.Length.ShouldBeGreaterThanOrEqualTo(128);
     }
 
     [Fact]
@@ -267,7 +267,7 @@ public class ValueStringBuilderTests
 
         var index = builder.LastIndexOf("Hello");
 
-        index.Should().Be(6);
+        index.ShouldBe(6);
     }
 
     [Fact]
@@ -278,7 +278,7 @@ public class ValueStringBuilderTests
 
         var index = builder.LastIndexOf("Hello", 6);
 
-        index.Should().Be(0);
+        index.ShouldBe(0);
     }
 
     [Fact]
@@ -286,7 +286,7 @@ public class ValueStringBuilderTests
     {
         using var builder = new ValueStringBuilder("Hello");
 
-        builder.LastIndexOf("o").Should().Be(4);
+        builder.LastIndexOf("o").ShouldBe(4);
     }
 
     [Fact]
@@ -295,9 +295,9 @@ public class ValueStringBuilderTests
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
-        var index = builder.IndexOf(string.Empty, 6);
+        var index = builder.IndexOf(string.Empty, 5);
 
-        index.Should().Be(0);
+        index.ShouldBe(0);
     }
 
     [Fact]
@@ -307,7 +307,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.LastIndexOf(string.Empty);
 
-        index.Should().Be(0);
+        index.ShouldBe(0);
     }
 
     [Fact]
@@ -316,9 +316,9 @@ public class ValueStringBuilderTests
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
-        var index = builder.LastIndexOf(string.Empty, 6);
+        var index = builder.LastIndexOf(string.Empty, 5);
 
-        index.Should().Be(0);
+        index.ShouldBe(0);
     }
 
     [Theory]
@@ -332,7 +332,7 @@ public class ValueStringBuilderTests
 
         var index = builder.Contains(word);
 
-        index.Should().Be(expected);
+        index.ShouldBe(expected);
     }
 
     [Fact]
@@ -343,7 +343,7 @@ public class ValueStringBuilderTests
 
         builder.Append("Hello");
 
-        builder.ToString().Should().Be("Hello");
+        builder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -361,7 +361,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Hello", " ", "World");
 
-        result.Should().Be("Hello World");
+        result.ShouldBe("Hello World");
     }
 
     [Fact]
@@ -369,7 +369,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Test", 1);
 
-        result.Should().Be("Test1");
+        result.ShouldBe("Test1");
     }
 
     [Fact]
@@ -377,7 +377,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2);
 
-        result.Should().Be("Test12");
+        result.ShouldBe("Test12");
     }
 
     [Fact]
@@ -385,7 +385,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2, 3);
 
-        result.Should().Be("Test123");
+        result.ShouldBe("Test123");
     }
 
     [Fact]
@@ -393,7 +393,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2, 3, 4);
 
-        result.Should().Be("Test1234");
+        result.ShouldBe("Test1234");
     }
 
     [Fact]
@@ -401,7 +401,7 @@ public class ValueStringBuilderTests
     {
         var result = new ValueStringBuilder("Hello World").ToString();
 
-        result.Should().Be("Hello World");
+        result.ShouldBe("Hello World");
     }
 
     [Fact]
@@ -409,7 +409,7 @@ public class ValueStringBuilderTests
     {
         var result = new ValueStringBuilder("Hello World").ToString(1, 3);
 
-        result.Should().Be("ell");
+        result.ShouldBe("ell");
     }
 
     [Fact]
@@ -417,7 +417,7 @@ public class ValueStringBuilderTests
     {
         using ValueStringBuilder sb = "Hello World";
 
-        sb.ToString().Should().Be("Hello World");
+        sb.ToString().ShouldBe("Hello World");
     }
 
     [Fact]
@@ -425,7 +425,7 @@ public class ValueStringBuilderTests
     {
         using ValueStringBuilder sb = "Hello World".AsSpan();
 
-        sb.ToString().Should().Be("Hello World");
+        sb.ToString().ShouldBe("Hello World");
     }
 
     [Fact]
@@ -433,7 +433,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat("Hello", " ", "World");
 
-        result.Should().Be("Hello World");
+        result.ShouldBe("Hello World");
     }
 
     [Fact]
@@ -441,7 +441,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat(Array.Empty<string>());
 
-        result.Should().Be(string.Empty);
+        result.ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -449,7 +449,7 @@ public class ValueStringBuilderTests
     {
         var result = ValueStringBuilder.Concat(true, 1);
 
-        result.Should().Be("True1");
+        result.ShouldBe("True1");
     }
 
     [Theory]
@@ -461,7 +461,7 @@ public class ValueStringBuilderTests
 
         var isEqual = builder.Equals(input);
 
-        isEqual.Should().Be(expected);
+        isEqual.ShouldBe(expected);
     }
 
     [Fact]
@@ -469,7 +469,7 @@ public class ValueStringBuilderTests
     {
         string[]? array = null;
 
-        ValueStringBuilder.Concat(array!).Should().Be(string.Empty);
+        ValueStringBuilder.Concat(array!).ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -479,7 +479,7 @@ public class ValueStringBuilderTests
 
         builder.Reverse();
 
-        builder.ToString().Should().Be("olleH");
+        builder.ToString().ShouldBe("olleH");
     }
 
     [Fact]
@@ -487,7 +487,7 @@ public class ValueStringBuilderTests
     {
         using var builder = new ValueStringBuilder("Hello World");
 
-        builder.ToString(1..4).Should().Be("ell");
+        builder.ToString(1..4).ShouldBe("ell");
     }
 
     [Fact]
@@ -501,7 +501,7 @@ public class ValueStringBuilderTests
             output += c;
         }
 
-        output.Should().Be("Hello World");
+        output.ShouldBe("Hello World");
     }
 
     [Fact]
@@ -511,7 +511,7 @@ public class ValueStringBuilderTests
 
         builder.Dispose();
 
-        builder.ToString().Should().Be(string.Empty);
+        builder.ToString().ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -519,6 +519,6 @@ public class ValueStringBuilderTests
     {
         using var builder = new ValueStringBuilder(128);
 
-        builder.Capacity.Should().Be(128);
+        builder.Capacity.ShouldBe(128);
     }
 }

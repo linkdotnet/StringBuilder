@@ -22,10 +22,17 @@ The `StringBuilder` shipped with the .NET Framework itself is a all-purpose stri
 The following table gives you a small comparison between the `StringBuilder` which is part of .NET and the `ValueStringBuilder`:
 
 ```
-|              Method |       Mean |    Error |    StdDev |     Median | Ratio | RatioSD |   Gen 0 |  Gen 1 | Allocated |
-|-------------------- |-----------:|---------:|----------:|-----------:|------:|--------:|--------:|-------:|----------:|
-| DotNetStringBuilder |   401.7 ns | 29.15 ns |  84.56 ns |   373.4 ns |  1.00 |    0.00 |  0.3576 |      - |   1,496 B |
-|  ValueStringBuilder |   252.8 ns |  9.05 ns |  26.27 ns |   249.0 ns |  0.65 |    0.13 |  0.1583 |      - |     664 B |
+BenchmarkDotNet v0.14.0, macOS Sequoia 15.3.1 (24D70) [Darwin 24.3.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 9.0.200
+  [Host]     : .NET 9.0.2 (9.0.225.6610), Arm64 RyuJIT AdvSIMD
+  DefaultJob : .NET 9.0.2 (9.0.225.6610), Arm64 RyuJIT AdvSIMD
+
+
+| Method              | Mean      | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|-------------------- |----------:|---------:|---------:|------:|-------:|----------:|------------:|
+| DotNetStringBuilder | 126.74 ns | 0.714 ns | 0.667 ns |  1.00 | 0.1779 |    1488 B |        1.00 |
+| ValueStringBuilder  |  95.69 ns | 0.118 ns | 0.110 ns |  0.76 | 0.0669 |     560 B |        0.38 |
 ```
 
 For more comparison check the documentation.
@@ -34,10 +41,10 @@ Another benchmark shows that this `ValueStringBuilder` uses less memory when it 
 
 
 ```
-|              Method |     Mean |    Error |   StdDev |   Gen 0 |  Gen 1 | Allocated |
-|-------------------- |---------:|---------:|---------:|--------:|-------:|----------:|
-| DotNetStringBuilder | 16.31 us | 0.414 us | 1.208 us |  1.5259 |      - |      6 KB |
-|  ValueStringBuilder | 14.61 us | 0.292 us | 0.480 us |  0.3357 |      - |      1 KB |
+| Method                         | Mean     | Error   | StdDev  | Gen0   | Gen1   | Allocated |
+|------------------------------- |---------:|--------:|--------:|-------:|-------:|----------:|
+| ValueStringBuilderAppendFormat | 821.7 ns | 1.29 ns | 1.14 ns | 0.4330 |      - |   3.54 KB |
+| StringBuilderAppendFormat      | 741.5 ns | 5.58 ns | 5.22 ns | 0.9909 | 0.0057 |    8.1 KB |
 
 ```
 

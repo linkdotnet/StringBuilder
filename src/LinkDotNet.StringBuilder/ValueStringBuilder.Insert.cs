@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder;
 
@@ -13,6 +14,29 @@ public ref partial struct ValueStringBuilder
     public void Insert(int index, bool value) => Insert(index, value.ToString());
 
     /// <summary>
+    /// Insert the string representation of the character to the builder at the given index.
+    /// </summary>
+    /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
+    /// <param name="value">Character to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Insert(int index, char value) => Insert(index, [value]);
+
+    /// <summary>
+    /// Insert the string representation of the rune to the builder at the given index.
+    /// </summary>
+    /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
+    /// <param name="value">Rune to insert into this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Insert(int index, Rune value)
+    {
+        Span<char> valueChars = stackalloc char[2];
+        var valueCharsWritten = value.EncodeToUtf16(valueChars);
+        ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
+
+        Insert(index, valueCharsSlice);
+    }
+
+    /// <summary>
     /// Insert the string representation of the char to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
@@ -21,7 +45,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert<T>(int index, T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
+    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize);
 
     /// <summary>
@@ -42,10 +66,15 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(index), "The given index can't be bigger than the string itself.");
         }
 
+        if (value.IsEmpty)
+        {
+            return;
+        }
+
         var newLength = bufferPosition + value.Length;
         if (newLength > buffer.Length)
         {
-            Grow(newLength);
+            EnsureCapacity(newLength);
         }
 
         bufferPosition = newLength;
@@ -60,7 +89,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void InsertSpanFormattable<T>(int index, T value, ReadOnlySpan<char> format, int bufferSize)
+    private void InsertSpanFormattable<T>(int index, T value, scoped ReadOnlySpan<char> format, int bufferSize)
         where T : ISpanFormattable
     {
         if (index < 0)
@@ -79,7 +108,7 @@ public ref partial struct ValueStringBuilder
             var newLength = bufferPosition + written;
             if (newLength > buffer.Length)
             {
-                Grow(newLength);
+                EnsureCapacity(newLength);
             }
 
             bufferPosition = newLength;

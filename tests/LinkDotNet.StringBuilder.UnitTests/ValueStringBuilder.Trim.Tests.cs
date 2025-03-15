@@ -1,3 +1,5 @@
+using System;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTrimTests
@@ -14,7 +16,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimStart();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -29,7 +31,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimEnd();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Theory]
@@ -44,7 +46,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.Trim();
 
-        valueStringBuilder.ToString().Should().Be(expected);
+        valueStringBuilder.ToString().ShouldBe(expected);
     }
 
     [Fact]
@@ -55,7 +57,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimStart('H');
 
-        valueStringBuilder.ToString().Should().Be("eeHH");
+        valueStringBuilder.ToString().ShouldBe("eeHH");
     }
 
     [Fact]
@@ -66,7 +68,7 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.TrimEnd('H');
 
-        valueStringBuilder.ToString().Should().Be("HHee");
+        valueStringBuilder.ToString().ShouldBe("HHee");
     }
 
     [Fact]
@@ -77,6 +79,28 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.Trim('H');
 
-        valueStringBuilder.ToString().Should().Be("ee");
+        valueStringBuilder.ToString().ShouldBe("ee");
+    }
+
+    [Fact]
+    public void GivenString_WhenTrimPrefix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimPrefix("hell", StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("o world");
+    }
+
+    [Fact]
+    public void GivenString_WhenTrimSuffix_ThenShouldRemoveSpan()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("Hello world");
+
+        valueStringBuilder.TrimSuffix("RlD", StringComparison.InvariantCultureIgnoreCase);
+
+        valueStringBuilder.ToString().ShouldBe("Hello wo");
     }
 }

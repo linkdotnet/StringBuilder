@@ -11,7 +11,7 @@ public class ValueStringBuilderAppendTests
 
         stringBuilder.Append("That is a string");
 
-        stringBuilder.ToString().Should().Be("That is a string");
+        stringBuilder.ToString().ShouldBe("That is a string");
     }
 
     [Fact]
@@ -24,7 +24,7 @@ public class ValueStringBuilderAppendTests
         stringBuilder.Append("a");
         stringBuilder.Append("test");
 
-        stringBuilder.ToString().Should().Be("Thisisatest");
+        stringBuilder.ToString().ShouldBe("Thisisatest");
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class ValueStringBuilderAppendTests
 
         stringBuilder.Append(new string('c', 99));
 
-        stringBuilder.ToString().Should().MatchRegex("[c]{99}");
+        stringBuilder.ToString().ShouldMatch("[c]{99}");
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ValueStringBuilderAppendTests
 
         stringBuilder.AppendLine("Hello");
 
-        stringBuilder.ToString().Should().Contain("Hello").And.Contain(Environment.NewLine);
+        stringBuilder.ToString().ShouldContain("Hello" + Environment.NewLine);
     }
 
     [Fact]
@@ -54,9 +54,9 @@ public class ValueStringBuilderAppendTests
 
         var returned = stringBuilder.AppendSpan(2);
 
-        stringBuilder.Length.Should().Be(2);
+        stringBuilder.Length.ShouldBe(2);
 
-        stringBuilder.ToString().Should().Be(returned.ToString());
+        stringBuilder.ToString().ShouldBe(returned.ToString());
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class ValueStringBuilderAppendTests
 
         stringBuilder.AppendLine();
 
-        stringBuilder.ToString().Should().Be(Environment.NewLine);
+        stringBuilder.ToString().ShouldBe(Environment.NewLine);
     }
 
     [Fact]
@@ -76,7 +76,7 @@ public class ValueStringBuilderAppendTests
 
         stringBuilder.Append("Hello");
 
-        stringBuilder[2].Should().Be('l');
+        stringBuilder[2].ShouldBe('l');
     }
 
     [Fact]
@@ -86,7 +86,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Append(2.2f);
 
-        builder.ToString().Should().Be("2.2");
+        builder.ToString().ShouldBe("2.2");
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public class ValueStringBuilderAppendTests
             builder.Append('c');
         }
 
-        builder.ToString().Should().MatchRegex("[c]{64}");
+        builder.ToString().ShouldMatch("[c]{64}");
     }
 
     [Fact]
@@ -111,7 +111,7 @@ public class ValueStringBuilderAppendTests
         builder.Append(1d / 3d);
         builder.Append(1d / 3d);
 
-        builder.ToString().Should().Be("0.33333333333333330.33333333333333330.3333333333333333");
+        builder.ToString().ShouldBe("0.33333333333333330.33333333333333330.3333333333333333");
     }
 
     [Fact]
@@ -121,7 +121,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Append(Guid.Empty);
 
-        builder.ToString().Should().Be("00000000-0000-0000-0000-000000000000");
+        builder.ToString().ShouldBe("00000000-0000-0000-0000-000000000000");
     }
 
     [Fact]
@@ -151,7 +151,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Append(value);
 
-        builder.ToString().Should().Be(expected);
+        builder.ToString().ShouldBe(expected);
     }
 
     [Fact]
@@ -165,7 +165,7 @@ public class ValueStringBuilderAppendTests
             builder.Append(pText, 5);
         }
 
-        builder.ToString().Should().Be("Hello");
+        builder.ToString().ShouldBe("Hello");
     }
 
     [Fact]
@@ -178,7 +178,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Append(slice);
 
-        builder.ToString().Should().Be("ccccc");
+        builder.ToString().ShouldBe("ccccc");
     }
 
     [Fact]
@@ -189,7 +189,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Trim();
 
-        builder.ToString().Should().Be("Hello World");
+        builder.ToString().ShouldBe("Hello World");
     }
 
     [Fact]
@@ -206,7 +206,7 @@ public class ValueStringBuilderAppendTests
 
         builder.Append(false);
 
-        builder.ToString().Should().NotBeNull();
+        builder.ToString().ShouldNotBeNull();
     }
 
     [Fact]
@@ -215,7 +215,7 @@ public class ValueStringBuilderAppendTests
         using var builder = new ValueStringBuilder();
         builder.Append('c');
 
-        builder.ToString().Should().Be("c");
+        builder.ToString().ShouldBe("c");
     }
 
     [Fact]
@@ -229,6 +229,6 @@ public class ValueStringBuilderAppendTests
         builder.Append(new string('e', 4096));
         builder.Append(new string('f', 8192));
 
-        builder.ToString().Should().MatchRegex("[a]{256}[b]{512}[c]{1024}[d]{2048}[e]{4096}[f]{8192}");
+        builder.ToString().ShouldMatch("[a]{256}[b]{512}[c]{1024}[d]{2048}[e]{4096}[f]{8192}");
     }
 }
