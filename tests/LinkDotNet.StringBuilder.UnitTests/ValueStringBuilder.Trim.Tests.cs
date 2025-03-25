@@ -1,5 +1,3 @@
-using System;
-
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTrimTests

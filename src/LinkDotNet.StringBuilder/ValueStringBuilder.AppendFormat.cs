@@ -362,9 +362,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int GetValidArgumentIndex(ReadOnlySpan<char> placeholder, int allowedRange)
     {
-#pragma warning disable MA0011
-        if (!int.TryParse(placeholder[1..^1], out var argIndex))
-#pragma warning restore MA0011
+        if (!int.TryParse(placeholder[1..^1], null, out var argIndex))
         {
             throw new FormatException("Invalid argument index in format string: " + placeholder.ToString());
         }
