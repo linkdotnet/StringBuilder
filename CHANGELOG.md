@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [2.4.1] - 2025-03-25
+
 ### Changed
 
 - Optimized `Replace(char, char)` (by @Joy-less in #241)
@@ -494,7 +496,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.4.1...HEAD
+[2.4.1]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/linkdotnet/StringBuilder/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/linkdotnet/StringBuilder/compare/2.2.0...2.3.0
