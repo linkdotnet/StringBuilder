@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
@@ -7,6 +9,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="totalWidth">Total width of the string after padding.</param>
     /// <param name="paddingChar">Character to pad the string with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PadLeft(int totalWidth, char paddingChar)
     {
         if (totalWidth <= bufferPosition)
@@ -27,6 +30,7 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="totalWidth">Total width of the string after padding.</param>
     /// <param name="paddingChar">Character to pad the string with.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PadRight(int totalWidth, char paddingChar)
     {
         if (totalWidth <= bufferPosition)

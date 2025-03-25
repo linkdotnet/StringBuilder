@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LinkDotNet.StringBuilder.UnitTests;
+﻿namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTests
 {
