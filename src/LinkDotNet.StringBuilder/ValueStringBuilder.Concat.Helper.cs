@@ -20,6 +20,7 @@ public ref partial struct ValueStringBuilder
 
         using var sb = new ValueStringBuilder(stackalloc char[128]);
         sb.AppendJoin(string.Empty, values);
+
         return sb.ToString();
     }
 

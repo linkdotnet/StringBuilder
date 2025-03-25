@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace LinkDotNet.StringBuilder;
 
 /// <summary>
@@ -12,9 +14,10 @@ public static class ValueStringBuilderExtensions
     /// <returns>A new <see cref="System.Text.StringBuilder"/> instance with the string represented
     /// by this <paramref name="builder"/>.
     /// </returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static System.Text.StringBuilder ToStringBuilder(this ValueStringBuilder builder)
     {
-        var stringBuilder = new System.Text.StringBuilder();
+        var stringBuilder = new System.Text.StringBuilder(builder.Length);
         stringBuilder.Append(builder.AsSpan());
         return stringBuilder;
     }
@@ -25,11 +28,12 @@ public static class ValueStringBuilderExtensions
     /// <param name="builder">The builder from which the new instance is derived.</param>
     /// <returns>A new <see cref="ValueStringBuilder"/> instance with the string represented by this builder.</returns>
     /// <exception cref="ArgumentNullException">Throws if <paramref name="builder"/> is null.</exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ValueStringBuilder ToValueStringBuilder(this System.Text.StringBuilder builder)
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        var valueStringBuilder = new ValueStringBuilder();
+        var valueStringBuilder = new ValueStringBuilder(builder.Length);
         foreach (var chunk in builder.GetChunks())
         {
             valueStringBuilder.Append(chunk.Span);

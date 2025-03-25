@@ -67,7 +67,11 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <value>
     /// The current length of the represented string.
     /// </value>
-    public readonly int Length => bufferPosition;
+    public readonly int Length
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => bufferPosition;
+    }
 
     /// <summary>
     /// Gets the current maximum capacity before the span must be resized.
@@ -75,20 +79,29 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <value>
     /// The current maximum capacity before the span must be resized.
     /// </value>
-    public readonly int Capacity => buffer.Length;
+    public readonly int Capacity
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => buffer.Length;
+    }
 
     /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
     /// <param name="index">Character position to be retrieved.</param>
-    public readonly ref char this[int index] => ref buffer[index];
+    public readonly ref char this[int index]
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => ref buffer[index];
+    }
 
     /// <summary>
     /// Defines the implicit conversion of a <see cref="string"/> to <see cref="ValueStringBuilder"/>.
     /// </summary>
     /// <param name="fromString">The string as initial buffer.</param>
 #pragma warning disable CA2225
-    public static implicit operator ValueStringBuilder(string fromString) => new(fromString.AsSpan());
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator ValueStringBuilder(string fromString) => new(fromString);
 #pragma warning restore CA2225
 
     /// <summary>
@@ -96,6 +109,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// </summary>
     /// <param name="fromString">The string as initial buffer.</param>
 #pragma warning disable CA2225
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ValueStringBuilder(ReadOnlySpan<char> fromString) => new(fromString);
 #pragma warning restore CA2225
 
