@@ -20,7 +20,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="separator">String used as separator between the entries.</param>
     /// <param name="values">Enumerable of strings to be concatenated.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendJoin(ReadOnlySpan<char> separator, ReadOnlySpan<string?> values)
+    public void AppendJoin(ReadOnlySpan<char> separator, scoped ReadOnlySpan<string?> values)
         => AppendJoinInternalString(separator, values);
 
     /// <summary>
@@ -29,7 +29,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="separator">Character used as separator between the entries.</param>
     /// <param name="values">Enumerable of strings to be concatenated.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendJoin(char separator, ReadOnlySpan<string?> values)
+    public void AppendJoin(char separator, scoped ReadOnlySpan<string?> values)
         => AppendJoinInternalChar(separator, values);
 
     /// <summary>
@@ -57,7 +57,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="values">Enumerable to be concatenated.</param>
     /// <typeparam name="T">Type of the given enumerable.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendJoin<T>(ReadOnlySpan<char> separator, IEnumerable<T> values)
+    public void AppendJoin<T>(scoped ReadOnlySpan<char> separator, IEnumerable<T> values)
         => AppendJoinInternalString(separator, values);
 
     /// <summary>
@@ -67,7 +67,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="values">Enumerable to be concatenated.</param>
     /// <typeparam name="T">Type of the given enumerable.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendJoin<T>(ReadOnlySpan<char> separator, ReadOnlySpan<T> values)
+    public void AppendJoin<T>(scoped ReadOnlySpan<char> separator, ReadOnlySpan<T> values)
         => AppendJoinInternalString(separator, values);
 
     /// <summary>
@@ -87,7 +87,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="values">Enumerable to be concatenated.</param>
     /// <typeparam name="T">Type of the given enumerable.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void AppendJoin<T>(char separator, ReadOnlySpan<T> values)
+    public void AppendJoin<T>(char separator, scoped ReadOnlySpan<T> values)
         => AppendJoinInternalChar(separator, values);
 
     /// <summary>
@@ -101,7 +101,7 @@ public ref partial struct ValueStringBuilder
         => AppendJoinInternalRune(separator, values);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendJoinInternalString<T>(ReadOnlySpan<char> separator, IEnumerable<T> values)
+    private void AppendJoinInternalString<T>(scoped ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
 
@@ -124,7 +124,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendJoinInternalString<T>(ReadOnlySpan<char> separator, ReadOnlySpan<T> values)
+    private void AppendJoinInternalString<T>(scoped ReadOnlySpan<char> separator, scoped ReadOnlySpan<T> values)
     {
         if (values.Length == 0)
         {
@@ -164,7 +164,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendJoinInternalChar<T>(char separator, ReadOnlySpan<T> values)
+    private void AppendJoinInternalChar<T>(char separator, scoped ReadOnlySpan<T> values)
     {
         if (values.Length == 0)
         {

@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -54,7 +54,7 @@ public ref partial struct ValueStringBuilder
     /// requires more space than the default (36 characters), adjust the value.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
+    public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize);
 
     /// <summary>
@@ -181,7 +181,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendSpanFormattable<T>(T value, ReadOnlySpan<char> format = default, int bufferSize = 36)
+    private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
         where T : ISpanFormattable
     {
         var newSize = bufferSize + bufferPosition;

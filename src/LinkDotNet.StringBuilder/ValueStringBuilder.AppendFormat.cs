@@ -17,7 +17,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T>(
-        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
+        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] scoped ReadOnlySpan<char> format,
         T arg)
     {
         var formatIndex = 0;
@@ -73,7 +73,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2>(
-        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
+        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] scoped ReadOnlySpan<char> format,
         T1 arg1,
         T2 arg2)
     {
@@ -141,7 +141,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3>(
-        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
+        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] scoped ReadOnlySpan<char> format,
         T1 arg1,
         T2 arg2,
         T3 arg3)
@@ -215,7 +215,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3, T4>(
-        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
+        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] scoped ReadOnlySpan<char> format,
         T1 arg1,
         T2 arg2,
         T3 arg3,
@@ -295,7 +295,7 @@ public ref partial struct ValueStringBuilder
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendFormat<T1, T2, T3, T4, T5>(
-        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] ReadOnlySpan<char> format,
+        [StringSyntax(StringSyntaxAttribute.CompositeFormat)] scoped ReadOnlySpan<char> format,
         T1 arg1,
         T2 arg2,
         T3 arg3,
@@ -360,7 +360,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int GetValidArgumentIndex(ReadOnlySpan<char> placeholder, int allowedRange)
+    private static int GetValidArgumentIndex(scoped ReadOnlySpan<char> placeholder, int allowedRange)
     {
         if (!int.TryParse(placeholder[1..^1], null, out var argIndex))
         {
