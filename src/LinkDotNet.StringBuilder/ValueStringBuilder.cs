@@ -1,4 +1,4 @@
-﻿using System.Buffers;
+using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -83,6 +83,18 @@ public ref partial struct ValueStringBuilder : IDisposable
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => buffer.Length;
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the builder's length is 0.
+    /// </summary>
+    /// <value>
+    /// <see langword="true"/> if the builder is empty; otherwise, <see langword="false"/>.
+    /// </value>
+    public readonly bool IsEmpty
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => Length == 0;
     }
 
     /// <summary>
