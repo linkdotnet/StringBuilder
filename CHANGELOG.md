@@ -10,6 +10,7 @@ This is the `v3` major release. The API is almost the same as in `v2` - there is
 
 ### Added
 - .NET 10.0 support
+- `IndexOf`, `LastIndexOf`, and `Contains` methods now support `StringComparison` 
 
 ### Changed
 - `ValueStringBuilder.Concat` uses `params ReadOnlySpan<T>` to reduce boxing and improve performance.
