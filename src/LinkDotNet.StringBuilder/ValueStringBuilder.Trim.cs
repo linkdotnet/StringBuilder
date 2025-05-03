@@ -139,7 +139,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="value">The sequence of characters to remove.</param>
     /// <param name="comparisonType">The way to compare the sequences of characters.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void TrimPrefix(ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
+    public void TrimPrefix(scoped ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
     {
         if (AsSpan().StartsWith(value, comparisonType))
         {
@@ -153,7 +153,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="value">The sequence of characters to remove.</param>
     /// <param name="comparisonType">The way to compare the sequences of characters.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void TrimSuffix(ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
+    public void TrimSuffix(scoped ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
     {
         if (AsSpan().EndsWith(value, comparisonType))
         {
