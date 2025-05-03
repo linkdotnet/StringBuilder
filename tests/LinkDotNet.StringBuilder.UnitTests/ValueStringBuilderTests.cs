@@ -519,4 +519,80 @@ public class ValueStringBuilderTests
 
         builder.Capacity.ShouldBe(128);
     }
+
+    [Fact]
+    public void IndexOf_WithOrdinalComparison_ReturnsMinus1ForCaseInsensitiveMatch()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        var index = builder.IndexOf("world", StringComparison.Ordinal);
+
+        index.ShouldBe(-1);
+    }
+
+    [Theory]
+    [InlineData(StringComparison.OrdinalIgnoreCase)]
+    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+    public void IndexOf_WithCaseInsensitiveComparison_FindsMatchRegardlessOfCase(StringComparison comparison)
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        var index = builder.IndexOf("world", comparison);
+
+        index.ShouldBe(6);
+    }
+
+    [Fact]
+    public void LastIndexOf_WithOrdinalComparison_ReturnsMinus1ForCaseInsensitiveMatch()
+    {
+        using var builder = new ValueStringBuilder("Hello World hello world");
+
+        var index = builder.LastIndexOf("WORLD", StringComparison.InvariantCulture);
+
+        index.ShouldBe(-1);
+    }
+
+    [Theory]
+    [InlineData(StringComparison.OrdinalIgnoreCase)]
+    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+    public void LastIndexOf_WithCaseInsensitiveComparison_FindsMatchRegardlessOfCase(StringComparison comparison)
+    {
+        using var builder = new ValueStringBuilder("Hello World hello world");
+
+        var index = builder.LastIndexOf("WORLD", comparison);
+
+        index.ShouldBe(18);
+    }
+
+    [Fact]
+    public void LastIndexOf_WithStartIndexAndOrdinalComparison_ReturnsMinus1ForCaseInsensitiveMatch()
+    {
+        using var builder = new ValueStringBuilder("Hello World hello world");
+
+        var index = builder.LastIndexOf("WORLD", 15, StringComparison.Ordinal);
+
+        index.ShouldBe(-1);
+    }
+
+    [Fact]
+    public void Contains_WithOrdinalComparison_ReturnsFalseForCaseInsensitiveMatch()
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        var contains = builder.Contains("WORLD", StringComparison.Ordinal);
+
+        contains.ShouldBe(false);
+    }
+
+    [Theory]
+    [InlineData(StringComparison.OrdinalIgnoreCase)]
+    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+    public void Contains_WithCaseInsensitiveComparison_FindsMatchRegardlessOfCase(StringComparison comparison)
+    {
+        using var builder = new ValueStringBuilder("Hello World");
+
+        var contains = builder.Contains("WORLD", comparison);
+
+        contains.ShouldBe(true);
+    }
 }
