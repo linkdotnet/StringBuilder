@@ -39,6 +39,7 @@ jobs:
         dotnet-version: | 
           8.0.x
           9.0.x
+          10.0.x
 
     - name: Update CHANGELOG file
       uses: thomaseizinger/keep-a-changelog-new-release@3.1.0
