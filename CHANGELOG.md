@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+This is the `v3` major release. The API is almost the same as in `v2` - there is only a slight change in the `Concat` static helper method to reflect a less-boxed API.
+
+### Changed
+- `ValueStringBuilder.Concat` uses `params ReadOnlySpan<T>` to reduce boxing and improve performance.
+
 ## [2.4.1] - 2025-03-25
 
 ### Changed

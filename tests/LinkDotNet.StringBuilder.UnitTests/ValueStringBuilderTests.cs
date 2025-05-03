@@ -437,7 +437,7 @@ public class ValueStringBuilderTests
     [Fact]
     public void ShouldReturnEmptyStringIfEmptyArray()
     {
-        var result = ValueStringBuilder.Concat(Array.Empty<string>());
+        var result = ValueStringBuilder.Concat<string>(Array.Empty<string>());
 
         result.ShouldBe(string.Empty);
     }
@@ -467,7 +467,7 @@ public class ValueStringBuilderTests
     {
         string[]? array = null;
 
-        ValueStringBuilder.Concat(array!).ShouldBe(string.Empty);
+        ValueStringBuilder.Concat<string>(array!).ShouldBe(string.Empty);
     }
 
     [Fact]

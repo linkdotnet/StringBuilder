@@ -17,6 +17,24 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Concatenates and appends all values with the given separator between each entry at the end of the string.
     /// </summary>
+    /// <param name="separator">String used as separator between the entries.</param>
+    /// <param name="values">Enumerable of strings to be concatenated.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendJoin(ReadOnlySpan<char> separator, ReadOnlySpan<string?> values)
+        => AppendJoinInternalString(separator, values);
+
+    /// <summary>
+    /// Concatenates and appends all values with the given separator between each entry at the end of the string.
+    /// </summary>
+    /// <param name="separator">Character used as separator between the entries.</param>
+    /// <param name="values">Enumerable of strings to be concatenated.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendJoin(char separator, ReadOnlySpan<string?> values)
+        => AppendJoinInternalChar(separator, values);
+
+    /// <summary>
+    /// Concatenates and appends all values with the given separator between each entry at the end of the string.
+    /// </summary>
     /// <param name="separator">Character used as separator between the entries.</param>
     /// <param name="values">Enumerable of strings to be concatenated.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -45,11 +63,31 @@ public ref partial struct ValueStringBuilder
     /// <summary>
     /// Concatenates and appends all values with the given separator between each entry at the end of the string.
     /// </summary>
+    /// <param name="separator">String used as separator between the entries.</param>
+    /// <param name="values">Enumerable to be concatenated.</param>
+    /// <typeparam name="T">Type of the given enumerable.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendJoin<T>(ReadOnlySpan<char> separator, ReadOnlySpan<T> values)
+        => AppendJoinInternalString(separator, values);
+
+    /// <summary>
+    /// Concatenates and appends all values with the given separator between each entry at the end of the string.
+    /// </summary>
     /// <param name="separator">Character used as separator between the entries.</param>
     /// <param name="values">Enumerable to be concatenated.</param>
     /// <typeparam name="T">Type of the given enumerable.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendJoin<T>(char separator, IEnumerable<T> values)
+        => AppendJoinInternalChar(separator, values);
+
+    /// <summary>
+    /// Concatenates and appends all values with the given separator between each entry at the end of the string.
+    /// </summary>
+    /// <param name="separator">Character used as separator between the entries.</param>
+    /// <param name="values">Enumerable to be concatenated.</param>
+    /// <typeparam name="T">Type of the given enumerable.</typeparam>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendJoin<T>(char separator, ReadOnlySpan<T> values)
         => AppendJoinInternalChar(separator, values);
 
     /// <summary>
@@ -86,6 +124,23 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void AppendJoinInternalString<T>(ReadOnlySpan<char> separator, ReadOnlySpan<T> values)
+    {
+        if (values.Length == 0)
+        {
+            return;
+        }
+
+        AppendInternal(values[0]);
+
+        for (var i = 1; i < values.Length; i++)
+        {
+            Append(separator);
+            AppendInternal(values[i]);
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalChar<T>(char separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -105,6 +160,23 @@ public ref partial struct ValueStringBuilder
             AppendInternal(separator);
             current = enumerator.Current;
             AppendInternal(current);
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void AppendJoinInternalChar<T>(char separator, ReadOnlySpan<T> values)
+    {
+        if (values.Length == 0)
+        {
+            return;
+        }
+
+        AppendInternal(values[0]);
+
+        for (var i = 1; i < values.Length; i++)
+        {
+            Append(separator);
+            AppendInternal(values[i]);
         }
     }
 
