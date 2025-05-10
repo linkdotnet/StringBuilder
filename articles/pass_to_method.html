@@ -71,36 +71,23 @@
             <article class="content wrap" id="_content" data-uid="pass_to_method">
 <h1 id="passing-the-valuestringbuilder-to-a-method">Passing the <code>ValueStringBuilder</code> to a method</h1>
 
-<p>As the <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> is <code>ref struct</code> you should be careful when passing the instance around. You should pass the reference and not the instance.</p>
+<p>As <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> is a <code>ref struct</code>, you should be careful when passing the instance around. You should pass by-reference and not by-value.</p>
 <pre><code class="lang-csharp">public void MyFunction()
 {
-    var stringBuilder = new ValueStringBuilder();
+    using var stringBuilder = new ValueStringBuilder();
     stringBuilder.Append(&quot;Hello &quot;);
     AppendMore(ref stringBuilder);
 }
 
-private void AppendMore(ref ValueStringBuilder builder)
+private void AppendMore(ref ValueStringBuilder stringBuilder)
 {
-    builder.Append(&quot;World&quot;);
+    stringBuilder.Append(&quot;World&quot;);
 }
 </code></pre>
 <p>This will print: <code>Hello World</code></p>
 <blockquote>
-<p>⚠️ The following code snippet will show how it <em>does not</em> work. If the instance is passed not via reference but via value then first allocations will happen and second the end result is not what one would expect.</p>
+<p>⚠️ If the <code>ref</code> keywords are omitted, the builder is passed by-value and this will print: <code>Hello </code>.
 </blockquote>
-<pre><code class="lang-csharp">public void MyFunction()
-{
-    var stringBuilder = new ValueStringBuilder();
-    stringBuilder.Append(&quot;Hello &quot;);
-    AppendMore(stringBuilder);
-}
-
-private void AppendMore(ValueStringBuilder builder)
-{
-    builder.Append(&quot;World&quot;);
-}
-</code></pre>
-<p>This will print: <code>Hello </code>.</p>
 </article>
           </div>
           

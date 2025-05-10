@@ -71,18 +71,18 @@
             <article class="content wrap" id="_content" data-uid="known_limitations">
 <h1 id="known-limitations">Known Limitations</h1>
 
-<p>The base of the <code>ValueStringBuilder</code> is a <code>ref struct</code>. With that, there are certain limitations, which might make it not a good fit for your needs.</p>
+<p><code>ValueStringBuilder</code> is a <code>ref struct</code>. With that comes certain limitations which might make it not a good fit for your needs.</p>
 <ul>
-<li><code>ref struct</code>s can only live on the <strong>stack</strong> and therefore can not be a field for a <strong>class</strong> or a non <strong>ref struct</strong>.</li>
-<li>Therefore they can't be boxed to <code>ValueType</code> or <code>Object</code>.</li>
-<li>Can't be captured by a lambda expression (aka closure).</li>
+<li><code>ref struct</code>s can only live on the <strong>stack</strong> and therefore cannot be assigned to a field (except for in another <code>ref struct</code>s).</li>
+<li>Can't be boxed as <code>object</code> or <code>ValueType</code>.</li>
+<li>Can't be captured by a closure (lambda expression or anonymous function).</li>
 <li>Can't be used in <code>async</code> methods.</li>
-<li>Can't be used in methods that use the <code>yield</code> keyword</li>
+<li>Can't be used in methods containing <code>yield</code>.</li>
 </ul>
-<p>If not off this applies to your use case, you are good to go. Using <code>ref struct</code> is a trade for performance and fewer allocations in contrast to its use cases.</p>
-<p><code>ValueStringBuilder</code> offers the possibility to &quot;convert&quot; it into a &quot;regular&quot; <code>System.Text.StringBuilder</code>. Check out the following extension method via the <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html">ValueStringBuilderExtensions</a>.</p>
+<p>If none of these affect your use case, you're good to go. Using <code>ref struct</code> trades away flexibility in exchange for performance.</p>
+<p><code>ValueStringBuilder</code> can be converted to a <code>System.Text.StringBuilder</code> using an extension method in <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html">ValueStringBuilderExtensions</a>.</p>
 <h2 id="fluent-notation">Fluent notation</h2>
-<p>The normal <code>StringBuilder</code> offers a fluent way of appending new strings as follows:</p>
+<p>The built-in <code>StringBuilder</code> offers a fluent way of appending strings:</p>
 <pre><code class="lang-csharp">var stringBuilder = new StringBuilder();
 var greeting = stringBuilder
     .AppendLine(&quot;Hello&quot;)
@@ -90,16 +90,16 @@ var greeting = stringBuilder
     .Append(&quot;Not a new line afterwards&quot;)
     .ToString();
 </code></pre>
-<p>This does not work with the <code>ValueStringBuilder</code>. The simple reason: <code>struct</code>s can't return <code>ref this</code>. If we don't return the reference then new allocations are introduced and can also lead to potential bugs/issues. Therefore it is a conscious design decision not to allow fluent notation.</p>
+<p>This does not work with <code>ValueStringBuilder</code>. The reason: <code>struct</code>s can't return <code>ref this</code>. If we return by-value then the builder is copied and the original will not be updated. Therefore it's a conscious design decision not to allow fluent notation.</p>
 <h2 id="idisposable">IDisposable</h2>
-<p>The <code>ValueStringBuilder</code> does not directly implement <code>IDisposable</code> as <code>ref struct</code>s are not allowed to do so (as they might get boxed in the process, which violates the rule of <code>ref struct</code>s). Still, the <code>using</code> statement can be used with the <code>ValueStringBuilder</code>. It is used to return rented memory from an array pool if any is taken.</p>
+<p><code>ValueStringBuilder</code> implements <code>IDisposable</code> (even though it cannot be boxed). The reason is to return any rented arrays to the array pool. As such, the <code>using</code> keyword should be used with <code>ValueStringBuilder</code>.</p>
 <pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
 </code></pre>
-<p>There are scenarios, where you can elide the <code>using</code> keyword. Exactly then when you provide the buffer in the first place and you are <strong>sure</strong> that no internal growing has to be done. This should only be done if you can guarantee that.</p>
-<pre><code class="lang-csharp">// Reserve 128 bytes on the stack and don't use the using statement
-var stringBuilder = new ValueStringBuilder(stackalloc char[128]);
-
-stringBuilder.Append(&quot;Hello World&quot;); // Uses 11 bytes
+<p>The only scenario where you can avoid disposing the <code>ValueStringBuilder</code> is when you initialize it with your own buffer and you are <strong>sure</strong> that the capacity will not increase. It is recommended to dispose it anyway to make sure.</p>
+<pre><code class="lang-csharp">// Reserve 128 bytes on the stack and omit the using keyword
+using var stringBuilder = new ValueStringBuilder(stackalloc char[128]);
+// Append 11 bytes
+stringBuilder.Append(&quot;Hello World&quot;);
 return stringBuilder.ToString();
 </code></pre>
 </article>
