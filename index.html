@@ -67,30 +67,29 @@
 <a href="https://www.nuget.org/packages/LinkDotNet.StringBuilder/"><img src="https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder" alt="Nuget"></a>
 <a href="https://github.com/linkdotnet/StringBuilder/releases"><img src="https://img.shields.io/github/v/tag/linkdotnet/StringBuilder?include_prereleases&amp;logo=github&amp;style=flat-square" alt="GitHub tag"></a></p>
 <h1 id="valuestringbuilder-a-fast-and-low-allocation-stringbuilder-for-net">ValueStringBuilder: A fast and low allocation StringBuilder for .NET</h1>
-<p><strong>ValueStringBuilder</strong> aims to be as fast as possible with a minimal amount of allocation memory. This documentation will showcase to you how to use the <code>ValueStringBuilder</code> as well as what are some limitations coming with it. If you have questions or feature requests just head over to the <a href="https://github.com/linkdotnet/StringBuilder">GitHub</a> repository and file an issue.</p>
-<p>The library makes heavy use of <code>Span&lt;T&gt;</code>, <code>stackalloc</code> and <code>ArrayPool</code>s to achieve low allocations and fast performance.</p>
+<p><code>ValueStringBuilder</code> is a performant, low-allocation alternative to .NET's <code>StringBuilder</code>. This documentation will show you how to use the <code>ValueStringBuilder</code> as well as its limitations. If you have questions or feature requests just head over to the <a href="https://github.com/linkdotnet/StringBuilder">GitHub</a> repository and file an issue.</p>
+<p>The library makes heavy use of <code>Span&lt;T&gt;</code>, <code>stackalloc</code> and <code>ArrayPool&lt;T&gt;</code> to achieve low allocations and fast performance.</p>
 <h2 id="download">Download</h2>
-<p>The package is hosted on <a href="(https://www.nuget.org/packages/LinkDotNet.StringBuilder/)">nuget.org</a>, so easily add the package reference:</p>
+<p>The package is hosted on <a href="(https://www.nuget.org/packages/LinkDotNet.StringBuilder/)">nuget.org</a>, so simply reference the package:</p>
 <blockquote>
 <p>PM&gt; Install-Package LinkDotNet.StringBuilder</p>
 </blockquote>
-<p>Afterwards, you can simply use it. It tries to mimic the API of the <code>StringBuilder</code> to a certain extent so for simpler cases you can exchange those two.</p>
 <h2 id="example-usage">Example usage</h2>
-<p>The API is leaning towards the normal <code>StringBuilder</code> which is part of the .net framework itself. The main key difference is, that the <code>ValueStringBuilder</code> does <strong>not</strong> use the fluent notation of its &quot;big brother&quot;.</p>
-<pre><code class="lang-csharp">var stringBuilder = new ValueStringBuilder();
+<p><code>ValueStringBuilder</code> mostly mimics .NET's <code>StringBuilder</code> meaning it's similar to use. The main difference is, that <code>ValueStringBuilder</code> does <strong>not</strong> support the fluent notation of its big brother.</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(); // Don't forget the 'using' keyword!
 stringBuilder.AppendLine(&quot;Hello World&quot;);
 stringBuilder.Append(&quot;2+2=&quot;);
 stringBuilder.Append(4);
 
-Console.Write(stringBuilder.ToString());
+Console.WriteLine(stringBuilder.ToString());
 </code></pre>
-<p>This will print</p>
+<p>This will print:</p>
 <pre><code>Hello World
 2+2=4
 </code></pre>
-<p>There are also convenient helper methods like this:</p>
-<pre><code class="lang-csharp">_ = ValueStringBuilder.Concat(&quot;Hello&quot;, &quot; &quot;, &quot;World&quot;); // &quot;Hello World&quot;
-_ = ValueStringBuilder.Concat(&quot;Hello&quot;, 1, 2, 3, &quot;!&quot;); // &quot;Hello123!&quot;
+<p>There are also convenient static methods:</p>
+<pre><code class="lang-csharp">Console.WriteLine(ValueStringBuilder.Concat(&quot;Hello&quot;, &quot; &quot;, &quot;World&quot;)); // &quot;Hello World&quot;
+Console.WriteLine(ValueStringBuilder.Concat(&quot;Hello&quot;, 1, 2, 3, &quot;!&quot;)); // &quot;Hello123!&quot;
 </code></pre>
 </article>
           </div>

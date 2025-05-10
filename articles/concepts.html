@@ -71,10 +71,11 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="how-does-it-work">How does it work?</h1>
 
-<p>Before I answer the question, I would like to raise another question: How does it work differently and more effectively than the current <code>StringBuilder</code>?</p>
-<p>The basic idea is to use a <code>ref struct</code> which enforces that the <code>ValueStringBuilder</code> will live on the <strong>stack</strong> instead of the <strong>heap</strong>.
-Furthermore, we try to use advanced features like <code>Span&lt;T&gt;</code> and <code>ArrayPool</code> to reduce allocations even further. Because of the way C# / .NET is optimized for those types the <code>ValueStringBuilder</code> gains a lot of speed with low allocations.
-With this approach, some limitations arise. Head over to the <a class="xref" href="known_limitations.html">known limitation</a> to know more.</p>
+<p>Before I answer how it works, I would like to answer how it's more performant than the built-in <code>StringBuilder</code>?</p>
+<p>The basic idea is to use a <code>ref struct</code>. This ensures the <code>ValueStringBuilder</code> will live on the <strong>stack</strong> instead of the <strong>heap</strong>. This allows the use of stack-allocated <code>Span&lt;T&gt;</code> using <code>stackalloc</code>.
+Otherwise, it makes use of <code>ArrayPool</code> to reuse arrays.
+This allows <code>ValueStringBuilder</code> to gain performance with low allocations.
+With this approach, some limitations arise. Head over to the <a class="xref" href="known_limitations.html">Known Limitations</a> to know more.</p>
 <h2 id="resources">Resources:</h2>
 <p><a href="https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896">Here</a> is my detailed blog post about some of the implementation details.</p>
 </article>

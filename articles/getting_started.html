@@ -72,7 +72,7 @@
 <h1 id="getting-started">Getting started</h1>
 
 <p>The following section will show you how to use the <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html"><code>ValueStringBuilder</code></a>.</p>
-<p>For .NET 6 use the <a href="https://www.nuget.org/packages/LinkDotNet.StringBuilder/">nuget-package</a>:</p>
+<p>For .NET 8.0+ use the <a href="https://www.nuget.org/packages/LinkDotNet.StringBuilder/">nuget-package</a>:</p>
 <blockquote>
 <p>PM&gt; Install-Package LinkDotNet.StringBuilder</p>
 </blockquote>
@@ -85,7 +85,7 @@ public static class Program
 {
     public static void Main()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendLine(&quot;Hello World!&quot;);
         stringBuilder.Append(0.3f);
@@ -94,10 +94,9 @@ public static class Program
     }
 } 
 </code></pre>
-<p>Prints:
-<a href="https://dotnetfiddle.net/wM5r0q">Here</a> is an interactive example where you can fiddle around with the library. The example is hosted on <a href="https://dotnetfiddle.net/wM5r0q">https://dotnetfiddle.net/</a> and already has the <code>ValueStringBuilder</code> nuget package included in the latest version.</p>
+<p><a href="https://dotnetfiddle.net/wM5r0q">Here</a> is an interactive example where you can fiddle around with the library. The example is hosted on <a href="https://dotnetfiddle.net/EzdvAb">https://dotnetfiddle.net</a> and already has the latest <code>ValueStringBuilder</code> NuGet package installed.</p>
 <h2 id="helper-methods">Helper methods</h2>
-<p>There are also very easy-to-use helper methods, which doesn't need a <code>ValueStringBuilder</code> instance:</p>
+<p>There are also some static helper methods:</p>
 <pre><code class="lang-csharp">using LinkDotNet.StringBuilder;
 
 string helloWorld = ValueStringBuilder.Concat(&quot;Hello World!&quot;, 101);

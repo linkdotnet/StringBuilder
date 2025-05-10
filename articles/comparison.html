@@ -71,19 +71,18 @@
             <article class="content wrap" id="_content" data-uid="comparison">
 <h1 id="comparison">Comparison</h1>
 
-<p>The following document will show some key differences between the <code>ValueStringBuilder</code> and similar working string builder like the one from .NET itself.</p>
+<p>The following document shows some key differences between the <code>ValueStringBuilder</code> and the .NET <code>StringBuilder</code>.</p>
 <h2 id="systemtextstringbuilder">System.Text.StringBuilder</h2>
-<p>The <code>StringBuilder</code> shipped with the .NET Framework itself is a all-purpose string builder which allows a versatile use. <code>ValueStringBuilder</code> tries to mimic the API as much as possible so developers can adopt the <code>ValueStringBuilder</code> easily where it makes sense. In the following part <code>StringBuilder</code> refers to <code>System.Text.StringBuilder</code>.</p>
+<p><code>System.Text.StringBuilder</code> was created as an all-purpose string builder allowing versatile use. <code>ValueStringBuilder</code> mimics the API as much as possible so that developers can adopt the <code>ValueStringBuilder</code> easily. From now <code>System.Text.StringBuilder</code> will be referred to as <code>StringBuilder</code>.</p>
 <p><strong>Key differences</strong>:</p>
 <ul>
-<li><code>StringBuilder</code> is a class and does not have the restrictions coming with a <code>ref struct</code>. To know more head over to the <a class="xref" href="known_limitations.html">known limitations</a> section.</li>
-<li><code>StringBuilder</code> works not on <code>Span&lt;T&gt;</code> but more on <code>string</code>s or <code>char</code>s. Sometimes even with pointers</li>
-<li><code>StringBuilder</code> uses chunks to represent the string, which the larger the string gets, the better it can perform. <code>ValueStringBuilder</code> only has one internal <code>Span</code> as representation which can cause fragmentation on very big strings.</li>
-<li><code>StringBuilder</code> has a richer API as the <code>ValueStringBuilder</code>. In the future they should have the same amount of API's as the <code>StringBuilder</code> is the &quot;big brother&quot; of this package.</li>
-<li><code>ValueStringBuilder</code> has different API calls like <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__"><code>IndexOf</code></a> or <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__"><code>LastIndexOf</code></a>.</li>
+<li><code>StringBuilder</code> is a class and does not have the restrictions of a <code>ref struct</code>. To know more head over to the <a class="xref" href="known_limitations.html">Known Limitations</a>.</li>
+<li><code>StringBuilder</code> uses <code>char[]</code> arrays and pointers rather than <code>Span&lt;T&gt;</code>.
+<li><code>StringBuilder</code> uses chunks to represent the string, which allows large strings to be fragmented. <code>ValueStringBuilder</code> uses a single <code>Span</code> which prevents fragmentation.</li>
+<li><code>ValueStringBuilder</code> has additional methods like <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_ReadOnlySpan_System_Char__"><code>IndexOf</code></a> and <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_ReadOnlySpan_System_Char__"><code>LastIndexOf</code></a>.</li>
 </ul>
 <h2 id="benchmark">Benchmark</h2>
-<p>The following table gives you a small comparison between the <code>StringBuilder</code> which is part of .NET and the <code>ValueStringBuilder</code>:</p>
+<p>The following table gives you a small comparison between the built-in <code>StringBuilder</code> and <code>ValueStringBuilder</code>:</p>
 <pre><code>BenchmarkDotNet v0.14.0, macOS Sequoia 15.3.1 (24D70) [Darwin 24.3.0]
 Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 .NET SDK 9.0.200
@@ -96,15 +95,14 @@ Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 | DotNetStringBuilder | 126.74 ns | 0.714 ns | 0.667 ns |  1.00 | 0.1779 |    1488 B |        1.00 |
 | ValueStringBuilder  |  95.69 ns | 0.118 ns | 0.110 ns |  0.76 | 0.0669 |     560 B |        0.38 |
 </code></pre>
-<p>For more comparison check the documentation.</p>
-<p>Another benchmark shows that this <code>ValueStringBuilder</code> uses less memory when it comes to appending <code>ValueTypes</code> such as <code>int</code>, <code>double</code>, ...</p>
+<p>Another benchmark shows that <code>ValueStringBuilder</code> uses less memory when appending <code>ValueType</code>s such as <code>int</code> and <code>double</code> due to using <code>TryFormat</code> rather than <code>ToString</code> where possible.</p>
 <pre><code>| Method                         | Mean     | Error   | StdDev  | Gen0   | Gen1   | Allocated |
 |------------------------------- |---------:|--------:|--------:|-------:|-------:|----------:|
 | ValueStringBuilderAppendFormat | 821.7 ns | 1.29 ns | 1.14 ns | 0.4330 |      - |   3.54 KB |
 | StringBuilderAppendFormat      | 741.5 ns | 5.58 ns | 5.22 ns | 0.9909 | 0.0057 |    8.1 KB |
 
 </code></pre>
-<p>Checkout the <a href="https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks">Benchmark</a> for more detailed comparison and setup.</p>
+<p>Head over to the <a href="https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks">Benchmarks</a> to see the code.</p>
 </article>
           </div>
           
