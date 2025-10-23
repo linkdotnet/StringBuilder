@@ -9,7 +9,7 @@
 The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance.
 
 ## Download
-The package is hosted on [nuget.org]((https://www.nuget.org/packages/LinkDotNet.StringBuilder/)), so easily add the package reference:
+The package is hosted on [nuget.org](https://www.nuget.org/packages/LinkDotNet.StringBuilder/), so easily add the package reference:
 > PM> Install-Package LinkDotNet.StringBuilder
 
 Afterwards, you can simply use it. It tries to mimic the API of the `StringBuilder` to a certain extent so for simpler cases you can exchange those two.
