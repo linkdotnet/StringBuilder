@@ -1,4 +1,4 @@
-﻿namespace LinkDotNet.StringBuilder.UnitTests;
+namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderTests
 {
@@ -363,7 +363,15 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ConcatDifferentTypesWithTwoArguments()
+    public void ShouldConcatOneObjectTogether()
+    {
+        var result = ValueStringBuilder.Concat(1);
+
+        result.ShouldBe("1");
+    }
+
+    [Fact]
+    public void ShouldConcatTwoObjectsTogether()
     {
         var result = ValueStringBuilder.Concat("Test", 1);
 
@@ -371,7 +379,7 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ConcatDifferentTypesWithThreeArguments()
+    public void ShouldConcatThreeObjectsTogether()
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2);
 
@@ -379,7 +387,7 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ConcatDifferentTypesWithFourArguments()
+    public void ShouldConcatFourObjectsTogether()
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2, 3);
 
@@ -387,7 +395,7 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ConcatDifferentTypesWithFiveArguments()
+    public void ShouldConcatFiveObjectsTogether()
     {
         var result = ValueStringBuilder.Concat("Test", 1, 2, 3, 4);
 
