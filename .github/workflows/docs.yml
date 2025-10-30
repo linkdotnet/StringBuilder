@@ -12,10 +12,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v5.0.0
+    - uses: actions/checkout@v5
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: | 
           8.0.x
@@ -23,7 +23,7 @@ jobs:
           10.0.x
 
     - name: Setup DocFX
-      uses: crazy-max/ghaction-chocolatey@v3.4.0
+      uses: crazy-max/ghaction-chocolatey@v3
       with:
         args: install docfx
 
@@ -34,7 +34,7 @@ jobs:
 
     - name: Publish
       if: github.event_name == 'push'
-      uses: peaceiris/actions-gh-pages@v4.0.0
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/site/_site
