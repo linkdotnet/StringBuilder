@@ -6,6 +6,19 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-10-30
+
+This is the `v3` major release. The API is almost the same as in `v2` - there is only a slight change in the `Concat` static helper method to reflect a less-boxed API.
+
+### Added
+
+- .NET 10.0 support
+- `IndexOf`, `LastIndexOf`, and `Contains` methods now support `StringComparison` 
+
+### Changed
+
+- `ValueStringBuilder.Concat` uses `params ReadOnlySpan<T>` to reduce boxing and improve performance.
+
 ## [2.4.1] - 2025-03-25
 
 ### Changed
@@ -496,7 +509,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/2.4.1...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/linkdotnet/StringBuilder/compare/2.4.1...3.0.0
 [2.4.1]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/linkdotnet/StringBuilder/compare/2.3.0...2.3.1

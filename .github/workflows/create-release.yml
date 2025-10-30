@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@v5.0.0
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: true
@@ -34,11 +34,12 @@ jobs:
         path: ./CHANGELOG.md
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v4.3.0
+      uses: actions/setup-dotnet@v5.0.0
       with:
         dotnet-version: | 
           8.0.x
           9.0.x
+          10.0.x
 
     - name: Update CHANGELOG file
       uses: thomaseizinger/keep-a-changelog-new-release@3.1.0

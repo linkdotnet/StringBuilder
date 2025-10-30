@@ -11,9 +11,9 @@ public ref partial struct ValueStringBuilder
     /// <typeparam name="T">Any given type, which can be translated to <see cref="string"/>.</typeparam>
     /// <returns>Concatenated string or an empty string if <paramref name="values"/> is empty.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string Concat<T>(params T[] values)
+    public static string Concat<T>(params scoped ReadOnlySpan<T> values)
     {
-        if (values is null || values.Length == 0)
+        if (values.Length == 0)
         {
             return string.Empty;
         }

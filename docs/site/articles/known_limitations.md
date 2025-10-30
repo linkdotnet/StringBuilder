@@ -27,13 +27,6 @@ var greeting = stringBuilder
 
 This does not work with the `ValueStringBuilder`. The simple reason: `struct`s can't return `ref this`. If we don't return the reference then new allocations are introduced and can also lead to potential bugs/issues. Therefore it is a conscious design decision not to allow fluent notation.
 
-## IDisposable
-The `ValueStringBuilder` does not directly implement `IDisposable` as `ref struct`s are not allowed to do so (as they might get boxed in the process, which violates the rule of `ref struct`s). Still, the `using` statement can be used with the `ValueStringBuilder`. It is used to return rented memory from an array pool if any is taken.
-
-```csharp
-using var stringBuilder = new ValueStringBuilder();
-```
-
 There are scenarios, where you can elide the `using` keyword. Exactly then when you provide the buffer in the first place and you are **sure** that no internal growing has to be done. This should only be done if you can guarantee that.
 
 ```csharp

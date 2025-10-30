@@ -1,4 +1,4 @@
-﻿using System.Buffers;
+using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -46,7 +46,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// </summary>
     /// <param name="initialText">The initial text used to initialize this instance.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public ValueStringBuilder(ReadOnlySpan<char> initialText)
+    public ValueStringBuilder(scoped ReadOnlySpan<char> initialText)
     {
         Append(initialText);
     }
@@ -86,6 +86,18 @@ public ref partial struct ValueStringBuilder : IDisposable
     }
 
     /// <summary>
+    /// Gets a value indicating whether the builder's length is 0.
+    /// </summary>
+    /// <value>
+    /// <see langword="true"/> if the builder is empty; otherwise, <see langword="false"/>.
+    /// </value>
+    public readonly bool IsEmpty
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => Length == 0;
+    }
+
+    /// <summary>
     /// Returns the character at the given index or throws an <see cref="IndexOutOfRangeException"/> if the index is bigger than the string.
     /// </summary>
     /// <param name="index">Character position to be retrieved.</param>
@@ -110,7 +122,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <param name="fromString">The string as initial buffer.</param>
 #pragma warning disable CA2225
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator ValueStringBuilder(ReadOnlySpan<char> fromString) => new(fromString);
+    public static implicit operator ValueStringBuilder(scoped ReadOnlySpan<char> fromString) => new(fromString);
 #pragma warning restore CA2225
 
     /// <summary>
@@ -248,52 +260,57 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// Returns the index within this string of the first occurrence of the specified substring.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly int IndexOf(ReadOnlySpan<char> word) => IndexOf(word, 0);
+    public readonly int IndexOf(scoped ReadOnlySpan<char> word, StringComparison comparisonType = StringComparison.Ordinal) => IndexOf(word, 0, comparisonType);
 
     /// <summary>
     /// Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly int IndexOf(ReadOnlySpan<char> word, int startIndex)
+    public readonly int IndexOf(scoped ReadOnlySpan<char> word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        return buffer[startIndex..bufferPosition].IndexOf(word);
+        return buffer[startIndex..bufferPosition].IndexOf(word, comparisonType);
     }
 
     /// <summary>
     /// Returns the index within this string of the last occurrence of the specified substring.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly int LastIndexOf(ReadOnlySpan<char> word) => LastIndexOf(word, 0);
+    public readonly int LastIndexOf(scoped ReadOnlySpan<char> word, StringComparison comparisonType = StringComparison.Ordinal) => LastIndexOf(word, 0, comparisonType);
 
     /// <summary>
     /// Returns the index within this string of the last occurrence of the specified substring, starting at the specified index.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly int LastIndexOf(ReadOnlySpan<char> word, int startIndex)
+    public readonly int LastIndexOf(scoped ReadOnlySpan<char> word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        return buffer[startIndex..bufferPosition].LastIndexOf(word);
+        return buffer[startIndex..bufferPosition].LastIndexOf(word, comparisonType);
     }
 
     /// <summary>
     /// Returns whether a specified substring occurs within this string.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
+    /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>True if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.</returns>
     /// <remarks>
     /// This method performs an ordinal (case-sensitive and culture-insensitive) comparison.
     /// </remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly bool Contains(ReadOnlySpan<char> word) => IndexOf(word) != -1;
+    public readonly bool Contains(scoped ReadOnlySpan<char> word, StringComparison comparisonType = StringComparison.Ordinal) => IndexOf(word, comparisonType) != -1;
 
     /// <summary>
     /// Returns whether the characters in this builder are equal to the characters in the given span.
@@ -301,7 +318,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <param name="span">The character span to compare with the current instance.</param>
     /// <returns><see langword="true"/> if the characters are equal to this instance, otherwise <see langword="false"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly bool Equals(ReadOnlySpan<char> span) => span.Equals(AsSpan(), StringComparison.Ordinal);
+    public readonly bool Equals(scoped ReadOnlySpan<char> span) => span.Equals(AsSpan(), StringComparison.Ordinal);
 
     /// <summary>
     /// Returns whether the characters in this builder are equal to the characters in the given span according to the given comparison type.
@@ -310,7 +327,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <param name="comparisonType">The way to compare the sequences of characters.</param>
     /// <returns><see langword="true"/> if the characters are equal to this instance, otherwise <see langword="false"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly bool Equals(ReadOnlySpan<char> span, StringComparison comparisonType) => span.Equals(AsSpan(), comparisonType);
+    public readonly bool Equals(scoped ReadOnlySpan<char> span, StringComparison comparisonType) => span.Equals(AsSpan(), comparisonType);
 
     /// <summary>
     /// Disposes the instance and returns the rented buffer to the array pool if needed.
