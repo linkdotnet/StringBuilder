@@ -42,7 +42,7 @@ jobs:
           10.0.x
 
     - name: Update CHANGELOG file
-      uses: thomaseizinger/keep-a-changelog-new-release@v3
+      uses: thomaseizinger/keep-a-changelog-new-release@v3.1.0
       with:
         version: ${{ github.event.inputs.versionIncrement }}
 
@@ -58,7 +58,7 @@ jobs:
         git push origin main
 
     - name: Create release on GitHub
-      uses: thomaseizinger/create-release@v2
+      uses: thomaseizinger/create-release@v2.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.SBPAT }}
       with:
