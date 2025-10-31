@@ -20,7 +20,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v5.0.0
+      uses: actions/checkout@v5
       with:
         token: ${{ secrets.SBPAT }}
         persist-credentials: true
@@ -28,13 +28,13 @@ jobs:
 
     - name: Get changelog entries
       id: changelog
-      uses: mindsers/changelog-reader-action@v2.2.3
+      uses: mindsers/changelog-reader-action@v2
       with:
         version: Unreleased
         path: ./CHANGELOG.md
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v5.0.0
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: | 
           8.0.x
