@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.1.0] - 2025-10-31
+
 ### Added
 
 - Added `PadLeft(ReadOnlySpan<char>, int, char)` and `PadRight(ReadOnlySpan<char>, int, char)` methods to append padded strings without allocating additional memory (by [@SMAH1](https://github.com/SMAH1) in #260)
@@ -513,7 +515,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.0.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/linkdotnet/StringBuilder/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/linkdotnet/StringBuilder/compare/2.4.1...3.0.0
 [2.4.1]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/linkdotnet/StringBuilder/compare/2.3.1...2.4.0
