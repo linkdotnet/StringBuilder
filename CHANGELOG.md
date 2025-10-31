@@ -6,7 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.2.0] - 2025-10-31
+
 ### Changed
+
 - Renamed `PadLeft(ReadOnlySpan<char>, int, char)` and `PadRight(ReadOnlySpan<char>, int, char)` to `AppendPadLeft(ReadOnlySpan<char>, int, char)` and `AppendPadRight(ReadOnlySpan<char>, int, char)` respectively.
 
 ## [3.1.0] - 2025-10-31
@@ -518,7 +521,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.1.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.2.0...HEAD
+[3.2.0]: https://github.com/linkdotnet/StringBuilder/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/linkdotnet/StringBuilder/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/linkdotnet/StringBuilder/compare/2.4.1...3.0.0
 [2.4.1]: https://github.com/linkdotnet/StringBuilder/compare/2.4.0...2.4.1
