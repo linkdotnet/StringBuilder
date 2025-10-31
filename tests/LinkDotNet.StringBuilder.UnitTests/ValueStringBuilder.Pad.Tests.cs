@@ -47,7 +47,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadLeft("Hello".AsSpan(), 10, ' ');
+        stringBuilder.AppendPadLeft("Hello".AsSpan(), 10, ' ');
 
         stringBuilder.ToString().ShouldBe("     Hello");
     }
@@ -57,7 +57,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadRight("Hello".AsSpan(), 10, ' ');
+        stringBuilder.AppendPadRight("Hello".AsSpan(), 10, ' ');
 
         stringBuilder.ToString().ShouldBe("Hello     ");
     }
@@ -67,7 +67,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadLeft("42".AsSpan(), 5, '0');
+        stringBuilder.AppendPadLeft("42".AsSpan(), 5, '0');
 
         stringBuilder.ToString().ShouldBe("00042");
     }
@@ -77,7 +77,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadRight("Test".AsSpan(), 8, '*');
+        stringBuilder.AppendPadRight("Test".AsSpan(), 8, '*');
 
         stringBuilder.ToString().ShouldBe("Test****");
     }
@@ -87,7 +87,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadLeft("Hello".AsSpan(), 3, ' ');
+        stringBuilder.AppendPadLeft("Hello".AsSpan(), 3, ' ');
 
         stringBuilder.ToString().ShouldBe("Hello");
     }
@@ -97,7 +97,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadRight("Hello".AsSpan(), 3, ' ');
+        stringBuilder.AppendPadRight("Hello".AsSpan(), 3, ' ');
 
         stringBuilder.ToString().ShouldBe("Hello");
     }
@@ -107,8 +107,8 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadLeft("A".AsSpan(), 3, '-');
-        stringBuilder.PadLeft("B".AsSpan(), 3, '-');
+        stringBuilder.AppendPadLeft("A".AsSpan(), 3, '-');
+        stringBuilder.AppendPadLeft("B".AsSpan(), 3, '-');
 
         stringBuilder.ToString().ShouldBe("--A--B");
     }
@@ -118,8 +118,8 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder();
 
-        stringBuilder.PadRight("A".AsSpan(), 3, '-');
-        stringBuilder.PadRight("B".AsSpan(), 3, '-');
+        stringBuilder.AppendPadRight("A".AsSpan(), 3, '-');
+        stringBuilder.AppendPadRight("B".AsSpan(), 3, '-');
 
         stringBuilder.ToString().ShouldBe("A--B--");
     }
@@ -129,7 +129,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder("Start ");
 
-        stringBuilder.PadLeft("End".AsSpan(), 10, '.');
+        stringBuilder.AppendPadLeft("End".AsSpan(), 10, '.');
 
         stringBuilder.ToString().ShouldBe("Start .......End");
     }
@@ -139,7 +139,7 @@ public class ValueStringBuilderPadTests
     {
         using var stringBuilder = new ValueStringBuilder("Start ");
 
-        stringBuilder.PadRight("End".AsSpan(), 10, '.');
+        stringBuilder.AppendPadRight("End".AsSpan(), 10, '.');
 
         stringBuilder.ToString().ShouldBe("Start End.......");
     }

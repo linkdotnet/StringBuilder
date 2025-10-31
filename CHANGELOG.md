@@ -6,6 +6,9 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Renamed `PadLeft(ReadOnlySpan<char>, int, char)` and `PadRight(ReadOnlySpan<char>, int, char)` to `AppendPadLeft(ReadOnlySpan<char>, int, char)` and `AppendPadRight(ReadOnlySpan<char>, int, char)` respectively.
+
 ## [3.1.0] - 2025-10-31
 
 ### Added
