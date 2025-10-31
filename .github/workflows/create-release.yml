@@ -28,7 +28,7 @@ jobs:
 
     - name: Get changelog entries
       id: changelog
-      uses: mindsers/changelog-reader-action@2
+      uses: mindsers/changelog-reader-action@v2
       with:
         version: Unreleased
         path: ./CHANGELOG.md
@@ -58,7 +58,7 @@ jobs:
         git push origin main
 
     - name: Create release on GitHub
-      uses: thomaseizinger/create-release@v2.0.0
+      uses: thomaseizinger/create-release@2.0.0
       env:
         GITHUB_TOKEN: ${{ secrets.SBPAT }}
       with:
