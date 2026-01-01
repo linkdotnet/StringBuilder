@@ -24,7 +24,7 @@ public ref partial struct ValueStringBuilder
     public readonly void Replace(char oldValue, char newValue, int startIndex, int count)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length, nameof(count));
 
         buffer.Slice(startIndex, count).Replace(oldValue, newValue);
     }
@@ -84,7 +84,7 @@ public ref partial struct ValueStringBuilder
     public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + count, Length, nameof(count));
 
         if (oldValue.IsEmpty || oldValue.Equals(newValue, StringComparison.Ordinal))
         {
