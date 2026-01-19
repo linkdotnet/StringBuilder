@@ -244,7 +244,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(length, 0);
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + length, Length);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex + length, Length, nameof(length));
 
         if (length == 0)
         {
