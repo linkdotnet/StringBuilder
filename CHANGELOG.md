@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- Added `AppendInterpolatedStringHandler` to support zero-allocation string interpolation in `Append` and `AppendLine` methods.
+
 ## [3.2.0] - 2025-10-31
 
 ### Changed
