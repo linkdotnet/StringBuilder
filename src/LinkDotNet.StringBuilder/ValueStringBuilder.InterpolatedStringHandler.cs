@@ -42,10 +42,10 @@ public ref partial struct ValueStringBuilder
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public AppendInterpolatedStringHandler(int literalLength, int formattedCount, ValueStringBuilder builder)
         {
-            this.Builder = builder;
+            Builder = builder;
 
             // A conservative guess for the capacity.
-            this.Builder.EnsureCapacity(this.Builder.Length + literalLength + (formattedCount * 11));
+            Builder.EnsureCapacity(Builder.Length + literalLength + (formattedCount * 11));
         }
 
         /// <summary>
