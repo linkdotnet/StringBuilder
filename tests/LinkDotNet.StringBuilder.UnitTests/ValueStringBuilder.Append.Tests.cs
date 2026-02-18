@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderAppendTests
@@ -85,6 +87,34 @@ public class ValueStringBuilderAppendTests
         builder.Append(2.2f);
 
         builder.ToString().ShouldBe("2.2");
+    }
+
+    [Fact]
+    public void ShouldAppendSpanFormattableWithGivenCulture()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append(1.2m, formatProvider: CultureInfo.GetCultureInfo("de-DE"));
+
+        builder.ToString().ShouldBe("1,2");
+    }
+
+    [Fact]
+    public void ShouldAppendSpanFormattableWithInvariantCultureWhenFormatProviderIsNull()
+    {
+        using var builder = new ValueStringBuilder();
+        var originalCulture = CultureInfo.CurrentCulture;
+        try
+        {
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
+            builder.Append(1.2m, formatProvider: null);
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = originalCulture;
+        }
+
+        builder.ToString().ShouldBe("1.2");
     }
 
     [Fact]
