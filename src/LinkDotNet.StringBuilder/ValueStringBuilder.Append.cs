@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -52,10 +53,11 @@ public ref partial struct ValueStringBuilder
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     /// <param name="bufferSize">Size of the buffer allocated. If you have a custom type that implements <see cref="ISpanFormattable"/> that
     /// requires more space than the default (36 characters), adjust the value.</param>
+    /// <param name="formatProvider">Optional format provider. If null <see cref="CultureInfo.InvariantCulture"/> is used.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
-        where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize);
+    public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
+        where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize, formatProvider);
 
     /// <summary>
     /// Appends a string.
@@ -181,7 +183,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
+    private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable
     {
         var newSize = bufferSize + bufferPosition;
@@ -190,7 +192,7 @@ public ref partial struct ValueStringBuilder
             EnsureCapacity(newSize);
         }
 
-        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, null))
+        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, formatProvider ?? CultureInfo.InvariantCulture))
         {
             throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }

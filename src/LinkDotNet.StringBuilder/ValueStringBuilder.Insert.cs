@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace LinkDotNet.StringBuilder;
@@ -43,10 +44,11 @@ public ref partial struct ValueStringBuilder
     /// <param name="value">Formattable span to insert into this builder.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
+    /// <param name="formatProvider">Optional format provider. If null <see cref="CultureInfo.InvariantCulture"/> is used.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36)
-        where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize);
+    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
+        where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize, formatProvider);
 
     /// <summary>
     /// Appends the string representation of the boolean to the builder.
@@ -89,7 +91,7 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void InsertSpanFormattable<T>(int index, T value, scoped ReadOnlySpan<char> format, int bufferSize)
+    private void InsertSpanFormattable<T>(int index, T value, scoped ReadOnlySpan<char> format, int bufferSize, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable
     {
         if (index < 0)
@@ -103,7 +105,7 @@ public ref partial struct ValueStringBuilder
         }
 
         Span<char> tempBuffer = stackalloc char[bufferSize];
-        if (value.TryFormat(tempBuffer, out var written, format, null))
+        if (value.TryFormat(tempBuffer, out var written, format, formatProvider ?? CultureInfo.InvariantCulture))
         {
             var newLength = bufferPosition + written;
             if (newLength > buffer.Length)
