@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- `Append` and `Insert` can have `FormatProvider`. Reported by [@SMAH1](https://github.com/SMAH1) in #276
+
 ## [3.3.0] - 2026-01-19
 
 ### Added
