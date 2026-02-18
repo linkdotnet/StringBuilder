@@ -7,5 +7,7 @@
       href: pass_to_method.md
     - name: Comparison
       href: comparison.md
+    - name: Fixed-Size String Builder
+      href: fixed_size.md
 - name: Known limitations
   href: known_limitations.md

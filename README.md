@@ -33,6 +33,20 @@ using ValueStringBuilder stringBuilder = new(stackalloc char[128]);
 ```
 Note that this will prevent you from returning `stringBuilder` or assigning it to an `out` parameter.
 
+### Zero-allocation fixed-size building with `FixedSizeValueStringBuilder`
+
+When you have a **hard upper bound** on the output length and want an absolute guarantee of zero heap allocation, use `FixedSizeValueStringBuilder`.
+Unlike `ValueStringBuilder`, it never falls back to `ArrayPool` — excess characters are **silently truncated**:
+```csharp
+Span<char> buffer = stackalloc char[8];
+var builder = new FixedSizeValueStringBuilder(buffer);
+builder.Append("Hello World!"); // only 8 chars fit
+
+string result = builder.ToString(); // "Hello Wo"
+bool wasTruncated = builder.IsFull; // true
+```
+Note the deliberate absence of `Dispose` / `using` — it is a signal that this type never touches the heap.
+
 ## What does it solve?
 The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
 But sometimes, low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to allocate as little as possible.
