@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+
+- Use correct culture (`CurrentCulture`) when no `FormatProvider` is provided in `Append` and `Insert` methods.
+
 ## [3.4.0] - 2026-02-18
 
 ### Added

@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -44,7 +43,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="value">Formattable span to insert into this builder.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
-    /// <param name="formatProvider">Optional format provider. If null <see cref="CultureInfo.InvariantCulture"/> is used.</param>
+    /// <param name="formatProvider">Optional format provider.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
@@ -105,7 +104,7 @@ public ref partial struct ValueStringBuilder
         }
 
         Span<char> tempBuffer = stackalloc char[bufferSize];
-        if (value.TryFormat(tempBuffer, out var written, format, formatProvider ?? CultureInfo.InvariantCulture))
+        if (value.TryFormat(tempBuffer, out var written, format, formatProvider))
         {
             var newLength = bufferPosition + written;
             if (newLength > buffer.Length)
