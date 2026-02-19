@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Comparison | ValueStringBuilder </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Comparison | ValueStringBuilder ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+    <link rel="shortcut icon" href="../images/logo.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="comparison">
+<h1 id="comparison">Comparison</h1>
+
+<p>The following document will show some key differences between the <code>ValueStringBuilder</code> and similar working string builder like the one from .NET itself.</p>
+<h2 id="systemtextstringbuilder">System.Text.StringBuilder</h2>
+<p>The <code>StringBuilder</code> shipped with the .NET Framework itself is a all-purpose string builder which allows a versatile use. <code>ValueStringBuilder</code> tries to mimic the API as much as possible so developers can adopt the <code>ValueStringBuilder</code> easily where it makes sense. In the following part <code>StringBuilder</code> refers to <code>System.Text.StringBuilder</code>.</p>
+<p><strong>Key differences</strong>:</p>
+<ul>
+<li><code>StringBuilder</code> is a class and does not have the restrictions coming with a <code>ref struct</code>. To know more head over to the <a class="xref" href="known_limitations.html">known limitations</a> section.</li>
+<li><code>StringBuilder</code> works not on <code>Span&lt;T&gt;</code> but more on <code>string</code>s or <code>char</code>s. Sometimes even with pointers</li>
+<li><code>StringBuilder</code> uses chunks to represent the string, which the larger the string gets, the better it can perform. <code>ValueStringBuilder</code> only has one internal <code>Span</code> as representation which can cause fragmentation on very big strings.</li>
+<li><code>StringBuilder</code> has a richer API as the <code>ValueStringBuilder</code>. In the future they should have the same amount of API's as the <code>StringBuilder</code> is the &quot;big brother&quot; of this package.</li>
+<li><code>ValueStringBuilder</code> has different API calls like <a href="xref:LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(ReadOnlySpan%7BSystem.Char%7D)"><code>IndexOf</code></a> or <a href="xref:LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(ReadOnlySpan%7BSystem.Char%7D)"><code>LastIndexOf</code></a>.</li>
+</ul>
+<h2 id="benchmark">Benchmark</h2>
+<p>The following table gives you a small comparison between the <code>StringBuilder</code> which is part of .NET and the <code>ValueStringBuilder</code>:</p>
+<pre><code>BenchmarkDotNet v0.14.0, macOS Sequoia 15.3.1 (24D70) [Darwin 24.3.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 9.0.200
+  [Host]     : .NET 9.0.2 (9.0.225.6610), Arm64 RyuJIT AdvSIMD
+  DefaultJob : .NET 9.0.2 (9.0.225.6610), Arm64 RyuJIT AdvSIMD
+
+
+| Method              | Mean      | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|-------------------- |----------:|---------:|---------:|------:|-------:|----------:|------------:|
+| DotNetStringBuilder | 126.74 ns | 0.714 ns | 0.667 ns |  1.00 | 0.1779 |    1488 B |        1.00 |
+| ValueStringBuilder  |  95.69 ns | 0.118 ns | 0.110 ns |  0.76 | 0.0669 |     560 B |        0.38 |
+</code></pre>
+<p>For more comparison check the documentation.</p>
+<p>Another benchmark shows that this <code>ValueStringBuilder</code> uses less memory when it comes to appending <code>ValueTypes</code> such as <code>int</code>, <code>double</code>, ...</p>
+<pre><code>| Method                         | Mean     | Error   | StdDev  | Gen0   | Gen1   | Allocated |
+|------------------------------- |---------:|--------:|--------:|-------:|-------:|----------:|
+| ValueStringBuilderAppendFormat | 821.7 ns | 1.29 ns | 1.14 ns | 0.4330 |      - |   3.54 KB |
+| StringBuilderAppendFormat      | 741.5 ns | 5.58 ns | 5.22 ns | 0.9909 | 0.0057 |    8.1 KB |
+
+</code></pre>
+<p>Checkout the <a href="https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks">Benchmark</a> for more detailed comparison and setup.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/comparison.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
