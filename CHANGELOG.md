@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.4.1] - 2026-02-19
+
+### Fixed
+
+- Use correct culture (`CurrentCulture`) when no `FormatProvider` is provided in `Append` and `Insert` methods.
+
 ## [3.4.0] - 2026-02-18
 
 ### Added
@@ -533,7 +539,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.4.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.4.1...HEAD
+[3.4.1]: https://github.com/linkdotnet/StringBuilder/compare/3.4.0...3.4.1
 [3.4.0]: https://github.com/linkdotnet/StringBuilder/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/linkdotnet/StringBuilder/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/linkdotnet/StringBuilder/compare/3.1.0...3.2.0

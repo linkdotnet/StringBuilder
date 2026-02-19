@@ -100,21 +100,15 @@ public class ValueStringBuilderAppendTests
     }
 
     [Fact]
-    public void ShouldAppendSpanFormattableWithInvariantCultureWhenFormatProviderIsNull()
+    public void ShouldAppendSpanFormattableWithCurrentCultureWhenFormatProviderIsNull()
     {
+        CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
         using var builder = new ValueStringBuilder();
         var originalCulture = CultureInfo.CurrentCulture;
-        try
-        {
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
-            builder.Append(1.2m, formatProvider: null);
-        }
-        finally
-        {
-            CultureInfo.CurrentCulture = originalCulture;
-        }
+        builder.Append(1.2m, formatProvider: null);
 
-        builder.ToString().ShouldBe("1.2");
+        CultureInfo.CurrentCulture = originalCulture;
+        builder.ToString().ShouldBe("1,2");
     }
 
     [Fact]

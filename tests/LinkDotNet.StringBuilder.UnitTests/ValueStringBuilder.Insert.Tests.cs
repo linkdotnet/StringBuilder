@@ -48,19 +48,14 @@ public class ValueStringBuilderInsertTests
     [Fact]
     public void ShouldInsertSpanFormattableWithInvariantCultureWhenFormatProviderIsNull()
     {
+        CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
         using var builder = new ValueStringBuilder();
         var originalCulture = CultureInfo.CurrentCulture;
-        try
-        {
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
-            builder.Insert(0, 1.2m, formatProvider: null);
-        }
-        finally
-        {
-            CultureInfo.CurrentCulture = originalCulture;
-        }
 
-        builder.ToString().ShouldBe("1.2");
+        builder.Insert(0, 1.2m, formatProvider: null);
+
+        CultureInfo.CurrentCulture = originalCulture;
+        builder.ToString().ShouldBe("1,2");
     }
 
     [Fact]

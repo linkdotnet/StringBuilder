@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -53,7 +52,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     /// <param name="bufferSize">Size of the buffer allocated. If you have a custom type that implements <see cref="ISpanFormattable"/> that
     /// requires more space than the default (36 characters), adjust the value.</param>
-    /// <param name="formatProvider">Optional format provider. If null <see cref="CultureInfo.InvariantCulture"/> is used.</param>
+    /// <param name="formatProvider">Optional format provider.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
@@ -192,7 +191,7 @@ public ref partial struct ValueStringBuilder
             EnsureCapacity(newSize);
         }
 
-        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, formatProvider ?? CultureInfo.InvariantCulture))
+        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, formatProvider))
         {
             throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
         }
