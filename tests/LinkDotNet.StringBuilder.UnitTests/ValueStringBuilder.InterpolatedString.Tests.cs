@@ -90,6 +90,49 @@ public class ValueStringBuilderInterpolatedStringTests
         builder.ToString().ShouldBe("New 1");
     }
 
+    [Fact]
+    public void ShouldAppendNoHoleInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        // Regression guard: a no-hole interpolated string is a constant that converts to both
+        // ReadOnlySpan<char> and AppendInterpolatedStringHandler. On C# 13 and earlier this was
+        // ambiguous (CS0121) because ValueStringBuilder had no Append(string) overload.
+        builder.Append($"Test1\n");
+
+        builder.ToString().ShouldBe("Test1\n");
+    }
+
+    [Fact]
+    public void ShouldAppendLineNoHoleInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendLine($"NoHole");
+
+        builder.ToString().ShouldBe($"NoHole{Environment.NewLine}");
+    }
+
+    [Fact]
+    public void ShouldAppendNoHoleVerbatimInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append($@"C:\temp");
+
+        builder.ToString().ShouldBe(@"C:\temp");
+    }
+
+    [Fact]
+    public void ShouldAppendNoHoleRawInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append($"""raw""");
+
+        builder.ToString().ShouldBe("raw");
+    }
+
     private class CustomType
     {
         public string Value { get; set; } = string.Empty;

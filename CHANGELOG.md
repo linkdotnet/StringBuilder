@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+
+- Resolved `CS0121` overload ambiguity when passing a no-hole interpolated string (e.g. `Append($"text")`) to `Append`/`AppendLine` on C# 13 and earlier, by adding `Append(string?)` and `AppendLine(string?)` overloads. Reported by [@SMAH1](https://github.com/SMAH1) in #283
+
 ## [3.4.1] - 2026-02-19
 
 ### Fixed
