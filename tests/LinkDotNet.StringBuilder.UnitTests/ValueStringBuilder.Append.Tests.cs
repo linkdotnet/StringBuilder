@@ -253,4 +253,38 @@ public class ValueStringBuilderAppendTests
 
         builder.ToString().ShouldMatch("[a]{256}[b]{512}[c]{1024}[d]{2048}[e]{4096}[f]{8192}");
     }
+
+    [Fact]
+    public void ShouldAppendVerbatimString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append(@"C:\temp");
+
+        builder.ToString().ShouldBe(@"C:\temp");
+    }
+
+    [Fact]
+    public void ShouldAppendRawStringLiteral()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append("""raw""");
+
+        builder.ToString().ShouldBe("raw");
+    }
+
+    [Theory]
+    [InlineData("\n", "\n")]
+    [InlineData("\r\n", "\r\n")]
+    [InlineData("\t", "\t")]
+    [InlineData("\\", "\\")]
+    public void ShouldAppendEscapeAndLineTerminatorSequences(string value, string expected)
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append(value);
+
+        builder.ToString().ShouldBe(expected);
+    }
 }

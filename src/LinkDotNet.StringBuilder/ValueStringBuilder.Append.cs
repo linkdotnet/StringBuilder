@@ -87,6 +87,13 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
+    /// Appends a string.
+    /// </summary>
+    /// <param name="value">The string to be added to this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(string? value) => Append(value.AsSpan());
+
+    /// <summary>
     /// Appends a character buffer.
     /// </summary>
     /// <param name="value">The pointer to the start of the buffer.</param>
@@ -155,6 +162,17 @@ public ref partial struct ValueStringBuilder
     public void AppendLine(scoped ReadOnlySpan<char> str)
     {
         Append(str);
+        Append(Environment.NewLine);
+    }
+
+    /// <summary>
+    /// Calls <see cref="Append(string)"/> and appends <see cref="Environment.NewLine"/>.
+    /// </summary>
+    /// <param name="value">The string to be added to this builder.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void AppendLine(string? value)
+    {
+        Append(value.AsSpan());
         Append(Environment.NewLine);
     }
 
