@@ -470,6 +470,7 @@
     <Rule Id="S5547" Action="Info" />
     <Rule Id="S5659" Action="Info" />
     <Rule Id="S5773" Action="Info" />
+    <Rule Id="S6640" Action="None" />
     <Rule Id="S818" Action="Info" />
     <Rule Id="S881" Action="None" />
     <Rule Id="S907" Action="Info" />

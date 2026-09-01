@@ -75,4 +75,35 @@ Comparing each `ValueStringBuilder` row against its `StringBuilder` counterpart 
 | Replace      | 0.58x (1.7x faster)  | 0.12x (8.5x less)     |
 | Trim         | 0.14x (7.4x faster)  | 0.01x (133x less)     |
 
+## Length-changing replacement
+
+`ValueStringBuilder.Replace` keeps a single-match path and processes multiple shrinking or growing replacements in a
+single pass, rather than shifting the remaining suffix after every match. The following short BenchmarkDotNet run
+measures a fixed 3,072-character input with matches at the start. The growing case replaces `ab` with `replacement`
+(2 to 11 characters); the shrinking case replaces it with `x` (2 to 1 character).
+
+```no-class
+BenchmarkDotNet v0.15.8, macOS Sequoia 15.7.7 (24G720) [Darwin 24.6.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-preview.7.26381.103
+  [Host] : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+Job=ShortRun  Toolchain=InProcessEmitToolchain  IterationCount=3
+LaunchCount=1  WarmupCount=3
+```
+
+| Matches | Operation | System.Text.StringBuilder | Previous ValueStringBuilder algorithm | Optimized ValueStringBuilder | Optimized vs. previous |
+|--------:|-----------|--------------------------:|--------------------------------------:|-----------------------------:|-----------------------:|
+| 1 | Growing | 901.4 ns / 12.21 KB | 794.4 ns / 6.04 KB | 733.7 ns / 6.04 KB | 0.92x (1.08x faster) |
+| 1 | Shrinking | 881.1 ns / 12.09 KB | 736.3 ns / 6.02 KB | 709.6 ns / 6.02 KB | 0.96x (1.04x faster) |
+| 8 | Growing | 934.4 ns / 12.45 KB | 1,373.3 ns / 6.16 KB | 1,177.7 ns / 6.16 KB | 0.86x (1.17x faster) |
+| 8 | Shrinking | 1,032.5 ns / 12.08 KB | 1,427.3 ns / 6.01 KB | 1,157.5 ns / 6.01 KB | 0.81x (1.23x faster) |
+| 1,024 | Growing | 16.45 μs / 48.16 KB | 60.68 μs / 24.02 KB | 17.50 μs / 24.02 KB | 0.29x (3.47x faster) |
+| 1,024 | Shrinking | 15.28 μs / 10.09 KB | 55.14 μs / 4.02 KB | 15.48 μs / 4.02 KB | 0.28x (3.56x faster) |
+
+The previous-algorithm rows are benchmark-local reproductions of the immediately preceding implementation, included so
+all three states run under one process, SDK, and hardware configuration. The optimized implementation remains within
+26% of `StringBuilder` for every multi-match case while allocating approximately half as much. As a three-iteration
+short run, these figures show the algorithmic change rather than a precise cross-library ranking.
+
 Checkout the [Benchmark](https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks) for more detailed comparison and setup.

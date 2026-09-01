@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Buffers;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -98,40 +99,47 @@ public ref partial struct ValueStringBuilder
             return;
         }
 
-        var index = startIndex;
-        var remainingChars = count;
-
-        while (remainingChars > 0)
+        if (newValue.Length == oldValue.Length)
         {
-            var foundSubIndex = buffer.Slice(index, remainingChars).IndexOf(oldValue, StringComparison.Ordinal);
-            if (foundSubIndex < 0)
-            {
-                break;
-            }
+            ReplaceEqualLength(oldValue, newValue, startIndex, count);
+            return;
+        }
 
-            index += foundSubIndex;
-            remainingChars -= foundSubIndex;
+        var matchCount = CountOccurrences(buffer.Slice(startIndex, count), oldValue, out var firstMatchOffset);
+        if (matchCount == 0)
+        {
+            return;
+        }
 
-            if (newValue.Length == oldValue.Length)
-            {
-                // Just replace the old slice
-                newValue.CopyTo(buffer[index..]);
-            }
-            else if (newValue.Length < oldValue.Length)
-            {
-                // Replace the old slice and trim the unused slice
-                newValue.CopyTo(buffer[index..]);
-                Remove(index + newValue.Length, oldValue.Length - newValue.Length);
-            }
-            else
-            {
-                // Replace the old slice and append the extra slice
-                newValue[..oldValue.Length].CopyTo(buffer[index..]);
-                Insert(index + oldValue.Length, newValue[oldValue.Length..]);
-            }
+        if (matchCount == 1)
+        {
+            ReplaceSingle(oldValue, newValue, startIndex + firstMatchOffset);
+            return;
+        }
 
-            index += newValue.Length;
-            remainingChars -= oldValue.Length;
+        if (newValue.Length < oldValue.Length)
+        {
+            ReplaceWithShorterValue(oldValue, newValue, startIndex, count);
+            return;
+        }
+
+        Span<int> stackPositions = stackalloc int[Math.Min(matchCount, 128)];
+        int[]? rentedPositions = null;
+        var matchPositions = matchCount <= stackPositions.Length
+            ? stackPositions[..matchCount]
+            : (rentedPositions = ArrayPool<int>.Shared.Rent(matchCount)).AsSpan(0, matchCount);
+
+        try
+        {
+            FillMatchPositions(buffer.Slice(startIndex, count), oldValue, matchPositions);
+            ReplaceWithLongerValue(oldValue, newValue, startIndex, count, matchPositions);
+        }
+        finally
+        {
+            if (rentedPositions is not null)
+            {
+                ArrayPool<int>.Shared.Return(rentedPositions);
+            }
         }
     }
 
@@ -190,6 +198,151 @@ public ref partial struct ValueStringBuilder
         return TryFormatKnownOtherType(value, destination, out charsWritten);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int CountOccurrences(scoped ReadOnlySpan<char> value, scoped ReadOnlySpan<char> oldValue, out int firstMatchOffset)
+    {
+        var searchStart = 0;
+        var matchCount = 0;
+        firstMatchOffset = -1;
+
+        while (searchStart < value.Length)
+        {
+            var matchIndex = value[searchStart..].IndexOf(oldValue, StringComparison.Ordinal);
+            if (matchIndex < 0)
+            {
+                return matchCount;
+            }
+
+            if (matchCount == 0)
+            {
+                firstMatchOffset = searchStart + matchIndex;
+            }
+
+            matchCount++;
+            searchStart += matchIndex + oldValue.Length;
+        }
+
+        return matchCount;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void FillMatchPositions(scoped ReadOnlySpan<char> value, scoped ReadOnlySpan<char> oldValue, Span<int> matchPositions)
+    {
+        var searchStart = 0;
+        var matchCount = 0;
+
+        while (searchStart < value.Length)
+        {
+            var matchIndex = value[searchStart..].IndexOf(oldValue, StringComparison.Ordinal);
+            if (matchIndex < 0)
+            {
+                return;
+            }
+
+            matchPositions[matchCount] = searchStart + matchIndex;
+            matchCount++;
+            searchStart += matchIndex + oldValue.Length;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ReplaceSingle(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int index)
+    {
+        if (newValue.Length < oldValue.Length)
+        {
+            newValue.CopyTo(buffer[index..]);
+            Remove(index + newValue.Length, oldValue.Length - newValue.Length);
+            return;
+        }
+
+        newValue[..oldValue.Length].CopyTo(buffer[index..]);
+        Insert(index + oldValue.Length, newValue[oldValue.Length..]);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ReplaceEqualLength(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
+    {
+        var index = startIndex;
+        var remainingChars = count;
+
+        while (remainingChars > 0)
+        {
+            var foundSubIndex = buffer.Slice(index, remainingChars).IndexOf(oldValue, StringComparison.Ordinal);
+            if (foundSubIndex < 0)
+            {
+                return;
+            }
+
+            index += foundSubIndex;
+            newValue.CopyTo(buffer[index..]);
+            index += oldValue.Length;
+            remainingChars -= foundSubIndex + oldValue.Length;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ReplaceWithShorterValue(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
+    {
+        var sourceEnd = startIndex + count;
+        var sourceIndex = startIndex;
+        var destinationIndex = startIndex;
+
+        while (sourceIndex < sourceEnd)
+        {
+            var matchOffset = buffer.Slice(sourceIndex, sourceEnd - sourceIndex).IndexOf(oldValue, StringComparison.Ordinal);
+            if (matchOffset < 0)
+            {
+                break;
+            }
+
+            var matchIndex = sourceIndex + matchOffset;
+            buffer.Slice(sourceIndex, matchOffset).CopyTo(buffer[destinationIndex..]);
+            destinationIndex += matchOffset;
+            newValue.CopyTo(buffer[destinationIndex..]);
+            destinationIndex += newValue.Length;
+            sourceIndex = matchIndex + oldValue.Length;
+        }
+
+        var remainingLength = sourceEnd - sourceIndex;
+        buffer.Slice(sourceIndex, remainingLength).CopyTo(buffer[destinationIndex..]);
+        destinationIndex += remainingLength;
+
+        var suffixLength = bufferPosition - sourceEnd;
+        buffer.Slice(sourceEnd, suffixLength).CopyTo(buffer[destinationIndex..]);
+        bufferPosition = destinationIndex + suffixLength;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ReplaceWithLongerValue(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count, scoped ReadOnlySpan<int> matchPositions)
+    {
+        var oldLength = bufferPosition;
+        var newLength = checked(oldLength + ((newValue.Length - oldValue.Length) * matchPositions.Length));
+        EnsureCapacity(newLength);
+
+        var sourceEnd = startIndex + count;
+        var suffixLength = oldLength - sourceEnd;
+        var destinationIndex = newLength - suffixLength;
+        buffer.Slice(sourceEnd, suffixLength).CopyTo(buffer[destinationIndex..]);
+
+        var searchEnd = sourceEnd;
+        for (var i = matchPositions.Length - 1; i >= 0; i--)
+        {
+            var matchIndex = startIndex + matchPositions[i];
+            var textAfterMatchLength = searchEnd - (matchIndex + oldValue.Length);
+            destinationIndex -= textAfterMatchLength;
+            buffer.Slice(matchIndex + oldValue.Length, textAfterMatchLength).CopyTo(buffer[destinationIndex..]);
+            destinationIndex -= newValue.Length;
+            newValue.CopyTo(buffer[destinationIndex..]);
+            searchEnd = matchIndex;
+        }
+
+        var prefixLength = searchEnd - startIndex;
+        destinationIndex -= prefixLength;
+        buffer.Slice(startIndex, prefixLength).CopyTo(buffer[destinationIndex..]);
+        bufferPosition = newLength;
+    }
+
+#pragma warning disable SA1204
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool TryFormatKnownIntegralType<T>(T value, Span<char> destination, out int charsWritten)
     {
@@ -295,4 +448,5 @@ public ref partial struct ValueStringBuilder
         charsWritten = 0;
         return false;
     }
+#pragma warning restore SA1204
 }

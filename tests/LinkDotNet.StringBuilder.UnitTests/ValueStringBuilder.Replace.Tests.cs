@@ -221,6 +221,58 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().ShouldMatch("[CB]{100}");
     }
 
+    [Theory]
+    [InlineData("ab-ab-ab-ab", "ab", "replacement")]
+    [InlineData("replacement-replacement-replacement", "replacement", "x")]
+    [InlineData("abcabcabc", "abc", "")]
+    [InlineData("aaa", "aa", "bbbb")]
+    public void ShouldMatchStringBuilderForLengthChangingReplacements(string text, string oldValue, string newValue)
+    {
+        var expected = new System.Text.StringBuilder(text)
+            .Replace(oldValue, newValue)
+            .ToString();
+        using var builder = new ValueStringBuilder(text);
+
+        builder.Replace(oldValue, newValue);
+
+        builder.ToString().ShouldBe(expected);
+    }
+
+    [Theory]
+    [InlineData("xabababz", "ab", "replacement", 1, 4)]
+    [InlineData("xreplacementreplacementz", "replacement", "ab", 1, 22)]
+    [InlineData("xabababz", "ab", "", 1, 4)]
+    [InlineData("aaaa", "aa", "bbbb", 0, 3)]
+    public void ShouldMatchStringBuilderForPartialLengthChangingReplacements(string text, string oldValue, string newValue, int startIndex, int count)
+    {
+        var expected = new System.Text.StringBuilder(text)
+            .Replace(oldValue, newValue, startIndex, count)
+            .ToString();
+        using var builder = new ValueStringBuilder(text);
+
+        builder.Replace(oldValue, newValue, startIndex, count);
+
+        builder.ToString().ShouldBe(expected);
+    }
+
+    [Fact]
+    public void ShouldReplaceDenseMatchesWhenGrowingFromStackBuffer()
+    {
+        const string oldValue = "ab";
+        const string newValue = "replacement";
+        var text = string.Concat(Enumerable.Repeat("ab-", 100));
+        var expected = new System.Text.StringBuilder(text)
+            .Replace(oldValue, newValue)
+            .ToString();
+        Span<char> initialBuffer = stackalloc char[32];
+        using var builder = new ValueStringBuilder(initialBuffer);
+        builder.Append(text);
+
+        builder.Replace(oldValue, newValue);
+
+        builder.ToString().ShouldBe(expected);
+    }
+
     private struct MyStruct
     {
         public override string ToString() => "Hello";
