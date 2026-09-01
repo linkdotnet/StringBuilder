@@ -63,6 +63,11 @@ public ref partial struct ValueStringBuilder
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void AppendFormatted<T>(T value)
         {
+            if (Builder.TryAppendKnownSpanFormattable(value))
+            {
+                return;
+            }
+
             if (value is ISpanFormattable formattable)
             {
                 Builder.Append(formattable);
@@ -82,6 +87,11 @@ public ref partial struct ValueStringBuilder
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void AppendFormatted<T>(T value, string? format)
         {
+            if (Builder.TryAppendKnownSpanFormattable(value, format))
+            {
+                return;
+            }
+
             if (value is ISpanFormattable formattable)
             {
                 Builder.Append(formattable, format);

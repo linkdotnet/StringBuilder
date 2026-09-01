@@ -5,6 +5,10 @@
       href: concepts.md
     - name: Passing the ValueStringBuilder to a method
       href: pass_to_method.md
+    - name: Trimming
+      href: trimming.md
+    - name: Advanced usage
+      href: advanced_usage.md
     - name: Comparison
       href: comparison.md
 - name: Known limitations

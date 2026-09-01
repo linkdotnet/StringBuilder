@@ -206,6 +206,11 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendInternal<T>(T value)
     {
+        if (TryAppendKnownSpanFormattable(value))
+        {
+            return;
+        }
+
         switch (value)
         {
             case ISpanFormattable spanFormattable:
@@ -218,5 +223,229 @@ public ref partial struct ValueStringBuilder
                 Append(value?.ToString());
                 break;
         }
+    }
+
+    /// <summary>
+    /// Appends <paramref name="value"/> directly for a fixed set of well known value types without boxing it.
+    /// </summary>
+    /// <remarks>
+    /// Pattern matching an unconstrained generic value against an interface (like <see cref="ISpanFormattable"/>)
+    /// requires the value to be boxed. For the handful of value types that are used the vast majority of the time,
+    /// we instead reinterpret the bits of <paramref name="value"/> via <see cref="Unsafe.As{TFrom,TTo}(ref TFrom)"/>
+    /// and dispatch to the already boxing-free, constrained <see cref="Append{T}"/> overload.
+    /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownSpanFormattable<T>(T value) =>
+        TryAppendKnownIntegralType(value) || TryAppendKnownOtherType(value);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownIntegralType<T>(T value)
+    {
+        if (typeof(T) == typeof(bool))
+        {
+            Append(Unsafe.As<T, bool>(ref value));
+        }
+        else if (typeof(T) == typeof(char))
+        {
+            Append(Unsafe.As<T, char>(ref value));
+        }
+        else if (typeof(T) == typeof(byte))
+        {
+            Append(Unsafe.As<T, byte>(ref value));
+        }
+        else if (typeof(T) == typeof(sbyte))
+        {
+            Append(Unsafe.As<T, sbyte>(ref value));
+        }
+        else if (typeof(T) == typeof(short))
+        {
+            Append(Unsafe.As<T, short>(ref value));
+        }
+        else if (typeof(T) == typeof(ushort))
+        {
+            Append(Unsafe.As<T, ushort>(ref value));
+        }
+        else if (typeof(T) == typeof(int))
+        {
+            Append(Unsafe.As<T, int>(ref value));
+        }
+        else if (typeof(T) == typeof(uint))
+        {
+            Append(Unsafe.As<T, uint>(ref value));
+        }
+        else if (typeof(T) == typeof(long))
+        {
+            Append(Unsafe.As<T, long>(ref value));
+        }
+        else if (typeof(T) == typeof(ulong))
+        {
+            Append(Unsafe.As<T, ulong>(ref value));
+        }
+        else if (typeof(T) == typeof(Int128))
+        {
+            Append(Unsafe.As<T, Int128>(ref value));
+        }
+        else if (typeof(T) == typeof(UInt128))
+        {
+            Append(Unsafe.As<T, UInt128>(ref value));
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownOtherType<T>(T value)
+    {
+        if (typeof(T) == typeof(float))
+        {
+            Append(Unsafe.As<T, float>(ref value));
+        }
+        else if (typeof(T) == typeof(double))
+        {
+            Append(Unsafe.As<T, double>(ref value));
+        }
+        else if (typeof(T) == typeof(decimal))
+        {
+            Append(Unsafe.As<T, decimal>(ref value));
+        }
+        else if (typeof(T) == typeof(DateTime))
+        {
+            Append(Unsafe.As<T, DateTime>(ref value));
+        }
+        else if (typeof(T) == typeof(DateTimeOffset))
+        {
+            Append(Unsafe.As<T, DateTimeOffset>(ref value));
+        }
+        else if (typeof(T) == typeof(TimeSpan))
+        {
+            Append(Unsafe.As<T, TimeSpan>(ref value));
+        }
+        else if (typeof(T) == typeof(Guid))
+        {
+            Append(Unsafe.As<T, Guid>(ref value));
+        }
+        else if (typeof(T) == typeof(Half))
+        {
+            Append(Unsafe.As<T, Half>(ref value));
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Same as <see cref="TryAppendKnownSpanFormattable{T}(T)"/> but forwards a format string.
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format) =>
+        TryAppendKnownIntegralType(value, format) || TryAppendKnownOtherType(value, format);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownIntegralType<T>(T value, scoped ReadOnlySpan<char> format)
+    {
+        if (typeof(T) == typeof(bool))
+        {
+            Append(Unsafe.As<T, bool>(ref value));
+        }
+        else if (typeof(T) == typeof(char))
+        {
+            Append(Unsafe.As<T, char>(ref value));
+        }
+        else if (typeof(T) == typeof(byte))
+        {
+            Append(Unsafe.As<T, byte>(ref value), format);
+        }
+        else if (typeof(T) == typeof(sbyte))
+        {
+            Append(Unsafe.As<T, sbyte>(ref value), format);
+        }
+        else if (typeof(T) == typeof(short))
+        {
+            Append(Unsafe.As<T, short>(ref value), format);
+        }
+        else if (typeof(T) == typeof(ushort))
+        {
+            Append(Unsafe.As<T, ushort>(ref value), format);
+        }
+        else if (typeof(T) == typeof(int))
+        {
+            Append(Unsafe.As<T, int>(ref value), format);
+        }
+        else if (typeof(T) == typeof(uint))
+        {
+            Append(Unsafe.As<T, uint>(ref value), format);
+        }
+        else if (typeof(T) == typeof(long))
+        {
+            Append(Unsafe.As<T, long>(ref value), format);
+        }
+        else if (typeof(T) == typeof(ulong))
+        {
+            Append(Unsafe.As<T, ulong>(ref value), format);
+        }
+        else if (typeof(T) == typeof(Int128))
+        {
+            Append(Unsafe.As<T, Int128>(ref value), format);
+        }
+        else if (typeof(T) == typeof(UInt128))
+        {
+            Append(Unsafe.As<T, UInt128>(ref value), format);
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendKnownOtherType<T>(T value, scoped ReadOnlySpan<char> format)
+    {
+        if (typeof(T) == typeof(float))
+        {
+            Append(Unsafe.As<T, float>(ref value), format);
+        }
+        else if (typeof(T) == typeof(double))
+        {
+            Append(Unsafe.As<T, double>(ref value), format);
+        }
+        else if (typeof(T) == typeof(decimal))
+        {
+            Append(Unsafe.As<T, decimal>(ref value), format);
+        }
+        else if (typeof(T) == typeof(DateTime))
+        {
+            Append(Unsafe.As<T, DateTime>(ref value), format);
+        }
+        else if (typeof(T) == typeof(DateTimeOffset))
+        {
+            Append(Unsafe.As<T, DateTimeOffset>(ref value), format);
+        }
+        else if (typeof(T) == typeof(TimeSpan))
+        {
+            Append(Unsafe.As<T, TimeSpan>(ref value), format);
+        }
+        else if (typeof(T) == typeof(Guid))
+        {
+            Append(Unsafe.As<T, Guid>(ref value), format);
+        }
+        else if (typeof(T) == typeof(Half))
+        {
+            Append(Unsafe.As<T, Half>(ref value), format);
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
     }
 }

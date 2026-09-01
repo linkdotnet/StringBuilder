@@ -154,6 +154,41 @@ public class ValueStringBuilderReplaceTests
     }
 
     [Fact]
+    public void ShouldReplaceGenericWithDecimal()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append("{0}");
+
+        builder.ReplaceGeneric("{0}", 1.5m);
+
+        builder.ToString().ShouldBe("1.5");
+    }
+
+    [Fact]
+    public void ShouldReplaceGenericWithDateTime()
+    {
+        using var builder = new ValueStringBuilder();
+        var date = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        builder.Append("{0}");
+
+        builder.ReplaceGeneric("{0}", date);
+
+        builder.ToString().ShouldBe($"{date}");
+    }
+
+    [Fact]
+    public void ShouldReplaceGenericWithGuid()
+    {
+        using var builder = new ValueStringBuilder();
+        var guid = Guid.NewGuid();
+        builder.Append("{0}");
+
+        builder.ReplaceGeneric("{0}", guid);
+
+        builder.ToString().ShouldBe(guid.ToString());
+    }
+
+    [Fact]
     public void ShouldReplaceNonISpanFormattable()
     {
         using var builder = new ValueStringBuilder();
