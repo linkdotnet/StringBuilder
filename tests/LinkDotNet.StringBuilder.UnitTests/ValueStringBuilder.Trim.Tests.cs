@@ -80,6 +80,97 @@ public class ValueStringBuilderTrimTests
         valueStringBuilder.ToString().ShouldBe("ee");
     }
 
+    [Theory]
+    [InlineData(" ")] // no-break space
+    [InlineData(" ")] // em space
+    [InlineData("　")] // ideographic space
+    public void GivenStringWithNonAsciiWhitespace_WhenTrim_ThenShouldRemoveWhitespace(string whitespace)
+    {
+        var input = whitespace + "Hello World" + whitespace;
+        using var valueStringBuilder = new ValueStringBuilder(input);
+
+        valueStringBuilder.Trim();
+
+        valueStringBuilder.ToString().ShouldBe("Hello World");
+    }
+
+    [Fact]
+    public void GivenBufferExactlyAtCapacity_WhenTrim_ThenShouldNotThrow()
+    {
+        using var valueStringBuilder = new ValueStringBuilder(stackalloc char[8]);
+        valueStringBuilder.Append("  abcd  ");
+
+        valueStringBuilder.Trim();
+
+        valueStringBuilder.ToString().ShouldBe("abcd");
+    }
+
+    [Fact]
+    public void GivenBufferExactlyAtCapacity_WhenTrimStart_ThenShouldNotThrow()
+    {
+        using var valueStringBuilder = new ValueStringBuilder(stackalloc char[8]);
+        valueStringBuilder.Append("    abcd");
+
+        valueStringBuilder.TrimStart();
+
+        valueStringBuilder.ToString().ShouldBe("abcd");
+    }
+
+    [Fact]
+    public void GivenBufferExactlyAtCapacity_WhenTrimCharacter_ThenShouldNotThrow()
+    {
+        using var valueStringBuilder = new ValueStringBuilder(stackalloc char[8]);
+        valueStringBuilder.Append("HHabcdHH");
+
+        valueStringBuilder.Trim('H');
+
+        valueStringBuilder.ToString().ShouldBe("abcd");
+    }
+
+    [Fact]
+    public void GivenBufferExactlyAtCapacity_WhenTrimStartCharacter_ThenShouldNotThrow()
+    {
+        using var valueStringBuilder = new ValueStringBuilder(stackalloc char[8]);
+        valueStringBuilder.Append("HHHHabcd");
+
+        valueStringBuilder.TrimStart('H');
+
+        valueStringBuilder.ToString().ShouldBe("abcd");
+    }
+
+    [Fact]
+    public void GivenStringOfOnlyTrimCharacter_WhenTrim_ThenShouldBeEmpty()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("HHHHHH");
+
+        valueStringBuilder.Trim('H');
+
+        valueStringBuilder.ToString().ShouldBe(string.Empty);
+    }
+
+    [Fact]
+    public void GivenStringOfOnlyTrimCharacter_WhenTrimStart_ThenShouldBeEmpty()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("HHHHHH");
+
+        valueStringBuilder.TrimStart('H');
+
+        valueStringBuilder.ToString().ShouldBe(string.Empty);
+    }
+
+    [Fact]
+    public void GivenStringOfOnlyTrimCharacter_WhenTrimEnd_ThenShouldBeEmpty()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("HHHHHH");
+
+        valueStringBuilder.TrimEnd('H');
+
+        valueStringBuilder.ToString().ShouldBe(string.Empty);
+    }
+
     [Fact]
     public void GivenString_WhenTrimPrefix_ThenShouldRemoveSpan()
     {

@@ -48,6 +48,38 @@ public class ValueStringBuilderInterpolatedStringTests
     }
 
     [Fact]
+    public void ShouldAppendBoolInInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append($"Flag: {true}, {false}");
+
+        builder.ToString().ShouldBe("Flag: True, False");
+    }
+
+    [Fact]
+    public void ShouldAppendDecimalWithFormatInInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+        var amount = 1.5m;
+
+        builder.Append($"Amount: {amount:F3}");
+
+        builder.ToString().ShouldBe("Amount: 1.500");
+    }
+
+    [Fact]
+    public void ShouldAppendDateTimeInInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+        var date = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        builder.Append($"Date: {date}");
+
+        builder.ToString().ShouldBe($"Date: {date}");
+    }
+
+    [Fact]
     public void ShouldHandleCustomType()
     {
         using var builder = new ValueStringBuilder();

@@ -479,6 +479,17 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
+    public void ConcatKnownValueTypesWithoutBoxing()
+    {
+        var date = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        var guid = Guid.NewGuid();
+
+        var result = ValueStringBuilder.Concat('a', 1.5m, date, guid, (byte)5);
+
+        result.ShouldBe($"a1.5{date}{guid}5");
+    }
+
+    [Fact]
     public void ShouldReverseString()
     {
         using var builder = new ValueStringBuilder("Hello");

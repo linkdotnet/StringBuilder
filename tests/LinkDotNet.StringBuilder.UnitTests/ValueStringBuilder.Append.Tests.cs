@@ -60,6 +60,20 @@ public class ValueStringBuilderAppendTests
     }
 
     [Fact]
+    public void ShouldAppendSpanWhenBufferMustGrowAndPositionIsNotZero()
+    {
+        using var stringBuilder = new ValueStringBuilder(20);
+        stringBuilder.Append(new string('a', 20));
+        stringBuilder.Capacity.ShouldBeLessThan(20 + 15);
+
+        var returned = stringBuilder.AppendSpan(15);
+        returned.Fill('b');
+
+        stringBuilder.Length.ShouldBe(35);
+        stringBuilder.ToString().ShouldBe(new string('a', 20) + new string('b', 15));
+    }
+
+    [Fact]
     public void ShouldOnlyAddNewline()
     {
         using var stringBuilder = new ValueStringBuilder();

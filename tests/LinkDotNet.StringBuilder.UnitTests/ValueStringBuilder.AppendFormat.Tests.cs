@@ -92,4 +92,25 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.ToString().ShouldBe(expected);
     }
+
+    [Fact]
+    public void ShouldAppendFormatWithConcreteIntArgumentWithoutBoxing()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendFormat("Value: {0}", 42);
+
+        builder.ToString().ShouldBe("Value: 42");
+    }
+
+    [Fact]
+    public void ShouldAppendFormatWithConcreteValueTypeArguments()
+    {
+        using var builder = new ValueStringBuilder();
+        var date = new DateTime(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        builder.AppendFormat("{0} {1} {2}", true, 1.5m, date);
+
+        builder.ToString().ShouldBe($"True 1.5 {date}");
+    }
 }
