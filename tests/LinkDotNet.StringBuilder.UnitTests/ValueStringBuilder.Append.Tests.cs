@@ -178,6 +178,17 @@ public class ValueStringBuilderAppendTests
         Assert.False(true);
     }
 
+    [Fact]
+    public void ShouldGrowWhenSpanFormattableOutputExceedsDefaultBufferSize()
+    {
+        using var builder = new ValueStringBuilder();
+        LongSpanFormattable value = default;
+
+        builder.Append(value);
+
+        builder.ToString().ShouldBe(new string('x', LongSpanFormattable.Length));
+    }
+
     [Theory]
     [InlineData(true, "True")]
     [InlineData(false, "False")]
@@ -300,5 +311,27 @@ public class ValueStringBuilderAppendTests
         builder.Append(value);
 
         builder.ToString().ShouldBe(expected);
+    }
+
+    private readonly struct LongSpanFormattable : ISpanFormattable
+    {
+        public const int Length = 128;
+
+        public override string ToString() => new('x', Length);
+
+        public string ToString(string? format, IFormatProvider? formatProvider) => ToString();
+
+        public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+        {
+            if (destination.Length < Length)
+            {
+                charsWritten = 0;
+                return false;
+            }
+
+            destination[..Length].Fill('x');
+            charsWritten = Length;
+            return true;
+        }
     }
 }

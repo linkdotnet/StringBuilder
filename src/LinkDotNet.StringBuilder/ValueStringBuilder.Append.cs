@@ -6,6 +6,8 @@ namespace LinkDotNet.StringBuilder;
 
 public ref partial struct ValueStringBuilder
 {
+    private const int DefaultFormatBufferSize = 36;
+
     /// <summary>
     /// Appends the string representation of the boolean.
     /// </summary>
@@ -55,7 +57,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="formatProvider">Optional format provider.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
+    public void Append<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = DefaultFormatBufferSize, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable => AppendSpanFormattable(value, format, bufferSize, formatProvider);
 
     /// <summary>
@@ -200,18 +202,24 @@ public ref partial struct ValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
+    private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = DefaultFormatBufferSize, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable
     {
         var newSize = bufferSize + bufferPosition;
-        if (newSize >= Capacity)
+        if (newSize > Capacity)
         {
             EnsureCapacity(newSize);
         }
 
-        if (!value.TryFormat(buffer[bufferPosition..], out var written, format, formatProvider))
+        var written = 0;
+        while (!value.TryFormat(buffer[bufferPosition..], out written, format, formatProvider))
         {
-            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
+            if (bufferSize != DefaultFormatBufferSize)
+            {
+                throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
+            }
+
+            EnsureCapacity(checked(Capacity * 2));
         }
 
         bufferPosition += written;

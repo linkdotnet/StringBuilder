@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+* Performance upgrades when growing
+
 ## [3.5.0] - 2026-09-01
 
 ### Added
@@ -13,7 +17,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 - Avoid boxing common value types (`int`, `long`, `double`, `decimal`, `DateTime`, `DateTimeOffset`, `TimeSpan`, `Guid`, and 12 more) when passed to `AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, or interpolated strings.
 - Vectorized `Trim`, `TrimStart`, and `TrimEnd` (both the whitespace and character overloads) via `SearchValues<char>`, making them significantly faster on large buffers.
 
-\### Changed
+### Changed
 
 - Small improvement to get the next "Grow" iteration
 
