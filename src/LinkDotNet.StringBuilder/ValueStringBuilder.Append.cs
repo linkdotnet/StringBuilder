@@ -192,7 +192,7 @@ public ref partial struct ValueStringBuilder
         var origPos = bufferPosition;
         if (origPos > buffer.Length - length)
         {
-            EnsureCapacity(length);
+            EnsureCapacity(origPos + length);
         }
 
         bufferPosition = origPos + length;

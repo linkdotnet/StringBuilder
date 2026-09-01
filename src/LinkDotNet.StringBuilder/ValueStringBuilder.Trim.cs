@@ -28,7 +28,7 @@ public ref partial struct ValueStringBuilder
         if (newLength < bufferPosition)
         {
             bufferPosition = newLength;
-            buffer.Slice(start, start + newLength).CopyTo(buffer);
+            buffer.Slice(start, newLength).CopyTo(buffer);
         }
     }
 
@@ -57,7 +57,7 @@ public ref partial struct ValueStringBuilder
         if (newLength < bufferPosition)
         {
             bufferPosition = newLength;
-            buffer.Slice(start, start + newLength).CopyTo(buffer);
+            buffer.Slice(start, newLength).CopyTo(buffer);
         }
     }
 
@@ -76,7 +76,7 @@ public ref partial struct ValueStringBuilder
         if (start > 0)
         {
             var newLength = bufferPosition - start;
-            buffer.Slice(start, bufferPosition).CopyTo(buffer);
+            buffer.Slice(start, newLength).CopyTo(buffer);
             bufferPosition = newLength;
         }
     }
@@ -97,7 +97,7 @@ public ref partial struct ValueStringBuilder
         if (start > 0)
         {
             var newLength = bufferPosition - start;
-            buffer.Slice(start, bufferPosition).CopyTo(buffer);
+            buffer.Slice(start, newLength).CopyTo(buffer);
             bufferPosition = newLength;
         }
     }

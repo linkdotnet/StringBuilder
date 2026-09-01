@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -53,6 +54,6 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int FindSmallestPowerOf2Above(int minimum)
     {
-        return 1 << (int)Math.Ceiling(Math.Log2(minimum));
+        return (int)BitOperations.RoundUpToPowerOf2((uint)minimum);
     }
 }

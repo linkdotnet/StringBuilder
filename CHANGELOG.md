@@ -6,6 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+- Small improvement to get the next "Grow" iteration
+
+### Fixed
+
+- Sizing bugs in `Append` and `Trim`
+
 ## [3.4.2] - 2026-07-04
 
 ### Fixed
