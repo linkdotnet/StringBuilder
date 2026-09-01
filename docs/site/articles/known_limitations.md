@@ -11,7 +11,7 @@ The base of the `ValueStringBuilder` is a `ref struct`. With that, there are cer
 
 If not off this applies to your use case, you are good to go. Using `ref struct` is a trade for performance and fewer allocations in contrast to its use cases.
 
-`ValueStringBuilder` offers the possibility to "convert" it into a "regular" `System.Text.StringBuilder`. Check out the following extension method via the <xref:LinkDotNet.StringBuilder.ValueStringBuilderExtensions>.
+`ValueStringBuilder` offers the possibility to "convert" it into a "regular" `System.Text.StringBuilder` and back. Check out the [`ValueStringBuilderExtensions`](xref:LinkDotNet.StringBuilder.ValueStringBuilderExtensions) for `ToStringBuilder()` and `ToValueStringBuilder()`.
 
 ## Fluent notation
 
@@ -36,3 +36,5 @@ var stringBuilder = new ValueStringBuilder(stackalloc char[128]);
 stringBuilder.Append("Hello World"); // Uses 11 bytes
 return stringBuilder.ToString();
 ```
+
+See the [advanced usage](xref:advanced_usage) article for more on `stackalloc`-backed buffers, including what happens if the content outgrows them.
