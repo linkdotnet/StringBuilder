@@ -6,12 +6,15 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-09-01
+
 ### Added
 
 - Avoid boxing common value types (`int`, `long`, `double`, `decimal`, `DateTime`, `DateTimeOffset`, `TimeSpan`, `Guid`, and 12 more) when passed to `AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, or interpolated strings.
 - Vectorized `Trim`, `TrimStart`, and `TrimEnd` (both the whitespace and character overloads) via `SearchValues<char>`, making them significantly faster on large buffers.
 
-### Changed
+\### Changed
+
 - Small improvement to get the next "Grow" iteration
 
 ### Fixed
@@ -557,7 +560,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.4.2...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.5.0...HEAD
+[3.5.0]: https://github.com/linkdotnet/StringBuilder/compare/3.4.2...3.5.0
 [3.4.2]: https://github.com/linkdotnet/StringBuilder/compare/3.4.1...3.4.2
 [3.4.1]: https://github.com/linkdotnet/StringBuilder/compare/3.4.0...3.4.1
 [3.4.0]: https://github.com/linkdotnet/StringBuilder/compare/3.3.0...3.4.0
