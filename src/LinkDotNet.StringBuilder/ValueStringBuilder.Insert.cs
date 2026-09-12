@@ -37,10 +37,10 @@ public ref partial struct ValueStringBuilder
     }
 
     /// <summary>
-    /// Insert the string representation of the char to the builder at the given index.
+    /// Insert the string representation of the value to the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
-    /// <param name="value">Formattable span to insert into this builder.</param>
+    /// <param name="value">Formattable value to insert into this builder.</param>
     /// <param name="format">Optional formatter. If not provided the default of the given instance is taken.</param>
     /// <param name="bufferSize">Size of the buffer allocated on the stack.</param>
     /// <param name="formatProvider">Optional format provider.</param>
@@ -50,7 +50,7 @@ public ref partial struct ValueStringBuilder
         where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize, formatProvider);
 
     /// <summary>
-    /// Appends the string representation of the boolean to the builder.
+    /// Insert the given span into the builder at the given index.
     /// </summary>
     /// <param name="index">Index where <paramref name="value"/> should be inserted.</param>
     /// <param name="value">String to insert into this builder.</param>

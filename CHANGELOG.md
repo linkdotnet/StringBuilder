@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Changed
+
+- Removed some wrong `[MethodImpl(MethodImplOptions.AggressiveInlining)]` attributes that might made it worse.
+
 ## [3.6.0] - 2026-09-01
 
 ### Changed

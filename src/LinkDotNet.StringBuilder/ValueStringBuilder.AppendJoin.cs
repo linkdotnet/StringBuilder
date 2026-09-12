@@ -100,7 +100,6 @@ public ref partial struct ValueStringBuilder
     public void AppendJoin<T>(Rune separator, IEnumerable<T> values)
         => AppendJoinInternalRune(separator, values);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalString<T>(scoped ReadOnlySpan<char> separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -123,7 +122,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalString<T>(scoped ReadOnlySpan<char> separator, scoped ReadOnlySpan<T> values)
     {
         if (values.Length == 0)
@@ -140,7 +138,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalChar<T>(char separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -163,7 +160,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalChar<T>(char separator, scoped ReadOnlySpan<T> values)
     {
         if (values.Length == 0)
@@ -180,7 +176,6 @@ public ref partial struct ValueStringBuilder
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendJoinInternalRune<T>(Rune separator, IEnumerable<T> values)
     {
         ArgumentNullException.ThrowIfNull(values);
@@ -238,7 +233,6 @@ public ref partial struct ValueStringBuilder
     private bool TryAppendKnownSpanFormattable<T>(T value) =>
         TryAppendKnownIntegralType(value) || TryAppendKnownOtherType(value);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool TryAppendKnownIntegralType<T>(T value)
     {
         if (typeof(T) == typeof(bool))
@@ -297,7 +291,6 @@ public ref partial struct ValueStringBuilder
         return true;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool TryAppendKnownOtherType<T>(T value)
     {
         if (typeof(T) == typeof(float))
@@ -347,7 +340,6 @@ public ref partial struct ValueStringBuilder
     private bool TryAppendKnownSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format) =>
         TryAppendKnownIntegralType(value, format) || TryAppendKnownOtherType(value, format);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool TryAppendKnownIntegralType<T>(T value, scoped ReadOnlySpan<char> format)
     {
         if (typeof(T) == typeof(bool))
@@ -406,7 +398,6 @@ public ref partial struct ValueStringBuilder
         return true;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool TryAppendKnownOtherType<T>(T value, scoped ReadOnlySpan<char> format)
     {
         if (typeof(T) == typeof(float))
