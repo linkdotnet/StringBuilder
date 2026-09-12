@@ -9,7 +9,7 @@ With this approach, some limitations arise. Head over to the [known limitation](
 
 By default (`new ValueStringBuilder()`), the builder rents its backing buffer from `ArrayPool<char>.Shared` instead of allocating a new array. Disposing the builder returns that buffer to the pool so it can be reused, which is why `using` is recommended.
 
-If you construct it with a `Span<char>` you provide yourself, e.g. `new ValueStringBuilder(stackalloc char[128])`, no buffer is rented at all until the builder needs to grow past that size — at that point it falls back to renting from the pool. This is the fastest path since it avoids the pool entirely for small, short-lived builders, but it means the instance cannot be returned from a method or assigned to an `out` parameter, since the stack-allocated memory would outlive its frame.
+If you construct it with a `Span<char>` you provide yourself, e.g. `new ValueStringBuilder(stackalloc char[128])`, no buffer is rented at all until the builder needs to grow past that size; at that point it falls back to renting from the pool. This is the fastest path since it avoids the pool entirely for small, short-lived builders, but it means the instance cannot be returned from a method or assigned to an `out` parameter, since the stack-allocated memory would outlive its frame.
 
 ## Growth
 
