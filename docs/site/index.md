@@ -6,7 +6,7 @@
 
 **ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation will showcase to you how to use the `ValueStringBuilder` as well as what are some limitations coming with it. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file an issue.
 
-The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance.
+The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance. It also avoids boxing common value types passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`. See the [Comparison](xref:comparison) article for benchmarks.
 
 ## Download
 The package is hosted on [nuget.org](https://www.nuget.org/packages/LinkDotNet.StringBuilder/), so easily add the package reference:
@@ -19,7 +19,7 @@ Afterwards, you can simply use it. It tries to mimic the API of the `StringBuild
 The API is leaning towards the normal `StringBuilder` which is part of the .net framework itself. The main key difference is, that the `ValueStringBuilder` does **not** use the fluent notation of its "big brother".
 
 ```csharp
-var stringBuilder = new ValueStringBuilder();
+using var stringBuilder = new ValueStringBuilder();
 stringBuilder.AppendLine("Hello World");
 stringBuilder.Append("2+2=");
 stringBuilder.Append(4);

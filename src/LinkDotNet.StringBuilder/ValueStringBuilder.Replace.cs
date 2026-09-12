@@ -82,7 +82,6 @@ public ref partial struct ValueStringBuilder
     /// <remarks>
     /// If <paramref name="newValue"/> is <c>empty</c>, instances of <paramref name="oldValue"/> are removed.
     /// </remarks>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Replace(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(startIndex, 0);
@@ -148,11 +147,11 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="oldValue">The string to replace.</param>
     /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
+    /// <typeparam name="T">Any type.</typeparam>
     /// <remarks>
     /// If <paramref name="newValue"/> is from type <see cref="ISpanFormattable"/> an optimized version is taken.
     /// Otherwise the ToString method is called.
     /// </remarks>
-    /// /// <typeparam name="T">Any type.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue)
         => ReplaceGeneric(oldValue, newValue, 0, Length);
@@ -164,11 +163,11 @@ public ref partial struct ValueStringBuilder
     /// <param name="newValue">Object to replace <paramref name="oldValue"/> with.</param>
     /// <param name="startIndex">The index to start in this builder.</param>
     /// <param name="count">The number of characters to read in this builder.</param>
+    /// <typeparam name="T">Any type.</typeparam>
     /// <remarks>
     /// If <paramref name="newValue"/> is <see cref="ISpanFormattable"/>, <c>TryFormat</c> is used.
     /// Otherwise, <c>ToString</c> is used.
     /// </remarks>
-    /// /// <typeparam name="T">Any type.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ReplaceGeneric<T>(scoped ReadOnlySpan<char> oldValue, T newValue, int startIndex, int count)
     {
@@ -343,7 +342,6 @@ public ref partial struct ValueStringBuilder
     }
 
 #pragma warning disable SA1204
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool TryFormatKnownIntegralType<T>(T value, Span<char> destination, out int charsWritten)
     {
         var culture = CultureInfo.CurrentCulture;
@@ -401,7 +399,6 @@ public ref partial struct ValueStringBuilder
         return false;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool TryFormatKnownOtherType<T>(T value, Span<char> destination, out int charsWritten)
     {
         var culture = CultureInfo.CurrentCulture;

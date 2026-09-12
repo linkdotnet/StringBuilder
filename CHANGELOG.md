@@ -6,6 +6,12 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.6.1] - 2026-09-12
+
+### Changed
+
+- Removed some wrong `[MethodImpl(MethodImplOptions.AggressiveInlining)]` attributes that might made it worse.
+
 ## [3.6.0] - 2026-09-01
 
 ### Changed
@@ -566,7 +572,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.6.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...HEAD
+[3.6.1]: https://github.com/linkdotnet/StringBuilder/compare/3.6.0...3.6.1
 [3.6.0]: https://github.com/linkdotnet/StringBuilder/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/linkdotnet/StringBuilder/compare/3.4.2...3.5.0
 [3.4.2]: https://github.com/linkdotnet/StringBuilder/compare/3.4.1...3.4.2

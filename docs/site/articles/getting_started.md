@@ -6,7 +6,7 @@ uid: getting_started
 
 The following section will show you how to use the [`ValueStringBuilder`](xref:LinkDotNet.StringBuilder.ValueStringBuilder).
 
-For .NET 6 use the [nuget-package](https://www.nuget.org/packages/LinkDotNet.StringBuilder/):
+The library targets `net8.0`, `net9.0`, and `net10.0`. Install the [nuget-package](https://www.nuget.org/packages/LinkDotNet.StringBuilder/):
 
 > PM> Install-Package LinkDotNet.StringBuilder
 
@@ -21,7 +21,7 @@ public static class Program
 {
     public static void Main()
     {
-        var stringBuilder = new ValueStringBuilder();
+        using var stringBuilder = new ValueStringBuilder();
 
         stringBuilder.AppendLine("Hello World!");
         stringBuilder.Append(0.3f);
