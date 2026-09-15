@@ -34,6 +34,17 @@ public static class Program
 Prints:
 [Here](https://dotnetfiddle.net/wM5r0q) is an interactive example where you can fiddle around with the library. The example is hosted on [https://dotnetfiddle.net/](https://dotnetfiddle.net/wM5r0q) and already has the `ValueStringBuilder` nuget package included in the latest version.
 
+## Recommended starting point
+
+If you are new to the library, these defaults are usually the right choice:
+
+- start with `using var stringBuilder = new ValueStringBuilder();`
+- call `ToString()` only when you actually need a `string`
+- pass the builder by `ref` to helper methods
+- reach for `stackalloc` only after you know the output is small and bounded
+
+For the common pitfalls and the more advanced performance-oriented guidance, see [Best practices and pitfalls](xref:best_practices).
+
 ## Helper methods
 There are also very easy-to-use helper methods, which doesn't need a `ValueStringBuilder` instance:
 ```csharp

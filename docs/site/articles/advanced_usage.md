@@ -4,7 +4,7 @@ uid: advanced_usage
 
 # Advanced usage
 
-This article goes a bit deeper than [Getting started](xref:getting_started) and shows patterns for squeezing the most performance out of `ValueStringBuilder` - mainly around providing your own buffer via `stackalloc`.
+This article goes a bit deeper than [Getting started](xref:getting_started) and shows patterns for squeezing the most performance out of `ValueStringBuilder` - mainly around providing your own buffer via `stackalloc`. For the consolidated checklist of do's and don'ts, see [Best practices and pitfalls](xref:best_practices).
 
 ## Using a stack-allocated buffer
 
