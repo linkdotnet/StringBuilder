@@ -75,6 +75,66 @@ Comparing each `ValueStringBuilder` row against its `StringBuilder` counterpart 
 | Replace      | 0.63x (1.6x faster)  | 0.12x (8.5x less)     |
 | Trim         | 0.15x (6.8x faster)  | 0.01x (133x less)     |
 
+## Padding
+
+`PadRight`/`AppendPadRight` write directly into the builder's buffer instead of allocating an intermediate padded `string` the way `string.PadRight` does. The following benchmark builds a small table of five padded names, `System.Text.StringBuilder` with `name.PadRight(12)` versus `ValueStringBuilder.AppendPadRight(name, 12)`:
+
+```no-class
+BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method                | Mean      | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|---------------------- |----------:|---------:|---------:|------:|-------:|----------:|------------:|
+| StringBuilderPad      | 118.76 ns | 1.480 ns | 1.312 ns |  1.00 | 0.1194 |    1000 B |        1.00 |
+| ValueStringBuilderPad |  55.08 ns | 0.260 ns | 0.217 ns |  0.46 | 0.0258 |     216 B |        0.22 |
+```
+
+`AppendPadRight` is roughly 2.2x faster and allocates about a fifth as much, since `name.PadRight(12)` allocates a new intermediate `string` for every name before it gets appended, while `AppendPadRight` pads straight into the existing buffer.
+
+## `AppendFormat` vs. interpolated `Append`
+
+[Best practices](xref:best_practices#appendformat-is-intentionally-limited) recommends interpolated strings over `AppendFormat` for formatted output. Here is the measured difference for a composite-format string with three placeholders versus the equivalent interpolated string:
+
+```no-class
+BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method                         | Mean     | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|------------------------------- |---------:|---------:|---------:|------:|-------:|----------:|------------:|
+| ValueStringBuilderAppendFormat | 96.32 ns | 0.431 ns | 0.360 ns |  1.00 | 0.0114 |      96 B |        1.00 |
+| ValueStringBuilderInterpolated | 54.67 ns | 0.394 ns | 0.349 ns |  0.57 | 0.0114 |      96 B |        1.00 |
+```
+
+Both allocate the same amount (the final `string` from `ToString()` dominates), but the interpolated form is close to 2x faster - `AppendFormat` re-parses the format string and re-validates each `{n}` placeholder at runtime on every call, while the interpolated-string handler resolves each hole at compile time.
+
+## Stack buffer vs. pooled rent
+
+[Advanced usage](xref:advanced_usage#using-a-stack-allocated-buffer) states that renting the default buffer from `ArrayPool<char>.Shared` "has a (small) cost" compared to a `stackalloc`-backed buffer. Here is that cost measured directly, for constructing a builder and appending a short string:
+
+```no-class
+BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method           | Mean      | Error     | StdDev    | Ratio | Gen0   | Allocated | Alloc Ratio |
+|----------------- |----------:|----------:|----------:|------:|-------:|----------:|------------:|
+| PooledBuffer     | 11.857 ns | 0.0591 ns | 0.0494 ns |  1.00 | 0.0057 |      48 B |        1.00 |
+| StackAllocBuffer |  5.751 ns | 0.1367 ns | 0.1403 ns |  0.49 | 0.0057 |      48 B |        1.00 |
+```
+
+The `stackalloc`-backed builder is about 2x faster to construct and append to, purely from skipping `ArrayPool<char>.Shared.Rent`/`Return`. Note that both rows allocate the same 48 bytes - that is the final `ToString()` call, not the buffer itself; once the pool has been warmed up by earlier iterations, `Rent` reuses an existing array rather than allocating a new one; so the difference here is pure CPU time, not garbage collection pressure.
+
 ## Length-changing replacement
 
 `ValueStringBuilder.Replace` keeps a single-match path and processes multiple shrinking or growing replacements in a

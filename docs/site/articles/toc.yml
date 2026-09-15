@@ -9,8 +9,14 @@
       href: pass_to_method.md
     - name: Trimming
       href: trimming.md
+- name: Advanced topics
+  items:
     - name: Advanced usage
       href: advanced_usage.md
+    - name: Additional members
+      href: additional_members.md
+    - name: Exceptions and edge cases
+      href: exceptions_and_edge_cases.md
     - name: Comparison
       href: comparison.md
 - name: Known limitations

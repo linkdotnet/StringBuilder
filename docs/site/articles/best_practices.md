@@ -123,6 +123,24 @@ using var stringBuilder = new ValueStringBuilder();
 stringBuilder.Append(42, "D5");
 ```
 
+## Do not share a builder across threads
+
+`ValueStringBuilder` performs no synchronization. Confine each instance to the thread (and stack frame) that created it - never publish a `ValueStringBuilder`, or a `ref` to one, to another thread, and never call its members concurrently from multiple threads. Since it is a `ref struct`, it already cannot be stored in a field or captured by a closure, which rules out most of the ways shared mutable state would normally leak across threads - but a `ref` parameter passed explicitly is still possible, so avoid that pattern too.
+
+## Watch for culture-sensitive formatting in `Replace`/`ReplaceGeneric`
+
+`Append<T>` and `Insert<T>` take an explicit `formatProvider` parameter (defaulting to `null`, i.e. invariant `TryFormat` behavior for most built-in types). `ReplaceGeneric<T>`, by contrast, always formats numeric and other well-known value types using `CultureInfo.CurrentCulture`:
+
+```csharp
+using var stringBuilder = new ValueStringBuilder("Price: {0}");
+
+// Formats 1234.5 using CultureInfo.CurrentCulture - e.g. "1234,5" under a
+// culture that uses a comma as the decimal separator, "1234.5" under others.
+stringBuilder.ReplaceGeneric("{0}", 1234.5);
+```
+
+If you need a specific, thread-independent format regardless of `CurrentCulture`, format the value yourself (e.g. `value.ToString(format, CultureInfo.InvariantCulture)`) and pass the resulting string to the span-based `Replace` overload instead of `ReplaceGeneric`.
+
 ## Use `ValueStringBuilder` where it pays off
 
 `ValueStringBuilder` is most useful when at least one of the following is true:

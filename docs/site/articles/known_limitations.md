@@ -38,3 +38,14 @@ return stringBuilder.ToString();
 ```
 
 See the [advanced usage](xref:advanced_usage) article for more on `stackalloc`-backed buffers, including what happens if the content outgrows them.
+
+## `Dispose()` guarantees
+
+`Dispose()` returns the rented array to `ArrayPool<char>.Shared` (only if one was actually rented - a builder that never grew beyond its `stackalloc` buffer has nothing to return) and then resets the instance to its default value (`Length` and `Capacity` become `0`).
+
+That reset makes two edge cases safe rather than undefined:
+
+* **Calling `Dispose()` more than once** is a no-op the second time - after the first call there is no pooled array left to return.
+* **Using the builder after `Dispose()`** does not corrupt shared state or read from a returned array. Since `Capacity` is now `0`, the next `Append`/`Insert`/etc. call rents a fresh array the same way a brand-new `ValueStringBuilder()` would.
+
+Relying on this is not recommended - a disposed builder should be treated as logically gone - but it means a `Dispose()` call is never the source of a use-after-free-style bug here, unlike with an unmanaged resource.

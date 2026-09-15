@@ -1,3 +1,6 @@
+---
+uid: concepts
+---
 # How does it work?
 Before I answer the question, I would like to raise another question: How does it work differently and more effectively than the current `StringBuilder`?
 
