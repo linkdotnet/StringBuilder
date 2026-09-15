@@ -9,7 +9,7 @@ The base of the `ValueStringBuilder` is a `ref struct`. With that, there are cer
  * Can't be used in `async` methods.
  * Can't be used in methods that use the `yield` keyword
 
-If not off this applies to your use case, you are good to go. Using `ref struct` is a trade for performance and fewer allocations in contrast to its use cases.
+If not off this applies to your use case, you are good to go. Using `ref struct` is a trade for performance and fewer allocations in contrast to its use cases. For practical guidance on when these trade-offs are acceptable and how to work with them safely, see [Best practices and pitfalls](xref:best_practices).
 
 `ValueStringBuilder` offers the possibility to "convert" it into a "regular" `System.Text.StringBuilder` and back. Check out the [`ValueStringBuilderExtensions`](xref:LinkDotNet.StringBuilder.ValueStringBuilderExtensions) for `ToStringBuilder()` and `ToValueStringBuilder()`.
 
