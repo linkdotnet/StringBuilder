@@ -1,0 +1,3853 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct ValueStringBuilder | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct ValueStringBuilder | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      <meta name="description" content="A string builder which minimizes as many heap allocations as possible.">
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_ValueStringBuilder.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.ValueStringBuilder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="LinkDotNet.StringBuilder.ValueStringBuilder">
+
+
+
+  <h1 id="LinkDotNet_StringBuilder_ValueStringBuilder" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder" class="text-break">
+Struct ValueStringBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="LinkDotNet.html">LinkDotNet</a>.<a class="xref" href="LinkDotNet.StringBuilder.html">StringBuilder</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LinkDotNet.StringBuilder.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A string builder which minimizes as many heap allocations as possible.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ref struct ValueStringBuilder : IDisposable</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToStringBuilder_LinkDotNet_StringBuilder_ValueStringBuilder_">ValueStringBuilderExtensions.ToStringBuilder(ValueStringBuilder)</a>
+  </div>
+  </dd></dl>
+
+
+
+  <h2 id="LinkDotNet_StringBuilder_ValueStringBuilder_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This is a ref struct which has certain limitations. You can only store it in a local variable or another ref struct.<br><br>
+You should dispose it after use to ensure the rented buffer is returned to the array pool.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor">
+  ValueStringBuilder()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct using a rented buffer of capacity 32.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Int32)">
+  ValueStringBuilder(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder(int initialCapacity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>initialCapacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The initial capacity that will be allocated for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.ReadOnlySpan{System.Char})">
+  ValueStringBuilder(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder(scoped ReadOnlySpan&lt;char&gt; initialText)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>initialText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The initial text used to initialize this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Span{System.Char})">
+  ValueStringBuilder(Span&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder(Span&lt;char&gt; initialBuffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>initialBuffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Initial buffer for the string builder to begin with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Capacity_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Capacity*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Capacity" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Capacity">
+  Capacity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the current maximum capacity before the span must be resized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Capacity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The current maximum capacity before the span must be resized.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_IsEmpty_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_IsEmpty" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty">
+  IsEmpty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the builder's length is 0.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsEmpty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the builder is empty; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Item_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Item*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Item_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Item(System.Int32)">
+  this[int]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the character at the given index or throws an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.indexoutofrangeexception">IndexOutOfRangeException</a> if the index is bigger than the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ref char this[int index] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Character position to be retrieved.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Length_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Length*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Length" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Length">
+  Length
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the current length of the represented string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Length { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The current length of the represented string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)">
+  Append(ref AppendInterpolatedStringHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.InterpolatedStringHandler.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends an interpolated string to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(ref ValueStringBuilder.AppendInterpolatedStringHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>.<a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html">AppendInterpolatedStringHandler</a></dt>
+    <dd><p>The interpolated string handler.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Boolean_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Boolean)">
+  Append(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the string representation of the boolean.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(bool value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Bool value to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char)">
+  Append(char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a single character.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char__System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char*,System.Int32)">
+  Append(char*, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a character buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(char* value, int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>*</dt>
+    <dd><p>The pointer to the start of the buffer.</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters in the buffer.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_ReadOnlyMemory_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlyMemory{System.Char})">
+  Append(ReadOnlyMemory&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a slice of memory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(ReadOnlyMemory&lt;char&gt; memory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>memory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The memory to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlySpan{System.Char})">
+  Append(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(scoped ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_String_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.String)">
+  Append(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(string? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Text_Rune_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Text.Rune)">
+  Append(Rune)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a single rune to the string builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(Rune value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>Rune to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__1_System_ReadOnlySpan_System_Char____0_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``1(System.ReadOnlySpan{System.Char},``0)">
+  AppendFormat&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt;, T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendFormat.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the format string to the given <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFormat&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt; format, T arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Format string.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">T</span></dt>
+    <dd><p>Argument for <code>{0}</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__1_System_ReadOnlySpan_System_Char____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><pre><code>The current version does not allow for a custom format.
+So: 
+</code></pre>
+<pre><code class="lang-csharp">AppendFormat("{0:00}")</code></pre>
+<p>is not allowed and will result in an exception.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__2_System_ReadOnlySpan_System_Char____0___1_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``2(System.ReadOnlySpan{System.Char},``0,``1)">
+  AppendFormat&lt;T1, T2&gt;(scoped ReadOnlySpan&lt;char&gt;, T1, T2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendFormat.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the format string to the given <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFormat&lt;T1, T2&gt;(scoped ReadOnlySpan&lt;char&gt; format, T1 arg1, T2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Format string.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>Argument for <code>{0}</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Argument for <code>{1}</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__2_System_ReadOnlySpan_System_Char____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><pre><code>The current version does not allow for a custom format.
+So: 
+</code></pre>
+<pre><code class="lang-csharp">AppendFormat("{0:00}")</code></pre>
+<p>is not allowed and will result in an exception.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__3_System_ReadOnlySpan_System_Char____0___1___2_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``3(System.ReadOnlySpan{System.Char},``0,``1,``2)">
+  AppendFormat&lt;T1, T2, T3&gt;(scoped ReadOnlySpan&lt;char&gt;, T1, T2, T3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendFormat.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the format string to the given <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFormat&lt;T1, T2, T3&gt;(scoped ReadOnlySpan&lt;char&gt; format, T1 arg1, T2 arg2, T3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Format string.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>Argument for <code>{0}</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Argument for <code>{1}</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Argument for <code>{2}</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__3_System_ReadOnlySpan_System_Char____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><pre><code>The current version does not allow for a custom format.
+So: 
+</code></pre>
+<pre><code class="lang-csharp">AppendFormat("{0:00}")</code></pre>
+<p>is not allowed and will result in an exception.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__4_System_ReadOnlySpan_System_Char____0___1___2___3_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``4(System.ReadOnlySpan{System.Char},``0,``1,``2,``3)">
+  AppendFormat&lt;T1, T2, T3, T4&gt;(scoped ReadOnlySpan&lt;char&gt;, T1, T2, T3, T4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendFormat.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the format string to the given <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFormat&lt;T1, T2, T3, T4&gt;(scoped ReadOnlySpan&lt;char&gt; format, T1 arg1, T2 arg2, T3 arg3, T4 arg4)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Format string.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>Argument for <code>{0}</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Argument for <code>{1}</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Argument for <code>{2}</code>.</p>
+</dd>
+    <dt><code>arg4</code> <span class="xref">T4</span></dt>
+    <dd><p>Argument for <code>{3}</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code>.</p>
+</dd>
+    <dt><code>T4</code></dt>
+    <dd><p>Any type for <code class="paramref">arg4</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__4_System_ReadOnlySpan_System_Char____0___1___2___3__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><pre><code>The current version does not allow for a custom format.
+So: 
+</code></pre>
+<pre><code class="lang-csharp">AppendFormat("{0:00}")</code></pre>
+<p>is not allowed and will result in an exception.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__5_System_ReadOnlySpan_System_Char____0___1___2___3___4_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``5(System.ReadOnlySpan{System.Char},``0,``1,``2,``3,``4)">
+  AppendFormat&lt;T1, T2, T3, T4, T5&gt;(scoped ReadOnlySpan&lt;char&gt;, T1, T2, T3, T4, T5)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendFormat.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the format string to the given <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendFormat&lt;T1, T2, T3, T4, T5&gt;(scoped ReadOnlySpan&lt;char&gt; format, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Format string.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>Argument for <code>{0}</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Argument for <code>{1}</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Argument for <code>{2}</code>.</p>
+</dd>
+    <dt><code>arg4</code> <span class="xref">T4</span></dt>
+    <dd><p>Argument for <code>{3}</code>.</p>
+</dd>
+    <dt><code>arg5</code> <span class="xref">T5</span></dt>
+    <dd><p>Argument for <code>{4}</code>.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code>.</p>
+</dd>
+    <dt><code>T4</code></dt>
+    <dd><p>Any type for <code class="paramref">arg4</code>.</p>
+</dd>
+    <dt><code>T5</code></dt>
+    <dd><p>Any type for <code class="paramref">arg5</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__5_System_ReadOnlySpan_System_Char____0___1___2___3___4__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><pre><code>The current version does not allow for a custom format.
+So: 
+</code></pre>
+<pre><code class="lang-csharp">AppendFormat("{0:00}")</code></pre>
+<p>is not allowed and will result in an exception.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_System_Collections_Generic_IEnumerable_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.Collections.Generic.IEnumerable{System.String})">
+  AppendJoin(char, IEnumerable&lt;string?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(char separator, IEnumerable&lt;string?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Enumerable of strings to be concatenated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_System_ReadOnlySpan_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.ReadOnlySpan{System.String})">
+  AppendJoin(char, scoped ReadOnlySpan&lt;string?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(char separator, scoped ReadOnlySpan&lt;string?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Enumerable of strings to be concatenated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_ReadOnlySpan_System_Char__System_Collections_Generic_IEnumerable_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{System.String})">
+  AppendJoin(ReadOnlySpan&lt;char&gt;, IEnumerable&lt;string?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(ReadOnlySpan&lt;char&gt; separator, IEnumerable&lt;string?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Enumerable of strings to be concatenated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.String})">
+  AppendJoin(ReadOnlySpan&lt;char&gt;, scoped ReadOnlySpan&lt;string?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(ReadOnlySpan&lt;char&gt; separator, scoped ReadOnlySpan&lt;string?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Enumerable of strings to be concatenated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Text_Rune_System_Collections_Generic_IEnumerable_System_String__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Text.Rune,System.Collections.Generic.IEnumerable{System.String})">
+  AppendJoin(Rune, IEnumerable&lt;string?&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin(Rune separator, IEnumerable&lt;string?&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>Rune used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Enumerable of strings to be concatenated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_System_Collections_Generic_IEnumerable___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.Collections.Generic.IEnumerable{``0})">
+  AppendJoin&lt;T&gt;(char, IEnumerable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(char separator, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>Enumerable to be concatenated.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Type of the given enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_System_ReadOnlySpan___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.ReadOnlySpan{``0})">
+  AppendJoin&lt;T&gt;(char, scoped ReadOnlySpan&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(char separator, scoped ReadOnlySpan&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;T&gt;</dt>
+    <dd><p>Enumerable to be concatenated.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Type of the given enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_ReadOnlySpan_System_Char__System_Collections_Generic_IEnumerable___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{``0})">
+  AppendJoin&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt;, IEnumerable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt; separator, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>Enumerable to be concatenated.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Type of the given enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_ReadOnlySpan_System_Char__System_ReadOnlySpan___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{``0})">
+  AppendJoin&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt;, ReadOnlySpan&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt; separator, ReadOnlySpan&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;T&gt;</dt>
+    <dd><p>Enumerable to be concatenated.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Type of the given enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Text_Rune_System_Collections_Generic_IEnumerable___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Text.Rune,System.Collections.Generic.IEnumerable{``0})">
+  AppendJoin&lt;T&gt;(Rune, IEnumerable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.AppendJoin.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates and appends all values with the given separator between each entry at the end of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendJoin&lt;T&gt;(Rune separator, IEnumerable&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>Rune used as separator between the entries.</p>
+</dd>
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</dt>
+    <dd><p>Enumerable to be concatenated.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Type of the given enumerable.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine">
+  AppendLine()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)">
+  AppendLine(ref AppendInterpolatedStringHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.InterpolatedStringHandler.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends an interpolated string followed by a new line to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(ref ValueStringBuilder.AppendInterpolatedStringHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>.<a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html">AppendInterpolatedStringHandler</a></dt>
+    <dd><p>The interpolated string handler.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})">
+  AppendLine(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calls <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_ReadOnlySpan_System_Char__">Append(scoped ReadOnlySpan&lt;char&gt;)</a> and appends <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(scoped ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_System_String_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.String)">
+  AppendLine(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calls <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_String_">Append(string?)</a> and appends <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(string? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadLeft_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadLeft_System_ReadOnlySpan_System_Char__System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft(System.ReadOnlySpan{System.Char},System.Int32,System.Char)">
+  AppendPadLeft(scoped ReadOnlySpan&lt;char&gt;, int, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Pad.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the source string padded on the left with the given character to reach the specified total width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendPadLeft(scoped ReadOnlySpan&lt;char&gt; source, int sourceTotalWidth, char paddingChar = &#39; &#39;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The source string to pad and append.</p>
+</dd>
+    <dt><code>sourceTotalWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total width of the padded string.</p>
+</dd>
+    <dt><code>paddingChar</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to pad the string with. Defaults to space.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadRight_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadRight_System_ReadOnlySpan_System_Char__System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight(System.ReadOnlySpan{System.Char},System.Int32,System.Char)">
+  AppendPadRight(scoped ReadOnlySpan&lt;char&gt;, int, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Pad.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the source string padded on the right with the given character to reach the specified total width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendPadRight(scoped ReadOnlySpan&lt;char&gt; source, int sourceTotalWidth, char paddingChar = &#39; &#39;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The source string to pad and append.</p>
+</dd>
+    <dt><code>sourceTotalWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total width of the padded string.</p>
+</dd>
+    <dt><code>paddingChar</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to pad the string with. Defaults to space.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AppendSpan_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan(System.Int32)">
+  AppendSpan(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a span of the given length, which can be written to later.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Span&lt;char&gt; AppendSpan(int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Integer representing the number of characters to be appended.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>A span with the characters appended.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Append__1___0_System_ReadOnlySpan_System_Char__System_Int32_System_IFormatProvider_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)">
+  Append&lt;T&gt;(T, scoped ReadOnlySpan&lt;char&gt;, int, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Append.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the string representation of the value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append&lt;T&gt;(T value, scoped ReadOnlySpan&lt;char&gt; format = default, int bufferSize = 36, IFormatProvider? formatProvider = null) where T : ISpanFormattable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>Formattable span to add.</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Optional formatter. If not provided the default of the given instance is taken.</p>
+</dd>
+    <dt><code>bufferSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Size of the buffer allocated. If you have a custom type that implements <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a> that
+requires more space than the default (36 characters), adjust the value.</p>
+</dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd><p>Optional format provider.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan">
+  AsSpan()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the string as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;char&gt; AsSpan()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The filled array as <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32)">
+  AsSpan(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the string as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;char&gt; AsSpan(int startIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The starting position of the substring in this instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The filled array as <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32,System.Int32)">
+  AsSpan(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the string as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;char&gt; AsSpan(int startIndex, int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The starting position of the substring in this instance.</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The length of the substring.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The filled array as <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Range_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Range)">
+  AsSpan(Range)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the string as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;char&gt; AsSpan(Range range)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>range</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.range">Range</a></dt>
+    <dd><p>The range to be retrieved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The filled array as <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Clear*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the internal representation of the string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_Clear_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This will not enforce some re-allocation or shrinking of the internal buffer. The size stays the same.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__1_System_ReadOnlySpan___0__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(System.ReadOnlySpan{``0})">
+  Concat&lt;T&gt;(params ReadOnlySpan&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates the string representation of multiple objects together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T&gt;(params ReadOnlySpan&lt;T&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;T&gt;</dt>
+    <dd><p>Values to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The concatenated string, or an empty string if <code class="paramref">values</code> is empty.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any type for <code class="paramref">values</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__1___0_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(``0)">
+  Concat&lt;T1&gt;(T1)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates the string representation of an object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T1&gt;(T1 arg1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>First value to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string representation of the object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__2___0___1_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``2(``0,``1)">
+  Concat&lt;T1, T2&gt;(T1, T2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates the string representation of two objects together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T1, T2&gt;(T1 arg1, T2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>First value to be concatenated.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Second value to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The concatenated string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__3___0___1___2_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``3(``0,``1,``2)">
+  Concat&lt;T1, T2, T3&gt;(T1, T2, T3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates the string representation of three objects together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T1, T2, T3&gt;(T1 arg1, T2 arg2, T3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>First value to be concatenated.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Second value to be concatenated.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Third value to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The concatenated string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__4___0___1___2___3_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``4(``0,``1,``2,``3)">
+  Concat&lt;T1, T2, T3, T4&gt;(T1, T2, T3, T4)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates the string representation of four objects together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T1, T2, T3, T4&gt;(T1 arg1, T2 arg2, T3 arg3, T4 arg4)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>First value to be concatenated.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Second value to be concatenated.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Third value to be concatenated.</p>
+</dd>
+    <dt><code>arg4</code> <span class="xref">T4</span></dt>
+    <dd><p>Fourth value to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The concatenated string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T4</code></dt>
+    <dd><p>Any type for <code class="paramref">arg4</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Concat__5___0___1___2___3___4_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Concat``5(``0,``1,``2,``3,``4)">
+  Concat&lt;T1, T2, T3, T4, T5&gt;(T1, T2, T3, T4, T5)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Concat.Helper.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Concatenates the string representation of five objects together.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Concat&lt;T1, T2, T3, T4, T5&gt;(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg1</code> <span class="xref">T1</span></dt>
+    <dd><p>First value to be concatenated.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">T2</span></dt>
+    <dd><p>Second value to be concatenated.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">T3</span></dt>
+    <dd><p>Third value to be concatenated.</p>
+</dd>
+    <dt><code>arg4</code> <span class="xref">T4</span></dt>
+    <dd><p>Fourth value to be concatenated.</p>
+</dd>
+    <dt><code>arg5</code> <span class="xref">T5</span></dt>
+    <dd><p>Fifth value to be concatenated.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The concatenated string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T1</code></dt>
+    <dd><p>Any type for <code class="paramref">arg1</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T2</code></dt>
+    <dd><p>Any type for <code class="paramref">arg2</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T3</code></dt>
+    <dd><p>Any type for <code class="paramref">arg3</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T4</code></dt>
+    <dd><p>Any type for <code class="paramref">arg4</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+    <dt><code>T5</code></dt>
+    <dd><p>Any type for <code class="paramref">arg5</code> that can be converted to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Contains*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Contains(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  Contains(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L312"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns whether a specified substring occurs within this string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool Contains(scoped ReadOnlySpan&lt;char&gt; word, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>word</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Word to look for in this string.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>One of the enumeration values that specifies the rules for the search.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if the value parameter occurs within this string, or if value is the empty string (&quot;&quot;); otherwise, false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_Contains_System_ReadOnlySpan_System_Char__System_StringComparison__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method performs an ordinal (case-sensitive and culture-insensitive) comparison.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Dispose_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Dispose*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Dispose" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Disposes the instance and returns the rented buffer to the array pool if needed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)">
+  EnsureCapacity(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.EnsureCapacity.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ensures the builder's buffer size is at least <code class="paramref">newCapacity</code>, renting a larger buffer if not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnsureCapacity(int newCapacity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newCapacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>New capacity for the builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length">Length</a> is already &gt;= <code class="paramref">newCapacity</code>, nothing is done.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Equals_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Equals*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Equals_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char})">
+  Equals(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns whether the characters in this builder are equal to the characters in the given span.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(scoped ReadOnlySpan&lt;char&gt; span)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>span</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The character span to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the characters are equal to this instance, otherwise <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Equals_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Equals*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Equals_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  Equals(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns whether the characters in this builder are equal to the characters in the given span according to the given comparison type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(scoped ReadOnlySpan&lt;char&gt; span, StringComparison comparisonType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>span</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The character span to compare with the current instance.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>The way to compare the sequences of characters.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the characters are equal to this instance, otherwise <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_GetEnumerator_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_GetEnumerator" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Enumerator.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an enumerator over the characters in the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ValueStringBuilder.Enumerator GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>.<a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html">Enumerator</a></dt>
+    <dd><p>An enumerator over the characters in the builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference">
+  GetPinnableReference()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a pinnable reference to the represented string from this builder.
+The content after <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length">Length</a> is not guaranteed to be null terminated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ref char GetPinnableReference()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The pointer to the first instance of the string represented by this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is used for use-cases where the user wants to use &quot;fixed&quot; calls like the following:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append("Hello World");
+fixed (var* buffer = stringBuilder) { ... }</code></pre>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_System_ReadOnlySpan_System_Char__System_Int32_System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)">
+  IndexOf(scoped ReadOnlySpan&lt;char&gt;, int, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int IndexOf(scoped ReadOnlySpan&lt;char&gt; word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>word</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Word to look for in this string.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index to begin with.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>One of the enumeration values that specifies the rules for the search.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the found <code class="paramref">word</code> in this string or -1 if not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  IndexOf(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the index within this string of the first occurrence of the specified substring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int IndexOf(scoped ReadOnlySpan&lt;char&gt; word, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>word</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Word to look for in this string.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>One of the enumeration values that specifies the rules for the search.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the found <code class="paramref">word</code> in this string or -1 if not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Boolean_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Boolean)">
+  Insert(int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Insert the string representation of the boolean to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, bool value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index where <code class="paramref">value</code> should be inserted.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Boolean to insert into this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Char)">
+  Insert(int, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Insert the string representation of the character to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index where <code class="paramref">value</code> should be inserted.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to insert into this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.ReadOnlySpan{System.Char})">
+  Insert(int, scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Insert the given span into the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, scoped ReadOnlySpan&lt;char&gt; value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index where <code class="paramref">value</code> should be inserted.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String to insert into this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Text_Rune_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Text.Rune)">
+  Insert(int, Rune)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Insert the string representation of the rune to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert(int index, Rune value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index where <code class="paramref">value</code> should be inserted.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>Rune to insert into this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Insert__1_System_Int32___0_System_ReadOnlySpan_System_Char__System_Int32_System_IFormatProvider_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Insert``1(System.Int32,``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)">
+  Insert&lt;T&gt;(int, T, scoped ReadOnlySpan&lt;char&gt;, int, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Insert.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Insert the string representation of the value to the builder at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Insert&lt;T&gt;(int index, T value, scoped ReadOnlySpan&lt;char&gt; format = default, int bufferSize = 36, IFormatProvider? formatProvider = null) where T : ISpanFormattable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index where <code class="paramref">value</code> should be inserted.</p>
+</dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>Formattable value to insert into this builder.</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Optional formatter. If not provided the default of the given instance is taken.</p>
+</dd>
+    <dt><code>bufferSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Size of the buffer allocated on the stack.</p>
+</dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd><p>Optional format provider.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_System_ReadOnlySpan_System_Char__System_Int32_System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)">
+  LastIndexOf(scoped ReadOnlySpan&lt;char&gt;, int, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the index within this string of the last occurrence of the specified substring, starting at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int LastIndexOf(scoped ReadOnlySpan&lt;char&gt; word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>word</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Word to look for in this string.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index to begin with.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>One of the enumeration values that specifies the rules for the search.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the found <code class="paramref">word</code> in this string or -1 if not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  LastIndexOf(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the index within this string of the last occurrence of the specified substring.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int LastIndexOf(scoped ReadOnlySpan&lt;char&gt; word, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>word</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Word to look for in this string.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>One of the enumeration values that specifies the rules for the search.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the found <code class="paramref">word</code> in this string or -1 if not found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_PadLeft_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_PadLeft_System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft(System.Int32,System.Char)">
+  PadLeft(int, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Pad.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pads the left side of the string with the given character.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PadLeft(int totalWidth, char paddingChar)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>totalWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total width of the string after padding.</p>
+</dd>
+    <dt><code>paddingChar</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to pad the string with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_PadRight_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.PadRight*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_PadRight_System_Int32_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.PadRight(System.Int32,System.Char)">
+  PadRight(int, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Pad.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Pads the right side of the string with the given character.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PadRight(int totalWidth, char paddingChar)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>totalWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total width of the string after padding.</p>
+</dd>
+    <dt><code>paddingChar</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to pad the string with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Remove*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Remove(System.Int32,System.Int32)">
+  Remove(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes a range of characters from this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(int startIndex, int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The inclusive index from where the string gets removed.</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The length of the slice to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method will not affect the internal size of the string.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char)">
+  Replace(char, char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one character with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly void Replace(char oldValue, char newValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)">
+  Replace(char, char, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one character with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly void Replace(char oldValue, char newValue, int startIndex, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index to start in this builder.</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters to read in this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+  Replace(scoped ReadOnlySpan&lt;char&gt;, scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(scoped ReadOnlySpan&lt;char&gt; oldValue, scoped ReadOnlySpan&lt;char&gt; newValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">newValue</code> is <code>empty</code>, instances of <code class="paramref">oldValue</code> are removed.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char__System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)">
+  Replace(scoped ReadOnlySpan&lt;char&gt;, scoped ReadOnlySpan&lt;char&gt;, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(scoped ReadOnlySpan&lt;char&gt; oldValue, scoped ReadOnlySpan&lt;char&gt; newValue, int startIndex, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index to start in this builder.</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters to read in this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char__System_Int32_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">newValue</code> is <code>empty</code>, instances of <code class="paramref">oldValue</code> are removed.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Text_Rune_System_Text_Rune_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune)">
+  Replace(Rune, Rune)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one rune with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(Rune oldValue, Rune newValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>The rune to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>The rune to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Text_Rune_System_Text_Rune_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune,System.Int32,System.Int32)">
+  Replace(Rune, Rune, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one rune with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Replace(Rune oldValue, Rune newValue, int startIndex, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>The rune to replace.</p>
+</dd>
+    <dt><code>newValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>The rune to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index to start in this builder.</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters to read in this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0)">
+  ReplaceGeneric&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt;, T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceGeneric&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt; oldValue, T newValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace.</p>
+</dd>
+    <dt><code>newValue</code> <span class="xref">T</span></dt>
+    <dd><p>Object to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">newValue</code> is from type <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a> an optimized version is taken.
+Otherwise the ToString method is called.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0,System.Int32,System.Int32)">
+  ReplaceGeneric&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt;, T, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Replace.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces all instances of one string with another in this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReplaceGeneric&lt;T&gt;(scoped ReadOnlySpan&lt;char&gt; oldValue, T newValue, int startIndex, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string to replace.</p>
+</dd>
+    <dt><code>newValue</code> <span class="xref">T</span></dt>
+    <dd><p>Object to replace <code class="paramref">oldValue</code> with.</p>
+</dd>
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index to start in this builder.</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters to read in this builder.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any type.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0_System_Int32_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If <code class="paramref">newValue</code> is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a>, <code>TryFormat</code> is used.
+Otherwise, <code>ToString</code> is used.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Reverse_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Reverse*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Reverse" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Reverse">
+  Reverse()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reverses the sequence of elements in this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly void Reverse()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance from the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32)">
+  ToString(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance from the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string ToString(int startIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The starting position of the substring in this instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Int32_System_Int32_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32,System.Int32)">
+  ToString(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance from the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string ToString(int startIndex, int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The starting position of the substring in this instance.</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The length of the substring.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Range_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Range)">
+  ToString(Range)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance from the builder in the given range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string ToString(Range range)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>range</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.range">Range</a></dt>
+    <dd><p>The range to be retrieved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Trim_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Trim*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Trim" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Trim">
+  Trim()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all whitespace characters from the start and end of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Trim()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_Trim_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Trim*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_Trim_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.Trim(System.Char)">
+  Trim(char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all occurrences of the specified character from the start and end of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Trim(char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd">
+  TrimEnd()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all whitespace characters from the end of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimEnd()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd(System.Char)">
+  TrimEnd(char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all occurrences of the specified character from the end of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimEnd(char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimPrefix_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimPrefix_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  TrimPrefix(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the specified sequence of characters from the start of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimPrefix(scoped ReadOnlySpan&lt;char&gt; value, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The sequence of characters to remove.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>The way to compare the sequences of characters.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart">
+  TrimStart()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all whitespace characters from the start of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimStart()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart_System_Char_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart(System.Char)">
+  TrimStart(char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all occurrences of the specified character from the start of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimStart(char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>The character to remove.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimSuffix_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TrimSuffix_System_ReadOnlySpan_System_Char__System_StringComparison_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix(System.ReadOnlySpan{System.Char},System.StringComparison)">
+  TrimSuffix(scoped ReadOnlySpan&lt;char&gt;, StringComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the specified sequence of characters from the end of this builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void TrimSuffix(scoped ReadOnlySpan&lt;char&gt; value, StringComparison comparisonType = StringComparison.Ordinal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The sequence of characters to remove.</p>
+</dd>
+    <dt><code>comparisonType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.stringcomparison">StringComparison</a></dt>
+    <dd><p>The way to compare the sequences of characters.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_System_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(System.Span{System.Char})">
+  TryCopyTo(Span&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tries to copy the represented string into the given <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool TryCopyTo(Span&lt;char&gt; destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The destination where the internal string is copied into.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True, if the copy was successful, otherwise false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_System_ReadOnlySpan_System_Char___LinkDotNet_StringBuilder_ValueStringBuilder" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.ReadOnlySpan{System.Char})~LinkDotNet.StringBuilder.ValueStringBuilder">
+  implicit operator ValueStringBuilder(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the implicit conversion of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a> to <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator ValueStringBuilder(scoped ReadOnlySpan&lt;char&gt; fromString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The string as initial buffer.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_System_String__LinkDotNet_StringBuilder_ValueStringBuilder" data-uid="LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.String)~LinkDotNet.StringBuilder.ValueStringBuilder">
+  implicit operator ValueStringBuilder(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the implicit conversion of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> to <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator ValueStringBuilder(string fromString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fromString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string as initial buffer.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/ValueStringBuilder.Trim.cs/#L6" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

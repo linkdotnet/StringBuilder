@@ -1,0 +1,258 @@
+{
+  "source_base_path": "D:/a/StringBuilder/StringBuilder/docs/site",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler",
+      "Summary": "<p sourcefile=\"api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.yml\" sourcestartlinenumber=\"1\">Nested struct which handles interpolated strings for <xref href=\"LinkDotNet.StringBuilder.ValueStringBuilder\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator",
+      "Summary": "<p sourcefile=\"api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.yml\" sourcestartlinenumber=\"1\">Enumerates the elements of a <xref href=\"System.Span%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "LinkDotNet.StringBuilder.ValueStringBuilder",
+      "Summary": "<p sourcefile=\"api/LinkDotNet.StringBuilder.ValueStringBuilder.yml\" sourcestartlinenumber=\"1\">A string builder which minimizes as many heap allocations as possible.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "LinkDotNet.StringBuilder.ValueStringBuilderExtensions",
+      "Summary": "<p sourcefile=\"api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for the <xref href=\"LinkDotNet.StringBuilder.ValueStringBuilder\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LinkDotNet.StringBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LinkDotNet.StringBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "LinkDotNet.StringBuilder",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/additional_members.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/additional_members.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/advanced_usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/advanced_usage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/best_practices.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/best_practices.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/comparison.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/comparison.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/concepts.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/concepts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/exceptions_and_edge_cases.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/exceptions_and_edge_cases.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting_started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting_started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/known_limitations.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/known_limitations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/pass_to_method.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/pass_to_method.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/trimming.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/trimming.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

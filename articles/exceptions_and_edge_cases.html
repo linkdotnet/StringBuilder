@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Exceptions and edge cases | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Exceptions and edge cases | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/exceptions_and_edge_cases.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="exceptions_and_edge_cases">
+<h1 id="exceptions-and-edge-cases">Exceptions and edge cases</h1>
+
+<p><code>ValueStringBuilder</code> favors explicit exceptions over silent clamping when an argument is out of range. This article lists the exceptions you should expect from the most commonly used members, so you can decide where validation belongs in your own code.</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Exception</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Indexer <code>this[int]</code></td>
+<td><code>IndexOutOfRangeException</code></td>
+<td><code>index</code> is negative or <code>&gt;= Length</code>.</td>
+</tr>
+<tr>
+<td><code>Insert(int, ...)</code> overloads</td>
+<td><code>ArgumentOutOfRangeException</code></td>
+<td><code>index</code> is negative, or greater than <code>Length</code>.</td>
+</tr>
+<tr>
+<td><code>Remove(int startIndex, int length)</code></td>
+<td><code>ArgumentOutOfRangeException</code></td>
+<td><code>length</code> is negative, <code>startIndex</code> is negative, or <code>startIndex + length</code> is greater than <code>Length</code>.</td>
+</tr>
+<tr>
+<td><code>AsSpan(int startIndex, int length)</code> / <code>ToString(int startIndex, int length)</code></td>
+<td><code>ArgumentOutOfRangeException</code></td>
+<td><code>length</code> is greater than <code>Length</code>.</td>
+</tr>
+<tr>
+<td><code>AsSpan(Range)</code> / <code>ToString(Range)</code></td>
+<td><code>ArgumentOutOfRangeException</code></td>
+<td>The resolved range falls outside <code>0..Length</code>.</td>
+</tr>
+<tr>
+<td><code>AppendFormat</code></td>
+<td><code>FormatException</code></td>
+<td>A placeholder's argument index is not a valid non-negative integer within range of the supplied arguments, or a custom format specifier (e.g. <code>{0:00}</code>) is used - see <a class="xref" href="best_practices.html#appendformat-is-intentionally-limited"><code>AppendFormat</code> is intentionally limited</a>.</td>
+</tr>
+<tr>
+<td><code>Insert&lt;T&gt;</code> (the <code>ISpanFormattable</code> overload)</td>
+<td><code>InvalidOperationException</code></td>
+<td><code>value.TryFormat</code> does not fit into the temporary buffer sized by <code>bufferSize</code> (default 36 characters) - increase <code>bufferSize</code> for large custom <code>ISpanFormattable</code> types.</td>
+</tr>
+<tr>
+<td><code>ToValueStringBuilder()</code> (on <code>System.Text.StringBuilder</code>)</td>
+<td><code>ArgumentNullException</code></td>
+<td>The extension is called on a <code>null</code> <code>StringBuilder</code> reference.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="things-that-do-not-throw">Things that do <strong>not</strong> throw</h2>
+<p>A few operations are intentionally lenient:</p>
+<ul>
+<li><code>Append</code>/<code>Insert</code> with an empty span or <code>null</code> string is a no-op (<code>Append(string? value)</code> treats <code>null</code> the same as <code>ReadOnlySpan&lt;char&gt;.Empty</code>).</li>
+<li><code>Remove(startIndex, 0)</code> is a no-op regardless of <code>startIndex</code>, as long as <code>startIndex</code> is within bounds.</li>
+<li><code>IndexOf</code>/<code>LastIndexOf</code>/<code>Contains</code> return <code>-1</code> (or <code>false</code>) instead of throwing when the search value is not found; an empty search value is considered found at index <code>0</code>, matching <code>Span&lt;char&gt;</code> semantics.</li>
+<li>Growing the buffer (via <code>Append</code>, <code>Insert</code>, <code>EnsureCapacity</code>, etc.) never throws for lack of memory in normal use - it rents a larger array from <code>ArrayPool&lt;char&gt;.Shared</code> as needed. See <a href="#capacity-growth">Capacity growth</a> below.</li>
+</ul>
+<h2 id="capacity-growth">Capacity growth</h2>
+<p><code>EnsureCapacity(int newCapacity)</code> is a no-op if the current <code>Capacity</code> already satisfies <code>newCapacity</code>. Otherwise it rents a new array sized to the <strong>smallest power of two that is <code>&gt;= newCapacity</code></strong>, copies the existing content over, and returns the previous pooled array (if any) to <code>ArrayPool&lt;char&gt;.Shared</code>. This means capacity can grow in large jumps (e.g. requesting one more character than a full 64-character buffer rents a 128-character array), which is a deliberate trade-off to keep the number of pool rents low - see <a class="xref" href="concepts.html">How does it work?</a> for the broader buffer strategy.</p>
+<p>For more on <code>Dispose()</code> behavior around the pooled array, including what happens on double-dispose, see <a class="xref" href="known_limitations.html#dispose-guarantees">Known limitations</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/exceptions_and_edge_cases.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

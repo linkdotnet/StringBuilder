@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Comparison | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Comparison | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/comparison.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="comparison">
+<h1 id="comparison">Comparison</h1>
+
+<p>The following document will show some key differences between the <code>ValueStringBuilder</code> and similar working string builder like the one from .NET itself.</p>
+<h2 id="systemtextstringbuilder">System.Text.StringBuilder</h2>
+<p>The <code>StringBuilder</code> shipped with the .NET Framework itself is a all-purpose string builder which allows a versatile use. <code>ValueStringBuilder</code> tries to mimic the API as much as possible so developers can adopt the <code>ValueStringBuilder</code> easily where it makes sense. In the following part <code>StringBuilder</code> refers to <code>System.Text.StringBuilder</code>.</p>
+<p><strong>Key differences</strong>:</p>
+<ul>
+<li><code>StringBuilder</code> is a class and does not have the restrictions coming with a <code>ref struct</code>. To know more head over to the <a class="xref" href="known_limitations.html">known limitations</a> section.</li>
+<li><code>StringBuilder</code> works not on <code>Span&lt;T&gt;</code> but more on <code>string</code>s or <code>char</code>s. Sometimes even with pointers</li>
+<li><code>StringBuilder</code> uses chunks to represent the string, which the larger the string gets, the better it can perform. <code>ValueStringBuilder</code> only has one internal <code>Span</code> as representation which can cause fragmentation on very big strings.</li>
+<li><code>StringBuilder</code> has a richer API as the <code>ValueStringBuilder</code>. In the future they should have the same amount of API's as the <code>StringBuilder</code> is the &quot;big brother&quot; of this package.</li>
+<li><code>ValueStringBuilder</code> has different API calls like <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_"><code>IndexOf</code></a> or <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_"><code>LastIndexOf</code></a>.</li>
+</ul>
+<h2 id="benchmark">Benchmark</h2>
+<p>The following table gives you a small comparison between the <code>StringBuilder</code> which is part of .NET and the <code>ValueStringBuilder</code>:</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS Sequoia 15.7.9 (24G830) [Darwin 24.6.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method              | Mean      | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|-------------------- |----------:|---------:|---------:|------:|-------:|----------:|------------:|
+| DotNetStringBuilder | 116.73 ns | 0.994 ns | 0.930 ns |  1.00 | 0.1779 |    1488 B |        1.00 |
+| ValueStringBuilder  |  65.71 ns | 0.637 ns | 0.596 ns |  0.56 | 0.0583 |     488 B |        0.33 |
+</code></pre>
+<p><code>ValueStringBuilder</code> also avoids boxing value types (<code>int</code>, <code>double</code>, <code>DateTime</code>, <code>Guid</code>, and 16 more) passed to
+<code>AppendJoin</code>, <code>Concat</code>, <code>AppendFormat</code>, <code>ReplaceGeneric</code>, and interpolated strings, and vectorizes <a class="xref" href="trimming.html"><code>Trim</code>/<code>TrimStart</code>/<code>TrimEnd</code></a>
+via <code>SearchValues&lt;char&gt;</code>. The following benchmark shows the combined effect against <code>StringBuilder</code> for a few representative
+operations:</p>
+<p>Operations, top to bottom: concatenating 5 mixed values, joining 10 ints with a separator, an interpolated string with
+5 value-type holes, replacing a placeholder with a formatted int, and trimming a padded 1000-char buffer.</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS Sequoia 15.7.9 (24G830) [Darwin 24.6.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method                         | Mean      | Error     | StdDev    | Gen0   | Gen1   | Allocated |
+|------------------------------- |----------:|----------:|----------:|-------:|-------:|----------:|
+| StringBuilderConcat            | 246.12 ns |  1.414 ns |  1.254 ns | 0.0792 |      - |     664 B |
+| StringBuilderAppendJoin        |  54.12 ns |  0.132 ns |  0.117 ns | 0.0325 |      - |     272 B |
+| StringBuilderInterpolated      | 251.53 ns |  0.805 ns |  0.753 ns | 0.0610 |      - |     512 B |
+| StringBuilderReplace           |  49.31 ns |  0.127 ns |  0.112 ns | 0.0325 |      - |     272 B |
+| StringBuilderTrim              | 899.23 ns | 11.791 ns | 11.029 ns | 0.7629 | 0.0114 |    6384 B |
+| ValueStringBuilderConcat       | 194.96 ns |  0.333 ns |  0.295 ns | 0.0210 |      - |     176 B |
+| ValueStringBuilderAppendJoin   |  38.72 ns |  0.757 ns |  0.708 ns | 0.0076 |      - |      64 B |
+| ValueStringBuilderInterpolated | 148.65 ns |  1.721 ns |  1.526 ns | 0.0191 |      - |     160 B |
+| ValueStringBuilderReplace      |  30.98 ns |  0.649 ns |  0.667 ns | 0.0038 |      - |      32 B |
+| ValueStringBuilderTrim         | 132.67 ns |  0.511 ns |  0.453 ns | 0.0057 |      - |      48 B |
+</code></pre>
+<p>Comparing each <code>ValueStringBuilder</code> row against its <code>StringBuilder</code> counterpart above:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Time</th>
+<th>Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concat</td>
+<td>0.79x (1.3x faster)</td>
+<td>0.27x (3.8x less)</td>
+</tr>
+<tr>
+<td>AppendJoin</td>
+<td>0.72x (1.4x faster)</td>
+<td>0.24x (4.3x less)</td>
+</tr>
+<tr>
+<td>Interpolated</td>
+<td>0.59x (1.7x faster)</td>
+<td>0.31x (3.2x less)</td>
+</tr>
+<tr>
+<td>Replace</td>
+<td>0.63x (1.6x faster)</td>
+<td>0.12x (8.5x less)</td>
+</tr>
+<tr>
+<td>Trim</td>
+<td>0.15x (6.8x faster)</td>
+<td>0.01x (133x less)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="padding">Padding</h2>
+<p><code>PadRight</code>/<code>AppendPadRight</code> write directly into the builder's buffer instead of allocating an intermediate padded <code>string</code> the way <code>string.PadRight</code> does. The following benchmark builds a small table of five padded names, <code>System.Text.StringBuilder</code> with <code>name.PadRight(12)</code> versus <code>ValueStringBuilder.AppendPadRight(name, 12)</code>:</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method                | Mean      | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|---------------------- |----------:|---------:|---------:|------:|-------:|----------:|------------:|
+| StringBuilderPad      | 118.76 ns | 1.480 ns | 1.312 ns |  1.00 | 0.1194 |    1000 B |        1.00 |
+| ValueStringBuilderPad |  55.08 ns | 0.260 ns | 0.217 ns |  0.46 | 0.0258 |     216 B |        0.22 |
+</code></pre>
+<p><code>AppendPadRight</code> is roughly 2.2x faster and allocates about a fifth as much, since <code>name.PadRight(12)</code> allocates a new intermediate <code>string</code> for every name before it gets appended, while <code>AppendPadRight</code> pads straight into the existing buffer.</p>
+<h2 id="appendformat-vs-interpolated-append"><code>AppendFormat</code> vs. interpolated <code>Append</code></h2>
+<p><a class="xref" href="best_practices.html#appendformat-is-intentionally-limited">Best practices</a> recommends interpolated strings over <code>AppendFormat</code> for formatted output. Here is the measured difference for a composite-format string with three placeholders versus the equivalent interpolated string:</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method                         | Mean     | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
+|------------------------------- |---------:|---------:|---------:|------:|-------:|----------:|------------:|
+| ValueStringBuilderAppendFormat | 96.32 ns | 0.431 ns | 0.360 ns |  1.00 | 0.0114 |      96 B |        1.00 |
+| ValueStringBuilderInterpolated | 54.67 ns | 0.394 ns | 0.349 ns |  0.57 | 0.0114 |      96 B |        1.00 |
+</code></pre>
+<p>Both allocate the same amount (the final <code>string</code> from <code>ToString()</code> dominates), but the interpolated form is close to 2x faster - <code>AppendFormat</code> re-parses the format string and re-validates each <code>{n}</code> placeholder at runtime on every call, while the interpolated-string handler resolves each hole at compile time.</p>
+<h2 id="stack-buffer-vs-pooled-rent">Stack buffer vs. pooled rent</h2>
+<p><a class="xref" href="advanced_usage.html#using-a-stack-allocated-buffer">Advanced usage</a> states that renting the default buffer from <code>ArrayPool&lt;char&gt;.Shared</code> &quot;has a (small) cost&quot; compared to a <code>stackalloc</code>-backed buffer. Here is that cost measured directly, for constructing a builder and appending a short string:</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+
+| Method           | Mean      | Error     | StdDev    | Ratio | Gen0   | Allocated | Alloc Ratio |
+|----------------- |----------:|----------:|----------:|------:|-------:|----------:|------------:|
+| PooledBuffer     | 11.857 ns | 0.0591 ns | 0.0494 ns |  1.00 | 0.0057 |      48 B |        1.00 |
+| StackAllocBuffer |  5.751 ns | 0.1367 ns | 0.1403 ns |  0.49 | 0.0057 |      48 B |        1.00 |
+</code></pre>
+<p>The <code>stackalloc</code>-backed builder is about 2x faster to construct and append to, purely from skipping <code>ArrayPool&lt;char&gt;.Shared.Rent</code>/<code>Return</code>. Note that both rows allocate the same 48 bytes - that is the final <code>ToString()</code> call, not the buffer itself; once the pool has been warmed up by earlier iterations, <code>Rent</code> reuses an existing array rather than allocating a new one; so the difference here is pure CPU time, not garbage collection pressure.</p>
+<h2 id="length-changing-replacement">Length-changing replacement</h2>
+<p><code>ValueStringBuilder.Replace</code> keeps a single-match path and processes multiple shrinking or growing replacements in a
+single pass, rather than shifting the remaining suffix after every match. The following short BenchmarkDotNet run
+measures a fixed 3,072-character input with matches at the start. The growing case replaces <code>ab</code> with <code>replacement</code>
+(2 to 11 characters); the shrinking case replaces it with <code>x</code> (2 to 1 character).</p>
+<pre><code class="lang-no-class">BenchmarkDotNet v0.15.8, macOS Sequoia 15.7.9 (24G830) [Darwin 24.6.0]
+Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
+.NET SDK 11.0.100-rc.1.26425.128
+  [Host] : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+
+Job=DefaultJob
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Matches</th>
+<th>Operation</th>
+<th style="text-align: right;">System.Text.StringBuilder</th>
+<th style="text-align: right;">Previous ValueStringBuilder algorithm</th>
+<th style="text-align: right;">Optimized ValueStringBuilder</th>
+<th style="text-align: right;">Optimized vs. previous</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Growing</td>
+<td style="text-align: right;">774.3 ns / 12.21 KB</td>
+<td style="text-align: right;">709.5 ns / 6.04 KB</td>
+<td style="text-align: right;">714.8 ns / 6.04 KB</td>
+<td style="text-align: right;">1.01x (essentially unchanged)</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Shrinking</td>
+<td style="text-align: right;">845.6 ns / 12.09 KB</td>
+<td style="text-align: right;">725.9 ns / 6.02 KB</td>
+<td style="text-align: right;">700.4 ns / 6.02 KB</td>
+<td style="text-align: right;">0.96x (1.04x faster)</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Growing</td>
+<td style="text-align: right;">911.5 ns / 12.45 KB</td>
+<td style="text-align: right;">1,375.0 ns / 6.16 KB</td>
+<td style="text-align: right;">1,183.3 ns / 6.16 KB</td>
+<td style="text-align: right;">0.86x (1.16x faster)</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Shrinking</td>
+<td style="text-align: right;">961.5 ns / 12.08 KB</td>
+<td style="text-align: right;">1,339.9 ns / 6.01 KB</td>
+<td style="text-align: right;">1,138.4 ns / 6.01 KB</td>
+<td style="text-align: right;">0.85x (1.18x faster)</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,024</td>
+<td>Growing</td>
+<td style="text-align: right;">15.68 μs / 48.16 KB</td>
+<td style="text-align: right;">62.18 μs / 24.02 KB</td>
+<td style="text-align: right;">16.74 μs / 24.02 KB</td>
+<td style="text-align: right;">0.27x (3.7x faster)</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,024</td>
+<td>Shrinking</td>
+<td style="text-align: right;">13.86 μs / 10.09 KB</td>
+<td style="text-align: right;">54.12 μs / 4.02 KB</td>
+<td style="text-align: right;">14.94 μs / 4.02 KB</td>
+<td style="text-align: right;">0.28x (3.6x faster)</td>
+</tr>
+</tbody>
+</table>
+<p>The previous-algorithm rows are benchmark-local reproductions of the immediately preceding implementation, included so
+all three states run under one process, SDK, and hardware configuration. The optimized implementation stays within
+about 30% of <code>StringBuilder</code> for every multi-match case while allocating roughly 40-50% as much. At a single match the
+optimized and previous algorithms perform about the same, since the optimization mainly pays off once there are
+several matches to batch together.</p>
+<p>Checkout the <a href="https://github.com/linkdotnet/StringBuilder/tree/main/tests/LinkDotNet.StringBuilder.Benchmarks">Benchmark</a> for more detailed comparison and setup.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/comparison.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

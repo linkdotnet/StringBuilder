@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Additional members | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Additional members | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/additional_members.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="additional_members">
+<h1 id="additional-members">Additional members</h1>
+
+<p>This article covers <code>ValueStringBuilder</code> members that are straightforward to use but aren't shown elsewhere in the articles - useful when you already know the basics from <a class="xref" href="getting_started.html">Getting started</a> and want the fuller picture.</p>
+<h2 id="searching-and-comparing">Searching and comparing</h2>
+<p><code>IndexOf</code>, <code>LastIndexOf</code>, and <code>Contains</code> all work directly against the builder's content without allocating, and accept a <code>StringComparison</code> (defaulting to <code>StringComparison.Ordinal</code>):</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello World&quot;);
+
+int index = stringBuilder.IndexOf(&quot;World&quot;);                                   // 6
+int caseInsensitive = stringBuilder.IndexOf(&quot;world&quot;, StringComparison.OrdinalIgnoreCase); // 6
+bool found = stringBuilder.Contains(&quot;World&quot;);                                  // true
+</code></pre>
+<p><code>Equals(ReadOnlySpan&lt;char&gt;)</code> compares the builder's content to a span (ordinal by default, or with an explicit <code>StringComparison</code>):</p>
+<pre><code class="lang-csharp">bool same = stringBuilder.Equals(&quot;Hello World&quot;);
+</code></pre>
+<p>Note that <code>ValueStringBuilder</code> does not override <code>object.Equals</code> or <code>GetHashCode</code> - being a <code>ref struct</code>, it cannot be boxed, so the span-based <code>Equals</code> overloads are the only equality members available.</p>
+<h2 id="remove-and-reverse"><code>Remove</code> and <code>Reverse</code></h2>
+<p><code>Remove(startIndex, length)</code> deletes a range in place without shrinking <code>Capacity</code>:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello World&quot;);
+stringBuilder.Remove(5, 6); // &quot;Hello&quot;
+</code></pre>
+<p><code>Reverse()</code> reverses the current content in place:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello&quot;);
+stringBuilder.Reverse(); // &quot;olleH&quot;
+</code></pre>
+<p>Both operate directly on the internal buffer and are <code>O(n)</code>, with no intermediate allocation.</p>
+<h2 id="padding">Padding</h2>
+<p>Four members handle padding, split into two pairs: pad the builder's <em>existing</em> content in place, or pad a <em>new</em> value as you append it.</p>
+<p><code>PadLeft</code>/<code>PadRight</code> grow the builder itself to <code>totalWidth</code>, filling the new room with <code>paddingChar</code>. If the builder is already at or beyond <code>totalWidth</code>, both are no-ops - they only ever grow the content, never truncate it:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;42&quot;);
+stringBuilder.PadLeft(5, '0');  // &quot;00042&quot;
+</code></pre>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;42&quot;);
+stringBuilder.PadRight(5, '.'); // &quot;42...&quot;
+</code></pre>
+<p><code>AppendPadLeft</code>/<code>AppendPadRight</code> pad a <code>ReadOnlySpan&lt;char&gt;</code> argument to <code>sourceTotalWidth</code> and append the result, without touching whatever content is already in the builder. <code>paddingChar</code> defaults to a space:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append(&quot;Name: &quot;);
+stringBuilder.AppendPadRight(&quot;Bob&quot;, 10); // &quot;Name: Bob       &quot;
+</code></pre>
+<p>Use <code>PadLeft</code>/<code>PadRight</code> when the builder holds the one value you want padded (e.g. formatting a single number). Use <code>AppendPadLeft</code>/<code>AppendPadRight</code> when you're building a larger string and only one column of it needs padding, since it avoids padding-then-shifting the rest of the content.</p>
+<h2 id="appendjoin-overload-guide"><code>AppendJoin</code> overload guide</h2>
+<p><code>AppendJoin</code> has many overloads along two independent axes: what separates the values, and what the values themselves are.</p>
+<table>
+<thead>
+<tr>
+<th>You have...</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code>/<code>ReadOnlySpan&lt;char&gt;</code> values, <code>char</code> separator</td>
+<td><code>AppendJoin(char separator, ...)</code></td>
+</tr>
+<tr>
+<td><code>string</code>/<code>ReadOnlySpan&lt;char&gt;</code> values, multi-character separator</td>
+<td><code>AppendJoin(ReadOnlySpan&lt;char&gt; separator, ...)</code></td>
+</tr>
+<tr>
+<td><code>string</code>/<code>ReadOnlySpan&lt;char&gt;</code> values, separator outside the Basic Multilingual Plane</td>
+<td><code>AppendJoin(Rune separator, ...)</code></td>
+</tr>
+<tr>
+<td>Any other <code>T</code> (numbers, <code>DateTime</code>, custom <code>ISpanFormattable</code>, ...)</td>
+<td>The generic <code>AppendJoin&lt;T&gt;(...)</code> overloads, same separator choices as above</td>
+</tr>
+<tr>
+<td>An in-memory collection you already have as a span</td>
+<td>The <code>ReadOnlySpan&lt;T&gt; values</code> overloads (no enumerator allocation)</td>
+</tr>
+<tr>
+<td>An <code>IEnumerable&lt;T&gt;</code> (e.g. from LINQ)</td>
+<td>The <code>IEnumerable&lt;T&gt; values</code> overloads</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+
+stringBuilder.AppendJoin(&quot;, &quot;, [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]); // strings, span values, string separator
+stringBuilder.Clear();
+stringBuilder.AppendJoin(',', [1, 2, 3]);                 // ints, span values, char separator - no boxing
+</code></pre>
+<p>As with <code>Append</code>, the generic <code>T</code> overloads avoid boxing for well-known value types (see <a class="xref" href="advanced_usage.html#avoiding-boxing-for-value-types">Avoiding boxing for value types</a>) and fall back to <code>ToString()</code> for anything else.</p>
+<h2 id="implicit-conversions">Implicit conversions</h2>
+<p><code>string</code> and <code>ReadOnlySpan&lt;char&gt;</code> convert implicitly to <code>ValueStringBuilder</code>, copying the source characters into a rented (or stack) buffer:</p>
+<pre><code class="lang-csharp">ValueStringBuilder stringBuilder = &quot;Hello World&quot;; // same as new ValueStringBuilder(&quot;Hello World&quot;)
+</code></pre>
+<p>Because this still rents from <code>ArrayPool&lt;char&gt;.Shared</code> internally, treat an implicitly converted builder the same as any other - remember to <code>Dispose()</code> it.</p>
+<h2 id="rune-overloads"><code>Rune</code> overloads</h2>
+<p>Most mutating members (<code>Append</code>, <code>Insert</code>, <code>AppendJoin</code>, <code>Replace</code>) have a <code>Rune</code> overload alongside their <code>char</code> overload:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append(new Rune(0x1F600)); // 😀 - a single Rune, two UTF-16 chars
+</code></pre>
+<p>Use <code>Rune</code> instead of <code>char</code> when the value may be outside the Basic Multilingual Plane (emoji, many CJK extension characters, etc.). A <code>char</code> can only represent one UTF-16 code unit, so a surrogate pair does not fit in a single <code>char</code>; <code>Rune</code> encodes to the correct number of <code>char</code>s (one or two) via UTF-16 automatically. If you already have well-formed UTF-16 text as a <code>string</code> or <code>ReadOnlySpan&lt;char&gt;</code>, the regular <code>Append</code>/<code>Insert</code>/<code>Replace</code> overloads handle surrogate pairs correctly too - <code>Rune</code> is only needed when you're constructing or manipulating a single code point directly.</p>
+<h2 id="unsafe-char-append">Unsafe <code>char*</code> append</h2>
+<p><code>Append(char* value, int length)</code> appends <code>length</code> characters starting at <code>value</code> without any validation:</p>
+<pre><code class="lang-csharp">unsafe void AppendFromPointer(char* buffer, int length)
+{
+    using var stringBuilder = new ValueStringBuilder();
+    stringBuilder.Append(buffer, length);
+}
+</code></pre>
+<p>The caller is responsible for:</p>
+<ul>
+<li><code>length</code> correctly describing the number of valid <code>char</code>s at <code>value</code> - there is no bounds checking and no reliance on null-termination.</li>
+<li><code>value</code> remaining valid (not freed, not moved, not out of scope) for the duration of the call.</li>
+</ul>
+<p>Prefer the <code>ReadOnlySpan&lt;char&gt;</code> or <code>string</code> overloads unless you're interoperating with unmanaged/native code that only hands you a raw pointer.</p>
+<h2 id="pinning-caveats">Pinning caveats</h2>
+<p><code>GetPinnableReference()</code> (used implicitly by the compiler's <code>fixed</code> pattern) returns a reference to the start of the <em>internal buffer</em>, not necessarily to <code>Length</code> characters of valid, null-terminated data:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello World&quot;);
+
+fixed (char* buffer = stringBuilder)
+{
+    // buffer[0..stringBuilder.Length) is valid.
+    // buffer[stringBuilder.Length] is NOT guaranteed to be '\0' or otherwise defined.
+}
+</code></pre>
+<p>If you're calling into an API that expects a null-terminated string (e.g. some P/Invoke signatures), append a trailing <code>'\0'</code> yourself before pinning, or use <code>ToString()</code> and pin the resulting <code>string</code> instead - <code>System.String</code> is always null-terminated.</p>
+<p>Also keep in mind that any operation that grows the buffer (<code>Append</code>, <code>Insert</code>, <code>EnsureCapacity</code>, ...) rents a <em>new</em> array and copies the content over - a previously obtained pinned reference or <code>fixed</code> pointer becomes invalid after that. Don't mutate the builder while a <code>fixed</code> block is holding a pointer into it.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/additional_members.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
