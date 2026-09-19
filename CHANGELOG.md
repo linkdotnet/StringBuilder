@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- `FixedSizeValueStringBuilder`: a non-growing `ref struct` string builder backed by a caller-supplied buffer that never allocates on the heap. Appends are atomic and the first one that does not fit latches `Overflowed`, which `ClearOverflow` resets.
+- `FixedSizeValueStringBuilder.MoveToValueStringBuilder`: hands the buffer and its content over to a `ValueStringBuilder` which can grow beyond the fixed capacity. The move copies nothing and rents nothing, and consumes the source so both builders can never write into the same memory.
+
 ## [3.6.1] - 2026-09-12
 
 ### Changed

@@ -30,4 +30,20 @@ A few operations are intentionally lenient:
 
 `EnsureCapacity(int newCapacity)` is a no-op if the current `Capacity` already satisfies `newCapacity`. Otherwise it rents a new array sized to the **smallest power of two that is `>= newCapacity`**, copies the existing content over, and returns the previous pooled array (if any) to `ArrayPool<char>.Shared`. This means capacity can grow in large jumps (e.g. requesting one more character than a full 64-character buffer rents a 128-character array), which is a deliberate trade-off to keep the number of pool rents low - see [How does it work?](xref:concepts) for the broader buffer strategy.
 
+## Running out of room in `FixedSizeValueStringBuilder`
+
+[`FixedSizeValueStringBuilder`](xref:fixed_size) has a hard capacity and no pool fallback, yet still throws nothing
+when you exceed it. An append that does not fit is dropped whole, `Overflowed` is set, and every further append becomes
+a no-op until `ClearOverflow()` or `Clear()` is called.
+
+Two consequences are worth knowing before they surprise you:
+
+* **`Remaining` can be greater than zero while `Overflowed` is `true`.** That is expected, not a bug - the latch, not
+  the free space, decides whether anything more is written.
+* **An append that would comfortably fit is still dropped** once the builder has overflowed. This keeps the content a
+  valid prefix of what you intended instead of a string with a hole in the middle.
+
+Reading members never throw either: `AsSpan()`, `ToString()` and the indexer all see only the characters that were
+actually written, and `TryCopyTo` returns `false` rather than throwing when the destination is too small.
+
 For more on `Dispose()` behavior around the pooled array, including what happens on double-dispose, see [Known limitations](xref:known_limitations#dispose-guarantees).

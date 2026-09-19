@@ -62,6 +62,19 @@ public ref partial struct ValueStringBuilder : IDisposable
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="ValueStringBuilder"/> struct which adopts a buffer that is already
+    /// filled up to <paramref name="length"/> characters.
+    /// </summary>
+    /// <param name="buffer">Buffer to take over.</param>
+    /// <param name="length">Number of characters already written into <paramref name="buffer"/>.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal ValueStringBuilder(Span<char> buffer, int length)
+    {
+        this.buffer = buffer;
+        bufferPosition = length;
+    }
+
+    /// <summary>
     /// Gets the current length of the represented string.
     /// </summary>
     /// <value>
