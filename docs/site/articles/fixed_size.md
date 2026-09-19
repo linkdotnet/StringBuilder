@@ -220,6 +220,24 @@ builder.Append("XYZ");   // dropped - the buffer is not his anymore
 grown.ToString();        // "1234"
 ```
 
+That reset can only neutralize the *one variable* it is called on. `FixedSizeValueStringBuilder` is a struct and the
+`Span<char>` it was handed is copyable, so **the caller has to own the buffer uniquely at the point of the move**:
+
+```csharp
+Span<char> buffer = stackalloc char[16];
+var builder = new FixedSizeValueStringBuilder(buffer);
+builder.Append("hello");
+
+using var grown = builder.MoveToValueStringBuilder();
+
+buffer[0] = 'X';         // still aliases the same memory
+grown.ToString();        // "Xello" - corrupted
+```
+
+The same goes for a struct copy taken before the move. Neither the original span nor such a copy may be written to
+afterwards; the compiler cannot detect it, so the discipline is yours. If you cannot guarantee that, copy the content
+out with `ToString` or `TryCopyTo` instead of moving it.
+
 Moving an *overflowed* builder throws an `InvalidOperationException`. The content is an incomplete prefix and
 `ValueStringBuilder` has nowhere to carry that fact, so this is the last point at which the truncation can be caught.
 If it was deliberate, call `ClearOverflow` first - that is what it is for.
@@ -229,6 +247,7 @@ If it was deliberate, call `ClearOverflow` first - that is what it is for.
 The type deliberately carries a smaller surface than `ValueStringBuilder`:
 
 * `Append` for `char`, `string`, `ReadOnlySpan<char>`, `bool`, `Rune`, any `ISpanFormattable` and interpolated strings
+  (including alignment holes such as `$"{value,10}"`, where value and padding are written together or not at all)
 * `AppendLine`, which writes the text and the newline together or not at all
 * `Clear`, `ClearOverflow`
 * `MoveToValueStringBuilder` to continue in a growable builder

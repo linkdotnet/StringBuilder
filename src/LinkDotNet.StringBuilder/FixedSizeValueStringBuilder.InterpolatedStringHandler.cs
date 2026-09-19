@@ -106,7 +106,33 @@ public ref partial struct FixedSizeValueStringBuilder
         /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
         /// skip the rest of the interpolated string.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool AppendFormatted<T>(T value, string? format) => AppendFormatted(value, format.AsSpan());
+        public bool AppendFormatted<T>(T value, string? format) => Builder.TryAppendFormatted(value, format.AsSpan());
+
+        /// <summary>
+        /// Appends a value padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The value to format.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <typeparam name="T">The type of the value.</typeparam>
+        /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
+        /// skip the rest of the interpolated string.</returns>
+        /// <remarks>Value and padding are written together or not at all.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool AppendFormatted<T>(T value, int alignment) => Builder.TryAppendFormatted(value, default, alignment);
+
+        /// <summary>
+        /// Appends a formatted value padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The value to format.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">The format string.</param>
+        /// <typeparam name="T">The type of the value.</typeparam>
+        /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
+        /// skip the rest of the interpolated string.</returns>
+        /// <remarks>Value and padding are written together or not at all.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool AppendFormatted<T>(T value, int alignment, string? format)
+            => Builder.TryAppendFormatted(value, format.AsSpan(), alignment);
 
         /// <summary>
         /// Appends a span to the handler.
@@ -118,6 +144,19 @@ public ref partial struct FixedSizeValueStringBuilder
         public bool AppendFormatted(scoped ReadOnlySpan<char> value) => Builder.TryAppend(value);
 
         /// <summary>
+        /// Appends a span padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The span to append.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">Ignored - a span has no format.</param>
+        /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
+        /// skip the rest of the interpolated string.</returns>
+        /// <remarks>Value and padding are written together or not at all.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool AppendFormatted(scoped ReadOnlySpan<char> value, int alignment, string? format = null)
+            => Builder.TryAppend(value, alignment);
+
+        /// <summary>
         /// Appends a string to the handler.
         /// </summary>
         /// <param name="value">The string to append.</param>
@@ -126,7 +165,17 @@ public ref partial struct FixedSizeValueStringBuilder
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool AppendFormatted(string? value) => Builder.TryAppend(value.AsSpan());
 
-        private bool AppendFormatted<T>(T value, scoped ReadOnlySpan<char> format)
-            => Builder.TryAppendFormatted(value, format);
+        /// <summary>
+        /// Appends a string padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The string to append.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">Ignored - a string has no format.</param>
+        /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
+        /// skip the rest of the interpolated string.</returns>
+        /// <remarks>Value and padding are written together or not at all.</remarks>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool AppendFormatted(string? value, int alignment, string? format = null)
+            => Builder.TryAppend(value.AsSpan(), alignment);
     }
 }
