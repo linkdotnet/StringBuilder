@@ -33,7 +33,7 @@ using ValueStringBuilder stringBuilder = new(stackalloc char[128]);
 ```
 Note that this will prevent you from returning `stringBuilder` or assigning it to an `out` parameter.
 
-### Guaranteed zero allocation with `FixedSizeValueStringBuilder`
+### A buffer that is never replaced: `FixedSizeValueStringBuilder`
 
 If the content *outgrows* that stack buffer, `ValueStringBuilder` quietly rents a larger one from `ArrayPool<char>.Shared`.
 When you need a hard guarantee that this never happens, use `FixedSizeValueStringBuilder`:

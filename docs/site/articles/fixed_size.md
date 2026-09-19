@@ -5,8 +5,8 @@ uid: fixed_size
 # Fixed-size string building
 
 [`FixedSizeValueStringBuilder`](xref:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder) is a `ref struct` backed by a
-fixed, caller-supplied buffer. It never grows, never rents from an array pool, and therefore never allocates on the
-heap - no matter what you append to it.
+fixed, caller-supplied buffer. It never grows or rents a replacement buffer. Formatting arbitrary custom values and
+converting nonempty content to a `string` can still allocate on the heap.
 
 ```csharp
 var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
@@ -20,7 +20,7 @@ return builder.ToString();
 |---|---|
 | Unknown or large output | [`ValueStringBuilder`](xref:LinkDotNet.StringBuilder.ValueStringBuilder) |
 | Small output, you *expect* it to fit but growing is acceptable | `ValueStringBuilder(stackalloc char[N])` |
-| Hard upper bound, allocation must not happen | `FixedSizeValueStringBuilder(stackalloc char[N])` |
+| Hard upper bound, the buffer must never be replaced | `FixedSizeValueStringBuilder(stackalloc char[N])` |
 
 `new ValueStringBuilder(stackalloc char[128])` already avoids allocation *while the content fits*. The moment it
 doesn't, it rents a larger buffer from `ArrayPool<char>.Shared` and copies into it - silently, and with nothing to tell
