@@ -48,7 +48,7 @@ public class FixedSizeBenchmark
     public string FixedSizeValueStringBuilderInterpolated()
     {
         var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
-        builder.Append($"{Text} {Id}");
+        builder.Append($"{Text}{Id}");
         return builder.ToString();
     }
 

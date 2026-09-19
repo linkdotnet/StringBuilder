@@ -5,7 +5,9 @@ using System.Text;
 namespace LinkDotNet.StringBuilder;
 
 /// <summary>
-/// A string builder backed by a fixed-size, caller-supplied buffer which never grows and never allocates on the heap.
+/// A string builder backed by a fixed-size, caller-supplied buffer which never grows and never rents a replacement
+/// buffer. Formatting arbitrary custom values and converting nonempty content to a <see cref="string"/> can still
+/// allocate on the heap.
 /// </summary>
 /// <remarks>
 /// This is a ref struct which has certain limitations. You can only store it in a local variable or another ref struct.
