@@ -363,4 +363,40 @@ public class FixedSizeValueStringBuilderTests
 
         grown.ToString().ShouldBe("ab");
     }
+
+    [Fact]
+    public void ShouldIndexOnlyWrittenCharacters()
+    {
+        var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+        builder.Append("a");
+
+        builder[0].ShouldBe('a');
+        Should.Throw<IndexOutOfRangeException>(() =>
+        {
+            var b = new FixedSizeValueStringBuilder(stackalloc char[8]);
+            b.Append("a");
+            _ = b[1];
+        });
+    }
+
+    [Fact]
+    public void ShouldNotAllocateForInterpolatedValueTypeHoles()
+    {
+        var guid = Guid.NewGuid();
+        Append();
+
+        GC.Collect();
+        var before = GC.GetAllocatedBytesForCurrentThread();
+        Append();
+        var allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+
+        allocated.ShouldBe(0);
+
+        void Append()
+        {
+            var builder = new FixedSizeValueStringBuilder(stackalloc char[128]);
+            builder.Append($"{1} {2L} {3.5:F2} {true} {'c'} {guid}");
+            builder.Overflowed.ShouldBeFalse();
+        }
+    }
 }
