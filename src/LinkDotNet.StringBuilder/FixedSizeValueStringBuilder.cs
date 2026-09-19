@@ -240,9 +240,17 @@ public ref partial struct FixedSizeValueStringBuilder
     /// if the truncation was intended.
     /// </exception>
     /// <remarks>
+    /// <para>
     /// Both builders would otherwise write into the same memory, so this instance is left consumed: an empty builder
     /// with zero capacity whose <see cref="Overflowed"/> is <see langword="true"/>. Reading it is safe, and any
     /// further append is a no-op rather than a write into a buffer somebody else now owns.
+    /// </para>
+    /// <para>
+    /// Consuming this instance can only neutralize this one variable. The caller must own the buffer uniquely at the
+    /// point of the move: neither the <see cref="Span{T}"/> passed to the constructor nor any struct copy taken before
+    /// the move may be written to afterwards. Both still alias the same memory and would corrupt the content of the
+    /// returned <see cref="ValueStringBuilder"/> - the compiler cannot detect it, so the discipline is yours.
+    /// </para>
     /// </remarks>
     public ValueStringBuilder MoveToValueStringBuilder()
     {
@@ -339,6 +347,65 @@ public ref partial struct FixedSizeValueStringBuilder
         return true;
     }
 
+    private bool TryAppendFormatted<T>(T value, scoped ReadOnlySpan<char> format, int alignment)
+    {
+        if (alignment == 0)
+        {
+            return TryAppendFormatted(value, format);
+        }
+
+        var start = bufferPosition;
+        return TryAppendFormatted(value, format) && TryPad(start, alignment);
+    }
+
+    private bool TryAppend(scoped ReadOnlySpan<char> str, int alignment)
+    {
+        if (alignment == 0)
+        {
+            return TryAppend(str);
+        }
+
+        var start = bufferPosition;
+        return TryAppend(str) && TryPad(start, alignment);
+    }
+
+    /// <summary>
+    /// Pads the content written since <paramref name="start"/> to the requested width. A padding which does not fit
+    /// rolls the value back as well, so an aligned hole is written whole or not at all.
+    /// </summary>
+    private bool TryPad(int start, int alignment)
+    {
+        var leftAligned = alignment < 0;
+        var width = leftAligned ? -alignment : alignment;
+        var written = bufferPosition - start;
+        var padding = width - written;
+
+        if (padding <= 0)
+        {
+            return true;
+        }
+
+        if (padding > Remaining)
+        {
+            bufferPosition = start;
+            overflowed = true;
+            return false;
+        }
+
+        if (leftAligned)
+        {
+            buffer.Slice(bufferPosition, padding).Fill(' ');
+        }
+        else
+        {
+            buffer.Slice(start, written).CopyTo(buffer.Slice(start + padding, written));
+            buffer.Slice(start, padding).Fill(' ');
+        }
+
+        bufferPosition += padding;
+        return true;
+    }
+
     private bool TryAppendFormatted<T>(T value, scoped ReadOnlySpan<char> format)
     {
         if (TryAppendKnownSpanFormattable(value, format, out var appended))
@@ -347,15 +414,15 @@ public ref partial struct FixedSizeValueStringBuilder
         }
 
         // Reaching here means T is neither a well known value type nor a string, so the interface call below does box
-        // a value type. Reference types are unaffected.
-        if (value is ISpanFormattable)
+        // a value type once. Reference types are unaffected.
+        if (value is ISpanFormattable formattable)
         {
             if (overflowed)
             {
                 return false;
             }
 
-            if (!((ISpanFormattable)value).TryFormat(buffer[bufferPosition..], out var written, format, null))
+            if (!formattable.TryFormat(buffer[bufferPosition..], out var written, format, null))
             {
                 overflowed = true;
                 return false;

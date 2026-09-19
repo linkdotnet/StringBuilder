@@ -399,4 +399,71 @@ public class FixedSizeValueStringBuilderTests
             builder.Overflowed.ShouldBeFalse();
         }
     }
+
+    [Fact]
+    public void ShouldRespectAlignmentInInterpolatedHoles()
+    {
+        var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+        var name = "ab";
+
+        builder.Append($"[{42,6}][{name,-5}][{3.5,8:F2}][{'x',3}]");
+
+        builder.ToString().ShouldBe("[    42][ab   ][    3.50][  x]");
+        builder.Overflowed.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void ShouldIgnoreAlignmentSmallerThanTheValue()
+    {
+        var builder = new FixedSizeValueStringBuilder(stackalloc char[16]);
+
+        builder.Append($"{12345,2}");
+
+        builder.ToString().ShouldBe("12345");
+    }
+
+    [Fact]
+    public void ShouldDropValueAndPaddingTogetherWhenAlignmentDoesNotFit()
+    {
+        var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+        builder.Append("12345");
+
+        builder.Append($"{7,6}");
+
+        builder.ToString().ShouldBe("12345");
+        builder.Overflowed.ShouldBeTrue();
+    }
+
+    [Fact]
+    public void ShouldNotAllocateForAlignedInterpolatedHoles()
+    {
+        Append();
+
+        GC.Collect();
+        var before = GC.GetAllocatedBytesForCurrentThread();
+        Append();
+        var allocated = GC.GetAllocatedBytesForCurrentThread() - before;
+
+        allocated.ShouldBe(0);
+
+        void Append()
+        {
+            var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+            builder.Append($"{1,8}{2L,-8}{3.5,6:F1}");
+            builder.Overflowed.ShouldBeFalse();
+        }
+    }
+
+    [Fact]
+    public void ShouldLetTheOriginalSpanCorruptTheMovedBuilderWhenOwnershipIsNotUnique()
+    {
+        Span<char> shared = stackalloc char[16];
+        var builder = new FixedSizeValueStringBuilder(shared);
+        builder.Append("hello");
+
+        using var grown = builder.MoveToValueStringBuilder();
+        shared[0] = 'X';
+
+        grown.ToString().ShouldBe("Xello");
+    }
 }
