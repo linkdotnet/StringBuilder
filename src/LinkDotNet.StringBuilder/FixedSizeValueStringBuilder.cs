@@ -108,10 +108,13 @@ public ref partial struct FixedSizeValueStringBuilder
     /// Returns the character at the given index.
     /// </summary>
     /// <param name="index">Character position to retrieve.</param>
+    /// <exception cref="IndexOutOfRangeException">Thrown when <paramref name="index"/> is negative or not smaller
+    /// than <see cref="Length"/>. Only characters which were actually written are addressable, never the unwritten
+    /// remainder of the buffer.</exception>
     public readonly ref char this[int index]
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => ref buffer[index];
+        get => ref buffer[..bufferPosition][index];
     }
 
     /// <summary>
@@ -133,22 +136,7 @@ public ref partial struct FixedSizeValueStringBuilder
     /// </summary>
     /// <param name="value">Character to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Append(char value)
-    {
-        if (overflowed)
-        {
-            return;
-        }
-
-        if (bufferPosition == buffer.Length)
-        {
-            overflowed = true;
-            return;
-        }
-
-        buffer[bufferPosition] = value;
-        bufferPosition++;
-    }
+    public void Append(char value) => TryAppend(value);
 
     /// <summary>
     /// Appends the string representation of a boolean. Dropped if it does not fit completely.
@@ -274,6 +262,25 @@ public ref partial struct FixedSizeValueStringBuilder
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppend(char value)
+    {
+        if (overflowed)
+        {
+            return false;
+        }
+
+        if (bufferPosition == buffer.Length)
+        {
+            overflowed = true;
+            return false;
+        }
+
+        buffer[bufferPosition] = value;
+        bufferPosition++;
+        return true;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private bool TryAppend(scoped ReadOnlySpan<char> str)
     {
         if (overflowed)
@@ -334,10 +341,13 @@ public ref partial struct FixedSizeValueStringBuilder
 
     private bool TryAppendFormatted<T>(T value, scoped ReadOnlySpan<char> format)
     {
-        // The cast to ISpanFormattable reads like a box, but because the interface method is invoked directly on the
-        // cast expression the JIT emits a constrained call and elides the allocation for value types. Hoisting it into
-        // an ISpanFormattable local, or routing it through a T : ISpanFormattable helper, would box for real and break
-        // this type's zero-allocation guarantee. Same shape the BCL uses in DefaultInterpolatedStringHandler.
+        if (TryAppendKnownSpanFormattable(value, format, out var appended))
+        {
+            return appended;
+        }
+
+        // Reaching here means T is neither a well known value type nor a string, so the interface call below does box
+        // a value type. Reference types are unaffected.
         if (value is ISpanFormattable)
         {
             if (overflowed)

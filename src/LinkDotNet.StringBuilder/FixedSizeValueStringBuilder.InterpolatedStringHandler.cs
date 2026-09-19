@@ -95,7 +95,7 @@ public ref partial struct FixedSizeValueStringBuilder
         /// <returns><see langword="true"/> if it fit; otherwise, <see langword="false"/>, which makes the compiler
         /// skip the rest of the interpolated string.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool AppendFormatted<T>(T value) => AppendFormatted(value, default);
+        public bool AppendFormatted<T>(T value) => Builder.TryAppendFormatted(value, default);
 
         /// <summary>
         /// Appends a formatted value to the handler.
