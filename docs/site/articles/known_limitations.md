@@ -39,6 +39,8 @@ return stringBuilder.ToString();
 
 See the [advanced usage](xref:advanced_usage) article for more on `stackalloc`-backed buffers, including what happens if the content outgrows them.
 
+If you need that guarantee enforced rather than assumed, use [`FixedSizeValueStringBuilder`](xref:fixed_size) instead. It has no array-pool fallback at all, so there is nothing to dispose. The trade-off is that content which does not fit is dropped rather than accommodated.
+
 ## `Dispose()` guarantees
 
 `Dispose()` returns the rented array to `ArrayPool<char>.Shared` (only if one was actually rented - a builder that never grew beyond its `stackalloc` buffer has nothing to return) and then resets the instance to its default value (`Length` and `Capacity` become `0`).

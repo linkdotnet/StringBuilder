@@ -33,6 +33,23 @@ using ValueStringBuilder stringBuilder = new(stackalloc char[128]);
 ```
 Note that this will prevent you from returning `stringBuilder` or assigning it to an `out` parameter.
 
+### A buffer that is never replaced: `FixedSizeValueStringBuilder`
+
+If the content *outgrows* that stack buffer, `ValueStringBuilder` quietly rents a larger one from `ArrayPool<char>.Shared`.
+When you need a hard guarantee that this never happens, use `FixedSizeValueStringBuilder`:
+```csharp
+var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+
+builder.Append("123456789"); // does not fit -> nothing is written
+
+string result = builder.ToString(); // "" - never a truncated "12345678"
+bool overflowed = builder.Overflowed; // true
+```
+Appends are atomic: one either fits completely or is dropped, so a formatted number or a surrogate pair is never cut in
+half. The first drop latches `Overflowed`, and further appends are ignored until you call `ClearOverflow()` to carry on
+deliberately or `Clear()` to start over. There is no `Dispose` - nothing is ever rented.
+See the [documentation](https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html) for details.
+
 ## What does it solve?
 The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
 But sometimes, low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to allocate as little as possible.

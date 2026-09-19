@@ -6,6 +6,13 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.0] - 2026-09-19
+
+### Added
+
+- `FixedSizeValueStringBuilder`: a non-growing `ref struct` string builder backed by a caller-supplied buffer that never allocates on the heap. Appends are atomic and the first one that does not fit latches `Overflowed`, which `ClearOverflow` resets.
+- `FixedSizeValueStringBuilder.MoveToValueStringBuilder`: hands the buffer and its content over to a `ValueStringBuilder` which can grow beyond the fixed capacity. The move copies nothing and rents nothing, and consumes the source so both builders can never write into the same memory.
+
 ## [3.6.1] - 2026-09-12
 
 ### Changed
@@ -572,7 +579,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...HEAD
+[3.7.0]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...3.7.0
 [3.6.1]: https://github.com/linkdotnet/StringBuilder/compare/3.6.0...3.6.1
 [3.6.0]: https://github.com/linkdotnet/StringBuilder/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/linkdotnet/StringBuilder/compare/3.4.2...3.5.0
