@@ -9,6 +9,8 @@
       href: pass_to_method.md
     - name: Trimming
       href: trimming.md
+    - name: Fixed-size string building
+      href: fixed_size.md
 - name: Advanced topics
   items:
     - name: Advanced usage

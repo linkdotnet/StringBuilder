@@ -40,6 +40,33 @@ using var stringBuilder = new ValueStringBuilder(buffer);
 
 You should only skip `using` when you can prove the builder will never grow.
 
+## Reach for `FixedSizeValueStringBuilder` when allocation is not an option
+
+The previous rule is a judgement call you have to get right yourself. If instead you need the compiler and the type to
+enforce it, use [`FixedSizeValueStringBuilder`](xref:fixed_size): it has no pool fallback, so there is nothing to
+dispose and no way for it to allocate.
+
+```csharp
+var stringBuilder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+```
+
+Two things behave differently from `ValueStringBuilder`, and both are deliberate:
+
+* An append that does not fit writes **nothing at all** - a formatted value is never truncated into a different,
+  valid-looking value.
+* After the first such append, `Overflowed` is set and every further append is ignored, even one that would still fit.
+  Call `ClearOverflow()` to carry on anyway, or `Clear()` to start over.
+
+**Always check `Overflowed` before you trust the result**, and decide there whether to fall back to a growing builder:
+
+```csharp
+var stringBuilder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+stringBuilder.Append(prefix);
+stringBuilder.Append(id);
+
+return stringBuilder.Overflowed ? BuildWithValueStringBuilder() : stringBuilder.ToString();
+```
+
 ## Prefer `new ValueStringBuilder(capacity)` for predictable medium-sized output
 
 If you can estimate the final size but don't want stack-only restrictions, use the capacity constructor:
