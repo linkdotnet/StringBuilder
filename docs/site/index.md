@@ -33,6 +33,15 @@ Hello World
 2+2=4
 ```
 
+If you need a builder that can **never** grow, `FixedSizeValueStringBuilder` wraps a buffer you own and reports an
+overflow instead of falling back to an `ArrayPool`. See [Fixed-size string building](xref:fixed_size).
+
+```csharp
+var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+builder.Append("Hello World");
+_ = builder.Overflowed; // true - nothing was allocated
+```
+
 There are also convenient helper methods like this:
 ```csharp
 _ = ValueStringBuilder.Concat("Hello", " ", "World"); // "Hello World"

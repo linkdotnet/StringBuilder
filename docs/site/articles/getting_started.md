@@ -42,6 +42,7 @@ If you are new to the library, these defaults are usually the right choice:
 - call `ToString()` only when you actually need a `string`
 - pass the builder by `ref` to helper methods
 - reach for `stackalloc` only after you know the output is small and bounded
+- use [`FixedSizeValueStringBuilder`](xref:fixed_size) when growing the buffer must be impossible
 
 For the common pitfalls and the more advanced performance-oriented guidance, see [Best practices and pitfalls](xref:best_practices).
 
