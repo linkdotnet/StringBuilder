@@ -89,11 +89,11 @@ Sometimes you want a hard limit for the common path but a slower escape hatch fo
 const int userId = 42;
 const string userName = "Ada";
 
-var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+var builder = new FixedSizeValueStringBuilder(stackalloc char[12]);
 builder.Append("id=");
 builder.Append(userId);
 
-if (builder.Remaining < 32)
+if (builder.Remaining < 8)
 {
     using var grown = builder.MoveToValueStringBuilder();
     grown.Append(" name=");
