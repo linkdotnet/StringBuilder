@@ -73,20 +73,21 @@ If you want to start with a fixed buffer and only rarely fall back to a growing 
 ```csharp
 const int userId = 42;
 const string userName = "Ada";
+const string suffix = " name=";
 
 var builder = new FixedSizeValueStringBuilder(stackalloc char[12]);
 builder.Append("id=");
 builder.Append(userId);
 
-if (builder.Remaining < 8)
+if (builder.Remaining < suffix.Length + userName.Length)
 {
     using var grown = builder.MoveToValueStringBuilder();
-    grown.Append(" name=");
+    grown.Append(suffix);
     grown.Append(userName);
     return grown.ToString();
 }
 
-builder.Append(" name=");
+builder.Append(suffix);
 builder.Append(userName);
 return builder.ToString();
 ```
