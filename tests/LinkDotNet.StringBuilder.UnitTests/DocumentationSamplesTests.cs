@@ -52,22 +52,23 @@ public class DocumentationSamplesTests
     {
         const string userName = "Ada";
         const int userId = 42;
+        const string suffix = " name=";
 
         var builder = new FixedSizeValueStringBuilder(stackalloc char[12]);
         builder.Append("id=");
         builder.Append(userId);
 
-        if (builder.Remaining < 8)
+        if (builder.Remaining < suffix.Length + userName.Length)
         {
             using var grown = builder.MoveToValueStringBuilder();
-            grown.Append(" name=");
+            grown.Append(suffix);
             grown.Append(userName);
 
             grown.ToString().ShouldBe("id=42 name=Ada");
             return;
         }
 
-        builder.Append(" name=");
+        builder.Append(suffix);
         builder.Append(userName);
 
         builder.ToString().ShouldBe("id=42 name=Ada");
