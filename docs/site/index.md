@@ -4,9 +4,28 @@
 
 # ValueStringBuilder: A fast and low allocation StringBuilder for .NET
 
-**ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation will showcase to you how to use the `ValueStringBuilder` as well as what are some limitations coming with it. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file an issue.
+**ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation explains when to use it, when to reach for the more specialized `FixedSizeValueStringBuilder`, and what trade-offs come with both. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file an issue.
 
 The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance. It also avoids boxing common value types passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`. See the [Comparison](xref:comparison) article for benchmarks.
+
+## Start here
+
+Most users should start with [`ValueStringBuilder`](xref:LinkDotNet.StringBuilder.ValueStringBuilder). The library also includes [`FixedSizeValueStringBuilder`](xref:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder), but that type is specialized for hard no-growth limits and should only be used when that constraint is part of the requirement.
+
+| Situation | Recommended type |
+|---|---|
+| General use | `ValueStringBuilder` |
+| Small bounded hot path, but growing is still acceptable | `ValueStringBuilder(stackalloc char[N])` |
+| Hard limit, caller-owned buffer must never be replaced | `FixedSizeValueStringBuilder` |
+| Async or long-lived text building | `System.Text.StringBuilder` |
+
+Recommended reading order:
+
+1. [Getting started](xref:getting_started)
+2. [Choosing between builders](xref:choosing_builder)
+3. [Best practices and pitfalls](xref:best_practices)
+4. [Fixed-size string building](xref:fixed_size)
+5. [Known limitations](xref:known_limitations)
 
 ## Download
 The package is hosted on [nuget.org](https://www.nuget.org/packages/LinkDotNet.StringBuilder/), so easily add the package reference:
@@ -47,3 +66,7 @@ There are also convenient helper methods like this:
 _ = ValueStringBuilder.Concat("Hello", " ", "World"); // "Hello World"
 _ = ValueStringBuilder.Concat("Hello", 1, 2, 3, "!"); // "Hello123!"
 ```
+
+## Agent and markdown-friendly access
+
+The documentation is authored in markdown in the repository and published as HTML through DocFX. For agents and other tooling that want a compact entry point, the site also exposes an `llms.txt` file with direct links to the canonical markdown sources and the most relevant guidance pages.

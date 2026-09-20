@@ -42,7 +42,16 @@ If you are new to the library, these defaults are usually the right choice:
 - call `ToString()` only when you actually need a `string`
 - pass the builder by `ref` to helper methods
 - reach for `stackalloc` only after you know the output is small and bounded
-- use [`FixedSizeValueStringBuilder`](xref:fixed_size) when growing the buffer must be impossible
+- use [`FixedSizeValueStringBuilder`](xref:fixed_size) only when growing the buffer must be impossible
+
+The package does expose two builder types, but only one of them is the normal entry point:
+
+| Type | When to pick it |
+|---|---|
+| [`ValueStringBuilder`](xref:LinkDotNet.StringBuilder.ValueStringBuilder) | Almost always - this is the default choice |
+| [`FixedSizeValueStringBuilder`](xref:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder) | Only when "never grow" is a functional requirement |
+
+If you need a fuller decision guide, see [Choosing between builders](xref:choosing_builder).
 
 For the common pitfalls and the more advanced performance-oriented guidance, see [Best practices and pitfalls](xref:best_practices).
 

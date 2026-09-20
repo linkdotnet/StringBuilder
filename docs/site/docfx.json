@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
   "metadata": [
     {
       "src": [
@@ -34,7 +35,8 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "images/**",
+          "*.txt"
         ]
       }
     ],
@@ -66,7 +68,9 @@
       "_disableBreadcrumb": true,
       "_disableFooter": true
     },
-    "postProcessors": [],
+    "postProcessors": [
+      "ExtractSearchIndex"
+    ],
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
     "keepFileLink": false,
