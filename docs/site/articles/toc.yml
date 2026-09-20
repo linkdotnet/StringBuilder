@@ -1,6 +1,8 @@
 - name: Getting started
   href: getting_started.md
   items:
+    - name: Choosing between builders
+      href: choosing_builder.md
     - name: Best practices and pitfalls
       href: best_practices.md
     - name: How does it work?

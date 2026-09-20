@@ -34,7 +34,8 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "images/**",
+          "*.txt"
         ]
       }
     ],
