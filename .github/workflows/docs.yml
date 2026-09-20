@@ -1,5 +1,8 @@
 name: Docs
 
+env:
+  DOCFX_VERSION: 2.80.1
+
 on:
   push:
     branches:
@@ -23,7 +26,7 @@ jobs:
           10.0.x
 
     - name: Setup DocFX
-      run: dotnet tool install -g docfx
+      run: dotnet tool install -g docfx --version ${{ env.DOCFX_VERSION }}
 
     - name: DocFX Build
       working-directory: docs
