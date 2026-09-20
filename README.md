@@ -6,11 +6,16 @@
 
 A fast and low allocation StringBuilder for .NET.
 
+The package exposes two builders:
+
+- `ValueStringBuilder`: the general-purpose choice for almost every user of this library
+- `FixedSizeValueStringBuilder`: a specialized builder for hard capacity limits where the buffer must never grow
+
 ## Getting Started
 Install the package:
 > PM> Install-Package LinkDotNet.StringBuilder
 
-Afterward, use the package as follow:
+Afterward, use the package as follows:
 ```csharp
 using LinkDotNet.StringBuilder; // Namespace of the package
 
@@ -33,6 +38,19 @@ using ValueStringBuilder stringBuilder = new(stackalloc char[128]);
 ```
 Note that this will prevent you from returning `stringBuilder` or assigning it to an `out` parameter.
 
+## Which builder should I use?
+
+Start here:
+
+| Situation | Recommended type |
+|---|---|
+| Unsure, or the output length can vary | `new ValueStringBuilder()` |
+| The output is usually small and bounded, but growing is acceptable | `new ValueStringBuilder(stackalloc char[N])` |
+| The output must never grow past a caller-owned buffer | `new FixedSizeValueStringBuilder(stackalloc char[N])` |
+| The code is async, long-lived, or needs to escape the current stack frame | `System.Text.StringBuilder` |
+
+If you are new to the library, start with `ValueStringBuilder`. `FixedSizeValueStringBuilder` is intentionally more specialized and should be chosen only when "never grow" is part of the requirement.
+
 ### A buffer that is never replaced: `FixedSizeValueStringBuilder`
 
 If the content *outgrows* that stack buffer, `ValueStringBuilder` quietly rents a larger one from `ArrayPool<char>.Shared`.
@@ -50,6 +68,29 @@ half. The first drop latches `Overflowed`, and further appends are ignored until
 deliberately or `Clear()` to start over. There is no `Dispose` - nothing is ever rented.
 See the [documentation](https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html) for details.
 
+If you want to start with a fixed buffer and only rarely fall back to a growing builder, you can move the content into a `ValueStringBuilder`:
+
+```csharp
+const int userId = 42;
+const string userName = "Ada";
+
+var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+builder.Append("id=");
+builder.Append(userId);
+
+if (builder.Remaining < 32)
+{
+    using var grown = builder.MoveToValueStringBuilder();
+    grown.Append(" name=");
+    grown.Append(userName);
+    return grown.ToString();
+}
+
+builder.Append(" name=");
+builder.Append(userName);
+return builder.ToString();
+```
+
 ## What does it solve?
 The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
 But sometimes, low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to allocate as little as possible.
@@ -64,7 +105,15 @@ The library works best for a small to medium length strings (not hundreds of tho
 The normal use case is to concatenate strings in a hot path where the goal is to put as minimal pressure on the GC as possible.
 
 ## Documentation
-More detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder). It is really important to understand how the `ValueStringBuilder` works so that you did not run into weird situations where performance/allocations can even rise.
+More detailed documentation can be found [here](https://linkdotnet.github.io/StringBuilder). Good starting points are:
+
+- [Getting started](https://linkdotnet.github.io/StringBuilder/articles/getting_started.html)
+- [Choosing between builders](https://linkdotnet.github.io/StringBuilder/articles/choosing_builder.html)
+- [Fixed-size string building](https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html)
+- [Best practices and pitfalls](https://linkdotnet.github.io/StringBuilder/articles/best_practices.html)
+- [Known limitations](https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html)
+
+For agents and other tooling that prefer source markdown over rendered HTML, the published docs also expose an [`llms.txt`](https://linkdotnet.github.io/StringBuilder/llms.txt) index with direct links to the markdown sources.
 
 ## Benchmark
 
