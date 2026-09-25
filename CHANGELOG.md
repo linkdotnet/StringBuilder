@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.1] - 2026-09-25
+
 ### Added
 
 - `ValueStringBuilder` interpolated strings support alignment holes such as `$"{value,10}"` and `$"{value,-10:F2}"`, like `FixedSizeValueStringBuilder`.
@@ -593,7 +595,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...HEAD
+[3.7.1]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...3.7.0
 [3.6.1]: https://github.com/linkdotnet/StringBuilder/compare/3.6.0...3.6.1
 [3.6.0]: https://github.com/linkdotnet/StringBuilder/compare/3.5.0...3.6.0
