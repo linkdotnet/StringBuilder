@@ -35,7 +35,7 @@ Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 | ValueStringBuilder  |  65.71 ns | 0.637 ns | 0.596 ns |  0.56 | 0.0583 |     488 B |        0.33 |
 ```
 
-`ValueStringBuilder` also avoids boxing value types (`int`, `double`, `DateTime`, `Guid`, and 16 more) passed to
+`ValueStringBuilder` also avoids boxing value types (`int`, `double`, `DateTime`, `Guid`, and any other `ISpanFormattable` struct) passed to
 `AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, and interpolated strings, and vectorizes [`Trim`/`TrimStart`/`TrimEnd`](xref:trimming)
 via `SearchValues<char>`. The following benchmark shows the combined effect against `StringBuilder` for a few representative
 operations:
@@ -169,43 +169,39 @@ several matches to batch together.
 ## Fixed-size string building
 
 [`FixedSizeValueStringBuilder`](xref:fixed_size) drops the array-pool fallback entirely, which also removes the
-capacity check and the rented-buffer field from every append. The first four rows below build the same
+capacity check and the rented-buffer field from every append. The first five rows below build the same
 `"Hello World1337"`; the last two use an 8-character buffer that is deliberately too small.
 
 ```no-class
 BenchmarkDotNet v0.15.8, macOS 27.0 (26A428) [Darwin 27.0.0]
 Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 .NET SDK 11.0.100-rc.1.26425.128
-  [Host]     : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
-  DefaultJob : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+  [Host] : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
+Toolchain=InProcessEmitToolchain
 ```
 
 | Method                                  | Mean      | Error     | StdDev    | Ratio | Gen0   | Allocated | Alloc Ratio |
 |---------------------------------------- |----------:|----------:|----------:|------:|-------:|----------:|------------:|
-| StringBuilderFits                       | 17.756 ns | 0.3315 ns | 0.2939 ns |  1.00 | 0.0191 |     160 B |        1.00 |
-| ValueStringBuilderFits                  | 14.032 ns | 0.2064 ns | 0.1930 ns |  0.79 | 0.0067 |      56 B |        0.35 |
-| ValueStringBuilderFitsWithoutGrowing    |  8.410 ns | 0.2035 ns | 0.2499 ns |  0.47 | 0.0067 |      56 B |        0.35 |
-| FixedSizeValueStringBuilderFits         |  7.214 ns | 0.0424 ns | 0.0376 ns |  0.41 | 0.0067 |      56 B |        0.35 |
-| FixedSizeValueStringBuilderInterpolated |  7.280 ns | 0.0387 ns | 0.0362 ns |  0.41 | 0.0067 |      56 B |        0.35 |
-| ValueStringBuilderOverflows             | 18.475 ns | 0.0570 ns | 0.0533 ns |  1.04 | 0.0067 |      56 B |        0.35 |
-| FixedSizeValueStringBuilderOverflows    |  1.190 ns | 0.0101 ns | 0.0089 ns |  0.07 |      - |         - |        0.00 |
+| StringBuilderFits                       | 19.760 ns | 0.2960 ns | 0.2769 ns |  1.00 | 0.0191 |     160 B |        1.00 |
+| ValueStringBuilderFits                  |  8.089 ns | 0.0919 ns | 0.0814 ns |  0.41 | 0.0067 |      56 B |        0.35 |
+| ValueStringBuilderFitsWithoutGrowing    |  8.191 ns | 0.0822 ns | 0.0769 ns |  0.41 | 0.0067 |      56 B |        0.35 |
+| FixedSizeValueStringBuilderFits         |  7.791 ns | 0.1667 ns | 0.1559 ns |  0.39 | 0.0067 |      56 B |        0.35 |
+| FixedSizeValueStringBuilderInterpolated |  9.377 ns | 0.1739 ns | 0.1626 ns |  0.47 | 0.0067 |      56 B |        0.35 |
+| ValueStringBuilderOverflows             | 16.980 ns | 0.2806 ns | 0.2343 ns |  0.86 | 0.0067 |      56 B |        0.35 |
+| FixedSizeValueStringBuilderOverflows    |  1.465 ns | 0.0383 ns | 0.0359 ns |  0.07 |      - |         - |        0.00 |
 
-Read the two `ValueStringBuilder` "Fits" rows together, because the difference between them is not the fixed-size
-builder's doing. Both use `stackalloc`, but the second row gets 64 characters and the first only 32.
-`ValueStringBuilder.Append<T>` reserves `bufferSize` (36 by default) characters *before* formatting, so with a
-32-character buffer appending the `int` grows the builder even though the finished string is 15 characters long - it
-rents 64 chars from `ArrayPool<char>.Shared`, copies, and returns them on `Dispose`. That round trip, not the capacity
-check, is most of the 14.0 ns.
+The two `ValueStringBuilder` "Fits" rows use a 32- and a 64-character `stackalloc` buffer and cost the same.
+`Append<T>` formats straight into the space that is left and only grows when the value does not fit, so the smaller
+buffer never touches `ArrayPool<char>.Shared` for this 15-character result.
 
-Against the row that does not grow, the honest margin is the fourth one: about 15% for identical work, which is the
-`Dispose` call, the pool field, and the per-append capacity check. The 56 B that every "Fits" row allocates is the
-returned `string` itself, which no builder can avoid.
+Against the fixed-size builder the margin is about 4% for identical work, which is the `Dispose` call, the pool
+field, and the per-append capacity check. The 56 B that every "Fits" row allocates is the returned `string` itself,
+which no builder can avoid.
 
-The interpolated row matches the manual one byte for byte, which is the point of measuring it: the interpolated string
-handler formats value-type holes without boxing them, so `$"{Text} {Id}"` costs no more than appending the two parts by
-hand.
+The interpolated row allocates exactly as much as the manual one: the interpolated string handler formats value-type
+holes without boxing them, so `$"{Text}{Id}"` costs no extra allocation over appending the two parts by hand.
 
-The last row is *not* the same work done faster. At 1.2 ns and 0 B it is the cost of the latch short-circuiting
+The last row is *not* the same work done faster. At 1.5 ns and 0 B it is the cost of the latch short-circuiting
 everything, because nothing was written and `ToString()` returned `string.Empty`. It is included to show the bounded
 worst case: overflowing a `FixedSizeValueStringBuilder` costs nothing and touches no pool, whereas the row above it
 shows `ValueStringBuilder` renting, copying, and returning a larger buffer.

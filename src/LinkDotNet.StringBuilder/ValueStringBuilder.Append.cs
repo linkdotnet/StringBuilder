@@ -79,7 +79,7 @@ public ref partial struct ValueStringBuilder
         }
 
         ref var strRef = ref MemoryMarshal.GetReference(str);
-        ref var bufferRef = ref MemoryMarshal.GetReference(buffer[bufferPosition..]);
+        ref var bufferRef = ref Unsafe.Add(ref MemoryMarshal.GetReference(buffer), bufferPosition);
         Unsafe.CopyBlock(
             ref Unsafe.As<char, byte>(ref bufferRef),
             ref Unsafe.As<char, byte>(ref strRef),
@@ -123,14 +123,27 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append(char value)
     {
-        var newSize = bufferPosition + 1;
-        if (newSize > buffer.Length)
+        var pos = bufferPosition;
+        if ((uint)pos >= (uint)buffer.Length)
         {
-            EnsureCapacity(newSize);
+            Grow(pos + 1);
         }
 
-        buffer[bufferPosition] = value;
-        bufferPosition++;
+        Unsafe.Add(ref MemoryMarshal.GetReference(buffer), pos) = value;
+        bufferPosition = pos + 1;
+    }
+
+    /// <summary>
+    /// Appends a character repeated the given number of times.
+    /// </summary>
+    /// <param name="value">Character to add.</param>
+    /// <param name="repeatCount">Number of times <paramref name="value"/> is appended.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Append(char value, int repeatCount)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(repeatCount);
+
+        AppendSpan(repeatCount).Fill(value);
     }
 
     /// <summary>
@@ -205,13 +218,14 @@ public ref partial struct ValueStringBuilder
     private void AppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format = default, int bufferSize = DefaultFormatBufferSize, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable
     {
-        var newSize = bufferSize + bufferPosition;
-        if (newSize > Capacity)
+        if (value.TryFormat(buffer[bufferPosition..], out var written, format, formatProvider))
         {
-            EnsureCapacity(newSize);
+            bufferPosition += written;
+            return;
         }
 
-        var written = 0;
+        EnsureCapacity(bufferSize + bufferPosition);
+
         while (!value.TryFormat(buffer[bufferPosition..], out written, format, formatProvider))
         {
             if (bufferSize != DefaultFormatBufferSize)
@@ -223,5 +237,60 @@ public ref partial struct ValueStringBuilder
         }
 
         bufferPosition += written;
+    }
+
+    /// <summary>
+    /// Formats <paramref name="value"/> if it is <see cref="ISpanFormattable"/>.
+    /// </summary>
+    /// <remarks>
+    /// The <c>is</c> check without a variable plus the cast inside the call is a pattern the JIT turns into a
+    /// constrained call, so value types are not boxed. Binding a variable (<c>is ISpanFormattable x</c>) would box.
+    /// </remarks>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private bool TryAppendSpanFormattable<T>(T value, scoped ReadOnlySpan<char> format)
+    {
+        if (value is not ISpanFormattable)
+        {
+            return false;
+        }
+
+        int written;
+        while (!((ISpanFormattable)value).TryFormat(buffer[bufferPosition..], out written, format, null))
+        {
+            Grow(checked(Math.Max(Capacity * 2, bufferPosition + DefaultFormatBufferSize)));
+        }
+
+        bufferPosition += written;
+        return true;
+    }
+
+    /// <summary>
+    /// Pads the content written since <paramref name="start"/> with spaces to the width given by <paramref name="alignment"/>.
+    /// </summary>
+    private void Pad(int start, int alignment)
+    {
+        var leftAligned = alignment < 0;
+        var width = leftAligned ? -alignment : alignment;
+        var written = bufferPosition - start;
+        var padding = width - written;
+
+        if (padding <= 0)
+        {
+            return;
+        }
+
+        EnsureCapacity(bufferPosition + padding);
+
+        if (!leftAligned)
+        {
+            buffer.Slice(start, written).CopyTo(buffer[(start + padding)..]);
+            buffer.Slice(start, padding).Fill(' ');
+        }
+        else
+        {
+            buffer.Slice(bufferPosition, padding).Fill(' ');
+        }
+
+        bufferPosition += padding;
     }
 }

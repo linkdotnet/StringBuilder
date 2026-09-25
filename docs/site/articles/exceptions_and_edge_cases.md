@@ -11,6 +11,7 @@ uid: exceptions_and_edge_cases
 | Indexer `this[int]` | `IndexOutOfRangeException` | `index` is negative or `>= Length`. |
 | `Insert(int, ...)` overloads | `ArgumentOutOfRangeException` | `index` is negative, or greater than `Length`. |
 | `Remove(int startIndex, int length)` | `ArgumentOutOfRangeException` | `length` is negative, `startIndex` is negative, or `startIndex + length` is greater than `Length`. |
+| `Append(char value, int repeatCount)` | `ArgumentOutOfRangeException` | `repeatCount` is negative. |
 | `AsSpan(int startIndex, int length)` / `ToString(int startIndex, int length)` | `ArgumentOutOfRangeException` | `length` is greater than `Length`. |
 | `AsSpan(Range)` / `ToString(Range)` | `ArgumentOutOfRangeException` | The resolved range falls outside `0..Length`. |
 | `AppendFormat` | `FormatException` | A placeholder's argument index is not a valid non-negative integer within range of the supplied arguments, or a custom format specifier (e.g. `{0:00}`) is used - see [`AppendFormat` is intentionally limited](xref:best_practices#appendformat-is-intentionally-limited). |

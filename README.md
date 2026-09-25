@@ -95,7 +95,7 @@ return builder.ToString();
 ## What does it solve?
 The dotnet version of the `StringBuilder` is an all-purpose version that normally fits a wide variety of needs.
 But sometimes, low allocation is key. Therefore I created the `ValueStringBuilder`. It is not a class but a `ref struct` that tries to allocate as little as possible.
-On top of the `ref struct` design, it avoids boxing common value types (`int`, `double`, `DateTime`, `Guid`, and more) passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`.
+On top of the `ref struct` design, it avoids boxing value types (`int`, `double`, `DateTime`, `Guid`, and any other `ISpanFormattable` struct) passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`.
 If you want to know how the `ValueStringBuilder` works and why it uses allocations and is even faster, check out [this](https://steven-giesel.com/blogPost/4cada9a7-c462-4133-ad7f-e8b671987896) blog post.
 The blog goes into a bit more in detail about how it works with a simplistic version of the `ValueStringBuilder`.
 
@@ -136,7 +136,7 @@ Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 
 For more comparisons, check the documentation.
 
-`ValueStringBuilder` also avoids boxing value types (`int`, `double`, `DateTime`, `Guid`, and 16 more) passed to
+`ValueStringBuilder` also avoids boxing value types (`int`, `double`, `DateTime`, `Guid`, and any other `ISpanFormattable` struct) passed to
 `AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd`
 via `SearchValues<char>`. The following benchmark shows the combined effect against `StringBuilder` for a few representative
 operations:

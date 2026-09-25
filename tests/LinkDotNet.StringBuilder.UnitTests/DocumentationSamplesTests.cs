@@ -74,4 +74,17 @@ public class DocumentationSamplesTests
         builder.ToString().ShouldBe("id=42 name=Ada");
         builder.Overflowed.ShouldBeFalse();
     }
+
+    [Fact]
+    public void AdditionalMembersAlignmentAndRepeatSamplesShouldWork()
+    {
+        using var aligned = new ValueStringBuilder();
+        aligned.Append($"[{42,5}|{"ab",-4}|{1.2345,8:F2}]");
+
+        using var repeated = new ValueStringBuilder();
+        repeated.Append('-', 10);
+
+        aligned.ToString().ShouldBe($"[   42|ab  |{1.2345,8:F2}]");
+        repeated.ToString().ShouldBe("----------");
+    }
 }

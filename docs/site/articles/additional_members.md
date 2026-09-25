@@ -68,6 +68,20 @@ stringBuilder.Append("Name: ");
 stringBuilder.AppendPadRight("Bob", 10); // "Name: Bob       "
 ```
 
+Interpolated strings support alignment holes, which pad the formatted value with spaces. A positive width right-aligns, a negative width left-aligns, and a format can follow:
+
+```csharp
+using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append($"[{42,5}|{"ab",-4}|{1.2345,8:F2}]"); // "[   42|ab  |    1.23]"
+```
+
+`Append(char value, int repeatCount)` appends a character several times, like `StringBuilder.Append(char, int)`:
+
+```csharp
+using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append('-', 10); // "----------"
+```
+
 Use `PadLeft`/`PadRight` when the builder holds the one value you want padded (e.g. formatting a single number). Use `AppendPadLeft`/`AppendPadRight` when you're building a larger string and only one column of it needs padding, since it avoids padding-then-shifting the rest of the content.
 
 ## `AppendJoin` overload guide
@@ -81,7 +95,7 @@ Use `PadLeft`/`PadRight` when the builder holds the one value you want padded (e
 | `string`/`ReadOnlySpan<char>` values, separator outside the Basic Multilingual Plane | `AppendJoin(Rune separator, ...)` |
 | Any other `T` (numbers, `DateTime`, custom `ISpanFormattable`, ...) | The generic `AppendJoin<T>(...)` overloads, same separator choices as above |
 | An in-memory collection you already have as a span | The `ReadOnlySpan<T> values` overloads (no enumerator allocation) |
-| An `IEnumerable<T>` (e.g. from LINQ) | The `IEnumerable<T> values` overloads |
+| An `IEnumerable<T>` (e.g. from LINQ) | The `IEnumerable<T> values` overloads (arrays and `List<T>` are detected and joined as spans, without an enumerator allocation) |
 
 ```csharp
 using var stringBuilder = new ValueStringBuilder();
@@ -91,7 +105,7 @@ stringBuilder.Clear();
 stringBuilder.AppendJoin(',', [1, 2, 3]);                 // ints, span values, char separator - no boxing
 ```
 
-As with `Append`, the generic `T` overloads avoid boxing for well-known value types (see [Avoiding boxing for value types](xref:advanced_usage#avoiding-boxing-for-value-types)) and fall back to `ToString()` for anything else.
+As with `Append`, the generic `T` overloads avoid boxing for any `ISpanFormattable` value type (see [Avoiding boxing for value types](xref:advanced_usage#avoiding-boxing-for-value-types)) and fall back to `ToString()` for anything else.
 
 ## Implicit conversions
 

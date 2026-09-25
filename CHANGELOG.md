@@ -6,6 +6,20 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Added
+
+- `ValueStringBuilder` interpolated strings support alignment holes such as `$"{value,10}"` and `$"{value,-10:F2}"`, like `FixedSizeValueStringBuilder`.
+- `ValueStringBuilder.Append(char value, int repeatCount)`.
+
+### Changed
+
+- Any `ISpanFormattable` value type (not only the built-in well-known ones) is formatted without boxing in interpolated strings, `AppendJoin`, `Concat`, `AppendFormat` and `ReplaceGeneric`.
+- `Append<T>` for `ISpanFormattable` values first formats into the remaining buffer and only grows when the value does not fit, instead of reserving 36 characters up front.
+- `AppendJoin` with an `IEnumerable<T>` that is an array or `List<T>` no longer allocates an enumerator.
+- Growing the buffer is moved out of the inlined `Append` fast paths, which makes them smaller.
+- `Append(char)` does a single bounds check per character (about 40% faster in a tight loop).
+- `AppendJoin` and friends dispatch value types through a small inlinable helper instead of a 20-entry type table, which the JIT could not inline in deep call chains (`AppendJoin` over ints about 40% faster).
+
 ## [3.7.0] - 2026-09-19
 
 ### Added

@@ -68,14 +68,7 @@ public ref partial struct ValueStringBuilder
                 return;
             }
 
-            if (value is ISpanFormattable formattable)
-            {
-                Builder.Append(formattable);
-            }
-            else
-            {
-                Builder.Append(value?.ToString());
-            }
+            Builder.Append(value?.ToString());
         }
 
         /// <summary>
@@ -92,14 +85,31 @@ public ref partial struct ValueStringBuilder
                 return;
             }
 
-            if (value is ISpanFormattable formattable)
-            {
-                Builder.Append(formattable, format);
-            }
-            else
-            {
-                Builder.Append(value?.ToString());
-            }
+            Builder.Append(value?.ToString());
+        }
+
+        /// <summary>
+        /// Appends a value padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The value to format.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <typeparam name="T">The type of the value.</typeparam>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AppendFormatted<T>(T value, int alignment) => AppendFormatted(value, alignment, null);
+
+        /// <summary>
+        /// Appends a formatted value padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The value to format.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">The format string.</param>
+        /// <typeparam name="T">The type of the value.</typeparam>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AppendFormatted<T>(T value, int alignment, string? format)
+        {
+            var start = Builder.Length;
+            AppendFormatted(value, format);
+            Builder.Pad(start, alignment);
         }
 
         /// <summary>
@@ -115,5 +125,29 @@ public ref partial struct ValueStringBuilder
         /// <param name="value">The string value.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void AppendFormatted(string? value) => Builder.Append(value);
+
+        /// <summary>
+        /// Appends a character span padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The character span.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">Ignored - a span has no format.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AppendFormatted(ReadOnlySpan<char> value, int alignment, string? format = null)
+        {
+            var start = Builder.Length;
+            Builder.Append(value);
+            Builder.Pad(start, alignment);
+        }
+
+        /// <summary>
+        /// Appends a string padded to the given alignment.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="alignment">Minimum width. Positive right-aligns the value, negative left-aligns it.</param>
+        /// <param name="format">Ignored - a string has no format.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void AppendFormatted(string? value, int alignment, string? format = null)
+            => AppendFormatted(value.AsSpan(), alignment, format);
     }
 }
