@@ -17,33 +17,10 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void EnsureCapacity(int newCapacity)
     {
-        if (Capacity >= newCapacity)
+        if (Capacity < newCapacity)
         {
-            return;
+            Grow(newCapacity);
         }
-
-        var newSize = FindSmallestPowerOf2Above(newCapacity);
-
-        var rented = ArrayPool<char>.Shared.Rent(newSize);
-
-        if (bufferPosition > 0)
-        {
-            ref var sourceRef = ref MemoryMarshal.GetReference(buffer);
-            ref var destinationRef = ref MemoryMarshal.GetReference(rented.AsSpan());
-
-            Unsafe.CopyBlock(
-                ref Unsafe.As<char, byte>(ref destinationRef),
-                ref Unsafe.As<char, byte>(ref sourceRef),
-                (uint)bufferPosition * sizeof(char));
-        }
-
-        if (arrayFromPool is not null)
-        {
-            ArrayPool<char>.Shared.Return(arrayFromPool);
-        }
-
-        buffer = rented;
-        arrayFromPool = rented;
     }
 
     /// <summary>
@@ -55,5 +32,38 @@ public ref partial struct ValueStringBuilder
     private static int FindSmallestPowerOf2Above(int minimum)
     {
         return (int)BitOperations.RoundUpToPowerOf2((uint)minimum);
+    }
+
+    /// <remarks>
+    /// The rent and copy live in a static method: a non-inlined call receiving <c>this</c> by reference would
+    /// force the JIT to keep the builder's fields in memory instead of registers in every caller.
+    /// </remarks>
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static char[] RentAndCopy(scoped ReadOnlySpan<char> content, char[]? toReturn, int newCapacity)
+    {
+        var rented = ArrayPool<char>.Shared.Rent(FindSmallestPowerOf2Above(newCapacity));
+
+        if (!content.IsEmpty)
+        {
+            Unsafe.CopyBlock(
+                ref Unsafe.As<char, byte>(ref MemoryMarshal.GetArrayDataReference(rented)),
+                ref Unsafe.As<char, byte>(ref MemoryMarshal.GetReference(content)),
+                (uint)content.Length * sizeof(char));
+        }
+
+        if (toReturn is not null)
+        {
+            ArrayPool<char>.Shared.Return(toReturn);
+        }
+
+        return rented;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Grow(int newCapacity)
+    {
+        var rented = RentAndCopy(buffer[..bufferPosition], arrayFromPool, newCapacity);
+        buffer = rented;
+        arrayFromPool = rented;
     }
 }

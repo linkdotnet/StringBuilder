@@ -64,7 +64,7 @@ As long as `buffer` is large enough for the expected input, this method never to
 
 ## Avoiding boxing for value types
 
-`AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, and the interpolated-string `Append`/`AppendLine` overloads all special-case common value types (`int`, `long`, `double`, `decimal`, `DateTime`, `DateTimeOffset`, `TimeSpan`, `Guid`, and more) so they're formatted directly into the buffer via `ISpanFormattable` instead of being boxed to `object` first:
+`AppendJoin`, `Concat`, `AppendFormat`, `ReplaceGeneric`, and the interpolated-string `Append`/`AppendLine` overloads format every value type that implements `ISpanFormattable` (`int`, `double`, `decimal`, `DateTime`, `Guid`, `DateOnly`, your own structs, ...) directly into the buffer through a constrained call, instead of boxing it to `object` first:
 
 ```csharp
 using var stringBuilder = new ValueStringBuilder();
@@ -74,7 +74,7 @@ stringBuilder.AppendJoin(", ", [1, 2, 3]);
 stringBuilder.AppendFormat($"{42:D5} {3.14:F2} {Guid.NewGuid()}");
 ```
 
-For a type without a known fast path, the code falls back to the normal `ISpanFormattable`/`ToString()` path, so correctness is never sacrificed - only the hot, common types skip the allocation. See the [comparison](xref:comparison) article for the measured effect.
+`bool` and `char` are appended directly as well. Only types that are not `ISpanFormattable` fall back to `ToString()`. See the [comparison](xref:comparison) article for the measured effect.
 
 ## Pinning the buffer
 

@@ -313,6 +313,43 @@ public class ValueStringBuilderAppendTests
         builder.ToString().ShouldBe(expected);
     }
 
+    [Fact]
+    public void ShouldAppendRepeatedChar()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append('a', 3);
+
+        builder.ToString().ShouldBe("aaa");
+    }
+
+    [Fact]
+    public void ShouldThrowWhenRepeatCountIsNegative()
+    {
+        using var builder = new ValueStringBuilder();
+
+        try
+        {
+            builder.Append('a', -1);
+            Assert.Fail("Expected ArgumentOutOfRangeException");
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+        }
+    }
+
+    [Fact]
+    public void ShouldNotGrowWhenFormattedValueFitsIntoRemainingBuffer()
+    {
+        using var builder = new ValueStringBuilder(stackalloc char[4]);
+        builder.Append("ab");
+
+        builder.Append(12);
+
+        builder.ToString().ShouldBe("ab12");
+        builder.Capacity.ShouldBe(4);
+    }
+
     private readonly struct LongSpanFormattable : ISpanFormattable
     {
         public const int Length = 128;

@@ -165,6 +165,72 @@ public class ValueStringBuilderInterpolatedStringTests
         builder.ToString().ShouldBe("raw");
     }
 
+    [Fact]
+    public void ShouldAlignInterpolatedValue()
+    {
+        using var builder = new ValueStringBuilder();
+        var value = 42;
+
+        builder.Append($"[{value,5}|{value,-5}|{value,1}]");
+
+        builder.ToString().ShouldBe("[   42|42   |42]");
+    }
+
+    [Fact]
+    public void ShouldAlignFormattedInterpolatedValue()
+    {
+        using var builder = new ValueStringBuilder();
+        var price = 1.2345;
+
+        builder.Append($"[{price,8:F2}]");
+
+        builder.ToString().ShouldBe("[    1.23]");
+    }
+
+    [Fact]
+    public void ShouldAlignStringAndSpanInInterpolatedString()
+    {
+        using var builder = new ValueStringBuilder();
+        var name = "ab";
+        ReadOnlySpan<char> span = "cd";
+
+        builder.Append($"[{name,-4}|{span,4}]");
+
+        builder.ToString().ShouldBe("[ab  |  cd]");
+    }
+
+    [Fact]
+    public void ShouldAlignWhenBufferMustGrow()
+    {
+        using var builder = new ValueStringBuilder(stackalloc char[2]);
+        var value = 7;
+
+        builder.Append($"{value,40}");
+
+        builder.ToString().ShouldBe(new string(' ', 39) + "7");
+    }
+
+    [Fact]
+    public void ShouldAppendCustomSpanFormattableStruct()
+    {
+        using var builder = new ValueStringBuilder();
+        var point = new Point(1, 2);
+
+        builder.Append($"{point} {point:X}");
+
+        builder.ToString().ShouldBe("(1,2) X(1,2)");
+    }
+
+    private readonly record struct Point(int X, int Y) : ISpanFormattable
+    {
+        public override string ToString() => ToString(null, null);
+
+        public string ToString(string? format, IFormatProvider? formatProvider) => $"{format}({X},{Y})";
+
+        public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+            => destination.TryWrite(provider, $"{format}({X},{Y})", out charsWritten);
+    }
+
     private class CustomType
     {
         public string Value { get; set; } = string.Empty;

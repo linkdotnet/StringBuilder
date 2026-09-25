@@ -6,7 +6,7 @@
 
 **ValueStringBuilder** aims to be as fast as possible with a minimal amount of allocation memory. This documentation explains when to use it, when to reach for the more specialized `FixedSizeValueStringBuilder`, and what trade-offs come with both. If you have questions or feature requests just head over to the [GitHub](https://github.com/linkdotnet/StringBuilder) repository and file an issue.
 
-The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance. It also avoids boxing common value types passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`. See the [Comparison](xref:comparison) article for benchmarks.
+The library makes heavy use of `Span<T>`, `stackalloc` and `ArrayPool`s to achieve low allocations and fast performance. It also avoids boxing `ISpanFormattable` value types passed to `AppendJoin`, `Concat`, `AppendFormat`, and interpolated strings, and vectorizes `Trim`/`TrimStart`/`TrimEnd` via `SearchValues<char>`. See the [Comparison](xref:comparison) article for benchmarks.
 
 ## Start here
 

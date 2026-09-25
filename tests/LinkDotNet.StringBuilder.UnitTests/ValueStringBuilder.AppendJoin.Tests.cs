@@ -122,6 +122,17 @@ public class ValueStringBuilderAppendJoinTests
     }
 
     [Fact]
+    public void ShouldAppendJoinList()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+
+        stringBuilder.AppendJoin(", ", new List<int> { 1, 2, 3 });
+        stringBuilder.AppendJoin('|', new List<string?> { "a", null, "b" });
+
+        stringBuilder.ToString().ShouldBe("1, 2, 3a||b");
+    }
+
+    [Fact]
     public void ShouldAppendJoinWithConcreteDecimalArrayWithoutBoxing()
     {
         using var stringBuilder = new ValueStringBuilder();
