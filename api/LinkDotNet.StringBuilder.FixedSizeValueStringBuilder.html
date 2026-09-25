@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct FixedSizeValueStringBuilder | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct FixedSizeValueStringBuilder | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      <meta name="description" content="A string builder backed by a fixed-size, caller-supplied buffer which never grows and never rents a replacement buffer. Formatting arbitrary custom values and converting nonempty content to a  can still allocate on the heap.">
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/new/stable/apiSpec/new?filename=LinkDotNet_StringBuilder_FixedSizeValueStringBuilder.md&amp;value=---%0Auid%3A%20LinkDotNet.StringBuilder.FixedSizeValueStringBuilder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder">
+
+
+
+  <h1 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder" class="text-break">
+Struct FixedSizeValueStringBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.KnownTypes.cs/#L5"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="LinkDotNet.html">LinkDotNet</a>.<a class="xref" href="LinkDotNet.StringBuilder.html">StringBuilder</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>LinkDotNet.StringBuilder.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A string builder backed by a fixed-size, caller-supplied buffer which never grows and never rents a replacement
+buffer. Formatting arbitrary custom values and converting nonempty content to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> can still
+allocate on the heap.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ref struct FixedSizeValueStringBuilder</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This is a ref struct which has certain limitations. You can only store it in a local variable or another ref struct.
+<br><br>
+Unlike <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a>, this type never rents from an array pool. Appending follows two rules:</p>
+<ol><li>Every append is atomic - it either fits entirely or writes nothing at all.</li><li>The first append that does not fit sets <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a>, after which every further
+append is a no-op. The content is therefore always a valid prefix of what was intended.</li></ol>
+<p>Because of the second rule a later, smaller append is dropped even when it would still fit. Call
+<a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow">ClearOverflow()</a> to deliberately carry on regardless.
+<br><br>
+There is no <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a> implementation: nothing is ever rented, so there is nothing to return.</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
+builder.Append("Hello World");
+var result = builder.ToString();</code></pre>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder__ctor_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder__ctor_System_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor(System.Span{System.Char})">
+  FixedSizeValueStringBuilder(Span&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html">FixedSizeValueStringBuilder</a> struct.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FixedSizeValueStringBuilder(Span&lt;char&gt; buffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The buffer to write into. It is never replaced or resized, so its length is the hard
+upper bound for the content. Typically stack-allocated via <code>stackalloc</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Capacity_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Capacity" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity">
+  Capacity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the length of the buffer this instance was created with.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Capacity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The length of the buffer this instance was created with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_IsEmpty_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_IsEmpty" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty">
+  IsEmpty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether nothing has been written yet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool IsEmpty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if nothing has been written yet; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Item_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Item_System_Int32_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item(System.Int32)">
+  this[int]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the character at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ref char this[int index] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Character position to retrieve.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.indexoutofrangeexception">IndexOutOfRangeException</a></dt>
+    <dd><p>Thrown when <code class="paramref">index</code> is negative or not smaller
+than <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Length">Length</a>. Only characters which were actually written are addressable, never the unwritten
+remainder of the buffer.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Length_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Length" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length">
+  Length
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of characters written so far.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Length { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters written so far.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed">
+  Overflowed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether an append did not fit and was therefore dropped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool Overflowed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if an append was dropped; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>. Once set, every further
+append is a no-op until <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow">ClearOverflow()</a> or <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear">Clear()</a> is called.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Remaining_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Remaining" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining">
+  Remaining
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of characters which still fit into the buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Remaining { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of characters which still fit into the buffer. This can be greater than zero while
+<a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, in which case nothing more will be written until
+<a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow">ClearOverflow()</a> or <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear">Clear()</a> is called.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)">
+  Append(ref AppendInterpolatedStringHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.InterpolatedStringHandler.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends an interpolated string to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(ref FixedSizeValueStringBuilder.AppendInterpolatedStringHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html">FixedSizeValueStringBuilder</a>.<a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html">AppendInterpolatedStringHandler</a></dt>
+    <dd><p>The interpolated string handler.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Atomicity applies per literal and per hole, not to the interpolated string as a whole. The first part which
+does not fit sets <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> and the remaining parts are skipped, so the content stays a valid
+prefix of the interpolated string.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Boolean_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Boolean)">
+  Append(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the string representation of a boolean. Dropped if it does not fit completely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(bool value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Bool value to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Char_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Char)">
+  Append(char)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a single character. Dropped if the buffer has no room left.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(char value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd><p>Character to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.ReadOnlySpan{System.Char})">
+  Append(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string. Dropped if it does not fit completely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(scoped ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_String_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.String)">
+  Append(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string. Dropped if it does not fit completely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(string? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Text_Rune_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Text.Rune)">
+  Append(Rune)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a single rune. Dropped if it does not fit completely, so a surrogate pair is never split.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append(Rune value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.rune">Rune</a></dt>
+    <dd><p>Rune to add.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine">
+  AppendLine()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>. Dropped if it does not fit completely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)">
+  AppendLine(ref AppendInterpolatedStringHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.InterpolatedStringHandler.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends an interpolated string followed by <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a> to the builder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(ref FixedSizeValueStringBuilder.AppendInterpolatedStringHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html">FixedSizeValueStringBuilder</a>.<a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html">AppendInterpolatedStringHandler</a></dt>
+    <dd><p>The interpolated string handler.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Atomicity applies per literal and per hole, not to the interpolated string as a whole. The first part which
+does not fit sets <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> and the remaining parts - including the new line - are skipped.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_System_ReadOnlySpan_System_Char__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})">
+  AppendLine(scoped ReadOnlySpan&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string followed by <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>. Both are dropped together unless both fit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(scoped ReadOnlySpan&lt;char&gt; str)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>str</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>String to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_System_String_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.String)">
+  AppendLine(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends a string followed by <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.environment.newline">NewLine</a>. Both are dropped together unless both fit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AppendLine(string? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string to be added to this builder.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append__1___0_System_ReadOnlySpan_System_Char__System_IFormatProvider_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+  Append&lt;T&gt;(T, scoped ReadOnlySpan&lt;char&gt;, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends the string representation of the value. Dropped if it does not fit completely, so a formatted value is
+never written out half-way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Append&lt;T&gt;(T value, scoped ReadOnlySpan&lt;char&gt; format = default, IFormatProvider? formatProvider = null) where T : ISpanFormattable</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>Formattable span to add.</p>
+</dd>
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>Optional formatter. If not provided the default of the given instance is taken.</p>
+</dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd><p>Optional format provider.</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Any <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.ispanformattable">ISpanFormattable</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AsSpan_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AsSpan" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan">
+  AsSpan()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L213"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the written content as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;char&gt; AsSpan()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The written content as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Discards the written content and resets <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> so the buffer can be reused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow">
+  ClearOverflow()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> while keeping the written content, so appending continues into whatever room is
+left.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearOverflow()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Read <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> before calling this if you need to know whether anything was actually dropped.</p>
+</div>
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder">
+  MoveToValueStringBuilder()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Hands the buffer and its content over to a <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> which can grow beyond the fixed
+capacity, and consumes this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueStringBuilder MoveToValueStringBuilder()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a></dt>
+    <dd><p>A <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> continuing where this instance left off. Nothing is copied and nothing is
+rented, so the move itself never allocates. Dispose the result as usual.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+Both builders would otherwise write into the same memory, so this instance is left consumed: an empty builder
+with zero capacity whose <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>. Reading it is safe, and any
+further append is a no-op rather than a write into a buffer somebody else now owns.
+</p>
+<p>
+Consuming this instance can only neutralize this one variable. The caller must own the buffer uniquely at the
+point of the move: neither the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span&lt;T&gt;</a> passed to the constructor nor any struct copy taken before
+the move may be written to afterwards. Both still alias the same memory and would corrupt the content of the
+returned <a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> - the compiler cannot detect it, so the discipline is yours.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></dt>
+    <dd><p><a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed">Overflowed</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>. The content is an incomplete prefix and
+<a class="xref" href="LinkDotNet.StringBuilder.ValueStringBuilder.html">ValueStringBuilder</a> has nowhere to carry that information. Call <a class="xref" href="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow">ClearOverflow()</a> first
+if the truncation was intended.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ToString_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ToString" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance from the written content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_TryCopyTo_" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo*"></a>
+
+  <h3 id="LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_TryCopyTo_System_Span_System_Char__" data-uid="LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo(System.Span{System.Char})">
+  TryCopyTo(Span&lt;char&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tries to copy the written content into the given <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly bool TryCopyTo(Span&lt;char&gt; destination)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>destination</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd><p>The destination to copy the content into.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the copy succeeded; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/src/LinkDotNet.StringBuilder/FixedSizeValueStringBuilder.KnownTypes.cs/#L5" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

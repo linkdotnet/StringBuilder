@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>ValueStringBuilder: A fast and low allocation StringBuilder for .NET | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="ValueStringBuilder: A fast and low allocation StringBuilder for .NET | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="images/logo.png">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+        </div>
+
+        <article data-uid="">
+
+<p><a href="https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml"><img src="https://github.com/linkdotnet/StringBuilder/actions/workflows/dotnet.yml/badge.svg" alt=".NET"></a>
+<a href="https://www.nuget.org/packages/LinkDotNet.StringBuilder/"><img src="https://img.shields.io/nuget/dt/LinkDotNet.StringBuilder" alt="Nuget"></a>
+<a href="https://github.com/linkdotnet/StringBuilder/releases"><img src="https://img.shields.io/github/v/tag/linkdotnet/StringBuilder?include_prereleases&amp;logo=github&amp;style=flat-square" alt="GitHub tag"></a></p>
+<h1 id="valuestringbuilder-a-fast-and-low-allocation-stringbuilder-for-net">ValueStringBuilder: A fast and low allocation StringBuilder for .NET</h1>
+<p><strong>ValueStringBuilder</strong> aims to be as fast as possible with a minimal amount of allocation memory. This documentation explains when to use it, when to reach for the more specialized <code>FixedSizeValueStringBuilder</code>, and what trade-offs come with both. If you have questions or feature requests just head over to the <a href="https://github.com/linkdotnet/StringBuilder">GitHub</a> repository and file an issue.</p>
+<p>The library makes heavy use of <code>Span&lt;T&gt;</code>, <code>stackalloc</code> and <code>ArrayPool</code>s to achieve low allocations and fast performance. It also avoids boxing <code>ISpanFormattable</code> value types passed to <code>AppendJoin</code>, <code>Concat</code>, <code>AppendFormat</code>, and interpolated strings, and vectorizes <code>Trim</code>/<code>TrimStart</code>/<code>TrimEnd</code> via <code>SearchValues&lt;char&gt;</code>. See the <a class="xref" href="articles/comparison.html">Comparison</a> article for benchmarks.</p>
+<h2 id="start-here">Start here</h2>
+<p>Most users should start with <a class="xref" href="api/LinkDotNet.StringBuilder.ValueStringBuilder.html"><code>ValueStringBuilder</code></a>. The library also includes <a class="xref" href="api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html"><code>FixedSizeValueStringBuilder</code></a>, but that type is specialized for hard no-growth limits and should only be used when that constraint is part of the requirement.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General use</td>
+<td><code>ValueStringBuilder</code></td>
+</tr>
+<tr>
+<td>Small bounded hot path, but growing is still acceptable</td>
+<td><code>ValueStringBuilder(stackalloc char[N])</code></td>
+</tr>
+<tr>
+<td>Hard limit, caller-owned buffer must never be replaced</td>
+<td><code>FixedSizeValueStringBuilder</code></td>
+</tr>
+<tr>
+<td>Async or long-lived text building</td>
+<td><code>System.Text.StringBuilder</code></td>
+</tr>
+</tbody>
+</table>
+<p>Recommended reading order:</p>
+<ol>
+<li><a class="xref" href="articles/getting_started.html">Getting started</a></li>
+<li><a class="xref" href="articles/choosing_builder.html">Choosing between builders</a></li>
+<li><a class="xref" href="articles/best_practices.html">Best practices and pitfalls</a></li>
+<li><a class="xref" href="articles/fixed_size.html">Fixed-size string building</a></li>
+<li><a class="xref" href="articles/known_limitations.html">Known limitations</a></li>
+</ol>
+<h2 id="download">Download</h2>
+<p>The package is hosted on <a href="https://www.nuget.org/packages/LinkDotNet.StringBuilder/">nuget.org</a>, so easily add the package reference:</p>
+<blockquote>
+<p>PM&gt; Install-Package LinkDotNet.StringBuilder</p>
+</blockquote>
+<p>Afterwards, you can simply use it. It tries to mimic the API of the <code>StringBuilder</code> to a certain extent so for simpler cases you can exchange those two.</p>
+<h2 id="example-usage">Example usage</h2>
+<p>The API is leaning towards the normal <code>StringBuilder</code> which is part of the .net framework itself. The main key difference is, that the <code>ValueStringBuilder</code> does <strong>not</strong> use the fluent notation of its &quot;big brother&quot;.</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.AppendLine(&quot;Hello World&quot;);
+stringBuilder.Append(&quot;2+2=&quot;);
+stringBuilder.Append(4);
+
+Console.Write(stringBuilder.ToString());
+</code></pre>
+<p>This will print</p>
+<pre><code>Hello World
+2+2=4
+</code></pre>
+<p>If you need a builder that can <strong>never</strong> grow, <code>FixedSizeValueStringBuilder</code> wraps a buffer you own and reports an
+overflow instead of falling back to an <code>ArrayPool</code>. See <a class="xref" href="articles/fixed_size.html">Fixed-size string building</a>.</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+builder.Append(&quot;Hello World&quot;);
+_ = builder.Overflowed; // true - nothing was allocated
+</code></pre>
+<p>There are also convenient helper methods like this:</p>
+<pre><code class="lang-csharp">_ = ValueStringBuilder.Concat(&quot;Hello&quot;, &quot; &quot;, &quot;World&quot;); // &quot;Hello World&quot;
+_ = ValueStringBuilder.Concat(&quot;Hello&quot;, 1, 2, 3, &quot;!&quot;); // &quot;Hello123!&quot;
+</code></pre>
+<h2 id="agent-and-markdown-friendly-access">Agent and markdown-friendly access</h2>
+<p>The documentation is authored in markdown in the repository and published as HTML through DocFX. For agents and other tooling that want a compact entry point, the site also exposes an <code>llms.txt</code> file with direct links to the canonical markdown sources and the most relevant guidance pages.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

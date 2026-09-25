@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Fixed-size string building | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Fixed-size string building | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/fixed_size.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="fixed_size">
+<h1 id="fixed-size-string-building">Fixed-size string building</h1>
+
+<p><a class="xref" href="../api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html"><code>FixedSizeValueStringBuilder</code></a> is a <code>ref struct</code> backed by a
+fixed, caller-supplied buffer. It never grows or rents a replacement buffer. Formatting arbitrary custom values and
+converting nonempty content to a <code>string</code> can still allocate on the heap.</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
+builder.Append(&quot;Hello World&quot;);
+return builder.ToString();
+</code></pre>
+<h2 id="when-to-use-it">When to use it</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown or large output</td>
+<td><a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html"><code>ValueStringBuilder</code></a></td>
+</tr>
+<tr>
+<td>Small output, you <em>expect</em> it to fit but growing is acceptable</td>
+<td><code>ValueStringBuilder(stackalloc char[N])</code></td>
+</tr>
+<tr>
+<td>Hard upper bound, the buffer must never be replaced</td>
+<td><code>FixedSizeValueStringBuilder(stackalloc char[N])</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>new ValueStringBuilder(stackalloc char[128])</code> already avoids allocation <em>while the content fits</em>. The moment it
+doesn't, it rents a larger buffer from <code>ArrayPool&lt;char&gt;.Shared</code> and copies into it - silently, and with nothing to tell
+you afterwards that it happened. <code>FixedSizeValueStringBuilder</code> removes that fallback: the buffer you hand it is the
+whole story.</p>
+<p>Note the deliberate absence of <code>Dispose</code>. Nothing is ever rented, so there is nothing to return, and
+<code>using var builder = new FixedSizeValueStringBuilder(...)</code> will not compile. That is the intended signal.</p>
+<h2 id="the-two-rules">The two rules</h2>
+<p>Everything about this type follows from two rules:</p>
+<ol>
+<li><strong>Every append is atomic.</strong> It either fits entirely or writes nothing at all.</li>
+<li><strong>Overflow latches.</strong> The first append that does not fit sets
+<a class="xref" href="../api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed_"><code>Overflowed</code></a>, and every further append is a
+no-op.</li>
+</ol>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+
+builder.Append(&quot;123456789&quot;);
+
+builder.ToString();   // &quot;&quot; - empty, not &quot;12345678&quot;
+builder.Overflowed;   // true
+</code></pre>
+<p>Rule 1 is why the result is empty rather than truncated. Truncation would be far more dangerous than it looks: the
+buffer above would have held <code>&quot;12345678&quot;</code>, and had you appended the <em>number</em> <code>123456789</code> you would have ended up with a
+different number that looks completely valid. Formatted values, and surrogate pairs, must not be cut in half. The same
+reasoning is why <code>ISpanFormattable.TryFormat</code>, <code>Span&lt;T&gt;.TryCopyTo</code> and <code>MemoryExtensions.TryWrite</code> in .NET itself are
+all-or-nothing.</p>
+<h2 id="why-a-later-append-can-be-dropped">Why a later append can be dropped</h2>
+<p>This is the part that surprises people, so it is worth stating plainly:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+
+builder.Append(&quot;1234&quot;);     // fits
+builder.Append(&quot;56789&quot;);    // does not fit -&gt; dropped, and latches
+builder.Append(&quot;!&quot;);        // WOULD fit, but is dropped as well
+
+builder.ToString();   // &quot;1234&quot;
+builder.Overflowed;   // true
+builder.Remaining;    // 4 - there is room, but nothing more will be written
+</code></pre>
+<p><code>Remaining</code> being greater than zero while <code>Overflowed</code> is <code>true</code> is expected, not a bug.</p>
+<p>The reason is rule 2. Without it, the last line would produce <code>&quot;1234!&quot;</code> - a string that reads as though <code>&quot;56789&quot;</code> was
+never part of your code at all. With the latch, whatever you get back is always a <em>prefix</em> of what you intended to
+build. A prefix can be recognised as incomplete; a scrambled string cannot.</p>
+<h2 id="carrying-on-anyway">Carrying on anyway</h2>
+<p>The latch is a default, not a cage. Call
+<a class="xref" href="../api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow_"><code>ClearOverflow</code></a> to keep going with whatever
+room is left:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[16]);
+var truncated = false;
+
+builder.Append(&quot;name=&quot;);
+builder.Append(veryLongName);
+
+if (builder.Overflowed)
+{
+    truncated = true;
+    builder.ClearOverflow();   // deliberate: skip this field, keep building
+}
+
+builder.Append(&quot; id=&quot;);
+builder.Append(id);
+
+return (builder.ToString(), truncated);
+</code></pre>
+<p><code>ClearOverflow</code> resets the flag and keeps the content. Read <code>Overflowed</code> <em>before</em> calling it if you need to know
+whether anything was actually dropped. <a class="xref" href="../api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear_"><code>Clear</code></a>
+resets the flag <em>and</em> the content, so the same buffer can be reused from the start:</p>
+<pre><code class="lang-csharp">Span&lt;char&gt; buffer = stackalloc char[32];
+var builder = new FixedSizeValueStringBuilder(buffer);
+
+builder.Append(&quot;First&quot;);
+var first = builder.ToString();
+
+builder.Clear();
+
+builder.Append(&quot;Second&quot;);
+var second = builder.ToString();
+</code></pre>
+<h2 id="checking-the-result">Checking the result</h2>
+<p>Always check <code>Overflowed</code> before trusting the output:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+builder.Append(&quot;id=&quot;);
+builder.Append(userId);
+builder.Append(&quot; ts=&quot;);
+builder.Append(timestamp, &quot;O&quot;);
+
+if (builder.Overflowed)
+{
+    return BuildWithoutLimit();   // fall back to ValueStringBuilder
+}
+
+return builder.ToString();
+</code></pre>
+<p>There is no exception anywhere on this path. A buffer that is too small is an ordinary, expected outcome which you
+handle with a branch, not a <code>catch</code>.</p>
+<h2 id="interpolated-strings">Interpolated strings</h2>
+<p>Interpolated strings work as you would expect:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
+builder.Append($&quot;user {userId} at {timestamp:O}&quot;);
+</code></pre>
+<p>Atomicity applies <strong>per literal and per hole</strong>, not to the interpolated string as a whole. The first part that does not
+fit latches and the remaining parts are skipped, so the content is still a valid prefix:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[5]);
+
+builder.Append($&quot;ab{42}cd&quot;);
+
+builder.ToString();   // &quot;ab42&quot; - &quot;cd&quot; no longer fit
+builder.Overflowed;   // true
+</code></pre>
+<p>If the literal parts alone already exceed the buffer, nothing is written at all and the whole interpolation is skipped.</p>
+<h2 id="formatting-values">Formatting values</h2>
+<p>Any <code>ISpanFormattable</code> can be appended, with an optional format string and format provider:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[32]);
+
+builder.Append(3.14159f, &quot;F2&quot;);
+builder.Append(' ');
+builder.Append(DateTime.UtcNow, &quot;yyyy-MM-dd&quot;);
+</code></pre>
+<p>Unlike <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_"><code>ValueStringBuilder.Append&lt;T&gt;</code></a> there is no
+<code>bufferSize</code> parameter. The value is formatted straight into the remaining space; if it does not fit, the append is
+dropped. No intermediate buffer is needed, which is one of the places where the fixed-size builder is simply cheaper.</p>
+<h2 id="growing-out-of-the-fixed-buffer">Growing out of the fixed buffer</h2>
+<p>Sometimes a hard limit is right for the common case but you still need a fallback for the rare oversized one.
+<a class="xref" href="../api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder_"><code>MoveToValueStringBuilder</code></a> hands
+the buffer <em>and</em> its content over to a <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html"><code>ValueStringBuilder</code></a>, which
+can grow:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+builder.Append(&quot;id=&quot;);
+builder.Append(userId);
+
+if (builder.Remaining &lt; worstCaseTail)
+{
+    using var grown = builder.MoveToValueStringBuilder();
+    grown.Append(tail);
+    return grown.ToString();
+}
+
+builder.Append(tail);
+return builder.ToString();
+</code></pre>
+<p>Nothing is copied and nothing is rented: the <code>ValueStringBuilder</code> starts out pointing at the very same stack buffer
+with <code>Length</code> already set, so the move itself costs nothing. It only rents from the array pool once you exceed the
+buffer, exactly as it would have anyway - which is why the result must be disposed.</p>
+<p>Both builders would otherwise write into the same memory, so the move <strong>consumes the source</strong>. What is left behind is
+an empty builder with <code>Capacity</code> of zero and <code>Overflowed</code> set to <code>true</code>. Reading it is safe and any further append is
+a no-op, so a stale use cannot corrupt the buffer its new owner is writing into:</p>
+<pre><code class="lang-csharp">var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+builder.Append(&quot;1234&quot;);
+
+using var grown = builder.MoveToValueStringBuilder();
+
+builder.Append(&quot;XYZ&quot;);   // dropped - the buffer is not his anymore
+grown.ToString();        // &quot;1234&quot;
+</code></pre>
+<p>That reset can only neutralize the <em>one variable</em> it is called on. <code>FixedSizeValueStringBuilder</code> is a struct and the
+<code>Span&lt;char&gt;</code> it was handed is copyable, so <strong>the caller has to own the buffer uniquely at the point of the move</strong>:</p>
+<pre><code class="lang-csharp">Span&lt;char&gt; buffer = stackalloc char[16];
+var builder = new FixedSizeValueStringBuilder(buffer);
+builder.Append(&quot;hello&quot;);
+
+using var grown = builder.MoveToValueStringBuilder();
+
+buffer[0] = 'X';         // still aliases the same memory
+grown.ToString();        // &quot;Xello&quot; - corrupted
+</code></pre>
+<p>The same goes for a struct copy taken before the move. Neither the original span nor such a copy may be written to
+afterwards; the compiler cannot detect it, so the discipline is yours. If you cannot guarantee that, copy the content
+out with <code>ToString</code> or <code>TryCopyTo</code> instead of moving it.</p>
+<p>Moving an <em>overflowed</em> builder throws an <code>InvalidOperationException</code>. The content is an incomplete prefix and
+<code>ValueStringBuilder</code> has nowhere to carry that fact, so this is the last point at which the truncation can be caught.
+If it was deliberate, call <code>ClearOverflow</code> first - that is what it is for.</p>
+<h2 id="available-members">Available members</h2>
+<p>The type deliberately carries a smaller surface than <code>ValueStringBuilder</code>:</p>
+<ul>
+<li><code>Append</code> for <code>char</code>, <code>string</code>, <code>ReadOnlySpan&lt;char&gt;</code>, <code>bool</code>, <code>Rune</code>, any <code>ISpanFormattable</code> and interpolated strings
+(including alignment holes such as <code>$&quot;{value,10}&quot;</code>, where value and padding are written together or not at all)</li>
+<li><code>AppendLine</code>, which writes the text and the newline together or not at all</li>
+<li><code>Clear</code>, <code>ClearOverflow</code></li>
+<li><code>MoveToValueStringBuilder</code> to continue in a growable builder</li>
+<li><code>Length</code>, <code>Capacity</code>, <code>Remaining</code>, <code>IsEmpty</code>, <code>Overflowed</code>, and an indexer</li>
+<li><code>AsSpan</code>, <code>TryCopyTo</code>, <code>ToString</code></li>
+</ul>
+<p><code>Insert</code>, <code>Replace</code>, <code>Trim</code>, <code>Pad</code>, <code>AppendJoin</code> and <code>AppendFormat</code> are not available - against a hard capacity limit
+each of them needs its own answer to &quot;what happens when it does not fit&quot;. Use <code>ValueStringBuilder</code> when you need them.</p>
+<h2 id="performance">Performance</h2>
+<p>See the <a class="xref" href="comparison.html">comparison</a> article for the numbers.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/fixed_size.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
