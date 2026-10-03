@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace LinkDotNet.StringBuilder.UnitTests;
 
 public class ValueStringBuilderInterpolatedStringTests
@@ -219,6 +221,25 @@ public class ValueStringBuilderInterpolatedStringTests
         builder.Append($"{point} {point:X}");
 
         builder.ToString().ShouldBe("(1,2) X(1,2)");
+    }
+
+    [Fact]
+    public void ShouldNotReturnRentedArrayTwiceWhenInterpolationThrows()
+    {
+        var customers = new Dictionary<int, string>();
+        try
+        {
+            using var builder = new ValueStringBuilder();
+            builder.Append($"Order {42} for customer {customers[7]}");
+        }
+        catch (KeyNotFoundException)
+        {
+        }
+
+        var first = ArrayPool<char>.Shared.Rent(32);
+        var second = ArrayPool<char>.Shared.Rent(32);
+
+        first.ShouldNotBeSameAs(second);
     }
 
     private readonly record struct Point(int X, int Y) : ISpanFormattable

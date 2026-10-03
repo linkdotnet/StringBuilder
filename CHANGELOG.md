@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+
+- `Append`/`AppendLine` with an interpolated string could return the rented array to the `ArrayPool` twice when an interpolation hole threw after the buffer grew. Reported by [@dhhoang](https://github.com/dhhoang) in #324
+
 ## [3.7.1] - 2026-09-25
 
 ### Added
