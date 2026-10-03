@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
@@ -11,7 +12,7 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append([InterpolatedStringHandlerArgument("")] ref AppendInterpolatedStringHandler handler)
     {
-        this = handler.Builder;
+        TakeOver(ref handler);
     }
 
     /// <summary>
@@ -21,8 +22,24 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AppendLine([InterpolatedStringHandlerArgument("")] ref AppendInterpolatedStringHandler handler)
     {
-        this = handler.Builder;
+        TakeOver(ref handler);
         Append(Environment.NewLine);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void TakeOver(ref AppendInterpolatedStringHandler handler)
+    {
+        var original = arrayFromPool;
+        this = handler.Builder;
+
+        if (arrayFromPool is null)
+        {
+            arrayFromPool = original;
+        }
+        else if (original is not null)
+        {
+            ArrayPool<char>.Shared.Return(original);
+        }
     }
 
     /// <summary>
@@ -43,6 +60,9 @@ public ref partial struct ValueStringBuilder
         public AppendInterpolatedStringHandler(int literalLength, int formattedCount, ValueStringBuilder builder)
         {
             Builder = builder;
+
+            // The caller keeps owning its rented array until Append completes, so a throwing hole cannot cause a double return.
+            Builder.arrayFromPool = null;
 
             // A conservative guess for the capacity.
             Builder.EnsureCapacity(Builder.Length + literalLength + (formattedCount * 11));
