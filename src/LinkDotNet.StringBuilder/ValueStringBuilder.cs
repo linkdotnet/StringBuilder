@@ -117,7 +117,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     public readonly ref char this[int index]
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get => ref buffer[index];
+        get => ref buffer[..bufferPosition][index];
     }
 
     /// <summary>
@@ -192,12 +192,7 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <param name="length">The length of the substring.</param>
     /// <returns>The filled array as <see cref="ReadOnlySpan{T}"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly ReadOnlySpan<char> AsSpan(int startIndex, int length)
-    {
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(length, bufferPosition);
-
-        return buffer.Slice(startIndex, length);
-    }
+    public readonly ReadOnlySpan<char> AsSpan(int startIndex, int length) => buffer[..bufferPosition].Slice(startIndex, length);
 
     /// <summary>
     /// Returns the string as an <see cref="ReadOnlySpan{T}"/>.
