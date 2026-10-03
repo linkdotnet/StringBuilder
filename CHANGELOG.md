@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+
+- `AsSpan(int startIndex, int length)` and `ToString(int startIndex, int length)` throw an `ArgumentOutOfRangeException` when the requested range ends after `Length`, instead of returning characters from the unused part of the buffer.
+- The indexer throws an `IndexOutOfRangeException` for an index at or after `Length`, instead of giving access to the unused part of the buffer.
+
 ## [3.7.1] - 2026-09-25
 
 ### Added
