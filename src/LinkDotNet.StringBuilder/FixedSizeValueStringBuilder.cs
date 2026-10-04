@@ -434,7 +434,9 @@ public ref partial struct FixedSizeValueStringBuilder
             return true;
         }
 
-        var text = value?.ToString();
+        var text = value is IFormattable formattableValue
+            ? formattableValue.ToString(format.IsEmpty ? null : format.ToString(), null)
+            : value?.ToString();
         return TryAppend(text.AsSpan());
     }
 

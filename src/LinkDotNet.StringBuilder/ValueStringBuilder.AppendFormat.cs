@@ -29,7 +29,7 @@ public ref partial struct ValueStringBuilder
                 var endIndex = format[(formatIndex + 1)..].IndexOf('}');
                 if (endIndex == -1)
                 {
-                    Append(format);
+                    Append(format[start..]);
                     return;
                 }
 
@@ -85,7 +85,7 @@ public ref partial struct ValueStringBuilder
                 var endIndex = format[(formatIndex + 1)..].IndexOf('}');
                 if (endIndex == -1)
                 {
-                    Append(format);
+                    Append(format[start..]);
                     return;
                 }
 
@@ -153,7 +153,7 @@ public ref partial struct ValueStringBuilder
                 var endIndex = format[(formatIndex + 1)..].IndexOf('}');
                 if (endIndex == -1)
                 {
-                    Append(format);
+                    Append(format[start..]);
                     return;
                 }
 
@@ -227,7 +227,7 @@ public ref partial struct ValueStringBuilder
                 var endIndex = format[(formatIndex + 1)..].IndexOf('}');
                 if (endIndex == -1)
                 {
-                    Append(format);
+                    Append(format[start..]);
                     return;
                 }
 
@@ -307,7 +307,7 @@ public ref partial struct ValueStringBuilder
                 var endIndex = format[(formatIndex + 1)..].IndexOf('}');
                 if (endIndex == -1)
                 {
-                    Append(format);
+                    Append(format[start..]);
                     return;
                 }
 

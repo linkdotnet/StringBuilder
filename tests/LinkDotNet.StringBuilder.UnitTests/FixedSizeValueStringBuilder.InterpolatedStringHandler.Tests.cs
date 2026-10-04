@@ -101,4 +101,21 @@ public class FixedSizeValueStringBuilderInterpolatedStringHandlerTests
         builder.ToString().ShouldBe(string.Empty);
         builder.Overflowed.ShouldBeTrue();
     }
+
+    [Fact]
+    public void ShouldPassFormatToFormattableThatIsNotSpanFormattable()
+    {
+        var builder = new FixedSizeValueStringBuilder(stackalloc char[8]);
+
+        builder.Append($"{new OnlyFormattable():X}");
+
+        builder.ToString().ShouldBe("X");
+    }
+
+    private sealed class OnlyFormattable : IFormattable
+    {
+        public override string ToString() => "plain";
+
+        public string ToString(string? format, IFormatProvider? formatProvider) => format ?? "null";
+    }
 }

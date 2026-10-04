@@ -242,6 +242,16 @@ public class ValueStringBuilderInterpolatedStringTests
         first.ShouldNotBeSameAs(second);
     }
 
+    [Fact]
+    public void ShouldPassFormatToFormattableThatIsNotSpanFormattable()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Append($"{new OnlyFormattable():X}");
+
+        builder.ToString().ShouldBe("X");
+    }
+
     private readonly record struct Point(int X, int Y) : ISpanFormattable
     {
         public override string ToString() => ToString(null, null);
@@ -257,5 +267,12 @@ public class ValueStringBuilderInterpolatedStringTests
         public string Value { get; set; } = string.Empty;
 
         public override string ToString() => Value;
+    }
+
+    private sealed class OnlyFormattable : IFormattable
+    {
+        public override string ToString() => "plain";
+
+        public string ToString(string? format, IFormatProvider? formatProvider) => format ?? "null";
     }
 }

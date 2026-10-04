@@ -192,4 +192,37 @@ public class ValueStringBuilderTrimTests
 
         valueStringBuilder.ToString().ShouldBe("Hello wo");
     }
+
+    [Fact]
+    public void GivenIgnorableCharacter_WhenTrimPrefixCultureSensitive_ThenShouldRemoveWholeMatch()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("a\u00ADbc");
+
+        valueStringBuilder.TrimPrefix("ab", StringComparison.InvariantCulture);
+
+        valueStringBuilder.ToString().ShouldBe("c");
+    }
+
+    [Fact]
+    public void GivenIgnorableCharacter_WhenTrimSuffixCultureSensitive_ThenShouldRemoveWholeMatch()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("ab\u00ADc");
+
+        valueStringBuilder.TrimSuffix("bc", StringComparison.InvariantCulture);
+
+        valueStringBuilder.ToString().ShouldBe("a");
+    }
+
+    [Fact]
+    public void GivenComposedCharacter_WhenTrimSuffixWithDecomposedValue_ThenShouldRemoveIt()
+    {
+        using var valueStringBuilder = new ValueStringBuilder();
+        valueStringBuilder.Append("x\u00C5");
+
+        valueStringBuilder.TrimSuffix("A\u030A", StringComparison.InvariantCulture);
+
+        valueStringBuilder.ToString().ShouldBe("x");
+    }
 }
