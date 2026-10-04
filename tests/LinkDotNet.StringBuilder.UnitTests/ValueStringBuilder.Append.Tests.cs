@@ -350,6 +350,25 @@ public class ValueStringBuilderAppendTests
         builder.Capacity.ShouldBe(4);
     }
 
+    [Fact]
+    public void ShouldNotChangeLengthWhenAppendSpanLengthIsNegative()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append("abc");
+
+        try
+        {
+            builder.AppendSpan(-1);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            builder.Length.ShouldBe(3);
+            return;
+        }
+
+        Assert.Fail("Expected ArgumentOutOfRangeException");
+    }
+
     private readonly struct LongSpanFormattable : ISpanFormattable
     {
         public const int Length = 128;

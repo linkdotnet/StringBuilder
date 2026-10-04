@@ -199,6 +199,8 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Span<char> AppendSpan(int length)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(length);
+
         if (length == 0)
         {
             return [];

@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -46,7 +47,7 @@ public ref partial struct ValueStringBuilder
     /// <param name="formatProvider">Optional format provider.</param>
     /// <typeparam name="T">Any <see cref="ISpanFormattable"/>.</typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = 36, IFormatProvider? formatProvider = null)
+    public void Insert<T>(int index, T value, scoped ReadOnlySpan<char> format = default, int bufferSize = DefaultFormatBufferSize, IFormatProvider? formatProvider = null)
         where T : ISpanFormattable => InsertSpanFormattable(index, value, format, bufferSize, formatProvider);
 
     /// <summary>
@@ -69,6 +70,16 @@ public ref partial struct ValueStringBuilder
 
         if (value.IsEmpty)
         {
+            return;
+        }
+
+        // The shift below (or a grow) would overwrite a value that points into this builder before it is copied.
+        if (value.Overlaps(buffer))
+        {
+            var copy = ArrayPool<char>.Shared.Rent(value.Length);
+            value.CopyTo(copy);
+            Insert(index, copy.AsSpan(0, value.Length));
+            ArrayPool<char>.Shared.Return(copy);
             return;
         }
 
@@ -103,28 +114,39 @@ public ref partial struct ValueStringBuilder
             throw new ArgumentOutOfRangeException(nameof(index), "The given index can't be bigger than the string itself.");
         }
 
-        Span<char> tempBuffer = stackalloc char[bufferSize];
-        if (value.TryFormat(tempBuffer, out var written, format, formatProvider))
+        const int maxStackBufferSize = 256;
+        char[]? rented = null;
+        var tempBuffer = bufferSize <= maxStackBufferSize
+            ? stackalloc char[bufferSize]
+            : rented = ArrayPool<char>.Shared.Rent(bufferSize);
+
+        try
         {
-            var newLength = bufferPosition + written;
-            if (newLength > buffer.Length)
+            int written;
+            while (!value.TryFormat(tempBuffer, out written, format, formatProvider))
             {
-                EnsureCapacity(newLength);
+                if (bufferSize != DefaultFormatBufferSize)
+                {
+                    throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
+                }
+
+                var larger = ArrayPool<char>.Shared.Rent(checked(tempBuffer.Length * 2));
+                if (rented is not null)
+                {
+                    ArrayPool<char>.Shared.Return(rented);
+                }
+
+                tempBuffer = rented = larger;
             }
 
-            bufferPosition = newLength;
-
-            // Move Slice at beginning index
-            var oldPosition = bufferPosition - written;
-            var shift = index + written;
-            buffer[index..oldPosition].CopyTo(buffer[shift..bufferPosition]);
-
-            // Add new word
-            tempBuffer[..written].CopyTo(buffer[index..shift]);
+            Insert(index, tempBuffer[..written]);
         }
-        else
+        finally
         {
-            throw new InvalidOperationException($"Could not insert {value} into given buffer. Is the buffer (size: {bufferSize}) large enough?");
+            if (rented is not null)
+            {
+                ArrayPool<char>.Shared.Return(rented);
+            }
         }
     }
 }

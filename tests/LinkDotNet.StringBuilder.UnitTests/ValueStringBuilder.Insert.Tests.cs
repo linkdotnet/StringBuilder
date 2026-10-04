@@ -167,4 +167,38 @@ public class ValueStringBuilderInsertTests
 
         builder.ToString().ShouldBe("True");
     }
+
+    [Fact]
+    public void ShouldInsertSpanThatPointsIntoTheBuilder()
+    {
+        using var builder = new ValueStringBuilder(32);
+        builder.Append("abc");
+
+        builder.Insert(0, builder.AsSpan(1));
+
+        builder.ToString().ShouldBe("bcabc");
+    }
+
+    [Fact]
+    public void ShouldGrowWhenFormattedValueExceedsDefaultBufferSize()
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append("!");
+        var date = new DateTime(2024, 1, 1, 12, 30, 45, DateTimeKind.Utc);
+        const string format = "dddd, MMMM dd yyyy HH:mm:ss.fffffff";
+
+        builder.Insert(0, date, format, formatProvider: CultureInfo.InvariantCulture);
+
+        builder.ToString().ShouldBe(date.ToString(format, CultureInfo.InvariantCulture) + "!");
+    }
+
+    [Fact]
+    public void ShouldNotStackAllocateLargeBufferSize()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.Insert(0, 1, bufferSize: 10_000_000);
+
+        builder.ToString().ShouldBe("1");
+    }
 }

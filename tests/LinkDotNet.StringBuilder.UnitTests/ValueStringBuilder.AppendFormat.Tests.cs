@@ -113,4 +113,24 @@ public class ValueStringBuilderAppendFormatTests
 
         builder.ToString().ShouldBe($"True 1.5 {date}");
     }
+
+    [Fact]
+    public void ShouldAppendRemainingLiteralWhenBraceIsNotClosed()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendFormat("Hello {0} and {", 1);
+
+        builder.ToString().ShouldBe("Hello 1 and {");
+    }
+
+    [Fact]
+    public void ShouldAppendRemainingLiteralWhenBraceIsNotClosedWithFiveArguments()
+    {
+        using var builder = new ValueStringBuilder();
+
+        builder.AppendFormat("{0}{1}{2}{3}{4} and {", 1, 2, 3, 4, 5);
+
+        builder.ToString().ShouldBe("12345 and {");
+    }
 }

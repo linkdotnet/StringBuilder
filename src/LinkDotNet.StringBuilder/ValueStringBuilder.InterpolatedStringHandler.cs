@@ -105,7 +105,7 @@ public ref partial struct ValueStringBuilder
                 return;
             }
 
-            Builder.Append(value?.ToString());
+            Builder.Append(value is IFormattable ? ((IFormattable)value).ToString(format, null) : value?.ToString());
         }
 
         /// <summary>

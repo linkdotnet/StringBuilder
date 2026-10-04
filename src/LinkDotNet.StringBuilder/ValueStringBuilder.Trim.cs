@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace LinkDotNet.StringBuilder;
@@ -135,9 +136,10 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void TrimPrefix(scoped ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        if (AsSpan().StartsWith(value, comparisonType))
+        var (compareInfo, options) = GetCompareInfo(comparisonType);
+        if (compareInfo.IsPrefix(AsSpan(), value, options, out var matchLength))
         {
-            Remove(0, value.Length);
+            Remove(0, matchLength);
         }
     }
 
@@ -149,11 +151,27 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void TrimSuffix(scoped ReadOnlySpan<char> value, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        if (AsSpan().EndsWith(value, comparisonType))
+        var (compareInfo, options) = GetCompareInfo(comparisonType);
+        if (compareInfo.IsSuffix(AsSpan(), value, options, out var matchLength))
         {
-            Remove(Length - value.Length, value.Length);
+            Remove(Length - matchLength, matchLength);
         }
     }
+
+    /// <remarks>
+    /// A culture-sensitive match can be longer or shorter than the searched value (ignorable or composed characters),
+    /// so the match length has to come from <see cref="CompareInfo"/>.
+    /// </remarks>
+    private static (CompareInfo compareInfo, CompareOptions options) GetCompareInfo(StringComparison comparisonType) => comparisonType switch
+    {
+        StringComparison.CurrentCulture => (CultureInfo.CurrentCulture.CompareInfo, CompareOptions.None),
+        StringComparison.CurrentCultureIgnoreCase => (CultureInfo.CurrentCulture.CompareInfo, CompareOptions.IgnoreCase),
+        StringComparison.InvariantCulture => (CultureInfo.InvariantCulture.CompareInfo, CompareOptions.None),
+        StringComparison.InvariantCultureIgnoreCase => (CultureInfo.InvariantCulture.CompareInfo, CompareOptions.IgnoreCase),
+        StringComparison.Ordinal => (CultureInfo.InvariantCulture.CompareInfo, CompareOptions.Ordinal),
+        StringComparison.OrdinalIgnoreCase => (CultureInfo.InvariantCulture.CompareInfo, CompareOptions.OrdinalIgnoreCase),
+        _ => throw new ArgumentOutOfRangeException(nameof(comparisonType)),
+    };
 
     private static char[] BuildWhiteSpaceChars() =>
     [

@@ -6,6 +6,18 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.3] - 2026-10-04
+
+### Fixed
+
+- `AppendFormat` with an unclosed `{` appended the whole format string a second time (`"Hello {0} and {"` gave `"Hello 1Hello {0} and {"`). Now only the not yet written rest is appended.
+- `TrimPrefix` and `TrimSuffix` with a culture-sensitive `StringComparison` removed `value.Length` characters instead of the actual match length, so ignorable or composed characters left the wrong content behind or made `TrimSuffix` throw.
+- `Insert(int, ReadOnlySpan<char>)` produced wrong content when the inserted span points into the builder itself (e.g. `builder.Insert(0, builder.AsSpan(1))`).
+- Interpolated strings passed no format to types that implement `IFormattable` but not `ISpanFormattable`, so `$"{value:X}"` called `ToString()` instead of `ToString("X", null)`. Applies to `ValueStringBuilder` and `FixedSizeValueStringBuilder`.
+- `AppendSpan` with a negative length decreased `Length` before throwing. It now throws an `ArgumentOutOfRangeException` up front and leaves the builder untouched.
+- `Insert<T>` for `ISpanFormattable` values grows like `Append<T>` when the formatted value exceeds the default buffer size of 36 characters, instead of throwing an `InvalidOperationException`. A custom `bufferSize` still throws when it is too small.
+- `Insert<T>` stack-allocated the caller-provided `bufferSize` unbounded, so a large value crashed the process with a stack overflow. Sizes above 256 characters are now rented from the `ArrayPool`.
+
 ## [3.7.2] - 2026-10-04
 
 ### Fixed
@@ -603,7 +615,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...HEAD
+[3.7.3]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...3.7.3
 [3.7.2]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...3.7.0
