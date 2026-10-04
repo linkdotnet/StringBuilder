@@ -6,6 +6,14 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.2] - 2026-10-04
+
+### Fixed
+
+- `AsSpan(int startIndex, int length)` and `ToString(int startIndex, int length)` throw an `ArgumentOutOfRangeException` when the requested range ends after `Length`, instead of returning characters from the unused part of the buffer.
+- The indexer throws an `IndexOutOfRangeException` for an index at or after `Length`, instead of giving access to the unused part of the buffer.
+- `Append`/`AppendLine` with an interpolated string could return the rented array to the `ArrayPool` twice when an interpolation hole threw after the buffer grew. Reported by [@dhhoang](https://github.com/dhhoang) in #324
+
 ## [3.7.1] - 2026-09-25
 
 ### Added
@@ -595,7 +603,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...HEAD
+[3.7.2]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...3.7.0
 [3.6.1]: https://github.com/linkdotnet/StringBuilder/compare/3.6.0...3.6.1
