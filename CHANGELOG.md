@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.3] - 2026-10-04
+
 ### Fixed
 
 - `AppendFormat` with an unclosed `{` appended the whole format string a second time (`"Hello {0} and {"` gave `"Hello 1Hello {0} and {"`). Now only the not yet written rest is appended.
@@ -613,7 +615,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...HEAD
+[3.7.3]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...3.7.3
 [3.7.2]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/linkdotnet/StringBuilder/compare/3.6.1...3.7.0
