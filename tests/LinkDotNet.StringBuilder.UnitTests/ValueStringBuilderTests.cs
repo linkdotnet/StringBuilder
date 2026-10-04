@@ -22,6 +22,25 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
+    public void ShouldThrowIndexOutOfRangeWhenIndexIsBetweenLengthAndCapacity()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        try
+        {
+            _ = stringBuilder[5];
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.Fail();
+    }
+
+    [Fact]
     public void ShouldTryToCopySpan()
     {
         using var stringBuilder = new ValueStringBuilder();
@@ -416,6 +435,25 @@ public class ValueStringBuilderTests
         var result = new ValueStringBuilder("Hello World").ToString(1, 3);
 
         result.ShouldBe("ell");
+    }
+
+    [Fact]
+    public void ShouldThrowWhenSubstringEndsAfterLength()
+    {
+        using var stringBuilder = new ValueStringBuilder();
+        stringBuilder.Append("Hello");
+
+        try
+        {
+            stringBuilder.ToString(3, 5);
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Assert.True(true);
+            return;
+        }
+
+        Assert.Fail();
     }
 
     [Fact]
