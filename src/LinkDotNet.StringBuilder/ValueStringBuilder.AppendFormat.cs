@@ -48,7 +48,8 @@ public ref partial struct ValueStringBuilder
             }
             else
             {
-                formatIndex++;
+                var nextPlaceholder = format[formatIndex..].IndexOf('{');
+                formatIndex = nextPlaceholder < 0 ? format.Length : formatIndex + nextPlaceholder;
             }
         }
 
@@ -113,7 +114,8 @@ public ref partial struct ValueStringBuilder
             }
             else
             {
-                formatIndex++;
+                var nextPlaceholder = format[formatIndex..].IndexOf('{');
+                formatIndex = nextPlaceholder < 0 ? format.Length : formatIndex + nextPlaceholder;
             }
         }
 
@@ -184,7 +186,8 @@ public ref partial struct ValueStringBuilder
             }
             else
             {
-                formatIndex++;
+                var nextPlaceholder = format[formatIndex..].IndexOf('{');
+                formatIndex = nextPlaceholder < 0 ? format.Length : formatIndex + nextPlaceholder;
             }
         }
 
@@ -261,7 +264,8 @@ public ref partial struct ValueStringBuilder
             }
             else
             {
-                formatIndex++;
+                var nextPlaceholder = format[formatIndex..].IndexOf('{');
+                formatIndex = nextPlaceholder < 0 ? format.Length : formatIndex + nextPlaceholder;
             }
         }
 
@@ -344,7 +348,8 @@ public ref partial struct ValueStringBuilder
             }
             else
             {
-                formatIndex++;
+                var nextPlaceholder = format[formatIndex..].IndexOf('{');
+                formatIndex = nextPlaceholder < 0 ? format.Length : formatIndex + nextPlaceholder;
             }
         }
 
@@ -357,7 +362,12 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int GetValidArgumentIndex(scoped ReadOnlySpan<char> placeholder, int allowedRange)
     {
-        if (!int.TryParse(placeholder[1..^1], null, out var argIndex))
+        int argIndex;
+        if (placeholder.Length == 3 && char.IsAsciiDigit(placeholder[1]))
+        {
+            argIndex = placeholder[1] - '0';
+        }
+        else if (!int.TryParse(placeholder[1..^1], null, out argIndex))
         {
             throw new FormatException("Invalid argument index in format string: " + placeholder.ToString());
         }

@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder.UnitTests;
 
@@ -367,6 +368,30 @@ public class ValueStringBuilderAppendTests
         }
 
         Assert.Fail("Expected ArgumentOutOfRangeException");
+    }
+
+    [Theory]
+    [InlineData(0x41)]
+    [InlineData(0x1F600)]
+    public void ShouldAppendRune(int codePoint)
+    {
+        using var builder = new ValueStringBuilder();
+        builder.Append("a");
+
+        builder.Append(new Rune(codePoint));
+
+        builder.ToString().ShouldBe("a" + char.ConvertFromUtf32(codePoint));
+    }
+
+    [Fact]
+    public void ShouldAppendFalseAfterTrue()
+    {
+        using var builder = new ValueStringBuilder(stackalloc char[5]);
+
+        builder.Append(true);
+        builder.Append(false);
+
+        builder.ToString().ShouldBe("TrueFalse");
     }
 
     private readonly struct LongSpanFormattable : ISpanFormattable

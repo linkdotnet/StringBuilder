@@ -104,42 +104,26 @@ public ref partial struct ValueStringBuilder
             return;
         }
 
-        var matchCount = CountOccurrences(buffer.Slice(startIndex, count), oldValue, out var firstMatchOffset);
-        if (matchCount == 0)
-        {
-            return;
-        }
-
-        if (matchCount == 1)
-        {
-            ReplaceSingle(oldValue, newValue, startIndex + firstMatchOffset);
-            return;
-        }
-
         if (newValue.Length < oldValue.Length)
         {
             ReplaceWithShorterValue(oldValue, newValue, startIndex, count);
             return;
         }
 
-        Span<int> stackPositions = stackalloc int[Math.Min(matchCount, 128)];
-        int[]? rentedPositions = null;
-        var matchPositions = matchCount <= stackPositions.Length
-            ? stackPositions[..matchCount]
-            : (rentedPositions = ArrayPool<int>.Shared.Rent(matchCount)).AsSpan(0, matchCount);
+        var firstMatch = buffer.Slice(startIndex, count).IndexOf(oldValue);
+        if (firstMatch < 0)
+        {
+            return;
+        }
 
-        try
+        var afterFirstMatch = firstMatch + oldValue.Length;
+        if (buffer.Slice(startIndex + afterFirstMatch, count - afterFirstMatch).IndexOf(oldValue) < 0)
         {
-            FillMatchPositions(buffer.Slice(startIndex, count), oldValue, matchPositions);
-            ReplaceWithLongerValue(oldValue, newValue, startIndex, count, matchPositions);
+            ReplaceSingle(oldValue, newValue, startIndex + firstMatch);
+            return;
         }
-        finally
-        {
-            if (rentedPositions is not null)
-            {
-                ArrayPool<int>.Shared.Return(rentedPositions);
-            }
-        }
+
+        ReplaceAllWithLongerValue(oldValue, newValue, startIndex, count);
     }
 
     /// <summary>
@@ -197,49 +181,35 @@ public ref partial struct ValueStringBuilder
         return TryFormatKnownOtherType(value, destination, out charsWritten);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int CountOccurrences(scoped ReadOnlySpan<char> value, scoped ReadOnlySpan<char> oldValue, out int firstMatchOffset)
-    {
-        var searchStart = 0;
-        var matchCount = 0;
-        firstMatchOffset = -1;
-
-        while (searchStart < value.Length)
-        {
-            var matchIndex = value[searchStart..].IndexOf(oldValue, StringComparison.Ordinal);
-            if (matchIndex < 0)
-            {
-                return matchCount;
-            }
-
-            if (matchCount == 0)
-            {
-                firstMatchOffset = searchStart + matchIndex;
-            }
-
-            matchCount++;
-            searchStart += matchIndex + oldValue.Length;
-        }
-
-        return matchCount;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void FillMatchPositions(scoped ReadOnlySpan<char> value, scoped ReadOnlySpan<char> oldValue, Span<int> matchPositions)
+    /// <remarks>
+    /// Collects all positions in a single scan, spilling from <paramref name="positions"/> into pooled arrays when it is full.
+    /// </remarks>
+    private static ReadOnlySpan<int> FindMatchPositions(scoped ReadOnlySpan<char> value, scoped ReadOnlySpan<char> oldValue, Span<int> positions, ref int[]? rented)
     {
         var searchStart = 0;
         var matchCount = 0;
 
-        while (searchStart < value.Length)
+        while (true)
         {
-            var matchIndex = value[searchStart..].IndexOf(oldValue, StringComparison.Ordinal);
+            var matchIndex = value[searchStart..].IndexOf(oldValue);
             if (matchIndex < 0)
             {
-                return;
+                return positions[..matchCount];
             }
 
-            matchPositions[matchCount] = searchStart + matchIndex;
-            matchCount++;
+            if (matchCount == positions.Length)
+            {
+                var larger = ArrayPool<int>.Shared.Rent(checked(positions.Length * 2));
+                positions.CopyTo(larger);
+                if (rented is not null)
+                {
+                    ArrayPool<int>.Shared.Return(rented);
+                }
+
+                positions = rented = larger;
+            }
+
+            positions[matchCount++] = searchStart + matchIndex;
             searchStart += matchIndex + oldValue.Length;
         }
     }
@@ -247,13 +217,6 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ReplaceSingle(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int index)
     {
-        if (newValue.Length < oldValue.Length)
-        {
-            newValue.CopyTo(buffer[index..]);
-            Remove(index + newValue.Length, oldValue.Length - newValue.Length);
-            return;
-        }
-
         newValue[..oldValue.Length].CopyTo(buffer[index..]);
         Insert(index + oldValue.Length, newValue[oldValue.Length..]);
     }
@@ -288,18 +251,27 @@ public ref partial struct ValueStringBuilder
 
         while (sourceIndex < sourceEnd)
         {
-            var matchOffset = buffer.Slice(sourceIndex, sourceEnd - sourceIndex).IndexOf(oldValue, StringComparison.Ordinal);
+            var matchOffset = buffer.Slice(sourceIndex, sourceEnd - sourceIndex).IndexOf(oldValue);
             if (matchOffset < 0)
             {
                 break;
             }
 
             var matchIndex = sourceIndex + matchOffset;
-            buffer.Slice(sourceIndex, matchOffset).CopyTo(buffer[destinationIndex..]);
+            if (destinationIndex != sourceIndex)
+            {
+                buffer.Slice(sourceIndex, matchOffset).CopyTo(buffer[destinationIndex..]);
+            }
+
             destinationIndex += matchOffset;
             newValue.CopyTo(buffer[destinationIndex..]);
             destinationIndex += newValue.Length;
             sourceIndex = matchIndex + oldValue.Length;
+        }
+
+        if (destinationIndex == sourceIndex)
+        {
+            return;
         }
 
         var remainingLength = sourceEnd - sourceIndex;
@@ -309,6 +281,28 @@ public ref partial struct ValueStringBuilder
         var suffixLength = bufferPosition - sourceEnd;
         buffer.Slice(sourceEnd, suffixLength).CopyTo(buffer[destinationIndex..]);
         bufferPosition = destinationIndex + suffixLength;
+    }
+
+    /// <remarks>
+    /// Kept out of <see cref="Replace(ReadOnlySpan{char}, ReadOnlySpan{char}, int, int)"/> so the zero and single match paths pay for neither the stack buffer nor the try/finally.
+    /// </remarks>
+    private void ReplaceAllWithLongerValue(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
+    {
+        Span<int> stackPositions = stackalloc int[128];
+        int[]? rentedPositions = null;
+
+        try
+        {
+            var matchPositions = FindMatchPositions(buffer.Slice(startIndex, count), oldValue, stackPositions, ref rentedPositions);
+            ReplaceWithLongerValue(oldValue, newValue, startIndex, count, matchPositions);
+        }
+        finally
+        {
+            if (rentedPositions is not null)
+            {
+                ArrayPool<int>.Shared.Return(rentedPositions);
+            }
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

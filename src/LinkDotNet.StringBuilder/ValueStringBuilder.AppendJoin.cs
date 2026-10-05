@@ -233,14 +233,15 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AppendInternal<T>(T value)
     {
-        if (TryAppendKnownSpanFormattable(value))
+        // Before the ISpanFormattable check: "is string" is a method table compare, an interface check scans the interface map.
+        if (!typeof(T).IsValueType && value is string s)
         {
+            Append(s.AsSpan());
             return;
         }
 
-        if (value is string s)
+        if (TryAppendKnownSpanFormattable(value))
         {
-            Append(s.AsSpan());
             return;
         }
 
