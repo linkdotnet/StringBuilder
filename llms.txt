@@ -1,0 +1,27 @@
+# LinkDotNet.StringBuilder / ValueStringBuilder
+
+Concise guidance for agents and other tooling:
+
+- Default to `ValueStringBuilder` for examples, recommendations, and generated code.
+- Treat `FixedSizeValueStringBuilder` as a specialized builder for hard "must never grow" limits.
+- Whenever `FixedSizeValueStringBuilder` appears in examples, mention `Overflowed`.
+- Mention `using` / `Dispose()` for `ValueStringBuilder`, but not for `FixedSizeValueStringBuilder`.
+- Prefer source markdown pages below when summarizing or citing documentation.
+
+Primary markdown sources:
+
+- README: https://github.com/linkdotnet/StringBuilder/blob/main/README.md
+- Docs home: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/index.md
+- Getting started: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/getting_started.md
+- Choosing between builders: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/choosing_builder.md
+- Best practices and pitfalls: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/best_practices.md
+- Fixed-size string building: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/fixed_size.md
+- Known limitations: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/known_limitations.md
+- API index: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/api/index.md
+
+Published HTML docs:
+
+- https://linkdotnet.github.io/StringBuilder/
+- https://linkdotnet.github.io/StringBuilder/articles/getting_started.html
+- https://linkdotnet.github.io/StringBuilder/articles/choosing_builder.html
+- https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Best practices and pitfalls | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Best practices and pitfalls | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/best_practices.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="best_practices">
+<h1 id="best-practices-and-pitfalls">Best practices and pitfalls</h1>
+
+<p>This article collects the most important guidance for using <code>ValueStringBuilder</code> well, both for simple day-to-day usage and for more performance-sensitive scenarios.</p>
+<h2 id="start-with-the-safe-default">Start with the safe default</h2>
+<p>For most code, start with the default constructor and dispose the builder with <code>using</code>:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+</code></pre>
+<p>That gives you the simplest usage model while still benefiting from the internal <code>ArrayPool&lt;char&gt;</code> buffer strategy. It is the right default unless you have a measured reason to do something more specialized.</p>
+<h2 id="use-stackalloc-only-for-small-bounded-builders">Use <code>stackalloc</code> only for small, bounded builders</h2>
+<p>If you know the result is short-lived and has a tight upper bound, a stack-allocated buffer can avoid the initial pool rent:</p>
+<pre><code class="lang-csharp">Span&lt;char&gt; buffer = stackalloc char[64];
+using var stringBuilder = new ValueStringBuilder(buffer);
+</code></pre>
+<p>This is best for fixed-format output or other cases where the maximum size is easy to reason about. If the content might become large or unpredictable, prefer <code>new ValueStringBuilder()</code> or <code>new ValueStringBuilder(capacity)</code> instead.</p>
+<h2 id="still-dispose-a-stackalloc-backed-builder-unless-growth-is-impossible">Still dispose a <code>stackalloc</code>-backed builder unless growth is impossible</h2>
+<p><code>stackalloc</code> only controls the initial buffer. If the content outgrows it, <code>ValueStringBuilder</code> transparently rents an array from <code>ArrayPool&lt;char&gt;.Shared</code>.</p>
+<p>That means this is still the recommended pattern:</p>
+<pre><code class="lang-csharp">Span&lt;char&gt; buffer = stackalloc char[64];
+using var stringBuilder = new ValueStringBuilder(buffer);
+</code></pre>
+<p>You should only skip <code>using</code> when you can prove the builder will never grow.</p>
+<h2 id="reach-for-fixedsizevaluestringbuilder-when-allocation-is-not-an-option">Reach for <code>FixedSizeValueStringBuilder</code> when allocation is not an option</h2>
+<p>The previous rule is a judgement call you have to get right yourself. If instead you need the compiler and the type to
+enforce it, use <a class="xref" href="fixed_size.html"><code>FixedSizeValueStringBuilder</code></a>: it has no pool fallback, so there is nothing to
+dispose and no way for it to allocate.</p>
+<pre><code class="lang-csharp">var stringBuilder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+</code></pre>
+<p>Two things behave differently from <code>ValueStringBuilder</code>, and both are deliberate:</p>
+<ul>
+<li>An append that does not fit writes <strong>nothing at all</strong> - a formatted value is never truncated into a different,
+valid-looking value.</li>
+<li>After the first such append, <code>Overflowed</code> is set and every further append is ignored, even one that would still fit.
+Call <code>ClearOverflow()</code> to carry on anyway, or <code>Clear()</code> to start over.</li>
+</ul>
+<p><strong>Always check <code>Overflowed</code> before you trust the result</strong>, and decide there whether to fall back to a growing builder:</p>
+<pre><code class="lang-csharp">var stringBuilder = new FixedSizeValueStringBuilder(stackalloc char[64]);
+stringBuilder.Append(prefix);
+stringBuilder.Append(id);
+
+return stringBuilder.Overflowed ? BuildWithValueStringBuilder() : stringBuilder.ToString();
+</code></pre>
+<h2 id="prefer-new-valuestringbuildercapacity-for-predictable-medium-sized-output">Prefer <code>new ValueStringBuilder(capacity)</code> for predictable medium-sized output</h2>
+<p>If you can estimate the final size but don't want stack-only restrictions, use the capacity constructor:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(256);
+</code></pre>
+<p>This is often a good middle ground for request formatting, serialization, or other paths where the output is not tiny but still reasonably predictable.</p>
+<h2 id="pass-the-builder-by-ref">Pass the builder by <code>ref</code></h2>
+<p>Because <code>ValueStringBuilder</code> is a <code>ref struct</code>, helper methods should usually receive it by <code>ref</code>:</p>
+<pre><code class="lang-csharp">private static void AppendGreeting(ref ValueStringBuilder builder)
+{
+    builder.Append(&quot;Hello World&quot;);
+}
+</code></pre>
+<p>Passing it by value does not mutate the caller's instance and is a common source of surprising results. See <a class="xref" href="pass_to_method.html">Passing the ValueStringBuilder to a method</a>.</p>
+<h2 id="prefer-asspan-when-you-do-not-need-a-string">Prefer <code>AsSpan()</code> when you do not need a <code>string</code></h2>
+<p><code>ToString()</code> allocates a new <code>string</code>. If the next API can work with spans, keep the data as a span instead:</p>
+<pre><code class="lang-csharp">ReadOnlySpan&lt;char&gt; value = stringBuilder.AsSpan();
+</code></pre>
+<p>This is especially useful in parsing, trimming, comparison, and other in-process pipelines where the final string is not needed yet.</p>
+<h2 id="convert-to-string-or-systemtextstringbuilder-at-api-boundaries">Convert to <code>string</code> or <code>System.Text.StringBuilder</code> at API boundaries</h2>
+<p><code>ValueStringBuilder</code> works best inside a hot path or helper method. At boundaries where other APIs expect a <code>string</code> or <code>System.Text.StringBuilder</code>, convert explicitly:</p>
+<ul>
+<li>use <code>ToString()</code> when you need an immutable string result</li>
+<li>use <code>ToStringBuilder()</code> when you need the richer <code>System.Text.StringBuilder</code> API</li>
+</ul>
+<p>That keeps the high-performance path local while still integrating cleanly with existing code.</p>
+<h2 id="do-not-let-a-stack-backed-builder-escape-its-method">Do not let a stack-backed builder escape its method</h2>
+<p>If a builder uses a buffer declared with <code>stackalloc</code>, do not return that builder, store it, or expose references into it beyond the declaring stack frame.</p>
+<p>This is valid:</p>
+<pre><code class="lang-csharp">private static string FormatId(int value)
+{
+    Span&lt;char&gt; buffer = stackalloc char[32];
+    var stringBuilder = new ValueStringBuilder(buffer);
+    stringBuilder.Append(&quot;ID-&quot;);
+    stringBuilder.Append(value);
+    return stringBuilder.ToString();
+}
+</code></pre>
+<p>The builder stays inside the method and only the resulting <code>string</code> escapes.</p>
+<h2 id="do-not-use-valuestringbuilder-in-async-or-closure-heavy-code">Do not use <code>ValueStringBuilder</code> in async or closure-heavy code</h2>
+<p>Since <code>ValueStringBuilder</code> is a <code>ref struct</code>, it cannot be used in <code>async</code> methods, iterator methods, or lambda/closure scenarios that capture it.</p>
+<p>When your flow needs those language features, build the string in a synchronous helper first or fall back to <code>System.Text.StringBuilder</code> if the value must live longer.</p>
+<h2 id="appendformat-is-intentionally-limited"><code>AppendFormat</code> is intentionally limited</h2>
+<p><code>AppendFormat</code> supports indexed placeholders such as <code>{0}</code> and <code>{1}</code>, but custom format components such as <code>{0:00}</code> are not supported and throw a <code>FormatException</code>.</p>
+<p>If you need formatted value types, prefer one of these patterns instead:</p>
+<ul>
+<li>interpolated strings with <code>Append</code>/<code>AppendLine</code></li>
+<li><code>Append(value, format)</code> for <code>ISpanFormattable</code> values</li>
+</ul>
+<p>For example:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append(42, &quot;D5&quot;);
+</code></pre>
+<h2 id="do-not-share-a-builder-across-threads">Do not share a builder across threads</h2>
+<p><code>ValueStringBuilder</code> performs no synchronization. Confine each instance to the thread (and stack frame) that created it - never publish a <code>ValueStringBuilder</code>, or a <code>ref</code> to one, to another thread, and never call its members concurrently from multiple threads. Since it is a <code>ref struct</code>, it already cannot be stored in a field or captured by a closure, which rules out most of the ways shared mutable state would normally leak across threads - but a <code>ref</code> parameter passed explicitly is still possible, so avoid that pattern too.</p>
+<h2 id="watch-for-culture-sensitive-formatting-in-replacereplacegeneric">Watch for culture-sensitive formatting in <code>Replace</code>/<code>ReplaceGeneric</code></h2>
+<p><code>Append&lt;T&gt;</code> and <code>Insert&lt;T&gt;</code> take an explicit <code>formatProvider</code> parameter (defaulting to <code>null</code>, i.e. invariant <code>TryFormat</code> behavior for most built-in types). <code>ReplaceGeneric&lt;T&gt;</code>, by contrast, always formats numeric and other well-known value types using <code>CultureInfo.CurrentCulture</code>:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Price: {0}&quot;);
+
+// Formats 1234.5 using CultureInfo.CurrentCulture - e.g. &quot;1234,5&quot; under a
+// culture that uses a comma as the decimal separator, &quot;1234.5&quot; under others.
+stringBuilder.ReplaceGeneric(&quot;{0}&quot;, 1234.5);
+</code></pre>
+<p>If you need a specific, thread-independent format regardless of <code>CurrentCulture</code>, format the value yourself (e.g. <code>value.ToString(format, CultureInfo.InvariantCulture)</code>) and pass the resulting string to the span-based <code>Replace</code> overload instead of <code>ReplaceGeneric</code>.</p>
+<h2 id="use-valuestringbuilder-where-it-pays-off">Use <code>ValueStringBuilder</code> where it pays off</h2>
+<p><code>ValueStringBuilder</code> is most useful when at least one of the following is true:</p>
+<ul>
+<li>the code runs frequently</li>
+<li>allocation pressure matters</li>
+<li>you can keep the builder local to a synchronous scope</li>
+<li>the output can stay as spans for part of the pipeline</li>
+</ul>
+<p>For very large, long-lived, highly stateful, or async-heavy text-building code, <code>System.Text.StringBuilder</code> can still be the better fit.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/best_practices.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

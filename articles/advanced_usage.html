@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Advanced usage | ValueStringBuilder </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Advanced usage | ValueStringBuilder ">
+      <meta name="description" content="The ValueStringBuilder is a fast and low allocating StringBuilder meant for scenarios where every allocation and millisecond is important.">
+      
+      <link rel="icon" href="../images/logo.png">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/advanced_usage.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="ValueStringBuilder">
+            ValueStringBuilder
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+        </div>
+
+        <article data-uid="advanced_usage">
+<h1 id="advanced-usage">Advanced usage</h1>
+
+<p>This article goes a bit deeper than <a class="xref" href="getting_started.html">Getting started</a> and shows patterns for squeezing the most performance out of <code>ValueStringBuilder</code> - mainly around providing your own buffer via <code>stackalloc</code>. For the consolidated checklist of do's and don'ts, see <a class="xref" href="best_practices.html">Best practices and pitfalls</a>.</p>
+<h2 id="using-a-stack-allocated-buffer">Using a stack-allocated buffer</h2>
+<p>By default, <code>new ValueStringBuilder()</code> rents its initial buffer from <code>ArrayPool&lt;char&gt;.Shared</code>. Renting has a (small) cost, so if you know your string is short-lived and small, you can hand the builder a <code>stackalloc</code>'d buffer instead:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(stackalloc char[128]);
+
+stringBuilder.Append(&quot;Hello &quot;);
+stringBuilder.Append(&quot;World&quot;);
+
+Console.WriteLine(stringBuilder.ToString());
+</code></pre>
+<p>Because the buffer lives on the stack, this avoids the array-pool rent/return entirely for as long as the content fits.</p>
+<h3 id="what-happens-when-the-buffer-is-too-small">What happens when the buffer is too small?</h3>
+<p><code>stackalloc</code> only reserves the initial capacity - it does <strong>not</strong> cap how much you can append. If the builder needs to grow beyond the buffer you gave it, <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32_"><code>EnsureCapacity</code></a> transparently rents a bigger array from <code>ArrayPool&lt;char&gt;.Shared</code>, copies the existing content over, and continues from there:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(stackalloc char[4]);
+
+stringBuilder.Append(&quot;This is way longer than 4 characters&quot;); // grows onto the array pool automatically
+</code></pre>
+<p>This is why you should still <code>using</code>/<code>Dispose()</code> the builder even when you started it with a stack buffer, unless you can <em>guarantee</em> the content never exceeds the initial size. <code>Dispose()</code> only returns a pooled array if one was actually rented, so calling it on a builder that never grew is a cheap no-op.</p>
+<h3 id="eliding-using-for-guaranteed-small-content">Eliding <code>using</code> for guaranteed-small content</h3>
+<p>If you control both the buffer size and every value being appended, you can skip the <code>using</code> statement altogether - see the &quot;Fluent notation&quot; section of <a class="xref" href="known_limitations.html">Known limitations</a> for the full example. Do this only when growth is provably impossible (fixed-format output, bounded input, etc.); getting it wrong just means an extra rent/return, not a bug, but it defeats the purpose of using <code>stackalloc</code> in the first place.</p>
+<h3 id="reusing-one-stack-buffer-across-calls">Reusing one stack buffer across calls</h3>
+<p>A common pattern is a small helper method that builds a short string entirely on the stack, without exposing the builder to the caller:</p>
+<pre><code class="lang-csharp">private static string FormatCoordinate(int x, int y)
+{
+    Span&lt;char&gt; buffer = stackalloc char[32];
+    var stringBuilder = new ValueStringBuilder(buffer);
+
+    stringBuilder.Append('(');
+    stringBuilder.Append(x);
+    stringBuilder.Append(&quot;, &quot;);
+    stringBuilder.Append(y);
+    stringBuilder.Append(')');
+
+    return stringBuilder.ToString();
+}
+</code></pre>
+<p>As long as <code>buffer</code> is large enough for the expected input, this method never touches the heap except for the final <code>ToString()</code> call.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Never return a <code>stackalloc</code>-backed <code>ValueStringBuilder</code> (or a <code>ref</code> to it) from the method that declared the buffer - the buffer's stack frame is gone once the method returns. Pass the builder onward by <code>ref</code> to callees instead, as described in <a class="xref" href="pass_to_method.html">Passing the ValueStringBuilder to a method</a>.</p>
+</div>
+<h2 id="avoiding-boxing-for-value-types">Avoiding boxing for value types</h2>
+<p><code>AppendJoin</code>, <code>Concat</code>, <code>AppendFormat</code>, <code>ReplaceGeneric</code>, and the interpolated-string <code>Append</code>/<code>AppendLine</code> overloads format every value type that implements <code>ISpanFormattable</code> (<code>int</code>, <code>double</code>, <code>decimal</code>, <code>DateTime</code>, <code>Guid</code>, <code>DateOnly</code>, your own structs, ...) directly into the buffer through a constrained call, instead of boxing it to <code>object</code> first:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+
+// No boxing for the int, double or Guid arguments below.
+stringBuilder.AppendJoin(&quot;, &quot;, [1, 2, 3]);
+stringBuilder.AppendFormat($&quot;{42:D5} {3.14:F2} {Guid.NewGuid()}&quot;);
+</code></pre>
+<p><code>bool</code> and <code>char</code> are appended directly as well. Only types that are not <code>ISpanFormattable</code> fall back to <code>ToString()</code>. See the <a class="xref" href="comparison.html">comparison</a> article for the measured effect.</p>
+<h2 id="pinning-the-buffer">Pinning the buffer</h2>
+<p><code>GetPinnableReference()</code> lets the compiler-generated <code>fixed</code> pattern work directly against the builder's internal buffer, which is handy for interop:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder();
+stringBuilder.Append(&quot;Hello World&quot;);
+
+fixed (char* buffer = stringBuilder)
+{
+    // buffer points at the first character; not guaranteed to be null-terminated
+    // past stringBuilder.Length.
+}
+</code></pre>
+<h2 id="converting-to-and-from-systemtextstringbuilder">Converting to and from <code>System.Text.StringBuilder</code></h2>
+<p>Sometimes you need the richer API of the &quot;big brother&quot; <code>StringBuilder</code>, or you're integrating with code that already hands you one. The <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html"><code>ValueStringBuilderExtensions</code></a> class covers both directions:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello World&quot;);
+
+System.Text.StringBuilder classic = stringBuilder.ToStringBuilder();
+</code></pre>
+<pre><code class="lang-csharp">var classic = new System.Text.StringBuilder(&quot;Hello World&quot;);
+
+using var stringBuilder = classic.ToValueStringBuilder();
+</code></pre>
+<p>Both conversions copy the underlying characters, so the two builders don't share a buffer afterward - mutating one has no effect on the other.</p>
+<h2 id="iterating-without-allocating">Iterating without allocating</h2>
+<p><code>ValueStringBuilder</code> implements <code>GetEnumerator()</code>, so it works directly in a <code>foreach</code> without ever materializing a <code>string</code>:</p>
+<pre><code class="lang-csharp">using var stringBuilder = new ValueStringBuilder(&quot;Hello World&quot;);
+
+foreach (var character in stringBuilder)
+{
+    // character is a char, no intermediate string or array is allocated
+}
+</code></pre>
+<p>For anything beyond simple iteration, prefer <a class="xref" href="../api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_"><code>AsSpan()</code></a> and the <code>Span&lt;T&gt;</code>/<code>ReadOnlySpan&lt;T&gt;</code> APIs directly.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/linkdotnet/StringBuilder/blob/stable/docs/site/articles/advanced_usage.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
