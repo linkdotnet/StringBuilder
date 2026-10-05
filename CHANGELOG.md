@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.7.4] - 2026-10-05
+
 ### Changed
 
 - `Replace` with a value of a different length searches the text once instead of twice.
@@ -621,7 +623,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.4...HEAD
+[3.7.4]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...3.7.4
 [3.7.3]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...3.7.3
 [3.7.2]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/linkdotnet/StringBuilder/compare/3.7.0...3.7.1
