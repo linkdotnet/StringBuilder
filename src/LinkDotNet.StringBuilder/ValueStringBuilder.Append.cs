@@ -13,38 +13,23 @@ public ref partial struct ValueStringBuilder
     /// </summary>
     /// <param name="value">Bool value to add.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public unsafe void Append(bool value)
+    public void Append(bool value)
     {
-        const int trueLength = 4;
         const int falseLength = 5;
+        var trueChars = BitConverter.IsLittleEndian ? 0x0065_0075_0072_0054UL : 0x0054_0072_0075_0065UL;
+        var falsChars = BitConverter.IsLittleEndian ? 0x0073_006C_0061_0046UL : 0x0046_0061_006C_0073UL;
 
-        var newSize = bufferPosition + falseLength;
-
-        if (newSize > buffer.Length)
+        var pos = bufferPosition;
+        if (pos > buffer.Length - falseLength)
         {
-            EnsureCapacity(newSize);
+            Grow(pos + falseLength);
         }
 
-        fixed (char* dest = &buffer[bufferPosition])
-        {
-            if (value)
-            {
-                *(dest + 0) = 'T';
-                *(dest + 1) = 'r';
-                *(dest + 2) = 'u';
-                *(dest + 3) = 'e';
-                bufferPosition += trueLength;
-            }
-            else
-            {
-                *(dest + 0) = 'F';
-                *(dest + 1) = 'a';
-                *(dest + 2) = 'l';
-                *(dest + 3) = 's';
-                *(dest + 4) = 'e';
-                bufferPosition += falseLength;
-            }
-        }
+        // Branchless: four chars in one store, the trailing 'e' of "False" lands past the end for true.
+        ref var dest = ref Unsafe.Add(ref MemoryMarshal.GetReference(buffer), pos);
+        Unsafe.WriteUnaligned(ref Unsafe.As<char, byte>(ref dest), value ? trueChars : falsChars);
+        Unsafe.Add(ref dest, 4) = 'e';
+        bufferPosition = pos + (value ? 4 : falseLength);
     }
 
     /// <summary>
@@ -153,11 +138,13 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Append(Rune value)
     {
-        Span<char> valueChars = stackalloc char[2];
-        var valueCharsWritten = value.EncodeToUtf16(valueChars);
-        ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
+        if (value.IsBmp)
+        {
+            Append((char)value.Value);
+            return;
+        }
 
-        Append(valueCharsSlice);
+        value.EncodeToUtf16(AppendSpan(2));
     }
 
     /// <summary>

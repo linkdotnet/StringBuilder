@@ -109,11 +109,11 @@ Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 
 | Method                         | Mean     | Error    | StdDev   | Ratio | Gen0   | Allocated | Alloc Ratio |
 |------------------------------- |---------:|---------:|---------:|------:|-------:|----------:|------------:|
-| ValueStringBuilderAppendFormat | 96.32 ns | 0.431 ns | 0.360 ns |  1.00 | 0.0114 |      96 B |        1.00 |
-| ValueStringBuilderInterpolated | 54.67 ns | 0.394 ns | 0.349 ns |  0.57 | 0.0114 |      96 B |        1.00 |
+| ValueStringBuilderAppendFormat | 86.80 ns | 0.293 ns | 0.274 ns |  1.00 | 0.0114 |      96 B |        1.00 |
+| ValueStringBuilderInterpolated | 40.58 ns | 0.034 ns | 0.028 ns |  0.47 | 0.0114 |      96 B |        1.00 |
 ```
 
-Both allocate the same amount (the final `string` from `ToString()` dominates), but the interpolated form is close to 2x faster - `AppendFormat` re-parses the format string and re-validates each `{n}` placeholder at runtime on every call, while the interpolated-string handler resolves each hole at compile time.
+Both allocate the same amount (the final `string` from `ToString()` dominates), but the interpolated form is about 2x faster - `AppendFormat` re-parses the format string and re-validates each `{n}` placeholder at runtime on every call, while the interpolated-string handler resolves each hole at compile time.
 
 ## Stack buffer vs. pooled rent
 
@@ -138,12 +138,13 @@ The `stackalloc`-backed builder is about 2x faster to construct and append to, p
 ## Length-changing replacement
 
 `ValueStringBuilder.Replace` keeps a single-match path and processes multiple shrinking or growing replacements in a
-single pass, rather than shifting the remaining suffix after every match. The following short BenchmarkDotNet run
+single pass, rather than shifting the remaining suffix after every match. The text is searched only once: shrinking
+replacements compact in place while searching, growing ones record the match positions in a stack buffer. The following short BenchmarkDotNet run
 measures a fixed 3,072-character input with matches at the start. The growing case replaces `ab` with `replacement`
 (2 to 11 characters); the shrinking case replaces it with `x` (2 to 1 character).
 
 ```no-class
-BenchmarkDotNet v0.15.8, macOS Sequoia 15.7.9 (24G830) [Darwin 24.6.0]
+BenchmarkDotNet v0.15.8, macOS 27.0.1 (26A434) [Darwin 27.0.0]
 Apple M2 Pro, 1 CPU, 12 logical and 12 physical cores
 .NET SDK 11.0.100-rc.1.26425.128
   [Host] : .NET 10.0.11 (10.0.11, 10.0.1126.37416), Arm64 RyuJIT armv8.0-a
@@ -153,16 +154,16 @@ Job=DefaultJob
 
 | Matches | Operation | System.Text.StringBuilder | Previous ValueStringBuilder algorithm | Optimized ValueStringBuilder | Optimized vs. previous |
 |--------:|-----------|--------------------------:|--------------------------------------:|-----------------------------:|-----------------------:|
-| 1 | Growing | 774.3 ns / 12.21 KB | 709.5 ns / 6.04 KB | 714.8 ns / 6.04 KB | 1.01x (essentially unchanged) |
-| 1 | Shrinking | 845.6 ns / 12.09 KB | 725.9 ns / 6.02 KB | 700.4 ns / 6.02 KB | 0.96x (1.04x faster) |
-| 8 | Growing | 911.5 ns / 12.45 KB | 1,375.0 ns / 6.16 KB | 1,183.3 ns / 6.16 KB | 0.86x (1.16x faster) |
-| 8 | Shrinking | 961.5 ns / 12.08 KB | 1,339.9 ns / 6.01 KB | 1,138.4 ns / 6.01 KB | 0.85x (1.18x faster) |
-| 1,024 | Growing | 15.68 μs / 48.16 KB | 62.18 μs / 24.02 KB | 16.74 μs / 24.02 KB | 0.27x (3.7x faster) |
-| 1,024 | Shrinking | 13.86 μs / 10.09 KB | 54.12 μs / 4.02 KB | 14.94 μs / 4.02 KB | 0.28x (3.6x faster) |
+| 1 | Growing | 750.7 ns / 12.21 KB | 734.9 ns / 6.04 KB | 706.8 ns / 6.04 KB | 0.96x (1.04x faster) |
+| 1 | Shrinking | 825.1 ns / 12.09 KB | 729.4 ns / 6.02 KB | 712.4 ns / 6.02 KB | 0.98x (1.02x faster) |
+| 8 | Growing | 877.8 ns / 12.45 KB | 1,462.7 ns / 6.16 KB | 856.7 ns / 6.16 KB | 0.59x (1.7x faster) |
+| 8 | Shrinking | 971.9 ns / 12.08 KB | 1,359.6 ns / 6.01 KB | 795.9 ns / 6.01 KB | 0.59x (1.7x faster) |
+| 1,024 | Growing | 15.15 μs / 48.16 KB | 66.86 μs / 24.02 KB | 13.19 μs / 24.02 KB | 0.20x (5.1x faster) |
+| 1,024 | Shrinking | 14.31 μs / 10.09 KB | 54.02 μs / 4.02 KB | 8.50 μs / 4.02 KB | 0.16x (6.4x faster) |
 
 The previous-algorithm rows are benchmark-local reproductions of the immediately preceding implementation, included so
-all three states run under one process, SDK, and hardware configuration. The optimized implementation stays within
-about 30% of `StringBuilder` for every multi-match case while allocating roughly 40-50% as much. At a single match the
+all three states run under one process, SDK, and hardware configuration. The optimized implementation is as fast as or
+faster than `StringBuilder` in every case while allocating roughly 40-50% as much. At a single match the
 optimized and previous algorithms perform about the same, since the optimization mainly pays off once there are
 several matches to batch together.
 

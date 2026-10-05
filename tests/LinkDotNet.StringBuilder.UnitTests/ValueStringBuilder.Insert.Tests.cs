@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 
 namespace LinkDotNet.StringBuilder.UnitTests;
 
@@ -200,5 +201,17 @@ public class ValueStringBuilderInsertTests
         builder.Insert(0, 1, bufferSize: 10_000_000);
 
         builder.ToString().ShouldBe("1");
+    }
+
+    [Theory]
+    [InlineData(0x41)]
+    [InlineData(0x1F600)]
+    public void ShouldInsertRune(int codePoint)
+    {
+        using var builder = new ValueStringBuilder("ab");
+
+        builder.Insert(1, new Rune(codePoint));
+
+        builder.ToString().ShouldBe("a" + char.ConvertFromUtf32(codePoint) + "b");
     }
 }

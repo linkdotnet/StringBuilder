@@ -273,6 +273,17 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().ShouldBe(expected);
     }
 
+    [Fact]
+    public void ShouldReplaceMoreMatchesThanFitOnTheStack()
+    {
+        var text = string.Concat(Enumerable.Repeat("ab-", 300));
+        using var builder = new ValueStringBuilder(text);
+
+        builder.Replace("ab", "replacement");
+
+        builder.ToString().ShouldBe(text.Replace("ab", "replacement", StringComparison.Ordinal));
+    }
+
     private struct MyStruct
     {
         public override string ToString() => "Hello";

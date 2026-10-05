@@ -30,6 +30,12 @@ public ref partial struct ValueStringBuilder
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void Insert(int index, Rune value)
     {
+        if (value.IsBmp)
+        {
+            Insert(index, (char)value.Value);
+            return;
+        }
+
         Span<char> valueChars = stackalloc char[2];
         var valueCharsWritten = value.EncodeToUtf16(valueChars);
         ReadOnlySpan<char> valueCharsSlice = valueChars[..valueCharsWritten];
