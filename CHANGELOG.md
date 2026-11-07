@@ -6,6 +6,11 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+### Fixed
+
+- `IndexOf(word, startIndex)` returns the position counted from the start of the builder, like `string.IndexOf`, instead of the position relative to `startIndex`.
+- `LastIndexOf(word, startIndex)` searches backward from `startIndex` toward the beginning and returns the position counted from the start of the builder, like `string.LastIndexOf`, instead of searching forward from `startIndex` and returning the position relative to it.
+
 ## [3.7.4] - 2026-10-05
 
 ### Changed
