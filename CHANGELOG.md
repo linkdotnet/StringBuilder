@@ -8,6 +8,7 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ### Fixed
 
+- `Replace` produces the same result as `string.Replace` when `oldValue` or `newValue` points into the builder itself (for example from `AsSpan()`), instead of reading text it has already overwritten. Reported by [@dhhoang](https://github.com/dhhoang) in #333. Fixed by [@linkdotnet](https://github.com/linkdotnet).
 - `IndexOf(word, startIndex)` returns the position counted from the start of the builder, like `string.IndexOf`, instead of the position relative to `startIndex`.
 - `LastIndexOf(word, startIndex)` searches backward from `startIndex` toward the beginning and returns the position counted from the start of the builder, like `string.LastIndexOf`, instead of searching forward from `startIndex` and returning the position relative to it.
 
