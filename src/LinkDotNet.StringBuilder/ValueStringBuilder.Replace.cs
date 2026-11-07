@@ -98,6 +98,13 @@ public ref partial struct ValueStringBuilder
             return;
         }
 
+        // Replacing (or a grow) would overwrite a value that points into this builder while it is still read.
+        if (oldValue.Overlaps(buffer) || newValue.Overlaps(buffer))
+        {
+            ReplaceWithCopiedValues(oldValue, newValue, startIndex, count);
+            return;
+        }
+
         if (newValue.Length == oldValue.Length)
         {
             ReplaceEqualLength(oldValue, newValue, startIndex, count);
@@ -211,6 +218,24 @@ public ref partial struct ValueStringBuilder
 
             positions[matchCount++] = searchStart + matchIndex;
             searchStart += matchIndex + oldValue.Length;
+        }
+    }
+
+    /// <remarks>
+    /// Kept out of <see cref="Replace(ReadOnlySpan{char}, ReadOnlySpan{char}, int, int)"/> so the common path pays for neither the rented array nor the try/finally.
+    /// </remarks>
+    private void ReplaceWithCopiedValues(scoped ReadOnlySpan<char> oldValue, scoped ReadOnlySpan<char> newValue, int startIndex, int count)
+    {
+        var copy = ArrayPool<char>.Shared.Rent(oldValue.Length + newValue.Length);
+        try
+        {
+            oldValue.CopyTo(copy);
+            newValue.CopyTo(copy.AsSpan(oldValue.Length));
+            Replace(copy.AsSpan(0, oldValue.Length), copy.AsSpan(oldValue.Length, newValue.Length), startIndex, count);
+        }
+        finally
+        {
+            ArrayPool<char>.Shared.Return(copy);
         }
     }
 
