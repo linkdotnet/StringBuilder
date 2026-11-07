@@ -6,6 +6,14 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-11-07
+
+### Fixed
+
+- `Replace` produces the same result as `string.Replace` when `oldValue` or `newValue` points into the builder itself (for example from `AsSpan()`), instead of reading text it has already overwritten. Reported by [@dhhoang](https://github.com/dhhoang) in #333. Fixed by [@linkdotnet](https://github.com/linkdotnet).
+- `IndexOf(word, startIndex)` returns the position counted from the start of the builder, like `string.IndexOf`, instead of the position relative to `startIndex`.
+- `LastIndexOf(word, startIndex)` searches backward from `startIndex` toward the beginning and returns the position counted from the start of the builder, like `string.LastIndexOf`, instead of searching forward from `startIndex` and returning the position relative to it.
+
 ## [3.7.4] - 2026-10-05
 
 ### Changed
@@ -623,7 +631,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.7.4...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.8.0...HEAD
+[3.8.0]: https://github.com/linkdotnet/StringBuilder/compare/3.7.4...3.8.0
 [3.7.4]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...3.7.4
 [3.7.3]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...3.7.3
 [3.7.2]: https://github.com/linkdotnet/StringBuilder/compare/3.7.1...3.7.2

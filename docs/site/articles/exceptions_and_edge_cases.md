@@ -24,7 +24,7 @@ A few operations are intentionally lenient:
 
 * `Append`/`Insert` with an empty span or `null` string is a no-op (`Append(string? value)` treats `null` the same as `ReadOnlySpan<char>.Empty`).
 * `Remove(startIndex, 0)` is a no-op regardless of `startIndex`, as long as `startIndex` is within bounds.
-* `IndexOf`/`LastIndexOf`/`Contains` return `-1` (or `false`) instead of throwing when the search value is not found; an empty search value is considered found at index `0`, matching `Span<char>` semantics.
+* `IndexOf`/`LastIndexOf`/`Contains` return `-1` (or `false`) instead of throwing when the search value is not found; an empty search value is considered found at the start of the searched range for `IndexOf` and at its end for `LastIndexOf`, matching `string` semantics.
 * Growing the buffer (via `Append`, `Insert`, `EnsureCapacity`, etc.) never throws for lack of memory in normal use - it rents a larger array from `ArrayPool<char>.Shared` as needed. See [Capacity growth](#capacity-growth) below.
 
 ## Capacity growth

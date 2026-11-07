@@ -284,6 +284,74 @@ public class ValueStringBuilderReplaceTests
         builder.ToString().ShouldBe(text.Replace("ab", "replacement", StringComparison.Ordinal));
     }
 
+    [Theory]
+    [InlineData("abab", 0, 2, "cd", "cdcd")]
+    [InlineData("abcabc", 0, 3, "x", "xx")]
+    [InlineData("abab", 0, 2, "xyz", "xyzxyz")]
+    [InlineData("abab", 2, 2, "", "")]
+    public void ShouldReplaceWhenOldValuePointsIntoTheBuilder(string text, int start, int length, string newValue, string expected)
+    {
+        using var builder = new ValueStringBuilder(32);
+        builder.Append(text);
+
+        builder.Replace(builder.AsSpan(start, length), newValue);
+
+        builder.ToString().ShouldBe(expected);
+    }
+
+    [Theory]
+    [InlineData("ab", "b", 0, 2, "aab")]
+    [InlineData("xbxb", "b", 0, 2, "xxbxxb")]
+    [InlineData("abcd", "bc", 2, 2, "acdd")]
+    [InlineData("abcabc", "abc", 1, 1, "bb")]
+    public void ShouldReplaceWhenNewValuePointsIntoTheBuilder(string text, string oldValue, int start, int length, string expected)
+    {
+        using var builder = new ValueStringBuilder(32);
+        builder.Append(text);
+
+        builder.Replace(oldValue, builder.AsSpan(start, length));
+
+        builder.ToString().ShouldBe(expected);
+    }
+
+    [Fact]
+    public void ShouldReplaceWithValueThatPointsIntoTheBuilderWhenTheBufferGrows()
+    {
+        using var builder = new ValueStringBuilder(stackalloc char[4]);
+        builder.Append("abab");
+
+        builder.Replace("b", builder.AsSpan());
+
+        builder.ToString().ShouldBe("aababaabab");
+    }
+
+    [Theory]
+    [InlineData("abababab", 0, 2, "cd", 4, 4, "abab" + "cdcd")]
+    [InlineData("abababab", 0, 2, "x", 4, 4, "abab" + "xx")]
+    [InlineData("abababab", 0, 2, "xyz", 2, 4, "ab" + "xyzxyz" + "ab")]
+    [InlineData("abababab", 0, 2, "", 2, 4, "abab")]
+    public void ShouldOnlyReplaceInRangeWhenOldValuePointsIntoTheBuilder(
+        string text, int oldStart, int oldLength, string newValue, int startIndex, int count, string expected)
+    {
+        using var builder = new ValueStringBuilder(32);
+        builder.Append(text);
+
+        builder.Replace(builder.AsSpan(oldStart, oldLength), newValue, startIndex, count);
+
+        builder.ToString().ShouldBe(expected);
+    }
+
+    [Fact]
+    public void ShouldOnlyReplaceInRangeWhenNewValuePointsIntoTheBuilder()
+    {
+        using var builder = new ValueStringBuilder(32);
+        builder.Append("xbxbxb");
+
+        builder.Replace("b", builder.AsSpan(0, 2), 2, 4);
+
+        builder.ToString().ShouldBe("xbxxbxxb");
+    }
+
     private struct MyStruct
     {
         public override string ToString() => "Hello";

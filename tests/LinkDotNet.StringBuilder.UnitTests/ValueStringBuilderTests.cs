@@ -173,7 +173,7 @@ public class ValueStringBuilderTests
 
         var index = stringBuilder.IndexOf("l", 6);
 
-        index.ShouldBe(3);
+        index.ShouldBe(9);
     }
 
     [Fact]
@@ -307,14 +307,14 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ShouldReturnZeroWhenEmptyStringInIndexOf()
+    public void ShouldReturnStartIndexWhenEmptyStringInIndexOf()
     {
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         var index = builder.IndexOf(string.Empty, 5);
 
-        index.ShouldBe(0);
+        index.ShouldBe(5);
     }
 
     [Fact]
@@ -328,14 +328,48 @@ public class ValueStringBuilderTests
     }
 
     [Fact]
-    public void ShouldReturnZeroWhenEmptyStringInLastIndexOf()
+    public void ShouldReturnLengthWhenEmptyStringInLastIndexOf()
     {
         using var builder = new ValueStringBuilder();
         builder.Append("Hello");
 
         var index = builder.LastIndexOf(string.Empty, 5);
 
-        index.ShouldBe(0);
+        index.ShouldBe(5);
+    }
+
+    [Theory]
+    [InlineData("l")]
+    [InlineData("Hello")]
+    [InlineData("o W")]
+    [InlineData("x")]
+    [InlineData("")]
+    public void ShouldReturnSameIndexAsStringIndexOfForEveryStartIndex(string word)
+    {
+        const string text = "Hello World Hello";
+        using var builder = new ValueStringBuilder(text);
+
+        for (var startIndex = 0; startIndex <= text.Length; startIndex++)
+        {
+            builder.IndexOf(word, startIndex).ShouldBe(text.IndexOf(word, startIndex, StringComparison.Ordinal), $"startIndex: {startIndex}");
+        }
+    }
+
+    [Theory]
+    [InlineData("l")]
+    [InlineData("Hello")]
+    [InlineData("o W")]
+    [InlineData("x")]
+    [InlineData("")]
+    public void ShouldReturnSameIndexAsStringLastIndexOfForEveryStartIndex(string word)
+    {
+        const string text = "Hello World Hello";
+        using var builder = new ValueStringBuilder(text);
+
+        for (var startIndex = 0; startIndex <= text.Length; startIndex++)
+        {
+            builder.LastIndexOf(word, startIndex).ShouldBe(text.LastIndexOf(word, startIndex, StringComparison.Ordinal), $"startIndex: {startIndex}");
+        }
     }
 
     [Theory]

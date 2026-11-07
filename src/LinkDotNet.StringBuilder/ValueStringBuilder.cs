@@ -283,7 +283,8 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly int IndexOf(scoped ReadOnlySpan<char> word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        return buffer[startIndex..bufferPosition].IndexOf(word, comparisonType);
+        var index = buffer[startIndex..bufferPosition].IndexOf(word, comparisonType);
+        return index < 0 ? -1 : startIndex + index;
     }
 
     /// <summary>
@@ -293,10 +294,10 @@ public ref partial struct ValueStringBuilder : IDisposable
     /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
     /// <returns>The index of the found <paramref name="word"/> in this string or -1 if not found.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public readonly int LastIndexOf(scoped ReadOnlySpan<char> word, StringComparison comparisonType = StringComparison.Ordinal) => LastIndexOf(word, 0, comparisonType);
+    public readonly int LastIndexOf(scoped ReadOnlySpan<char> word, StringComparison comparisonType = StringComparison.Ordinal) => AsSpan().LastIndexOf(word, comparisonType);
 
     /// <summary>
-    /// Returns the index within this string of the last occurrence of the specified substring, starting at the specified index.
+    /// Returns the index within this string of the last occurrence of the specified substring. The search starts at the specified index and proceeds backward toward the beginning.
     /// </summary>
     /// <param name="word">Word to look for in this string.</param>
     /// <param name="startIndex">Index to begin with.</param>
@@ -305,7 +306,11 @@ public ref partial struct ValueStringBuilder : IDisposable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public readonly int LastIndexOf(scoped ReadOnlySpan<char> word, int startIndex, StringComparison comparisonType = StringComparison.Ordinal)
     {
-        return buffer[startIndex..bufferPosition].LastIndexOf(word, comparisonType);
+        ArgumentOutOfRangeException.ThrowIfNegative(startIndex);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(startIndex, bufferPosition);
+
+        // Like string.LastIndexOf, startIndex == Length is allowed and searches the whole string.
+        return buffer[..Math.Min(startIndex + 1, bufferPosition)].LastIndexOf(word, comparisonType);
     }
 
     /// <summary>
