@@ -6,6 +6,10 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+## [3.8.1] - 2026-11-07
+
+Fix NuGet Deploy
+
 ## [3.8.0] - 2026-11-07
 
 ### Fixed
@@ -631,7 +635,8 @@ This release brings extensions to the `ValueStringBuilder` API. For `v1.0` the `
 
 - Initial release
 
-[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.8.0...HEAD
+[unreleased]: https://github.com/linkdotnet/StringBuilder/compare/3.8.1...HEAD
+[3.8.1]: https://github.com/linkdotnet/StringBuilder/compare/3.8.0...3.8.1
 [3.8.0]: https://github.com/linkdotnet/StringBuilder/compare/3.7.4...3.8.0
 [3.7.4]: https://github.com/linkdotnet/StringBuilder/compare/3.7.3...3.7.4
 [3.7.3]: https://github.com/linkdotnet/StringBuilder/compare/3.7.2...3.7.3
