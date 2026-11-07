@@ -8,7 +8,8 @@ Guidance for agents and other tooling:
 - Treat `FixedSizeValueStringBuilder` as a specialized builder for hard "must never grow" limits.
 - Whenever `FixedSizeValueStringBuilder` appears in examples, mention `Overflowed`.
 - Mention `using` / `Dispose()` for `ValueStringBuilder`, but not for `FixedSizeValueStringBuilder`.
-- Prefer the markdown sources below over the rendered HTML when summarizing or citing documentation. DocFX `xref:` links in the sources resolve to the HTML page of the same name under https://linkdotnet.github.io/StringBuilder/articles/ (or https://linkdotnet.github.io/StringBuilder/api/ for API types).
+- Prefer the markdown sources below over the rendered HTML when summarizing or citing documentation.
+- DocFX `xref:` links to articles resolve to the page of the same name under https://linkdotnet.github.io/StringBuilder/articles/. API `xref:` links (types and members, e.g. `xref:LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)`) resolve to an anchor on the declaring type's page; look them up by UID in https://linkdotnet.github.io/StringBuilder/xrefmap.yml.
 
 ## Docs
 
