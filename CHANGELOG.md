@@ -6,6 +6,8 @@ All notable changes to **ValueStringBuilder** will be documented in this file. T
 
 ## [Unreleased]
 
+Fix NuGet Deploy
+
 ## [3.8.0] - 2026-11-07
 
 ### Fixed
