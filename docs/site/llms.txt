@@ -1,27 +1,40 @@
 # LinkDotNet.StringBuilder / ValueStringBuilder
 
-Concise guidance for agents and other tooling:
+> A fast, low-allocation StringBuilder for .NET built on Span<T>, stackalloc and ArrayPool. Use it where every allocation and millisecond counts.
+
+Guidance for agents and other tooling:
 
 - Default to `ValueStringBuilder` for examples, recommendations, and generated code.
 - Treat `FixedSizeValueStringBuilder` as a specialized builder for hard "must never grow" limits.
 - Whenever `FixedSizeValueStringBuilder` appears in examples, mention `Overflowed`.
 - Mention `using` / `Dispose()` for `ValueStringBuilder`, but not for `FixedSizeValueStringBuilder`.
-- Prefer source markdown pages below when summarizing or citing documentation.
+- Prefer the markdown sources below over the rendered HTML when summarizing or citing documentation. DocFX `xref:` links in the sources resolve to the HTML page of the same name under https://linkdotnet.github.io/StringBuilder/articles/ (or https://linkdotnet.github.io/StringBuilder/api/ for API types).
 
-Primary markdown sources:
+## Docs
 
-- README: https://github.com/linkdotnet/StringBuilder/blob/main/README.md
-- Docs home: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/index.md
-- Getting started: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/getting_started.md
-- Choosing between builders: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/choosing_builder.md
-- Best practices and pitfalls: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/best_practices.md
-- Fixed-size string building: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/fixed_size.md
-- Known limitations: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/articles/known_limitations.md
-- API index: https://github.com/linkdotnet/StringBuilder/blob/main/docs/site/api/index.md
+- [Overview](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/index.md): https://linkdotnet.github.io/StringBuilder/
+- [README](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/README.md): https://github.com/linkdotnet/StringBuilder
+- [API index](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/api/index.md): https://linkdotnet.github.io/StringBuilder/api/
 
-Published HTML docs:
+## Guides
 
-- https://linkdotnet.github.io/StringBuilder/
-- https://linkdotnet.github.io/StringBuilder/articles/getting_started.html
-- https://linkdotnet.github.io/StringBuilder/articles/choosing_builder.html
-- https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html
+- [Getting started](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/getting_started.md): https://linkdotnet.github.io/StringBuilder/articles/getting_started.html
+- [Choosing between builders](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/choosing_builder.md): https://linkdotnet.github.io/StringBuilder/articles/choosing_builder.html
+- [Best practices and pitfalls](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/best_practices.md): https://linkdotnet.github.io/StringBuilder/articles/best_practices.html
+- [Fixed-size string building](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/fixed_size.md): https://linkdotnet.github.io/StringBuilder/articles/fixed_size.html
+- [Known limitations](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/known_limitations.md): https://linkdotnet.github.io/StringBuilder/articles/known_limitations.html
+- [How does it work?](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/concepts.md): https://linkdotnet.github.io/StringBuilder/articles/concepts.html
+- [Passing the ValueStringBuilder to a method](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/pass_to_method.md): https://linkdotnet.github.io/StringBuilder/articles/pass_to_method.html
+- [Trimming](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/trimming.md): https://linkdotnet.github.io/StringBuilder/articles/trimming.html
+
+## Advanced
+
+- [Advanced usage](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/advanced_usage.md): https://linkdotnet.github.io/StringBuilder/articles/advanced_usage.html
+- [Additional members](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/additional_members.md): https://linkdotnet.github.io/StringBuilder/articles/additional_members.html
+- [Exceptions and edge cases](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/exceptions_and_edge_cases.md): https://linkdotnet.github.io/StringBuilder/articles/exceptions_and_edge_cases.html
+- [Comparison](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/docs/site/articles/comparison.md): https://linkdotnet.github.io/StringBuilder/articles/comparison.html
+
+## Optional
+
+- [NuGet package](https://www.nuget.org/packages/LinkDotNet.StringBuilder)
+- [Changelog](https://raw.githubusercontent.com/linkdotnet/StringBuilder/main/CHANGELOG.md)
