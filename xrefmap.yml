@@ -1,0 +1,1599 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: LinkDotNet.StringBuilder
+  name: LinkDotNet.StringBuilder
+  href: api/LinkDotNet.StringBuilder.html
+  commentId: N:LinkDotNet.StringBuilder
+  fullName: LinkDotNet.StringBuilder
+  nameWithType: LinkDotNet.StringBuilder
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder
+  name: FixedSizeValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html
+  commentId: T:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder
+  nameWithType: FixedSizeValueStringBuilder
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor(System.Span{System.Char})
+  name: FixedSizeValueStringBuilder(Span<char>)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder__ctor_System_Span_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor(System.Span{System.Char})
+  name.vb: New(Span(Of Char))
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.FixedSizeValueStringBuilder(System.Span<char>)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.New(System.Span(Of Char))
+  nameWithType: FixedSizeValueStringBuilder.FixedSizeValueStringBuilder(Span<char>)
+  nameWithType.vb: FixedSizeValueStringBuilder.New(Span(Of Char))
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor*
+  name: FixedSizeValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder__ctor_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.FixedSizeValueStringBuilder
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.New
+  nameWithType: FixedSizeValueStringBuilder.FixedSizeValueStringBuilder
+  nameWithType.vb: FixedSizeValueStringBuilder.New
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)
+  name: Append(ref AppendInterpolatedStringHandler)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)
+  name.vb: Append(AppendInterpolatedStringHandler)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(ref LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType: FixedSizeValueStringBuilder.Append(ref FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Boolean)
+  name: Append(bool)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Boolean_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Boolean)
+  name.vb: Append(Boolean)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(bool)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(Boolean)
+  nameWithType: FixedSizeValueStringBuilder.Append(bool)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(Boolean)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Char)
+  name: Append(char)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Char)
+  name.vb: Append(Char)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(char)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(Char)
+  nameWithType: FixedSizeValueStringBuilder.Append(char)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(Char)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.ReadOnlySpan{System.Char})
+  name: Append(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.ReadOnlySpan{System.Char})
+  name.vb: Append(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.ReadOnlySpan(Of Char))
+  nameWithType: FixedSizeValueStringBuilder.Append(scoped ReadOnlySpan<char>)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.String)
+  name: Append(string?)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_String_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.String)
+  name.vb: Append(String)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(string?)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(String)
+  nameWithType: FixedSizeValueStringBuilder.Append(string?)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(String)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Text.Rune)
+  name: Append(Rune)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_System_Text_Rune_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Text.Rune)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(System.Text.Rune)
+  nameWithType: FixedSizeValueStringBuilder.Append(Rune)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append*
+  name: Append
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append
+  nameWithType: FixedSizeValueStringBuilder.Append
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine
+  name: AppendLine()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine()
+  nameWithType: FixedSizeValueStringBuilder.AppendLine()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)
+  name: AppendLine(ref AppendInterpolatedStringHandler)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendInterpolatedStringHandler__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler@)
+  name.vb: AppendLine(AppendInterpolatedStringHandler)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(ref LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType: FixedSizeValueStringBuilder.AppendLine(ref FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType.vb: FixedSizeValueStringBuilder.AppendLine(FixedSizeValueStringBuilder.AppendInterpolatedStringHandler)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})
+  name: AppendLine(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})
+  name.vb: AppendLine(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.ReadOnlySpan(Of Char))
+  nameWithType: FixedSizeValueStringBuilder.AppendLine(scoped ReadOnlySpan<char>)
+  nameWithType.vb: FixedSizeValueStringBuilder.AppendLine(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.String)
+  name: AppendLine(string?)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_System_String_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(System.String)
+  name.vb: AppendLine(String)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(string?)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine(String)
+  nameWithType: FixedSizeValueStringBuilder.AppendLine(string?)
+  nameWithType.vb: FixedSizeValueStringBuilder.AppendLine(String)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine*
+  name: AppendLine
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AppendLine_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AppendLine
+  nameWithType: FixedSizeValueStringBuilder.AppendLine
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.IFormatProvider)
+  name: Append<T>(T, scoped ReadOnlySpan<char>, IFormatProvider?)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Append__1___0_System_ReadOnlySpan_System_Char__System_IFormatProvider_
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.IFormatProvider)
+  name.vb: Append(Of T)(T, ReadOnlySpan(Of Char), IFormatProvider)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append<T>(T, scoped System.ReadOnlySpan<char>, System.IFormatProvider?)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Append(Of T)(T, System.ReadOnlySpan(Of Char), System.IFormatProvider)
+  nameWithType: FixedSizeValueStringBuilder.Append<T>(T, scoped ReadOnlySpan<char>, IFormatProvider?)
+  nameWithType.vb: FixedSizeValueStringBuilder.Append(Of T)(T, ReadOnlySpan(Of Char), IFormatProvider)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan
+  name: AsSpan()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AsSpan
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan()
+  nameWithType: FixedSizeValueStringBuilder.AsSpan()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan*
+  name: AsSpan
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_AsSpan_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.AsSpan
+  nameWithType: FixedSizeValueStringBuilder.AsSpan
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity
+  name: Capacity
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Capacity
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity
+  nameWithType: FixedSizeValueStringBuilder.Capacity
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity*
+  name: Capacity
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Capacity_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Capacity
+  nameWithType: FixedSizeValueStringBuilder.Capacity
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear
+  name: Clear()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear()
+  nameWithType: FixedSizeValueStringBuilder.Clear()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear*
+  name: Clear
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Clear_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Clear
+  nameWithType: FixedSizeValueStringBuilder.Clear
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow
+  name: ClearOverflow()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow()
+  nameWithType: FixedSizeValueStringBuilder.ClearOverflow()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow*
+  name: ClearOverflow
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ClearOverflow_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ClearOverflow
+  nameWithType: FixedSizeValueStringBuilder.ClearOverflow
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty
+  name: IsEmpty
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_IsEmpty
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty
+  nameWithType: FixedSizeValueStringBuilder.IsEmpty
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty*
+  name: IsEmpty
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_IsEmpty_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.IsEmpty
+  nameWithType: FixedSizeValueStringBuilder.IsEmpty
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item(System.Int32)
+  name: this[int]
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Item_System_Int32_
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.this[int]
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.this[](Integer)
+  nameWithType: FixedSizeValueStringBuilder.this[int]
+  nameWithType.vb: FixedSizeValueStringBuilder.this[](Integer)
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item*
+  name: this
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Item_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.this
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.this[]
+  nameWithType: FixedSizeValueStringBuilder.this
+  nameWithType.vb: FixedSizeValueStringBuilder.this[]
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length
+  name: Length
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Length
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length
+  nameWithType: FixedSizeValueStringBuilder.Length
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length*
+  name: Length
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Length_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Length
+  nameWithType: FixedSizeValueStringBuilder.Length
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder
+  name: MoveToValueStringBuilder()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder()
+  nameWithType: FixedSizeValueStringBuilder.MoveToValueStringBuilder()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder*
+  name: MoveToValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_MoveToValueStringBuilder_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.MoveToValueStringBuilder
+  nameWithType: FixedSizeValueStringBuilder.MoveToValueStringBuilder
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed
+  name: Overflowed
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed
+  nameWithType: FixedSizeValueStringBuilder.Overflowed
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed*
+  name: Overflowed
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Overflowed_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Overflowed
+  nameWithType: FixedSizeValueStringBuilder.Overflowed
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining
+  name: Remaining
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Remaining
+  commentId: P:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining
+  nameWithType: FixedSizeValueStringBuilder.Remaining
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining*
+  name: Remaining
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_Remaining_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.Remaining
+  nameWithType: FixedSizeValueStringBuilder.Remaining
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString
+  name: ToString()
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ToString
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString()
+  nameWithType: FixedSizeValueStringBuilder.ToString()
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString*
+  name: ToString
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_ToString_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.ToString
+  nameWithType: FixedSizeValueStringBuilder.ToString
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo(System.Span{System.Char})
+  name: TryCopyTo(Span<char>)
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_TryCopyTo_System_Span_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo(System.Span{System.Char})
+  name.vb: TryCopyTo(Span(Of Char))
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo(System.Span<char>)
+  fullName.vb: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo(System.Span(Of Char))
+  nameWithType: FixedSizeValueStringBuilder.TryCopyTo(Span<char>)
+  nameWithType.vb: FixedSizeValueStringBuilder.TryCopyTo(Span(Of Char))
+- uid: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo*
+  name: TryCopyTo
+  href: api/LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.html#LinkDotNet_StringBuilder_FixedSizeValueStringBuilder_TryCopyTo_
+  commentId: Overload:LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.FixedSizeValueStringBuilder.TryCopyTo
+  nameWithType: FixedSizeValueStringBuilder.TryCopyTo
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder
+  name: ValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html
+  commentId: T:LinkDotNet.StringBuilder.ValueStringBuilder
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder
+  nameWithType: ValueStringBuilder
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.#ctor
+  name: ValueStringBuilder()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder__ctor
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.#ctor
+  name.vb: New()
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ValueStringBuilder()
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.New()
+  nameWithType: ValueStringBuilder.ValueStringBuilder()
+  nameWithType.vb: ValueStringBuilder.New()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Int32)
+  name: ValueStringBuilder(int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ValueStringBuilder(int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.New(Integer)
+  nameWithType: ValueStringBuilder.ValueStringBuilder(int)
+  nameWithType.vb: ValueStringBuilder.New(Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.ReadOnlySpan{System.Char})
+  name: ValueStringBuilder(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.ReadOnlySpan{System.Char})
+  name.vb: New(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ValueStringBuilder(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.New(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.ValueStringBuilder(scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.New(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Span{System.Char})
+  name: ValueStringBuilder(Span<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder__ctor_System_Span_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.#ctor(System.Span{System.Char})
+  name.vb: New(Span(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ValueStringBuilder(System.Span<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.New(System.Span(Of Char))
+  nameWithType: ValueStringBuilder.ValueStringBuilder(Span<char>)
+  nameWithType.vb: ValueStringBuilder.New(Span(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.#ctor*
+  name: ValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder__ctor_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ValueStringBuilder
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.New
+  nameWithType: ValueStringBuilder.ValueStringBuilder
+  nameWithType.vb: ValueStringBuilder.New
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)
+  name: Append(ref AppendInterpolatedStringHandler)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)
+  name.vb: Append(AppendInterpolatedStringHandler)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(ref LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType: ValueStringBuilder.Append(ref ValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType.vb: ValueStringBuilder.Append(ValueStringBuilder.AppendInterpolatedStringHandler)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Boolean)
+  name: Append(bool)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Boolean_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Boolean)
+  name.vb: Append(Boolean)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(bool)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(Boolean)
+  nameWithType: ValueStringBuilder.Append(bool)
+  nameWithType.vb: ValueStringBuilder.Append(Boolean)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char)
+  name: Append(char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char)
+  name.vb: Append(Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(Char)
+  nameWithType: ValueStringBuilder.Append(char)
+  nameWithType.vb: ValueStringBuilder.Append(Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char*,System.Int32)
+  name: Append(char*, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char__System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char*,System.Int32)
+  name.vb: Append(Char*, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(char*, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(Char*, Integer)
+  nameWithType: ValueStringBuilder.Append(char*, int)
+  nameWithType.vb: ValueStringBuilder.Append(Char*, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char,System.Int32)
+  name: Append(char, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Char_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Char,System.Int32)
+  name.vb: Append(Char, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(char, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(Char, Integer)
+  nameWithType: ValueStringBuilder.Append(char, int)
+  nameWithType.vb: ValueStringBuilder.Append(Char, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlyMemory{System.Char})
+  name: Append(ReadOnlyMemory<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_ReadOnlyMemory_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlyMemory{System.Char})
+  name.vb: Append(ReadOnlyMemory(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlyMemory<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlyMemory(Of Char))
+  nameWithType: ValueStringBuilder.Append(ReadOnlyMemory<char>)
+  nameWithType.vb: ValueStringBuilder.Append(ReadOnlyMemory(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlySpan{System.Char})
+  name: Append(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlySpan{System.Char})
+  name.vb: Append(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.Append(scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.Append(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.String)
+  name: Append(string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.String)
+  name.vb: Append(String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(String)
+  nameWithType: ValueStringBuilder.Append(string?)
+  nameWithType.vb: ValueStringBuilder.Append(String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Text.Rune)
+  name: Append(Rune)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_System_Text_Rune_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Text.Rune)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append(System.Text.Rune)
+  nameWithType: ValueStringBuilder.Append(Rune)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append*
+  name: Append
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Append
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append
+  nameWithType: ValueStringBuilder.Append
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat*
+  name: AppendFormat
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat
+  nameWithType: ValueStringBuilder.AppendFormat
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``1(System.ReadOnlySpan{System.Char},``0)
+  name: AppendFormat<T>(scoped ReadOnlySpan<char>, T)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__1_System_ReadOnlySpan_System_Char____0_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``1(System.ReadOnlySpan{System.Char},``0)
+  name.vb: AppendFormat(Of T)(ReadOnlySpan(Of Char), T)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat<T>(scoped System.ReadOnlySpan<char>, T)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat(Of T)(System.ReadOnlySpan(Of Char), T)
+  nameWithType: ValueStringBuilder.AppendFormat<T>(scoped ReadOnlySpan<char>, T)
+  nameWithType.vb: ValueStringBuilder.AppendFormat(Of T)(ReadOnlySpan(Of Char), T)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``2(System.ReadOnlySpan{System.Char},``0,``1)
+  name: AppendFormat<T1, T2>(scoped ReadOnlySpan<char>, T1, T2)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__2_System_ReadOnlySpan_System_Char____0___1_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``2(System.ReadOnlySpan{System.Char},``0,``1)
+  name.vb: AppendFormat(Of T1, T2)(ReadOnlySpan(Of Char), T1, T2)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat<T1, T2>(scoped System.ReadOnlySpan<char>, T1, T2)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat(Of T1, T2)(System.ReadOnlySpan(Of Char), T1, T2)
+  nameWithType: ValueStringBuilder.AppendFormat<T1, T2>(scoped ReadOnlySpan<char>, T1, T2)
+  nameWithType.vb: ValueStringBuilder.AppendFormat(Of T1, T2)(ReadOnlySpan(Of Char), T1, T2)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``3(System.ReadOnlySpan{System.Char},``0,``1,``2)
+  name: AppendFormat<T1, T2, T3>(scoped ReadOnlySpan<char>, T1, T2, T3)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__3_System_ReadOnlySpan_System_Char____0___1___2_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``3(System.ReadOnlySpan{System.Char},``0,``1,``2)
+  name.vb: AppendFormat(Of T1, T2, T3)(ReadOnlySpan(Of Char), T1, T2, T3)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat<T1, T2, T3>(scoped System.ReadOnlySpan<char>, T1, T2, T3)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat(Of T1, T2, T3)(System.ReadOnlySpan(Of Char), T1, T2, T3)
+  nameWithType: ValueStringBuilder.AppendFormat<T1, T2, T3>(scoped ReadOnlySpan<char>, T1, T2, T3)
+  nameWithType.vb: ValueStringBuilder.AppendFormat(Of T1, T2, T3)(ReadOnlySpan(Of Char), T1, T2, T3)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``4(System.ReadOnlySpan{System.Char},``0,``1,``2,``3)
+  name: AppendFormat<T1, T2, T3, T4>(scoped ReadOnlySpan<char>, T1, T2, T3, T4)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__4_System_ReadOnlySpan_System_Char____0___1___2___3_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``4(System.ReadOnlySpan{System.Char},``0,``1,``2,``3)
+  name.vb: AppendFormat(Of T1, T2, T3, T4)(ReadOnlySpan(Of Char), T1, T2, T3, T4)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat<T1, T2, T3, T4>(scoped System.ReadOnlySpan<char>, T1, T2, T3, T4)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat(Of T1, T2, T3, T4)(System.ReadOnlySpan(Of Char), T1, T2, T3, T4)
+  nameWithType: ValueStringBuilder.AppendFormat<T1, T2, T3, T4>(scoped ReadOnlySpan<char>, T1, T2, T3, T4)
+  nameWithType.vb: ValueStringBuilder.AppendFormat(Of T1, T2, T3, T4)(ReadOnlySpan(Of Char), T1, T2, T3, T4)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``5(System.ReadOnlySpan{System.Char},``0,``1,``2,``3,``4)
+  name: AppendFormat<T1, T2, T3, T4, T5>(scoped ReadOnlySpan<char>, T1, T2, T3, T4, T5)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendFormat__5_System_ReadOnlySpan_System_Char____0___1___2___3___4_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat``5(System.ReadOnlySpan{System.Char},``0,``1,``2,``3,``4)
+  name.vb: AppendFormat(Of T1, T2, T3, T4, T5)(ReadOnlySpan(Of Char), T1, T2, T3, T4, T5)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat<T1, T2, T3, T4, T5>(scoped System.ReadOnlySpan<char>, T1, T2, T3, T4, T5)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendFormat(Of T1, T2, T3, T4, T5)(System.ReadOnlySpan(Of Char), T1, T2, T3, T4, T5)
+  nameWithType: ValueStringBuilder.AppendFormat<T1, T2, T3, T4, T5>(scoped ReadOnlySpan<char>, T1, T2, T3, T4, T5)
+  nameWithType.vb: ValueStringBuilder.AppendFormat(Of T1, T2, T3, T4, T5)(ReadOnlySpan(Of Char), T1, T2, T3, T4, T5)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler
+  name: ValueStringBuilder.AppendInterpolatedStringHandler
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html
+  commentId: T:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.#ctor(System.Int32,System.Int32,LinkDotNet.StringBuilder.ValueStringBuilder)
+  name: AppendInterpolatedStringHandler(int, int, ValueStringBuilder)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__ctor_System_Int32_System_Int32_LinkDotNet_StringBuilder_ValueStringBuilder_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.#ctor(System.Int32,System.Int32,LinkDotNet.StringBuilder.ValueStringBuilder)
+  name.vb: New(Integer, Integer, ValueStringBuilder)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendInterpolatedStringHandler(int, int, LinkDotNet.StringBuilder.ValueStringBuilder)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.New(Integer, Integer, LinkDotNet.StringBuilder.ValueStringBuilder)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendInterpolatedStringHandler(int, int, ValueStringBuilder)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.New(Integer, Integer, ValueStringBuilder)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.#ctor*
+  name: AppendInterpolatedStringHandler
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__ctor_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendInterpolatedStringHandler
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.New
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendInterpolatedStringHandler
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.New
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan{System.Char})
+  name: AppendFormatted(ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan{System.Char})
+  name.vb: AppendFormatted(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)
+  name: AppendFormatted(ReadOnlySpan<char>, int, string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted_System_ReadOnlySpan_System_Char__System_Int32_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan{System.Char},System.Int32,System.String)
+  name.vb: AppendFormatted(ReadOnlySpan(Of Char), Integer, String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan<char>, int, string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.ReadOnlySpan(Of Char), Integer, String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(ReadOnlySpan<char>, int, string?)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(ReadOnlySpan(Of Char), Integer, String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.String)
+  name: AppendFormatted(string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.String)
+  name.vb: AppendFormatted(String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(string?)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.String,System.Int32,System.String)
+  name: AppendFormatted(string?, int, string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted_System_String_System_Int32_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(System.String,System.Int32,System.String)
+  name.vb: AppendFormatted(String, Integer, String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(string?, int, string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(String, Integer, String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(string?, int, string?)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(String, Integer, String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted*
+  name: AppendFormatted
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0)
+  name: AppendFormatted<T>(T)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted__1___0_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0)
+  name.vb: AppendFormatted(Of T)(T)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.Int32)
+  name: AppendFormatted<T>(T, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted__1___0_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.Int32)
+  name.vb: AppendFormatted(Of T)(T, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, Integer)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, int)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.Int32,System.String)
+  name: AppendFormatted<T>(T, int, string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted__1___0_System_Int32_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.Int32,System.String)
+  name.vb: AppendFormatted(Of T)(T, Integer, String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, int, string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, Integer, String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, int, string?)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, Integer, String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.String)
+  name: AppendFormatted<T>(T, string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendFormatted__1___0_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted``1(``0,System.String)
+  name.vb: AppendFormatted(Of T)(T, String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted<T>(T, string?)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendFormatted(Of T)(T, String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(System.String)
+  name: AppendLiteral(string)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendLiteral_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(System.String)
+  name.vb: AppendLiteral(String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(string)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(String)
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(string)
+  nameWithType.vb: ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral(String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral*
+  name: AppendLiteral
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler_AppendLiteral_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral
+  nameWithType: ValueStringBuilder.AppendInterpolatedStringHandler.AppendLiteral
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.Collections.Generic.IEnumerable{System.String})
+  name: AppendJoin(char, IEnumerable<string?>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_System_Collections_Generic_IEnumerable_System_String__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.Collections.Generic.IEnumerable{System.String})
+  name.vb: AppendJoin(Char, IEnumerable(Of String))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(char, System.Collections.Generic.IEnumerable<string?>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Char, System.Collections.Generic.IEnumerable(Of String))
+  nameWithType: ValueStringBuilder.AppendJoin(char, IEnumerable<string?>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Char, IEnumerable(Of String))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.ReadOnlySpan{System.String})
+  name: AppendJoin(char, scoped ReadOnlySpan<string?>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Char_System_ReadOnlySpan_System_String__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Char,System.ReadOnlySpan{System.String})
+  name.vb: AppendJoin(Char, ReadOnlySpan(Of String))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(char, scoped System.ReadOnlySpan<string?>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Char, System.ReadOnlySpan(Of String))
+  nameWithType: ValueStringBuilder.AppendJoin(char, scoped ReadOnlySpan<string?>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Char, ReadOnlySpan(Of String))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{System.String})
+  name: AppendJoin(ReadOnlySpan<char>, IEnumerable<string?>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_ReadOnlySpan_System_Char__System_Collections_Generic_IEnumerable_System_String__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{System.String})
+  name.vb: AppendJoin(ReadOnlySpan(Of Char), IEnumerable(Of String))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan<char>, System.Collections.Generic.IEnumerable<string?>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan(Of Char), System.Collections.Generic.IEnumerable(Of String))
+  nameWithType: ValueStringBuilder.AppendJoin(ReadOnlySpan<char>, IEnumerable<string?>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(ReadOnlySpan(Of Char), IEnumerable(Of String))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.String})
+  name: AppendJoin(ReadOnlySpan<char>, scoped ReadOnlySpan<string?>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_String__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.String})
+  name.vb: AppendJoin(ReadOnlySpan(Of Char), ReadOnlySpan(Of String))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan<char>, scoped System.ReadOnlySpan<string?>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.ReadOnlySpan(Of Char), System.ReadOnlySpan(Of String))
+  nameWithType: ValueStringBuilder.AppendJoin(ReadOnlySpan<char>, scoped ReadOnlySpan<string?>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(ReadOnlySpan(Of Char), ReadOnlySpan(Of String))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Text.Rune,System.Collections.Generic.IEnumerable{System.String})
+  name: AppendJoin(Rune, IEnumerable<string?>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_System_Text_Rune_System_Collections_Generic_IEnumerable_System_String__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Text.Rune,System.Collections.Generic.IEnumerable{System.String})
+  name.vb: AppendJoin(Rune, IEnumerable(Of String))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Text.Rune, System.Collections.Generic.IEnumerable<string?>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(System.Text.Rune, System.Collections.Generic.IEnumerable(Of String))
+  nameWithType: ValueStringBuilder.AppendJoin(Rune, IEnumerable<string?>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Rune, IEnumerable(Of String))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin*
+  name: AppendJoin
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin
+  nameWithType: ValueStringBuilder.AppendJoin
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.Collections.Generic.IEnumerable{``0})
+  name: AppendJoin<T>(char, IEnumerable<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_System_Collections_Generic_IEnumerable___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.Collections.Generic.IEnumerable{``0})
+  name.vb: AppendJoin(Of T)(Char, IEnumerable(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin<T>(char, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Of T)(Char, System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ValueStringBuilder.AppendJoin<T>(char, IEnumerable<T>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Of T)(Char, IEnumerable(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.ReadOnlySpan{``0})
+  name: AppendJoin<T>(char, scoped ReadOnlySpan<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Char_System_ReadOnlySpan___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Char,System.ReadOnlySpan{``0})
+  name.vb: AppendJoin(Of T)(Char, ReadOnlySpan(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin<T>(char, scoped System.ReadOnlySpan<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Of T)(Char, System.ReadOnlySpan(Of T))
+  nameWithType: ValueStringBuilder.AppendJoin<T>(char, scoped ReadOnlySpan<T>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Of T)(Char, ReadOnlySpan(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{``0})
+  name: AppendJoin<T>(scoped ReadOnlySpan<char>, IEnumerable<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_ReadOnlySpan_System_Char__System_Collections_Generic_IEnumerable___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.Collections.Generic.IEnumerable{``0})
+  name.vb: AppendJoin(Of T)(ReadOnlySpan(Of Char), IEnumerable(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin<T>(scoped System.ReadOnlySpan<char>, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Of T)(System.ReadOnlySpan(Of Char), System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ValueStringBuilder.AppendJoin<T>(scoped ReadOnlySpan<char>, IEnumerable<T>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Of T)(ReadOnlySpan(Of Char), IEnumerable(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{``0})
+  name: AppendJoin<T>(scoped ReadOnlySpan<char>, ReadOnlySpan<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_ReadOnlySpan_System_Char__System_ReadOnlySpan___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{``0})
+  name.vb: AppendJoin(Of T)(ReadOnlySpan(Of Char), ReadOnlySpan(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin<T>(scoped System.ReadOnlySpan<char>, System.ReadOnlySpan<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Of T)(System.ReadOnlySpan(Of Char), System.ReadOnlySpan(Of T))
+  nameWithType: ValueStringBuilder.AppendJoin<T>(scoped ReadOnlySpan<char>, ReadOnlySpan<T>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Of T)(ReadOnlySpan(Of Char), ReadOnlySpan(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Text.Rune,System.Collections.Generic.IEnumerable{``0})
+  name: AppendJoin<T>(Rune, IEnumerable<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendJoin__1_System_Text_Rune_System_Collections_Generic_IEnumerable___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin``1(System.Text.Rune,System.Collections.Generic.IEnumerable{``0})
+  name.vb: AppendJoin(Of T)(Rune, IEnumerable(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin<T>(System.Text.Rune, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendJoin(Of T)(System.Text.Rune, System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: ValueStringBuilder.AppendJoin<T>(Rune, IEnumerable<T>)
+  nameWithType.vb: ValueStringBuilder.AppendJoin(Of T)(Rune, IEnumerable(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine
+  name: AppendLine()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine()
+  nameWithType: ValueStringBuilder.AppendLine()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)
+  name: AppendLine(ref AppendInterpolatedStringHandler)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_LinkDotNet_StringBuilder_ValueStringBuilder_AppendInterpolatedStringHandler__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler@)
+  name.vb: AppendLine(AppendInterpolatedStringHandler)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(ref LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(LinkDotNet.StringBuilder.ValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType: ValueStringBuilder.AppendLine(ref ValueStringBuilder.AppendInterpolatedStringHandler)
+  nameWithType.vb: ValueStringBuilder.AppendLine(ValueStringBuilder.AppendInterpolatedStringHandler)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})
+  name: AppendLine(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.ReadOnlySpan{System.Char})
+  name.vb: AppendLine(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.AppendLine(scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.AppendLine(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.String)
+  name: AppendLine(string?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_System_String_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(System.String)
+  name.vb: AppendLine(String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(string?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine(String)
+  nameWithType: ValueStringBuilder.AppendLine(string?)
+  nameWithType.vb: ValueStringBuilder.AppendLine(String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine*
+  name: AppendLine
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendLine_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendLine
+  nameWithType: ValueStringBuilder.AppendLine
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft(System.ReadOnlySpan{System.Char},System.Int32,System.Char)
+  name: AppendPadLeft(scoped ReadOnlySpan<char>, int, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadLeft_System_ReadOnlySpan_System_Char__System_Int32_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft(System.ReadOnlySpan{System.Char},System.Int32,System.Char)
+  name.vb: AppendPadLeft(ReadOnlySpan(Of Char), Integer, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft(scoped System.ReadOnlySpan<char>, int, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft(System.ReadOnlySpan(Of Char), Integer, Char)
+  nameWithType: ValueStringBuilder.AppendPadLeft(scoped ReadOnlySpan<char>, int, char)
+  nameWithType.vb: ValueStringBuilder.AppendPadLeft(ReadOnlySpan(Of Char), Integer, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft*
+  name: AppendPadLeft
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadLeft_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadLeft
+  nameWithType: ValueStringBuilder.AppendPadLeft
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight(System.ReadOnlySpan{System.Char},System.Int32,System.Char)
+  name: AppendPadRight(scoped ReadOnlySpan<char>, int, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadRight_System_ReadOnlySpan_System_Char__System_Int32_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight(System.ReadOnlySpan{System.Char},System.Int32,System.Char)
+  name.vb: AppendPadRight(ReadOnlySpan(Of Char), Integer, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight(scoped System.ReadOnlySpan<char>, int, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight(System.ReadOnlySpan(Of Char), Integer, Char)
+  nameWithType: ValueStringBuilder.AppendPadRight(scoped ReadOnlySpan<char>, int, char)
+  nameWithType.vb: ValueStringBuilder.AppendPadRight(ReadOnlySpan(Of Char), Integer, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight*
+  name: AppendPadRight
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendPadRight_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendPadRight
+  nameWithType: ValueStringBuilder.AppendPadRight
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan(System.Int32)
+  name: AppendSpan(int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendSpan_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan(System.Int32)
+  name.vb: AppendSpan(Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan(int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan(Integer)
+  nameWithType: ValueStringBuilder.AppendSpan(int)
+  nameWithType.vb: ValueStringBuilder.AppendSpan(Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan*
+  name: AppendSpan
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AppendSpan_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AppendSpan
+  nameWithType: ValueStringBuilder.AppendSpan
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)
+  name: Append<T>(T, scoped ReadOnlySpan<char>, int, IFormatProvider?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Append__1___0_System_ReadOnlySpan_System_Char__System_Int32_System_IFormatProvider_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Append``1(``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)
+  name.vb: Append(Of T)(T, ReadOnlySpan(Of Char), Integer, IFormatProvider)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Append<T>(T, scoped System.ReadOnlySpan<char>, int, System.IFormatProvider?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Append(Of T)(T, System.ReadOnlySpan(Of Char), Integer, System.IFormatProvider)
+  nameWithType: ValueStringBuilder.Append<T>(T, scoped ReadOnlySpan<char>, int, IFormatProvider?)
+  nameWithType.vb: ValueStringBuilder.Append(Of T)(T, ReadOnlySpan(Of Char), Integer, IFormatProvider)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan
+  name: AsSpan()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan()
+  nameWithType: ValueStringBuilder.AsSpan()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32)
+  name: AsSpan(int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32)
+  name.vb: AsSpan(Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(Integer)
+  nameWithType: ValueStringBuilder.AsSpan(int)
+  nameWithType.vb: ValueStringBuilder.AsSpan(Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32,System.Int32)
+  name: AsSpan(int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Int32,System.Int32)
+  name.vb: AsSpan(Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(Integer, Integer)
+  nameWithType: ValueStringBuilder.AsSpan(int, int)
+  nameWithType.vb: ValueStringBuilder.AsSpan(Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Range)
+  name: AsSpan(Range)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_System_Range_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Range)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan(System.Range)
+  nameWithType: ValueStringBuilder.AsSpan(Range)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan*
+  name: AsSpan
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_AsSpan_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.AsSpan
+  nameWithType: ValueStringBuilder.AsSpan
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Capacity
+  name: Capacity
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Capacity
+  commentId: P:LinkDotNet.StringBuilder.ValueStringBuilder.Capacity
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Capacity
+  nameWithType: ValueStringBuilder.Capacity
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Capacity*
+  name: Capacity
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Capacity_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Capacity
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Capacity
+  nameWithType: ValueStringBuilder.Capacity
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Clear
+  name: Clear()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Clear
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Clear
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Clear()
+  nameWithType: ValueStringBuilder.Clear()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Clear*
+  name: Clear
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Clear_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Clear
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Clear
+  nameWithType: ValueStringBuilder.Clear
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat*
+  name: Concat
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Concat
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat
+  nameWithType: ValueStringBuilder.Concat
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(System.ReadOnlySpan{``0})
+  name: Concat<T>(params ReadOnlySpan<T>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__1_System_ReadOnlySpan___0__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(System.ReadOnlySpan{``0})
+  name.vb: Concat(Of T)(ReadOnlySpan(Of T))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T>(params System.ReadOnlySpan<T>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T)(System.ReadOnlySpan(Of T))
+  nameWithType: ValueStringBuilder.Concat<T>(params ReadOnlySpan<T>)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T)(ReadOnlySpan(Of T))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(``0)
+  name: Concat<T1>(T1)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__1___0_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``1(``0)
+  name.vb: Concat(Of T1)(T1)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T1>(T1)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T1)(T1)
+  nameWithType: ValueStringBuilder.Concat<T1>(T1)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T1)(T1)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``2(``0,``1)
+  name: Concat<T1, T2>(T1, T2)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__2___0___1_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``2(``0,``1)
+  name.vb: Concat(Of T1, T2)(T1, T2)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T1, T2>(T1, T2)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T1, T2)(T1, T2)
+  nameWithType: ValueStringBuilder.Concat<T1, T2>(T1, T2)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T1, T2)(T1, T2)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``3(``0,``1,``2)
+  name: Concat<T1, T2, T3>(T1, T2, T3)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__3___0___1___2_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``3(``0,``1,``2)
+  name.vb: Concat(Of T1, T2, T3)(T1, T2, T3)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T1, T2, T3>(T1, T2, T3)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T1, T2, T3)(T1, T2, T3)
+  nameWithType: ValueStringBuilder.Concat<T1, T2, T3>(T1, T2, T3)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T1, T2, T3)(T1, T2, T3)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``4(``0,``1,``2,``3)
+  name: Concat<T1, T2, T3, T4>(T1, T2, T3, T4)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__4___0___1___2___3_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``4(``0,``1,``2,``3)
+  name.vb: Concat(Of T1, T2, T3, T4)(T1, T2, T3, T4)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T1, T2, T3, T4>(T1, T2, T3, T4)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T1, T2, T3, T4)(T1, T2, T3, T4)
+  nameWithType: ValueStringBuilder.Concat<T1, T2, T3, T4>(T1, T2, T3, T4)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T1, T2, T3, T4)(T1, T2, T3, T4)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Concat``5(``0,``1,``2,``3,``4)
+  name: Concat<T1, T2, T3, T4, T5>(T1, T2, T3, T4, T5)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Concat__5___0___1___2___3___4_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Concat``5(``0,``1,``2,``3,``4)
+  name.vb: Concat(Of T1, T2, T3, T4, T5)(T1, T2, T3, T4, T5)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Concat<T1, T2, T3, T4, T5>(T1, T2, T3, T4, T5)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Concat(Of T1, T2, T3, T4, T5)(T1, T2, T3, T4, T5)
+  nameWithType: ValueStringBuilder.Concat<T1, T2, T3, T4, T5>(T1, T2, T3, T4, T5)
+  nameWithType.vb: ValueStringBuilder.Concat(Of T1, T2, T3, T4, T5)(T1, T2, T3, T4, T5)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Contains(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: Contains(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Contains_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Contains(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: Contains(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Contains(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Contains(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.Contains(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.Contains(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Contains*
+  name: Contains
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Contains_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Contains
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Contains
+  nameWithType: ValueStringBuilder.Contains
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Dispose
+  name: Dispose()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Dispose
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Dispose
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Dispose()
+  nameWithType: ValueStringBuilder.Dispose()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Dispose*
+  name: Dispose
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Dispose_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Dispose
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Dispose
+  nameWithType: ValueStringBuilder.Dispose
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)
+  name: EnsureCapacity(int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(System.Int32)
+  name.vb: EnsureCapacity(Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity(Integer)
+  nameWithType: ValueStringBuilder.EnsureCapacity(int)
+  nameWithType.vb: ValueStringBuilder.EnsureCapacity(Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity*
+  name: EnsureCapacity
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_EnsureCapacity_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.EnsureCapacity
+  nameWithType: ValueStringBuilder.EnsureCapacity
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator
+  name: ValueStringBuilder.Enumerator
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html
+  commentId: T:LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator
+  nameWithType: ValueStringBuilder.Enumerator
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current
+  name: Current
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html#LinkDotNet_StringBuilder_ValueStringBuilder_Enumerator_Current
+  commentId: P:LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current
+  nameWithType: ValueStringBuilder.Enumerator.Current
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current*
+  name: Current
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html#LinkDotNet_StringBuilder_ValueStringBuilder_Enumerator_Current_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.Current
+  nameWithType: ValueStringBuilder.Enumerator.Current
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext
+  name: MoveNext()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html#LinkDotNet_StringBuilder_ValueStringBuilder_Enumerator_MoveNext
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext()
+  nameWithType: ValueStringBuilder.Enumerator.MoveNext()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext*
+  name: MoveNext
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.html#LinkDotNet_StringBuilder_ValueStringBuilder_Enumerator_MoveNext_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Enumerator.MoveNext
+  nameWithType: ValueStringBuilder.Enumerator.MoveNext
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char})
+  name: Equals(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Equals_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char})
+  name.vb: Equals(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.Equals(scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.Equals(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: Equals(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Equals_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: Equals(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Equals(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.Equals(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.Equals(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Equals*
+  name: Equals
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Equals_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Equals
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Equals
+  nameWithType: ValueStringBuilder.Equals
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator
+  name: GetEnumerator()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_GetEnumerator
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator()
+  nameWithType: ValueStringBuilder.GetEnumerator()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator*
+  name: GetEnumerator
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_GetEnumerator_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.GetEnumerator
+  nameWithType: ValueStringBuilder.GetEnumerator
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference
+  name: GetPinnableReference()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference()
+  nameWithType: ValueStringBuilder.GetPinnableReference()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference*
+  name: GetPinnableReference
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_GetPinnableReference_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.GetPinnableReference
+  nameWithType: ValueStringBuilder.GetPinnableReference
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)
+  name: IndexOf(scoped ReadOnlySpan<char>, int, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_System_ReadOnlySpan_System_Char__System_Int32_System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)
+  name.vb: IndexOf(ReadOnlySpan(Of Char), Integer, StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(scoped System.ReadOnlySpan<char>, int, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan(Of Char), Integer, System.StringComparison)
+  nameWithType: ValueStringBuilder.IndexOf(scoped ReadOnlySpan<char>, int, StringComparison)
+  nameWithType.vb: ValueStringBuilder.IndexOf(ReadOnlySpan(Of Char), Integer, StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: IndexOf(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: IndexOf(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.IndexOf(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.IndexOf(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf*
+  name: IndexOf
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IndexOf_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.IndexOf
+  nameWithType: ValueStringBuilder.IndexOf
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Boolean)
+  name: Insert(int, bool)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Boolean_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Boolean)
+  name.vb: Insert(Integer, Boolean)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(int, bool)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(Integer, Boolean)
+  nameWithType: ValueStringBuilder.Insert(int, bool)
+  nameWithType.vb: ValueStringBuilder.Insert(Integer, Boolean)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Char)
+  name: Insert(int, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Char)
+  name.vb: Insert(Integer, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(int, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(Integer, Char)
+  nameWithType: ValueStringBuilder.Insert(int, char)
+  nameWithType.vb: ValueStringBuilder.Insert(Integer, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.ReadOnlySpan{System.Char})
+  name: Insert(int, scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.ReadOnlySpan{System.Char})
+  name.vb: Insert(Integer, ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(int, scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(Integer, System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.Insert(int, scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.Insert(Integer, ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Text.Rune)
+  name: Insert(int, Rune)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert_System_Int32_System_Text_Rune_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Insert(System.Int32,System.Text.Rune)
+  name.vb: Insert(Integer, Rune)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(int, System.Text.Rune)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(Integer, System.Text.Rune)
+  nameWithType: ValueStringBuilder.Insert(int, Rune)
+  nameWithType.vb: ValueStringBuilder.Insert(Integer, Rune)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert*
+  name: Insert
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Insert
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert
+  nameWithType: ValueStringBuilder.Insert
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Insert``1(System.Int32,``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)
+  name: Insert<T>(int, T, scoped ReadOnlySpan<char>, int, IFormatProvider?)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Insert__1_System_Int32___0_System_ReadOnlySpan_System_Char__System_Int32_System_IFormatProvider_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Insert``1(System.Int32,``0,System.ReadOnlySpan{System.Char},System.Int32,System.IFormatProvider)
+  name.vb: Insert(Of T)(Integer, T, ReadOnlySpan(Of Char), Integer, IFormatProvider)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Insert<T>(int, T, scoped System.ReadOnlySpan<char>, int, System.IFormatProvider?)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Insert(Of T)(Integer, T, System.ReadOnlySpan(Of Char), Integer, System.IFormatProvider)
+  nameWithType: ValueStringBuilder.Insert<T>(int, T, scoped ReadOnlySpan<char>, int, IFormatProvider?)
+  nameWithType.vb: ValueStringBuilder.Insert(Of T)(Integer, T, ReadOnlySpan(Of Char), Integer, IFormatProvider)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty
+  name: IsEmpty
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IsEmpty
+  commentId: P:LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty
+  nameWithType: ValueStringBuilder.IsEmpty
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty*
+  name: IsEmpty
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_IsEmpty_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.IsEmpty
+  nameWithType: ValueStringBuilder.IsEmpty
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Item(System.Int32)
+  name: this[int]
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Item_System_Int32_
+  commentId: P:LinkDotNet.StringBuilder.ValueStringBuilder.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.this[int]
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.this[](Integer)
+  nameWithType: ValueStringBuilder.this[int]
+  nameWithType.vb: ValueStringBuilder.this[](Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Item*
+  name: this
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Item_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.this
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.this[]
+  nameWithType: ValueStringBuilder.this
+  nameWithType.vb: ValueStringBuilder.this[]
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)
+  name: LastIndexOf(scoped ReadOnlySpan<char>, int, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_System_ReadOnlySpan_System_Char__System_Int32_System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.Int32,System.StringComparison)
+  name.vb: LastIndexOf(ReadOnlySpan(Of Char), Integer, StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(scoped System.ReadOnlySpan<char>, int, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan(Of Char), Integer, System.StringComparison)
+  nameWithType: ValueStringBuilder.LastIndexOf(scoped ReadOnlySpan<char>, int, StringComparison)
+  nameWithType.vb: ValueStringBuilder.LastIndexOf(ReadOnlySpan(Of Char), Integer, StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: LastIndexOf(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: LastIndexOf(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.LastIndexOf(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.LastIndexOf(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf*
+  name: LastIndexOf
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_LastIndexOf_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.LastIndexOf
+  nameWithType: ValueStringBuilder.LastIndexOf
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Length
+  name: Length
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length
+  commentId: P:LinkDotNet.StringBuilder.ValueStringBuilder.Length
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Length
+  nameWithType: ValueStringBuilder.Length
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Length*
+  name: Length
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Length_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Length
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Length
+  nameWithType: ValueStringBuilder.Length
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft(System.Int32,System.Char)
+  name: PadLeft(int, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_PadLeft_System_Int32_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft(System.Int32,System.Char)
+  name.vb: PadLeft(Integer, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft(int, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft(Integer, Char)
+  nameWithType: ValueStringBuilder.PadLeft(int, char)
+  nameWithType.vb: ValueStringBuilder.PadLeft(Integer, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft*
+  name: PadLeft
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_PadLeft_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.PadLeft
+  nameWithType: ValueStringBuilder.PadLeft
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.PadRight(System.Int32,System.Char)
+  name: PadRight(int, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_PadRight_System_Int32_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.PadRight(System.Int32,System.Char)
+  name.vb: PadRight(Integer, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.PadRight(int, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.PadRight(Integer, Char)
+  nameWithType: ValueStringBuilder.PadRight(int, char)
+  nameWithType.vb: ValueStringBuilder.PadRight(Integer, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.PadRight*
+  name: PadRight
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_PadRight_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.PadRight
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.PadRight
+  nameWithType: ValueStringBuilder.PadRight
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Remove(System.Int32,System.Int32)
+  name: Remove(int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Remove_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Remove(System.Int32,System.Int32)
+  name.vb: Remove(Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Remove(int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Remove(Integer, Integer)
+  nameWithType: ValueStringBuilder.Remove(int, int)
+  nameWithType.vb: ValueStringBuilder.Remove(Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Remove*
+  name: Remove
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Remove_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Remove
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Remove
+  nameWithType: ValueStringBuilder.Remove
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char)
+  name: Replace(char, char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char)
+  name.vb: Replace(Char, Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(char, char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(Char, Char)
+  nameWithType: ValueStringBuilder.Replace(char, char)
+  nameWithType.vb: ValueStringBuilder.Replace(Char, Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)
+  name: Replace(char, char, int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Char_System_Char_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Char,System.Char,System.Int32,System.Int32)
+  name.vb: Replace(Char, Char, Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(char, char, int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(Char, Char, Integer, Integer)
+  nameWithType: ValueStringBuilder.Replace(char, char, int, int)
+  nameWithType.vb: ValueStringBuilder.Replace(Char, Char, Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})
+  name: Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})
+  name.vb: Replace(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(scoped System.ReadOnlySpan<char>, scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan(Of Char), System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.Replace(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)
+  name: Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>, int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_ReadOnlySpan_System_Char__System_ReadOnlySpan_System_Char__System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Int32,System.Int32)
+  name.vb: Replace(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(scoped System.ReadOnlySpan<char>, scoped System.ReadOnlySpan<char>, int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.ReadOnlySpan(Of Char), System.ReadOnlySpan(Of Char), Integer, Integer)
+  nameWithType: ValueStringBuilder.Replace(scoped ReadOnlySpan<char>, scoped ReadOnlySpan<char>, int, int)
+  nameWithType.vb: ValueStringBuilder.Replace(ReadOnlySpan(Of Char), ReadOnlySpan(Of Char), Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune)
+  name: Replace(Rune, Rune)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Text_Rune_System_Text_Rune_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune, System.Text.Rune)
+  nameWithType: ValueStringBuilder.Replace(Rune, Rune)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune,System.Int32,System.Int32)
+  name: Replace(Rune, Rune, int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_System_Text_Rune_System_Text_Rune_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune,System.Text.Rune,System.Int32,System.Int32)
+  name.vb: Replace(Rune, Rune, Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune, System.Text.Rune, int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Replace(System.Text.Rune, System.Text.Rune, Integer, Integer)
+  nameWithType: ValueStringBuilder.Replace(Rune, Rune, int, int)
+  nameWithType.vb: ValueStringBuilder.Replace(Rune, Rune, Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Replace*
+  name: Replace
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Replace_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Replace
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Replace
+  nameWithType: ValueStringBuilder.Replace
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric*
+  name: ReplaceGeneric
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric
+  nameWithType: ValueStringBuilder.ReplaceGeneric
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0)
+  name: ReplaceGeneric<T>(scoped ReadOnlySpan<char>, T)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0)
+  name.vb: ReplaceGeneric(Of T)(ReadOnlySpan(Of Char), T)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric<T>(scoped System.ReadOnlySpan<char>, T)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric(Of T)(System.ReadOnlySpan(Of Char), T)
+  nameWithType: ValueStringBuilder.ReplaceGeneric<T>(scoped ReadOnlySpan<char>, T)
+  nameWithType.vb: ValueStringBuilder.ReplaceGeneric(Of T)(ReadOnlySpan(Of Char), T)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0,System.Int32,System.Int32)
+  name: ReplaceGeneric<T>(scoped ReadOnlySpan<char>, T, int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ReplaceGeneric__1_System_ReadOnlySpan_System_Char____0_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric``1(System.ReadOnlySpan{System.Char},``0,System.Int32,System.Int32)
+  name.vb: ReplaceGeneric(Of T)(ReadOnlySpan(Of Char), T, Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric<T>(scoped System.ReadOnlySpan<char>, T, int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.ReplaceGeneric(Of T)(System.ReadOnlySpan(Of Char), T, Integer, Integer)
+  nameWithType: ValueStringBuilder.ReplaceGeneric<T>(scoped ReadOnlySpan<char>, T, int, int)
+  nameWithType.vb: ValueStringBuilder.ReplaceGeneric(Of T)(ReadOnlySpan(Of Char), T, Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Reverse
+  name: Reverse()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Reverse
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Reverse
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Reverse()
+  nameWithType: ValueStringBuilder.Reverse()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Reverse*
+  name: Reverse
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Reverse_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Reverse
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Reverse
+  nameWithType: ValueStringBuilder.Reverse
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ToString
+  name: ToString()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ToString
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ToString
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ToString()
+  nameWithType: ValueStringBuilder.ToString()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32)
+  name: ToString(int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32)
+  name.vb: ToString(Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(Integer)
+  nameWithType: ValueStringBuilder.ToString(int)
+  nameWithType.vb: ValueStringBuilder.ToString(Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32,System.Int32)
+  name: ToString(int, int)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Int32_System_Int32_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Int32,System.Int32)
+  name.vb: ToString(Integer, Integer)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(int, int)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(Integer, Integer)
+  nameWithType: ValueStringBuilder.ToString(int, int)
+  nameWithType.vb: ValueStringBuilder.ToString(Integer, Integer)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Range)
+  name: ToString(Range)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ToString_System_Range_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Range)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ToString(System.Range)
+  nameWithType: ValueStringBuilder.ToString(Range)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.ToString*
+  name: ToString
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_ToString_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.ToString
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.ToString
+  nameWithType: ValueStringBuilder.ToString
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Trim
+  name: Trim()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Trim
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Trim
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Trim()
+  nameWithType: ValueStringBuilder.Trim()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Trim(System.Char)
+  name: Trim(char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Trim_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.Trim(System.Char)
+  name.vb: Trim(Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Trim(char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.Trim(Char)
+  nameWithType: ValueStringBuilder.Trim(char)
+  nameWithType.vb: ValueStringBuilder.Trim(Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.Trim*
+  name: Trim
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_Trim_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.Trim
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.Trim
+  nameWithType: ValueStringBuilder.Trim
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd
+  name: TrimEnd()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd()
+  nameWithType: ValueStringBuilder.TrimEnd()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd(System.Char)
+  name: TrimEnd(char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd(System.Char)
+  name.vb: TrimEnd(Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd(char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd(Char)
+  nameWithType: ValueStringBuilder.TrimEnd(char)
+  nameWithType.vb: ValueStringBuilder.TrimEnd(Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd*
+  name: TrimEnd
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimEnd_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimEnd
+  nameWithType: ValueStringBuilder.TrimEnd
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: TrimPrefix(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimPrefix_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: TrimPrefix(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.TrimPrefix(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.TrimPrefix(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix*
+  name: TrimPrefix
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimPrefix_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimPrefix
+  nameWithType: ValueStringBuilder.TrimPrefix
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart
+  name: TrimStart()
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart()
+  nameWithType: ValueStringBuilder.TrimStart()
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart(System.Char)
+  name: TrimStart(char)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart_System_Char_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart(System.Char)
+  name.vb: TrimStart(Char)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart(char)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart(Char)
+  nameWithType: ValueStringBuilder.TrimStart(char)
+  nameWithType.vb: ValueStringBuilder.TrimStart(Char)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart*
+  name: TrimStart
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimStart_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimStart
+  nameWithType: ValueStringBuilder.TrimStart
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name: TrimSuffix(scoped ReadOnlySpan<char>, StringComparison)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimSuffix_System_ReadOnlySpan_System_Char__System_StringComparison_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix(System.ReadOnlySpan{System.Char},System.StringComparison)
+  name.vb: TrimSuffix(ReadOnlySpan(Of Char), StringComparison)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix(scoped System.ReadOnlySpan<char>, System.StringComparison)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix(System.ReadOnlySpan(Of Char), System.StringComparison)
+  nameWithType: ValueStringBuilder.TrimSuffix(scoped ReadOnlySpan<char>, StringComparison)
+  nameWithType.vb: ValueStringBuilder.TrimSuffix(ReadOnlySpan(Of Char), StringComparison)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix*
+  name: TrimSuffix
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TrimSuffix_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TrimSuffix
+  nameWithType: ValueStringBuilder.TrimSuffix
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(System.Span{System.Char})
+  name: TryCopyTo(Span<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_System_Span_System_Char__
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(System.Span{System.Char})
+  name.vb: TryCopyTo(Span(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(System.Span<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo(System.Span(Of Char))
+  nameWithType: ValueStringBuilder.TryCopyTo(Span<char>)
+  nameWithType.vb: ValueStringBuilder.TryCopyTo(Span(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo*
+  name: TryCopyTo
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_TryCopyTo_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.TryCopyTo
+  nameWithType: ValueStringBuilder.TryCopyTo
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.ReadOnlySpan{System.Char})~LinkDotNet.StringBuilder.ValueStringBuilder
+  name: implicit operator ValueStringBuilder(scoped ReadOnlySpan<char>)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_System_ReadOnlySpan_System_Char___LinkDotNet_StringBuilder_ValueStringBuilder
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.ReadOnlySpan{System.Char})~LinkDotNet.StringBuilder.ValueStringBuilder
+  name.vb: CType(ReadOnlySpan(Of Char))
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.implicit operator LinkDotNet.StringBuilder.ValueStringBuilder(scoped System.ReadOnlySpan<char>)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.CType(System.ReadOnlySpan(Of Char))
+  nameWithType: ValueStringBuilder.implicit operator ValueStringBuilder(scoped ReadOnlySpan<char>)
+  nameWithType.vb: ValueStringBuilder.CType(ReadOnlySpan(Of Char))
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.String)~LinkDotNet.StringBuilder.ValueStringBuilder
+  name: implicit operator ValueStringBuilder(string)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_System_String__LinkDotNet_StringBuilder_ValueStringBuilder
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit(System.String)~LinkDotNet.StringBuilder.ValueStringBuilder
+  name.vb: CType(String)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.implicit operator LinkDotNet.StringBuilder.ValueStringBuilder(string)
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.CType(String)
+  nameWithType: ValueStringBuilder.implicit operator ValueStringBuilder(string)
+  nameWithType.vb: ValueStringBuilder.CType(String)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit*
+  name: implicit operator
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilder.html#LinkDotNet_StringBuilder_ValueStringBuilder_op_Implicit_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilder.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilder.implicit operator
+  fullName.vb: LinkDotNet.StringBuilder.ValueStringBuilder.CType
+  nameWithType: ValueStringBuilder.implicit operator
+  nameWithType.vb: ValueStringBuilder.CType
+- uid: LinkDotNet.StringBuilder.ValueStringBuilderExtensions
+  name: ValueStringBuilderExtensions
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html
+  commentId: T:LinkDotNet.StringBuilder.ValueStringBuilderExtensions
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilderExtensions
+  nameWithType: ValueStringBuilderExtensions
+- uid: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder(LinkDotNet.StringBuilder.ValueStringBuilder)
+  name: ToStringBuilder(ValueStringBuilder)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToStringBuilder_LinkDotNet_StringBuilder_ValueStringBuilder_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder(LinkDotNet.StringBuilder.ValueStringBuilder)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder(LinkDotNet.StringBuilder.ValueStringBuilder)
+  nameWithType: ValueStringBuilderExtensions.ToStringBuilder(ValueStringBuilder)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder*
+  name: ToStringBuilder
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToStringBuilder_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToStringBuilder
+  nameWithType: ValueStringBuilderExtensions.ToStringBuilder
+- uid: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder(System.Text.StringBuilder)
+  name: ToValueStringBuilder(StringBuilder)
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToValueStringBuilder_System_Text_StringBuilder_
+  commentId: M:LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder(System.Text.StringBuilder)
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder(System.Text.StringBuilder)
+  nameWithType: ValueStringBuilderExtensions.ToValueStringBuilder(StringBuilder)
+- uid: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder*
+  name: ToValueStringBuilder
+  href: api/LinkDotNet.StringBuilder.ValueStringBuilderExtensions.html#LinkDotNet_StringBuilder_ValueStringBuilderExtensions_ToValueStringBuilder_
+  commentId: Overload:LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder
+  isSpec: "True"
+  fullName: LinkDotNet.StringBuilder.ValueStringBuilderExtensions.ToValueStringBuilder
+  nameWithType: ValueStringBuilderExtensions.ToValueStringBuilder
+- uid: additional_members
+  name: Additional members
+  href: articles/additional_members.html
+- uid: advanced_usage
+  name: Advanced usage
+  href: articles/advanced_usage.html
+- uid: best_practices
+  name: Best practices and pitfalls
+  href: articles/best_practices.html
+- uid: choosing_builder
+  name: Choosing between builders
+  href: articles/choosing_builder.html
+- uid: comparison
+  name: Comparison
+  href: articles/comparison.html
+- uid: concepts
+  name: How does it work?
+  href: articles/concepts.html
+- uid: exceptions_and_edge_cases
+  name: Exceptions and edge cases
+  href: articles/exceptions_and_edge_cases.html
+- uid: fixed_size
+  name: Fixed-size string building
+  href: articles/fixed_size.html
+- uid: getting_started
+  name: Getting started
+  href: articles/getting_started.html
+- uid: known_limitations
+  name: Known Limitations
+  href: articles/known_limitations.html
+- uid: pass_to_method
+  name: Passing the ValueStringBuilder to a method
+  href: articles/pass_to_method.html
+- uid: trimming
+  name: Trimming
+  href: articles/trimming.html
