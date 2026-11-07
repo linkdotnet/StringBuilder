@@ -67,7 +67,7 @@
       "_appLogoPath": "images/logo.png",
       "_appFaviconPath": "images/logo.png",
       "_disableBreadcrumb": true,
-      "_appFooter": "<span>Released under the MIT License. <a href=\"https://github.com/linkdotnet/StringBuilder\">Source on GitHub</a> · <a href=\"llms.txt\">llms.txt</a></span>"
+      "_appFooter": "<span>Released under the MIT License. <a href=\"https://github.com/linkdotnet/StringBuilder\">Source on GitHub</a> · <a href=\"https://linkdotnet.github.io/StringBuilder/llms.txt\">llms.txt</a></span>"
     },
     "postProcessors": [
       "ExtractSearchIndex"
